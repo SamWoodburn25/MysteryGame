@@ -1,10 +1,15 @@
 package Engine;
 
 import GameObject.Rectangle;
+import Screens.CreditsScreen;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
 import javax.swing.*;
+
+import Game.GameState;
+import Game.ScreenCoordinator;
+
 import java.awt.*;
 
 /*
@@ -30,6 +35,9 @@ public class GamePanel extends JPanel {
 	private int currentFPS;
 	private boolean doPaint;
 
+	private boolean isJournalOpen = false;
+	private ScreenCoordinator screenCoordinator;
+
 	// The JPanel and various important class instances are setup here
 	public GamePanel() {
 		super();
@@ -41,6 +49,21 @@ public class GamePanel extends JPanel {
 		graphicsHandler = new GraphicsHandler();
 
 		screenManager = new ScreenManager();
+
+		screenCoordinator = new ScreenCoordinator();
+		if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
+			isJournalOpen = !isJournalOpen;
+			keyLocker.lockKey(Key.J);
+			//screenCoordinator.setGameState(GameState.CREDITS);
+			screenManager.setCurrentScreen(new CreditsScreen(screenCoordinator));
+		}
+
+		if (Keyboard.isKeyUp(Key.J)) {
+			keyLocker.unlockKey(Key.J);
+			//screenCoordinator.setGameState(GameState.CREDITS);
+
+		}
+		
 
 		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Arial", 24, Color.white);
 		pauseLabel.setOutlineColor(Color.black);

@@ -12,6 +12,7 @@ import java.awt.*;
 // This is the class for the main menu screen
 public class MenuScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
+    protected ScreenManager screenManager;
     protected int currentMenuItemHovered = 0; // current menu item being "hovered" over
     protected int menuItemSelected = -1;
     protected SpriteFont playGame;
@@ -23,6 +24,7 @@ public class MenuScreen extends Screen {
 
     public MenuScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        this.screenManager = new ScreenManager();
     }
 
     @Override
@@ -41,6 +43,19 @@ public class MenuScreen extends Screen {
     }
 
     public void update() {
+        //open journal
+        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
+			//isJournalOpen = !isJournalOpen;
+			keyLocker.lockKey(Key.J);
+            screenCoordinator.setGameState(GameState.JOURNAL);
+            screenCoordinator.setPrevState(GameState.MENU);
+		}
+
+		if (Keyboard.isKeyUp(Key.J)) {
+			keyLocker.unlockKey(Key.J);
+		}
+
+
         // update background map (to play tile animations)
         background.update(null);
 
