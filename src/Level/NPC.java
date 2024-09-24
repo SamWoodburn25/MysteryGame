@@ -61,6 +61,7 @@ public class NPC extends MapEntity {
         }
     }
 
+    //Character bouncing in place
     public void bounce(Direction direction) {
         if (direction == Direction.RIGHT) {
             this.currentAnimationName = "BOUNCE_RIGHT";
