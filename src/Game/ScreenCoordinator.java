@@ -4,6 +4,7 @@ import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
+import Screens.JournalScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 
@@ -22,11 +23,17 @@ public class ScreenCoordinator extends Screen {
 	public GameState getGameState() {
 		return gameState;
 	}
-
 	// Other Screens can set the gameState of this class to force it to change the currentScreen
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
 	}
+
+	public void setPrevState(GameState prevState){
+        this.previousGameState = prevState;
+    }
+    public GameState getPrevState(){
+        return this.previousGameState;
+    }
 
 	@Override
 	public void initialize() {
@@ -50,6 +57,8 @@ public class ScreenCoordinator extends Screen {
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
 						break;
+					case JOURNAL:
+						currentScreen = new JournalScreen(this, previousGameState);
 				}
 				currentScreen.initialize();
 			}
