@@ -4,6 +4,7 @@ import EnhancedMapTiles.PushableRock;
 import Level.*;
 import NPCs.Bug;
 import NPCs.Dinosaur;
+import NPCs.Mom;
 import NPCs.Walrus;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
@@ -41,7 +42,7 @@ public class TestMap extends Map {
         dinosaur.setExistenceFlag("hasTalkedToDinosaur");
         dinosaur.setInteractScript(new DinoScript());
         npcs.add(dinosaur);
-        
+
         Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
         bug.setInteractScript(new BugScript());
         npcs.add(bug);
@@ -55,6 +56,7 @@ public class TestMap extends Map {
         triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));
+        triggers.add(new Trigger(790, 1035, 100, 11, new LostBallScript(), "hasLostBall"));
         return triggers;
     }
 
@@ -66,7 +68,8 @@ public class TestMap extends Map {
 
         getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
 
+        getMapTile(22, 18).setInteractScript(new SimpleTextScript("Mom's house"));
+
         getMapTile(2, 6).setInteractScript(new TreeScript());
     }
 }
-
