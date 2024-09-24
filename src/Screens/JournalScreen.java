@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 // This class is for the journal cover screen
 public class JournalScreen extends Screen {
     protected BufferedImage journalCover;
+    protected BufferedImage journalPage;
+    protected boolean openPage;
     protected KeyLocker keyLocker = new KeyLocker();
     protected ScreenCoordinator screenCoordinator;
     protected GameState prevState;
@@ -20,6 +22,7 @@ public class JournalScreen extends Screen {
         this.screenCoordinator = screenCoordinator;
         this.screenManager = new ScreenManager();
         this.prevState = prevState;
+        this.openPage = false;
     }
 
     @Override
@@ -57,11 +60,17 @@ public class JournalScreen extends Screen {
 
     public void turnPage(){
         System.out.println("turn page- to be implemented ");
+        this.openPage = true;
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         graphicsHandler.drawImage(journalCover, 10, 10, 800, 550);
+/* 
+        if(openPage){
+            graphicsHandler.drawImage(journalPage, 10, 10);
+        }
+        */
     }
 
 }
