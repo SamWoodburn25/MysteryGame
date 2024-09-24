@@ -14,7 +14,7 @@ import java.util.HashMap;
 public abstract class Tileset extends SpriteSheet {
     // global scale of all tiles in the tileset
     protected float tileScale = 1f;
-
+    
     // stores tiles mapped to an index
     protected HashMap<Integer, MapTileBuilder> tiles;
 
