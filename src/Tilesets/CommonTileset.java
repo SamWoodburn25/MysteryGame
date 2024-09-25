@@ -21,16 +21,6 @@ public class CommonTileset extends Tileset {
     public ArrayList<MapTileBuilder> defineTiles() {
         ArrayList<MapTileBuilder> mapTiles = new ArrayList<>();
 
-        //floor
-        /**Frame floorFrame = new FrameBuilder(getSubImage(3,4))
-                .withScale(tileScale)
-                build();
-
-        MapTileBuilder floorTile = new MapTileBuilder(floorFrame);
-
-        mapTiles.add(floorTile); **/
-        
-
         // grass
         Frame grassFrame = new FrameBuilder(getSubImage(0, 0))
                 .withScale(tileScale)
@@ -65,8 +55,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder rockTile = new MapTileBuilder(rockFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder rockTile = new MapTileBuilder(rockFrame);
+        //        .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(rockTile);
 
@@ -84,12 +74,12 @@ public class CommonTileset extends Tileset {
         // left end branch
         Frame leftEndBranchFrame = new FrameBuilder(getSubImage(2, 4))
                 .withScale(tileScale)
-                .withBounds(0, 6, 16, 4)
+                //.withBounds(0, 6, 16, 4)
                 .build();
 
         MapTileBuilder leftEndBranchTile = new MapTileBuilder(grassFrame)
                 .withTopLayer(leftEndBranchFrame)
-                .withTileType(TileType.PASSABLE);
+                .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(leftEndBranchTile);
 
@@ -196,7 +186,7 @@ public class CommonTileset extends Tileset {
                 .build();
 
         MapTileBuilder mushroomTile = new MapTileBuilder(mushroomFrame)
-                .withTileType(TileType.PASSABLE);
+                .withTileType(TileType.NOT_PASSABLE);;
 
         mapTiles.add(mushroomTile);
 
@@ -247,7 +237,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder leftHouseRoofTile = new MapTileBuilder(grassFrame)
+        MapTileBuilder leftHouseRoofTile = new MapTileBuilder(leftHouseRoofFrame)
                 .withTopLayer(leftHouseRoofFrame)
                 .withTileType(TileType.PASSABLE);
 
