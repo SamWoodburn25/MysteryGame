@@ -45,10 +45,10 @@ public class NPC extends MapEntity {
         float centerPoint = getBounds().getX() + (getBounds().getWidth() / 2);
         float playerCenterPoint = player.getBounds().getX() + (player.getBounds().getWidth() / 2);
         if (centerPoint < playerCenterPoint) {
-            this.currentAnimationName = "STAND_RIGHT";
+            this.currentAnimationName = "BOUNCE_RIGHT";
         }
         else if (centerPoint >= playerCenterPoint) {
-            this.currentAnimationName = "STAND_LEFT";
+            this.currentAnimationName = "BOUNCE_LEFT";
         }
     }
 
