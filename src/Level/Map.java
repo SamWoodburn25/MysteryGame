@@ -7,6 +7,7 @@ import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -89,6 +90,20 @@ public abstract class Map {
         this.playerStartPosition = new Point(0, 0);
     }
 
+    public Map(BufferedImage bufferedImage) {
+        loadMapFile();
+    }
+
+    public Map(String mapFileName, int screenWidth, int screenHeight) {
+        this.mapFileName = mapFileName;
+        setupMap();
+        this.startBoundX = 0;
+        this.startBoundY = 0;
+        this.xMidPoint = ScreenManager.getScreenWidth() / 2;
+        this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
+        this.playerStartPosition = new Point(0, 0);
+    }
+    
     // sets up map by reading in the map file to create the tile map
     // loads in enemies, enhanced map tiles, and npcs
     // and instantiates a Camera
