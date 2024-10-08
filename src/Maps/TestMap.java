@@ -2,10 +2,13 @@ package Maps;
 
 import EnhancedMapTiles.PushableRock;
 import Level.*;
-import NPCs.Bug;
-import NPCs.Dinosaur;
+//import NPCs.Bug;
+import NPCs.Butcher;
+//import NPCs.Dinosaur;
+import NPCs.ExGf;
+import NPCs.MHDaughter;
 import NPCs.Mom;
-import NPCs.Walrus;
+//import NPCs.Walrus;
 import Scripts.SimpleTextScript;
 import Scripts.TestMap.*;
 import Tilesets.CommonTileset;
@@ -34,22 +37,34 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
-        walrus.setInteractScript(new WalrusScript());
-        npcs.add(walrus);
+        
 
         Mom mom = new Mom(1, getMapTile(10, 20).getLocation().subtractY(40));
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
-        Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
-        dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        dinosaur.setInteractScript(new DinoScript());
-        npcs.add(dinosaur);
+        ExGf ex = new ExGf(1, getMapTile(5, 20).getLocation().subtractY(40));
+        //ex.setInteractScript(new ExGfScript());
+        npcs.add(ex);
+
+        MHDaughter daughter = new MHDaughter(1, getMapTile(4, 28).getLocation().subtractY(40));
+        npcs.add(daughter);
+
+        Butcher butcher = new Butcher(3, getMapTile(7, 12).getLocation().subtractX(20));
+        npcs.add(butcher);
+
+        // Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
+        // walrus.setInteractScript(new WalrusScript());
+        // npcs.add(walrus);
+
+        // Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
+        // dinosaur.setExistenceFlag("hasTalkedToDinosaur");
+        // dinosaur.setInteractScript(new DinoScript());
+        // npcs.add(dinosaur);
         
-        Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
-        bug.setInteractScript(new BugScript());
-        npcs.add(bug);
+        // Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
+        // bug.setInteractScript(new BugScript());
+        // npcs.add(bug);
 
         return npcs;
     }

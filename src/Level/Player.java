@@ -37,6 +37,7 @@ public abstract class Player extends GameObject {
     protected Key MOVE_RIGHT_KEY = Key.RIGHT;
     protected Key MOVE_UP_KEY = Key.UP;
     protected Key MOVE_DOWN_KEY = Key.DOWN;
+    protected Key MOVE_FAST_KEY = Key.SHIFT;
     protected Key INTERACT_KEY = Key.SPACE;
 
     protected boolean isLocked = false;
@@ -83,6 +84,9 @@ public abstract class Player extends GameObject {
             case WALKING:
                 playerWalking();
                 break;
+            case RUNNING:
+                playerRunning();
+                break;
         }
     }
 
@@ -93,9 +97,13 @@ public abstract class Player extends GameObject {
             map.entityInteract(this);
         }
 
-        // if a walk key is pressed, player enters WALKING state
+        // if a walk key is pressed, player enters WALKING or RUNNING state
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
-            playerState = PlayerState.WALKING;
+            if(Keyboard.isKeyDown(MOVE_FAST_KEY)){
+                playerState = PlayerState.RUNNING;
+            } else {
+                playerState = PlayerState.WALKING;
+            }
         }
     }
 
@@ -127,11 +135,73 @@ public abstract class Player extends GameObject {
 
         if (Keyboard.isKeyDown(MOVE_UP_KEY)) {
             moveAmountY -= walkSpeed;
+            facingDirection = Direction.UP;
             currentWalkingYDirection = Direction.UP;
             lastWalkingYDirection = Direction.UP;
         }
         else if (Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             moveAmountY += walkSpeed;
+            facingDirection = Direction.DOWN;
+            currentWalkingYDirection = Direction.DOWN;
+            lastWalkingYDirection = Direction.DOWN;
+        }
+        else {
+            currentWalkingYDirection = Direction.NONE;
+        }
+
+        if ((currentWalkingXDirection == Direction.RIGHT || currentWalkingXDirection == Direction.LEFT) && currentWalkingYDirection == Direction.NONE) {
+            lastWalkingYDirection = Direction.NONE;
+        }
+
+        if ((currentWalkingYDirection == Direction.UP || currentWalkingYDirection == Direction.DOWN) && currentWalkingXDirection == Direction.NONE) {
+            lastWalkingXDirection = Direction.NONE;
+        }
+
+        //checks if changed to running or standing
+        if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
+            playerState = PlayerState.STANDING;
+        } else if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
+            if(Keyboard.isKeyDown(MOVE_FAST_KEY)){
+                playerState = PlayerState.RUNNING;
+            }
+        }
+    }
+
+    //player RUNNING
+    protected void playerRunning() {
+        if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
+            keyLocker.lockKey(INTERACT_KEY);
+            map.entityInteract(this);
+        }
+
+        // if walk left key is pressed, move player to the left
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) && Keyboard.isKeyDown(MOVE_FAST_KEY)){
+            moveAmountX -= walkSpeed * 1.5;
+            facingDirection = Direction.LEFT;
+            currentWalkingXDirection = Direction.LEFT;
+            lastWalkingXDirection = Direction.LEFT;
+        }
+
+        // if walk right key is pressed, move player to the right
+        else if (Keyboard.isKeyDown(MOVE_RIGHT_KEY) && Keyboard.isKeyDown(MOVE_FAST_KEY)) {
+            moveAmountX += walkSpeed * 1.5;
+            facingDirection = Direction.RIGHT;
+            currentWalkingXDirection = Direction.RIGHT;
+            lastWalkingXDirection = Direction.RIGHT;
+        }
+        else {
+            currentWalkingXDirection = Direction.NONE;
+        }
+
+        if (Keyboard.isKeyDown(MOVE_UP_KEY) && Keyboard.isKeyDown(MOVE_FAST_KEY)) {
+            moveAmountY -= walkSpeed * 1.5;
+            facingDirection = Direction.UP;
+            currentWalkingYDirection = Direction.UP;
+            lastWalkingYDirection = Direction.UP;
+        }
+        else if (Keyboard.isKeyDown(MOVE_DOWN_KEY) && Keyboard.isKeyDown(MOVE_FAST_KEY)) {
+            moveAmountY += walkSpeed * 1.5;
+            facingDirection = Direction.DOWN;
             currentWalkingYDirection = Direction.DOWN;
             lastWalkingYDirection = Direction.DOWN;
         }
@@ -150,7 +220,15 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         }
+
+        // if a shift isn't pressed, change to walking
+        if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
+            if(!Keyboard.isKeyDown(MOVE_FAST_KEY)){
+                playerState = PlayerState.WALKING;
+            }
+        }
     }
+
 
     protected void updateLockedKeys() {
         if (Keyboard.isKeyUp(INTERACT_KEY) && !isLocked) {
@@ -162,11 +240,39 @@ public abstract class Player extends GameObject {
     protected void handlePlayerAnimation() {
         if (playerState == PlayerState.STANDING) {
             // sets animation to a STAND animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "STAND_RIGHT" : "STAND_LEFT";
+            if (facingDirection == Direction.RIGHT){
+                this.currentAnimationName = "STAND_RIGHT";
+            } else if (facingDirection == Direction.LEFT){
+                this.currentAnimationName = "STAND_LEFT";
+            } else if (facingDirection == Direction.UP){
+                this.currentAnimationName = "STAND_BACKWARD";
+            } else {
+                this.currentAnimationName = "STAND_FORWARD";
+            }
         }
         else if (playerState == PlayerState.WALKING) {
             // sets animation to a WALK animation based on which way player is facing
-            this.currentAnimationName = facingDirection == Direction.RIGHT ? "WALK_RIGHT" : "WALK_LEFT";
+            if (facingDirection == Direction.RIGHT){
+                this.currentAnimationName = "WALK_RIGHT";
+            } else if (facingDirection == Direction.LEFT){
+                this.currentAnimationName = "WALK_LEFT";
+            } else if (facingDirection == Direction.UP){
+                this.currentAnimationName = "WALK_BACKWARD";
+            } else {
+                this.currentAnimationName = "WALK_FORWARD";
+            }
+        }
+        else if (playerState == PlayerState.RUNNING) {
+            // sets animation to a RUN animation based on which way player is facing
+            if (facingDirection == Direction.RIGHT){
+                this.currentAnimationName = "WALK_RIGHT";
+            } else if (facingDirection == Direction.LEFT){
+                this.currentAnimationName = "WALK_LEFT";
+            } else if (facingDirection == Direction.UP){
+                this.currentAnimationName = "WALK_BACKWARD";
+            } else {
+                this.currentAnimationName = "WALK_FORWARD";
+            }
         }
     }
 
@@ -251,6 +357,30 @@ public abstract class Player extends GameObject {
             moveX(-speed);
         }
         else if (direction == Direction.RIGHT) {
+            moveX(speed);
+        }
+    }
+
+    //used to force player to run
+    public void run(Direction direction, float speed) {
+        playerState = PlayerState.RUNNING;
+        facingDirection = direction;
+        if (direction == Direction.RIGHT && Keyboard.isKeyDown(Key.SHIFT)) {
+            this.currentAnimationName = "RUN_RIGHT";
+        }
+        else if (direction == Direction.LEFT && Keyboard.isKeyDown(Key.SHIFT)) {
+            this.currentAnimationName = "RUN_LEFT";
+        }
+        if (direction == Direction.UP && Keyboard.isKeyDown(Key.SHIFT)) {
+            moveY(-speed);
+        }
+        else if (direction == Direction.DOWN && Keyboard.isKeyDown(Key.SHIFT)) {
+            moveY(speed);
+        }
+        else if (direction == Direction.LEFT && Keyboard.isKeyDown(Key.SHIFT)) {
+            moveX(-speed);
+        }
+        else if (direction == Direction.RIGHT && Keyboard.isKeyDown(Key.SHIFT)) {
             moveX(speed);
         }
     }
