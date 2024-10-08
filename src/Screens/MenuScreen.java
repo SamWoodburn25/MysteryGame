@@ -116,6 +116,6 @@ public class MenuScreen extends Screen {
         credits.draw(graphicsHandler);
 
 
-        graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, new Color(49, 207, 240), Color.black, 2);
+        graphicsHandler.drawFilledRectangleWithBorder(pointerLocationX, pointerLocationY, 20, 20, new Color(184, 15, 10), Color.black, 2);
     }
 }

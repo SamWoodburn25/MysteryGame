@@ -24,36 +24,36 @@ public class Mom extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(7, 1, 16, 38)
+                            .withBounds(12, 4, 14, 44)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(2)
-                           .withBounds(7, 1, 16, 38)
+                           .withBounds(12, 4, 14, 44)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
-            new FrameBuilder(spriteSheet.getSprite(0, 0), 8)
+            new FrameBuilder(spriteSheet.getSprite(0, 0), 10)
                     .withScale(2)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(7, 1, 16, 38)
+                    .withBounds(12, 4, 14, 44)
                     .build(),
-            new FrameBuilder(spriteSheet.getSprite(0, 1), 8)
+            new FrameBuilder(spriteSheet.getSprite(0, 1), 10)
                     .withScale(2)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(7, 1, 16, 38)
+                    .withBounds(12, 4, 14, 44)
                     .build()
             });
             put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
                         .withScale(2)
-                        .withBounds(7, 1, 16, 38)
+                        .withBounds(12, 4, 14, 44)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
                         .withScale(2)
-                        .withBounds(7, 1, 16, 38)
+                        .withBounds(12, 4, 14, 44)
                         .build()
             });
         }};
