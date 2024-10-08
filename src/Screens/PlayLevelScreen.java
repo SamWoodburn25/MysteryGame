@@ -1,6 +1,9 @@
 package Screens;
 
 import Engine.GraphicsHandler;
+import Engine.Key;
+import Engine.KeyLocker;
+import Engine.Keyboard;
 import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
@@ -18,6 +21,8 @@ public class PlayLevelScreen extends Screen {
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
+    protected KeyLocker keyLocker = new KeyLocker();
+
 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
@@ -29,6 +34,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
         flagManager.addFlag("hasTalkedToDinosaur", false);
+        flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasFoundBall", false);
 
         // define/setup map
@@ -54,6 +60,18 @@ public class PlayLevelScreen extends Screen {
     }
 
     public void update() {
+        //open journal
+        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
+			//isJournalOpen = !isJournalOpen;
+			keyLocker.lockKey(Key.J);
+            screenCoordinator.setGameState(GameState.JOURNAL);
+            screenCoordinator.setPrevState(GameState.LEVEL);
+		}
+		if (Keyboard.isKeyUp(Key.J)) {
+			keyLocker.unlockKey(Key.J);
+		}
+
+
         // based on screen state, perform specific actions
         switch (playLevelScreenState) {
             // if level is "running" update player and map to keep game logic for the platformer level going

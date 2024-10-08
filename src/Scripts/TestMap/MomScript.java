@@ -8,7 +8,6 @@ import ScriptActions.*;
 // script for talking to mom npc
 // checkout the documentation website for a detailed guide on how this script works
 public class MomScript extends Script {
-
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
@@ -17,18 +16,19 @@ public class MomScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToMom", false));
-                addScriptAction(new TextboxScriptAction() {{
-                    addText(" My son, I need to tell you something... ");
-                    addText("..Your sister has been missing since yesterday. ");
-                    addText("The police have been searching since yesterday but they haven't found it and I think we can't hide it from you anymore. ");
-                }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToWalrus", true));
+            addRequirement(new FlagRequirement("hasTalkedToMom", false));
+            addScriptAction(new TextboxScriptAction() {{
+            addText(" Hey kiddo, hope you slept well.");
+            addText("You can check the fridge (press space) nto see if \nyou’re hungry at all.");
+            addText("I’m headed to work  in a few, just wanted to make sure \nyou ate breakfast before I left…");
+            addText("You can check the fridge (press space) to see if you’re \nhungry at all.");
+            addText("Ah I see you still have your brother’s journal (press j).");
+            addText("I know you miss him honey, hopefully he’ll show up \nsome time or another");
+            addText("Poor thing, I miss him too. I know how close you \nboth were.");
+            addText("Take care my child, don’t forget to enjoy your time\n back from school.");
             }});
-
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToMom", true));
-                addScriptAction(new TextboxScriptAction("That's why I want you to call your sister for me too, I trust you..."));
+            addScriptAction(new ChangeFlagScriptAction("hasTalkedToMom", true));
+            addScriptAction(new TextboxScriptAction("Okay, thank you mom. See you after school"));
             }});
         }});
 

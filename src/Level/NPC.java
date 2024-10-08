@@ -61,6 +61,24 @@ public class NPC extends MapEntity {
         }
     }
 
+    //Character bouncing in place
+    public void bounce(Direction direction) {
+        if (direction == Direction.RIGHT) {
+            this.currentAnimationName = "BOUNCE_RIGHT";
+        }
+        else if (direction == Direction.LEFT) {
+            this.currentAnimationName = "BOUNCE_LEFT";
+        }
+        else {
+            if (this.currentAnimationName.contains("RIGHT")) {
+                this.currentAnimationName = "BOUNCE_RIGHT";
+            }
+            else {
+                this.currentAnimationName = "BOUNCE_LEFT";
+            }
+        }
+    }
+
     public void walk(Direction direction, float speed) {
         if (direction == Direction.RIGHT) {
             this.currentAnimationName = "WALK_RIGHT";

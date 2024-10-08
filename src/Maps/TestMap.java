@@ -38,6 +38,10 @@ public class TestMap extends Map {
         walrus.setInteractScript(new WalrusScript());
         npcs.add(walrus);
 
+        Mom mom = new Mom(1, getMapTile(10, 20).getLocation().subtractY(40));
+        mom.setInteractScript(new MomScript());
+        npcs.add(mom);
+
         Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
         dinosaur.setExistenceFlag("hasTalkedToDinosaur");
         dinosaur.setInteractScript(new DinoScript());
