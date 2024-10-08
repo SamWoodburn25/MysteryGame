@@ -7,7 +7,7 @@ import ScriptActions.*;
 
 // script for talking to bug npc
 // checkout the documentation website for a detailed guide on how this script works
-public class Butcher extends Script {
+public class DrugDealerScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -19,14 +19,8 @@ public class Butcher extends Script {
         scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("Welcome to Butcher Shop, how could I help you today? ");
-            addText("Oh, you’re asking about your brother...? ");
-            addText("Oh, we didn’t really talk much, sorry I can’t help you.");
-            addText("Alex told you about me? Ah... yeah your brother wasn’t... \na very good friend.");
-            addText("Honestly, he wasn’t a very good person at all.");
-            addText("He ---- I know this is probably a lot to take in... hope that helps.");
-            addText("I know maybe you want to keep quiet, but \nI really want to know what you're thinking right now.");
-            addText("What do you think about that?", new String[] { "You don’t believe him ", "You tell him you’re sorry" });
+            addText("Mad Hatter: Please! Help my father!");
+            addText("Do you have a phone? Call 911!", new String[] { "Call 911", "Tell her to do it herself" });
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
@@ -40,7 +34,7 @@ public class Butcher extends Script {
                 });
 
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("I know you don't believe me because of your face, \nbut I assure you I have no reason to lie.");
+                    addText("Mad Hatter: Let’s describe our location and help us right now  ");
                 }});
             }});
 
@@ -53,7 +47,9 @@ public class Butcher extends Script {
                     }
                 });
                 
-                addScriptAction(new TextboxScriptAction("I'm very sad too, I'm sure I didn't want it to be like this,\nbut it's the truth."));
+                addScriptAction(new TextboxScriptAction("Mad Hatter:Are you kidding? My dad's dying here. Give me the phone."));
+                addScriptAction(new TextboxScriptAction("I'll call him and take care of it."));
+                addScriptAction(new TextboxScriptAction("Calling 911... My father is very bad we are waiting for you to come immediately."));
             }});
         }});
 

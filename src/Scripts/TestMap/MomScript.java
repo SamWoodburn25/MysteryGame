@@ -18,7 +18,7 @@ public class MomScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
             addRequirement(new FlagRequirement("hasTalkedToMom", false));
             addScriptAction(new TextboxScriptAction() {{
-            addText(" Hey kiddo, hope you slept well.");
+            addText("Mom: Hey kiddo, hope you slept well.");
             addText("You can check the fridge (press space) nto see if \nyou’re hungry at all.");
             addText("I’m headed to work  in a few, just wanted to make sure \nyou ate breakfast before I left…");
             addText("You can check the fridge (press space) to see if you’re \nhungry at all.");
@@ -28,7 +28,7 @@ public class MomScript extends Script {
             addText("Take care my child, don’t forget to enjoy your time\n back from school.");
             }});
             addScriptAction(new ChangeFlagScriptAction("hasTalkedToMom", true));
-            addScriptAction(new TextboxScriptAction("Okay, thank you mom. See you after school"));
+            addScriptAction(new TextboxScriptAction("Character:Okay, thank you mom. See you after school"));
             }});
         }});
 

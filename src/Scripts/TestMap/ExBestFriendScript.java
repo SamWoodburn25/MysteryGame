@@ -7,7 +7,7 @@ import ScriptActions.*;
 
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
-public class ExBestFriend extends Script {
+public class ExBestFriendScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -20,7 +20,7 @@ public class ExBestFriend extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToExBestFriend", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Oh... it’s been a while since I’ve seen you.  ");
+                    addText("Max: Oh... it’s been a while since I’ve seen you.  ");
                     addText("Any news on your brother? " );
                     addText("I haven’t seen him since he ditched me for that girl of his,\nwrote me a note saying he's over being friends.");
                     addText("Along with these ripped out pages from his journal.");
@@ -33,8 +33,8 @@ public class ExBestFriend extends Script {
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToExBestFriend", true));
-                addScriptAction(new TextboxScriptAction("Wait, what do you mean?"));
-                addScriptAction(new TextboxScriptAction("Look, I don't want to get involved but if \nyou want to get some more information."));
+                addScriptAction(new TextboxScriptAction("Character:Wait, what do you mean?"));
+                addScriptAction(new TextboxScriptAction("Max: Look, I don't want to get involved but if \nyou want to get some more information."));
                 addScriptAction(new TextboxScriptAction("I know that one of his favorite targets now \nworks for his father in the butcher shop."));
                 addScriptAction(new TextboxScriptAction("Or I heard that he goes to his ex-girlfriend \nwho likes to hang out outside the Mad Hatter (bar name) in the alley."));
             }});
