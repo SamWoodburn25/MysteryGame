@@ -86,6 +86,48 @@ public class Cat extends Player {
                             .withBounds(6, 12, 12, 7)
                             .build()
             });
+
+            put("RUN_LEFT", new Frame[] {
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 10)
+                                .withScale(3)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(6, 12, 12, 7)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 1), 10)
+                                .withScale(3)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(6, 12, 12, 7)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 2), 10)
+                                .withScale(3)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(6, 12, 12, 7)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 3), 10)
+                                .withScale(3)
+                                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                                .withBounds(6, 12, 12, 7)
+                                .build()
+                });
+
+                put("RUN_RIGHT", new Frame[] {
+                        new FrameBuilder(spriteSheet.getSprite(1, 0), 10)
+                                .withScale(3)
+                                .withBounds(6, 12, 12, 7)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 1), 10)
+                                .withScale(3)
+                                .withBounds(6, 12, 12, 7)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 2), 10)
+                                .withScale(3)
+                                .withBounds(6, 12, 12, 7)
+                                .build(),
+                        new FrameBuilder(spriteSheet.getSprite(1, 3), 10)
+                                .withScale(3)
+                                .withBounds(6, 12, 12, 7)
+                                .build()
+                });
         }};
     }
 }

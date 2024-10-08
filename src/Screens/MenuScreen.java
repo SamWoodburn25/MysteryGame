@@ -18,7 +18,6 @@ import SpriteFont.SpriteFont;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-
 public class MenuScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected ScreenManager screenManager;

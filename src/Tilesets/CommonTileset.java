@@ -34,6 +34,7 @@ public class CommonTileset extends Tileset {
         Frame walkwayFrame = new FrameBuilder(getSubImage(0, 0))
                 .withScale(tileScale)
                 .build();
+        
 
         MapTileBuilder walkwayTile = new MapTileBuilder(walkwayFrame);
 
