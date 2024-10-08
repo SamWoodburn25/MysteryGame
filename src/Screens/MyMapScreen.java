@@ -23,6 +23,8 @@ public class MyMapScreen extends Screen {
     protected WinScreen winScreen;
     protected FlagManager flagManager;
     protected KeyLocker keyLocker = new KeyLocker();
+    protected JournalUI journal;
+    private boolean journalVisible = false;
     //protected String mapName;
     
 
@@ -38,6 +40,8 @@ public class MyMapScreen extends Screen {
         map = new MyMap();
         map.setFlagManager(flagManager);
 
+        //setup journal
+        journal = new JournalUI(map.getFlagManager());
     
 
         // setup player
@@ -59,29 +63,34 @@ public class MyMapScreen extends Screen {
     }
 
     public void update() {
-        //open journal
+
+        //open/close journal on 'j' click
         if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
-			//isJournalOpen = !isJournalOpen;
-			keyLocker.lockKey(Key.J);
-            screenCoordinator.setGameState(GameState.JOURNAL);
-            screenCoordinator.setPrevState(GameState.LEVEL);
-		}
-		if (Keyboard.isKeyUp(Key.J)) {
-			keyLocker.unlockKey(Key.J);
-		}
-
-
-        // based on screen state, perform specific actions
-        switch (playLevelScreenState) {
-            // if level is "running" update player and map to keep game logic for the platformer level going
-            case RUNNING:
-                player.update();
-                map.update(player);
-                break;
-            // if level has been completed, bring up level cleared screen
-            case LEVEL_COMPLETED:
-                winScreen.update();
-                break;
+            journalVisible = !journalVisible;
+            journal.toggleVisibility();
+            keyLocker.lockKey(Key.J);
+        }
+        if(Keyboard.isKeyUp(Key.J)){
+            keyLocker.unlockKey(Key.J);
+        }
+        //if the journal is open update that
+        if (journalVisible) {
+            journal.update();
+        } 
+        //otherwise, update other game logic
+        else {
+            // based on screen state, perform specific actions
+            switch (playLevelScreenState) {
+                // if level is "running" update player and map to keep game logic for the platformer level going
+                case RUNNING:
+                    player.update();
+                    map.update(player);
+                    break;
+                // if level has been completed, bring up level cleared screen
+                case LEVEL_COMPLETED:
+                    winScreen.update();
+                    break;
+            }
         }
 
         // if flag is set at any point during gameplay, game is "won"
