@@ -7,6 +7,7 @@ import GameObject.Rectangle;
 import Utils.Direction;
 import Utils.Point;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -89,6 +90,20 @@ public abstract class Map {
         this.playerStartPosition = new Point(0, 0);
     }
 
+    public Map(BufferedImage bufferedImage) {
+        loadMapFile();
+    }
+
+    public Map(String mapFileName, int screenWidth, int screenHeight) {
+        this.mapFileName = mapFileName;
+        setupMap();
+        this.startBoundX = 0;
+        this.startBoundY = 0;
+        this.xMidPoint = ScreenManager.getScreenWidth() / 2;
+        this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
+        this.playerStartPosition = new Point(0, 0);
+    }
+    
     // sets up map by reading in the map file to create the tile map
     // loads in enemies, enhanced map tiles, and npcs
     // and instantiates a Camera
@@ -477,18 +492,27 @@ public abstract class Map {
         // if player is facing right and entity is completely to the right of the player, location is valid
         else if (player.getFacingDirection() == Direction.RIGHT && entityBounds.getX1() > playerBounds.getX2()) {
             return true;
+        } 
+        //if player is facing up and entity is below player, location is valid
+        else if (player.getFacingDirection() == Direction.UP && entityBounds.getY1() > playerBounds.getY2()) {
+            return true;
+        }
+        //if player is facing down and entity is below player, location is valid
+        else if (player.getFacingDirection() == Direction.DOWN && entityBounds.getY1() < playerBounds.getY2()) {
+            return true;
         }
 
         boolean isEntityOverOrUnderPlayer = entityBounds.getY2() < playerBounds.getY1() || entityBounds.getY1() > playerBounds.getY2();
         if (interactedEntity instanceof NPC) {
             // if player is facing left and entity is either on top of or underneath player and player's center point is greater than entity's center point, location is valid
-            if (player.getFacingDirection() == Direction.LEFT && isEntityOverOrUnderPlayer && playerBounds.getX1() < entityBounds.getX2()) {
+            if (player.getFacingDirection() != Direction.RIGHT && isEntityOverOrUnderPlayer && playerBounds.getX1() < entityBounds.getX2()) {
                 return true;
             }
             // if player is facing right and entity is either on top of or underneath player and player's center point is less than entity's center point, location is valid
-            else if (player.getFacingDirection() == Direction.RIGHT && isEntityOverOrUnderPlayer && playerBounds.getX2() > entityBounds.getX1()) {
+            else if (player.getFacingDirection() != Direction.LEFT && isEntityOverOrUnderPlayer && playerBounds.getX2() > entityBounds.getX1()) {
                 return true;
             }
+            
         }
         else {
             // if interacted with anything other than NPC, it doesn't matter which direction you're facing, so it's valid if above/below player

@@ -4,8 +4,8 @@ import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
-import Screens.JournalScreen;
 import Screens.MenuScreen;
+import Screens.MyMapScreen;
 import Screens.PlayLevelScreen;
 
 /*
@@ -19,6 +19,9 @@ public class ScreenCoordinator extends Screen {
 	// keep track of gameState so ScreenCoordinator knows which Screen to show
 	protected GameState gameState;
 	protected GameState previousGameState;
+
+	private PlayLevelScreen playLevelScreen;
+
 
 	public GameState getGameState() {
 		return gameState;
@@ -34,6 +37,8 @@ public class ScreenCoordinator extends Screen {
     public GameState getPrevState(){
         return this.previousGameState;
     }
+	
+	
 
 	@Override
 	public void initialize() {
@@ -57,8 +62,8 @@ public class ScreenCoordinator extends Screen {
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
 						break;
-					case JOURNAL:
-						currentScreen = new JournalScreen(this, previousGameState);
+					case MYMAP:
+						currentScreen = new MyMapScreen(this);
 				}
 				currentScreen.initialize();
 			}

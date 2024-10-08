@@ -1,12 +1,24 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Engine
+ * class- GameLoop: Manages the game loop, offering different performance modes based on the game's 
+ * configuration, including a high-performance mode and a power-saving mode
+ */
+
 package Engine;
 
 public class GameLoop {
     private GamePanel gamePanel;
 
+    //constructor with GamePanel parameter
     public GameLoop(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
+    //return which game loop is currently the game loop type
     public Runnable getGameLoopProcess() {
         if (Config.GAME_LOOP_TYPE == GameLoopType.MAX_PERFORMANCE) {
             return getMaxPerformanceModeGameLoop();

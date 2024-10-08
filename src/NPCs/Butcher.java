@@ -1,7 +1,5 @@
 package NPCs;
 
-import java.util.HashMap;
-
 import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
@@ -10,15 +8,14 @@ import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
-//This class for mom.png
 import java.util.HashMap;
 
 // This class is for the mom NPC
-public class Mom extends NPC {
+public class Butcher extends NPC {
     
 
-    public Mom(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("mom.png"), 40, 60), "BOUNCE_RIGHT");
+    public Butcher(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("butcher_son.png"), 60, 60), "BOUNCE_RIGHT");
     }
 
     @Override
@@ -26,37 +23,37 @@ public class Mom extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
-                            .withScale(2)
-                            .withBounds(0, 4, 14, 20)
+                            .withScale(4)
+                            .withBounds(12, 4, 14, 44)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
-                           .withScale(2)
-                           .withBounds(4, 4, 14, 20)
+                           .withScale(4)
+                           .withBounds(12, 4, 14, 44)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
-                    .withScale(3)
+                    .withScale(4)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 2, 20, 20)
+                    .withBounds(6, -4, 14, 14)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
-                    .withScale(3)
+                    .withScale(4)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 2, 20, 20)
+                    .withBounds(6, -4, 14, 14)
                     .build()
             });
             put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
-                        .withScale(3)
-                        .withBounds(4, 2, 20, 20)
+                        .withScale(4)
+                        .withBounds(6, -5, 14, 10)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
-                        .withScale(3)
-                        .withBounds(4, 2, 20, 20)
+                        .withScale(4)
+                        .withBounds(6, -5, 14, 10)
                         .build()
             });
         }};
