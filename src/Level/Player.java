@@ -10,6 +10,7 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
+import Utils.Point;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -276,6 +277,9 @@ public abstract class Player extends GameObject {
         }
     }
 
+   
+
+
     @Override
     public void onEndCollisionCheckX(boolean hasCollided, Direction direction, GameObject entityCollidedWith) { }
 
@@ -305,6 +309,8 @@ public abstract class Player extends GameObject {
                 getBounds().getWidth() + (interactionRange * 2),
                 getBounds().getHeight() + (interactionRange * 2));
     }
+
+
 
     public Key getInteractKey() { return INTERACT_KEY; }
     public Direction getCurrentWalkingXDirection() { return currentWalkingXDirection; }

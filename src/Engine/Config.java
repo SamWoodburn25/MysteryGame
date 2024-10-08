@@ -1,13 +1,18 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Engine
+ * class- Config: defines global configuration settings for the game, including frame rate, 
+ * resource folder locations, window dimensions, and game loop performance options
+ */
+
 package Engine;
 
 import Utils.Colors;
-
 import java.awt.*;
 
-/*
- * This class holds some constants like window width/height and resource folder locations
- * Tweak these as needed prior to running the application
- */
 public class Config {
     public static final int TARGET_FPS = 60;
     public static final String RESOURCES_PATH = "Resources/";

@@ -1,14 +1,3 @@
-/*
- * SER225- Mystery Game
- * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
- * Fall 2024
- * 
- * package- Screens
- * class- PlayLevelScreen: Manages the gameplay screen where the actual RPG action occurs and game is
- * actively being played, handling game state transitions, player interactions, and journal toggling 
- * based on gameplay events
- */
-
 package Screens;
 
 import Engine.GraphicsHandler;
@@ -21,13 +10,12 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.MyMap;
 import Maps.TestMap;
-//import Players.Cat;
-import Players.MC;
+import Players.Cat;
 import Utils.Direction;
 
 
-
-public class PlayLevelScreen extends Screen {
+// This class is for when the RPG game is actually being played
+public class MyMapScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
@@ -37,40 +25,31 @@ public class PlayLevelScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
     private boolean journalVisible = false;
-
- 
+    //protected String mapName;
     
 
 
-
-    //constructor 
-    public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
+    public MyMapScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
 
-    //initialize, set up screen
     public void initialize() {
-        //flag manager- flags to keep track of game play
+        // setup state
         flagManager = new FlagManager();
-        flagManager.addFlag("hasLostBall", false);
-        flagManager.addFlag("hasTalkedToWalrus", false);
-        flagManager.addFlag("hasTalkedToDinosaur", false);
-        flagManager.addFlag("hasTalkedToMom", false);
-        flagManager.addFlag("hasFoundBall", false);
-        flagManager.addFlag("exitInteract",false);
-
         // define/setup map
-        map = new TestMap();
+        map = new MyMap();
         map.setFlagManager(flagManager);
 
         //setup journal
         journal = new JournalUI(map.getFlagManager());
+    
 
         // setup player
-        player = new MC(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
+        player = new Cat(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
         player.setMap(map);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
+
         map.setPlayer(player);
 
         // let pieces of map know which button to listen for as the "interact" button
@@ -80,12 +59,11 @@ public class PlayLevelScreen extends Screen {
         // both are supported, however preloading is recommended
         map.preloadScripts();
 
-        //set up win screen
-        winScreen = new WinScreen(this);
+        //winScreen = new WinScreen(this);
     }
 
-    //update
     public void update() {
+
         //open/close journal on 'j' click
         if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
             journalVisible = !journalVisible;
@@ -115,33 +93,21 @@ public class PlayLevelScreen extends Screen {
             }
         }
 
-        /* FOR CAT GAME */
         // if flag is set at any point during gameplay, game is "won"
         if (map.getFlagManager().isFlagSet("hasFoundBall")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
-
-        if (map.getFlagManager().isFlagSet("exitInteract")) {
-            screenCoordinator.setGameState(GameState.MYMAP);
-        }
-
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
-        //if the journal is currently open draw that
-        if(journalVisible){
-            journal.draw(graphicsHandler);
-        }
-        //otherwise draw appropriate graphics based on the screen state
-        else{
-            switch (playLevelScreenState) {
-                case RUNNING:
-                    map.draw(player, graphicsHandler);
-                    break;
-                case LEVEL_COMPLETED:
-                    winScreen.draw(graphicsHandler);
-                    break;
-            }
+        // based on screen state, draw appropriate graphics
+        switch (playLevelScreenState) {
+            case RUNNING:
+                map.draw(player, graphicsHandler);
+                break;
+            case LEVEL_COMPLETED:
+                winScreen.draw(graphicsHandler);
+                break;
         }
     }
 
@@ -149,18 +115,17 @@ public class PlayLevelScreen extends Screen {
         return playLevelScreenState;
     }
 
-    //reset all screen elements
+
     public void resetLevel() {
         initialize();
     }
 
-    //back to menu game state
     public void goBackToMenu() {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
     
-    //this enum represents the different states this screen can be in
+    // This enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
         RUNNING, LEVEL_COMPLETED
     }
