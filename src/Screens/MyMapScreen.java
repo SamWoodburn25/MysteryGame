@@ -15,7 +15,7 @@ import Utils.Direction;
 
 
 // This class is for when the RPG game is actually being played
-public class PlayLevelScreen extends Screen {
+public class MyMapScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
@@ -23,26 +23,19 @@ public class PlayLevelScreen extends Screen {
     protected WinScreen winScreen;
     protected FlagManager flagManager;
     protected KeyLocker keyLocker = new KeyLocker();
-
+    //protected String mapName;
     
 
 
-    public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
+    public MyMapScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
 
     public void initialize() {
         // setup state
         flagManager = new FlagManager();
-        flagManager.addFlag("hasLostBall", false);
-        flagManager.addFlag("hasTalkedToWalrus", false);
-        flagManager.addFlag("hasTalkedToDinosaur", false);
-        flagManager.addFlag("hasTalkedToMom", false);
-        flagManager.addFlag("hasFoundBall", false);
-        flagManager.addFlag("exitInteract",false);
-
         // define/setup map
-        map = new TestMap();
+        map = new MyMap();
         map.setFlagManager(flagManager);
 
     
@@ -62,7 +55,7 @@ public class PlayLevelScreen extends Screen {
         // both are supported, however preloading is recommended
         map.preloadScripts();
 
-        winScreen = new WinScreen(this);
+        //winScreen = new WinScreen(this);
     }
 
     public void update() {
@@ -95,11 +88,6 @@ public class PlayLevelScreen extends Screen {
         if (map.getFlagManager().isFlagSet("hasFoundBall")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
-
-        if (map.getFlagManager().isFlagSet("exitInteract")) {
-            screenCoordinator.setGameState(GameState.MYMAP);
-        }
-
     }
 
     public void draw(GraphicsHandler graphicsHandler) {

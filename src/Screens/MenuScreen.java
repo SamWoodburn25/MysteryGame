@@ -8,6 +8,7 @@ import Maps.TitleScreenMap;
 import SpriteFont.SpriteFont;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 // This is the class for the main menu screen
 public class MenuScreen extends Screen {
