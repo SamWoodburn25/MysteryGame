@@ -328,308 +328,308 @@ public class CommonTileset extends Tileset {
 
         mapTiles.add(oldTopWaterTile);
 
-        // // sign
-        // Frame signFrame = new FrameBuilder(getSubImage(9, 0))
-        //         .withScale(tileScale)
-        //         .withBounds(1, 2, 14, 14)
-        //         .build();
+        // sign
+        Frame signFrame = new FrameBuilder(getSubImage(9, 0))
+                .withScale(tileScale)
+                .withBounds(1, 2, 14, 14)
+                .build();
 
-        // MapTileBuilder signTile = new MapTileBuilder(signFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder signTile = new MapTileBuilder(signFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(signTile);
+        mapTiles.add(signTile);
 
-        // // sand
-        // Frame sandFrame = new FrameBuilder(getSubImage(6, 1))
-        //         .withScale(tileScale)
-        //         .build();
+        // sand
+        Frame sandFrame = new FrameBuilder(getSubImage(6, 1))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder sandTile = new MapTileBuilder(sandFrame);
+        MapTileBuilder sandTile = new MapTileBuilder(sandFrame);
 
-        // mapTiles.add(sandTile);
+        mapTiles.add(sandTile);
 
-        // // rock
-        // Frame rockFrame = new FrameBuilder(getSubImage(9, 1))
-        //         .withScale(tileScale)
-        //         .build();
+        // rock
+        Frame rockFrame = new FrameBuilder(getSubImage(9, 1))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder rockTile = new MapTileBuilder(rockFrame);
-        // //        .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder rockTile = new MapTileBuilder(rockFrame);
+        //        .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(rockTile);
+        mapTiles.add(rockTile);
 
-        // // tree trunk with full hole
-        // Frame treeTrunkWithFullHoleFrame = new FrameBuilder(getSubImage(8, 2))
-        //         .withScale(tileScale)
-        //         .build();
+        // tree trunk with full hole
+        Frame treeTrunkWithFullHoleFrame = new FrameBuilder(getSubImage(8, 2))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder treeTrunkWithFullHoleTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(treeTrunkWithFullHoleFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder treeTrunkWithFullHoleTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(treeTrunkWithFullHoleFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(treeTrunkWithFullHoleTile);
+        mapTiles.add(treeTrunkWithFullHoleTile);
 
-        // // left end branch
-        // Frame leftEndBranchFrame = new FrameBuilder(getSubImage(8, 4))
-        //         .withScale(tileScale)
-        //         //.withBounds(0, 6, 16, 4)
-        //         .build();
+        // left end branch
+        Frame leftEndBranchFrame = new FrameBuilder(getSubImage(8, 4))
+                .withScale(tileScale)
+                //.withBounds(0, 6, 16, 4)
+                .build();
 
-        // MapTileBuilder leftEndBranchTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(leftEndBranchFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder leftEndBranchTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(leftEndBranchFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(leftEndBranchTile);
+        mapTiles.add(leftEndBranchTile);
 
-        // // right end branch
-        // Frame rightEndBranchFrame = new FrameBuilder(getSubImage(8, 4))
-        //         .withScale(tileScale)
-        //         .withBounds(0, 6, 16, 4)
-        //         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-        //         .build();
+        // right end branch
+        Frame rightEndBranchFrame = new FrameBuilder(getSubImage(8, 4))
+                .withScale(tileScale)
+                .withBounds(0, 6, 16, 4)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
 
-        // MapTileBuilder rightEndBranchTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(rightEndBranchFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder rightEndBranchTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(rightEndBranchFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(rightEndBranchTile);
+        mapTiles.add(rightEndBranchTile);
         
-        // // tree trunk
-        // Frame treeTrunkFrame = new FrameBuilder(getSubImage(7, 0))
-        //         .withScale(tileScale)
-        //         .build();
+        // tree trunk
+        Frame treeTrunkFrame = new FrameBuilder(getSubImage(7, 0))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder treeTrunkTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(treeTrunkFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder treeTrunkTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(treeTrunkFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(treeTrunkTile);
+        mapTiles.add(treeTrunkTile);
 
-        // // tree top leaves
-        // Frame treeTopLeavesFrame = new FrameBuilder(getSubImage(7, 1))
-        //         .withScale(tileScale)
-        //         .build();
+        // tree top leaves
+        Frame treeTopLeavesFrame = new FrameBuilder(getSubImage(7, 1))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder treeTopLeavesTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(treeTopLeavesFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder treeTopLeavesTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(treeTopLeavesFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(treeTopLeavesTile);
+        mapTiles.add(treeTopLeavesTile);
         
-        // // leaves
-        // Frame leavesFrame = new FrameBuilder(getSubImage(7, 2))
-        // .withScale(tileScale)
-        // .build();
+        // leaves
+        Frame leavesFrame = new FrameBuilder(getSubImage(7, 2))
+        .withScale(tileScale)
+        .build();
    
-        // MapTileBuilder leavesTile = new MapTileBuilder(leavesFrame);
+        MapTileBuilder leavesTile = new MapTileBuilder(leavesFrame);
    
-        // mapTiles.add(leavesTile); 
+        mapTiles.add(leavesTile); 
          
-        // // floor
-        // Frame floorFrame = new FrameBuilder(getSubImage(7, 3))
-        // .withScale(tileScale)
-        // .build();
+        // floor
+        Frame floorFrame = new FrameBuilder(getSubImage(7, 3))
+        .withScale(tileScale)
+        .build();
    
-        // MapTileBuilder floorTile = new MapTileBuilder(floorFrame);
+        MapTileBuilder floorTile = new MapTileBuilder(floorFrame);
    
-        // mapTiles.add(floorTile); 
+        mapTiles.add(floorTile); 
          
-        // // left table
-        // Frame leftTableFrame = new FrameBuilder(getSubImage(7, 4))
-        // .withScale(tileScale)
-        // .build();
+        // left table
+        Frame leftTableFrame = new FrameBuilder(getSubImage(7, 4))
+        .withScale(tileScale)
+        .build();
    
-        // MapTileBuilder leftTableTile = new MapTileBuilder(leftTableFrame);
+        MapTileBuilder leftTableTile = new MapTileBuilder(leftTableFrame);
    
-        // mapTiles.add(leftTableTile);
+        mapTiles.add(leftTableTile);
        
-        // // wall
-        // Frame wallFrame = new FrameBuilder(getSubImage(6, 2))
-        // .withScale(tileScale)
-        // .build();
+        // wall
+        Frame wallFrame = new FrameBuilder(getSubImage(6, 2))
+        .withScale(tileScale)
+        .build();
    
-        // MapTileBuilder wallTile = new MapTileBuilder(wallFrame);
+        MapTileBuilder wallTile = new MapTileBuilder(wallFrame);
    
-        // mapTiles.add(wallTile); 
+        mapTiles.add(wallTile); 
          
-        // // left couch
-        // Frame leftCouchFrame = new FrameBuilder(getSubImage(6, 3))
-        // .withScale(tileScale)
-        // .build();
+        // left couch
+        Frame leftCouchFrame = new FrameBuilder(getSubImage(6, 3))
+        .withScale(tileScale)
+        .build();
    
-        // MapTileBuilder leftCouchTile = new MapTileBuilder(leftCouchFrame);
+        MapTileBuilder leftCouchTile = new MapTileBuilder(leftCouchFrame);
    
-        // mapTiles.add(leftCouchTile); 
+        mapTiles.add(leftCouchTile); 
          
-        // // right couch
-        // Frame rightCouchFrame = new FrameBuilder(getSubImage(6, 4))
-        // .withScale(tileScale)
-        // .build();
+        // right couch
+        Frame rightCouchFrame = new FrameBuilder(getSubImage(6, 4))
+        .withScale(tileScale)
+        .build();
    
-        // MapTileBuilder rightCouchTile = new MapTileBuilder(rightCouchFrame);
+        MapTileBuilder rightCouchTile = new MapTileBuilder(rightCouchFrame);
    
-        // mapTiles.add(rightCouchTile);
+        mapTiles.add(rightCouchTile);
         
-        // // middle branch
-        // Frame middleBranchFrame = new FrameBuilder(getSubImage(8, 3))
-        //         .withScale(tileScale)
-        //         .withBounds(0, 6, 16, 4)
-        //         .build();
+        // middle branch
+        Frame middleBranchFrame = new FrameBuilder(getSubImage(8, 3))
+                .withScale(tileScale)
+                .withBounds(0, 6, 16, 4)
+                .build();
 
-        // MapTileBuilder middleBranchTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(middleBranchFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder middleBranchTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(middleBranchFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(middleBranchTile);
+        mapTiles.add(middleBranchTile);
 
-        // // tree trunk bottom
-        // Frame treeTrunkBottomFrame = new FrameBuilder(getSubImage(8, 0))
-        //         .withScale(tileScale)
-        //         .build();
+        // tree trunk bottom
+        Frame treeTrunkBottomFrame = new FrameBuilder(getSubImage(8, 0))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder treeTrunkBottomTile = new MapTileBuilder(treeTrunkBottomFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder treeTrunkBottomTile = new MapTileBuilder(treeTrunkBottomFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(treeTrunkBottomTile);
+        mapTiles.add(treeTrunkBottomTile);
 
-        // // mushrooms
-        // Frame mushroomFrame = new FrameBuilder(getSubImage(8, 1))
-        //         .withScale(tileScale)
-        //         .build();
+        // mushrooms
+        Frame mushroomFrame = new FrameBuilder(getSubImage(8, 1))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder mushroomTile = new MapTileBuilder(mushroomFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);;
+        MapTileBuilder mushroomTile = new MapTileBuilder(mushroomFrame)
+                .withTileType(TileType.NOT_PASSABLE);;
 
-        // mapTiles.add(mushroomTile);
+        mapTiles.add(mushroomTile);
 
 
-        // // grey rock
-        // Frame greyRockFrame = new FrameBuilder(getSubImage(9, 2))
-        //         .withScale(tileScale)
-        //         .build();
+        // grey rock
+        Frame greyRockFrame = new FrameBuilder(getSubImage(9, 2))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder greyRockTile = new MapTileBuilder(greyRockFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder greyRockTile = new MapTileBuilder(greyRockFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(greyRockTile);
+        mapTiles.add(greyRockTile);
 
-        // // bush
-        // Frame bushFrame = new FrameBuilder(getSubImage(9, 3))
-        //         .withScale(tileScale)
-        //         .build();
+        // bush
+        Frame bushFrame = new FrameBuilder(getSubImage(9, 3))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder bushTile = new MapTileBuilder(bushFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder bushTile = new MapTileBuilder(bushFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(bushTile);
+        mapTiles.add(bushTile);
 
-        // // house body
-        // Frame houseBodyFrame = new FrameBuilder(getSubImage(9, 4))
-        //         .withScale(tileScale)
-        //         .build();
+        // house body
+        Frame houseBodyFrame = new FrameBuilder(getSubImage(9, 4))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder houseBodyTile = new MapTileBuilder(houseBodyFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder houseBodyTile = new MapTileBuilder(houseBodyFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(houseBodyTile);
+        mapTiles.add(houseBodyTile);
 
-        // // house roof body
-        // Frame houseRoofBodyFrame = new FrameBuilder(getSubImage(10, 0))
-        //         .withScale(tileScale)
-        //         .build();
+        // house roof body
+        Frame houseRoofBodyFrame = new FrameBuilder(getSubImage(10, 0))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder houseRoofBodyTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(houseRoofBodyFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder houseRoofBodyTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(houseRoofBodyFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(houseRoofBodyTile);
+        mapTiles.add(houseRoofBodyTile);
 
-        // // left house roof
-        // Frame leftHouseRoofFrame = new FrameBuilder(getSubImage(10, 1))
-        //         .withScale(tileScale)
-        //         .build();
+        // left house roof
+        Frame leftHouseRoofFrame = new FrameBuilder(getSubImage(10, 1))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder leftHouseRoofTile = new MapTileBuilder(leftHouseRoofFrame)
-        //         .withTopLayer(leftHouseRoofFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder leftHouseRoofTile = new MapTileBuilder(leftHouseRoofFrame)
+                .withTopLayer(leftHouseRoofFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(leftHouseRoofTile);
+        mapTiles.add(leftHouseRoofTile);
 
-        // // right house roof
-        // Frame rightHouseRoofFrame = new FrameBuilder(getSubImage(10, 1))
-        //         .withScale(tileScale)
-        //         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-        //         .build();
+        // right house roof
+        Frame rightHouseRoofFrame = new FrameBuilder(getSubImage(10, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
 
-        // MapTileBuilder rightHouseRoofTile = new MapTileBuilder(grassFrame)
-        //         .withTopLayer(rightHouseRoofFrame)
-        //         .withTileType(TileType.PASSABLE);
+        MapTileBuilder rightHouseRoofTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(rightHouseRoofFrame)
+                .withTileType(TileType.PASSABLE);
 
-        // mapTiles.add(rightHouseRoofTile);
+        mapTiles.add(rightHouseRoofTile);
 
-        // // left window
-        // Frame leftWindowFrame = new FrameBuilder(getSubImage(10, 2))
-        //         .withScale(tileScale)
-        //         .build();
+        // left window
+        Frame leftWindowFrame = new FrameBuilder(getSubImage(10, 2))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder leftWindowTile = new MapTileBuilder(leftWindowFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder leftWindowTile = new MapTileBuilder(leftWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(leftWindowTile);
+        mapTiles.add(leftWindowTile);
 
-        // // right window
-        // Frame rightWindowFrame = new FrameBuilder(getSubImage(10, 2))
-        //         .withScale(tileScale)
-        //         .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-        //         .build();
+        // right window
+        Frame rightWindowFrame = new FrameBuilder(getSubImage(10, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
 
-        // MapTileBuilder rightWindowTile = new MapTileBuilder(rightWindowFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder rightWindowTile = new MapTileBuilder(rightWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(rightWindowTile);
+        mapTiles.add(rightWindowTile);
 
-        // // door
-        // Frame doorFrame = new FrameBuilder(getSubImage(10, 3))
-        //         .withScale(tileScale)
-        //         .build();
+        // door
+        Frame doorFrame = new FrameBuilder(getSubImage(10, 3))
+                .withScale(tileScale)
+                .build();
 
-        // MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder doorTile = new MapTileBuilder(doorFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(doorTile);
+        mapTiles.add(doorTile);
 
-        // // top water
-        // Frame[] topWaterFrames = new Frame[] {
-        // new FrameBuilder(getSubImage(11, 0), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 1), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 2), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 1), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 0), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 3), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 4), 65)
-        //         .withScale(tileScale)
-        //         .build(),
-        // new FrameBuilder(getSubImage(11, 3), 65)
-        //         .withScale(tileScale)
-        //         .build()
-        // };
+        // top water
+        Frame[] topWaterFrames = new Frame[] {
+        new FrameBuilder(getSubImage(11, 0), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 1), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 2), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 1), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 0), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 3), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 4), 65)
+                .withScale(tileScale)
+                .build(),
+        new FrameBuilder(getSubImage(11, 3), 65)
+                .withScale(tileScale)
+                .build()
+        };
 
-        // MapTileBuilder topWaterTile = new MapTileBuilder(topWaterFrames)
-        //         .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder topWaterTile = new MapTileBuilder(topWaterFrames)
+                .withTileType(TileType.NOT_PASSABLE);
 
-        // mapTiles.add(topWaterTile);
+        mapTiles.add(topWaterTile);
 
 
         return mapTiles;
