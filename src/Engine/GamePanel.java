@@ -1,20 +1,24 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Engine
+ * class- GamePanel: Provides the main game panel, handling game loop initiation, screen management,
+ * and rendering logic, including pause and FPS display functionalities; this is where the game
+ * loop process and render back buffer is setup
+ */
+
 package Engine;
 
 import GameObject.Rectangle;
-import Screens.CreditsScreen;
+import Game.ScreenCoordinator;
 import SpriteFont.SpriteFont;
 import Utils.Colors;
 
 import javax.swing.*;
-
-import Game.GameState;
-import Game.ScreenCoordinator;
-
 import java.awt.*;
 
-/*
- * This is where the game loop process and render back buffer is setup
- */
 public class GamePanel extends JPanel {
 	// loads Screens on to the JPanel
 	// each screen has its own update and draw methods defined to handle a "section" of the game.
@@ -49,21 +53,6 @@ public class GamePanel extends JPanel {
 		graphicsHandler = new GraphicsHandler();
 
 		screenManager = new ScreenManager();
-
-		screenCoordinator = new ScreenCoordinator();
-		if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
-			isJournalOpen = !isJournalOpen;
-			keyLocker.lockKey(Key.J);
-			//screenCoordinator.setGameState(GameState.CREDITS);
-			screenManager.setCurrentScreen(new CreditsScreen(screenCoordinator));
-		}
-
-		if (Keyboard.isKeyUp(Key.J)) {
-			keyLocker.unlockKey(Key.J);
-			//screenCoordinator.setGameState(GameState.CREDITS);
-
-		}
-		
 
 		pauseLabel = new SpriteFont("PAUSE", 365, 280, "Arial", 24, Color.white);
 		pauseLabel.setOutlineColor(Color.black);
@@ -102,6 +91,7 @@ public class GamePanel extends JPanel {
 		this.doPaint = doPaint;
 	}
 
+	//update based on the state of the game
 	public void update() {
 		updatePauseState();
 		updateShowFPSState();
@@ -135,6 +125,7 @@ public class GamePanel extends JPanel {
 		fpsDisplayLabel.setText("FPS: " + currentFPS);
 	}
 
+	//draw
 	public void draw() {			
 		// draw current game state
 		screenManager.draw(graphicsHandler);
