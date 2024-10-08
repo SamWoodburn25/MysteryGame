@@ -4,7 +4,7 @@ import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
-import Screens.JournalScreen;
+import Screens.JournalUI;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 
@@ -56,9 +56,6 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
-						break;
-					case JOURNAL:
-						currentScreen = new JournalScreen(this, previousGameState);
 				}
 				currentScreen.initialize();
 			}

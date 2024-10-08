@@ -1,3 +1,13 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Screens
+ * class- CreditScreen: Manages the credits screen, displaying credits information and handling 
+ * the transition back to the main menu upon user input
+ */
+
 package Screens;
 
 import Engine.*;
@@ -18,6 +28,7 @@ public class CreditsScreen extends Screen {
     protected SpriteFont createdByLabel;
     protected SpriteFont returnInstructionsLabel;
 
+    //constructor with a ScreenCoordinator parameter
     public CreditsScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
@@ -33,31 +44,18 @@ public class CreditsScreen extends Screen {
         keyLocker.lockKey(Key.J);
     }
 
+    //update, if the space key is pressed go back to main menu
     public void update() {
-        //open journal
-        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
-			//isJournalOpen = !isJournalOpen;
-			keyLocker.lockKey(Key.J);
-            screenCoordinator.setGameState(GameState.JOURNAL);
-            screenCoordinator.setPrevState(GameState.MENU);
-		}
-
-		if (Keyboard.isKeyUp(Key.J)) {
-			keyLocker.unlockKey(Key.J);
-		}
-        
         background.update(null);
-
-        if (Keyboard.isKeyUp(Key.J)) {
-            keyLocker.unlockKey(Key.J);
+        if (Keyboard.isKeyUp(Key.SPACE)) {
+            keyLocker.unlockKey(Key.SPACE);
         }
-
-        // if space is pressed, go back to main menu
-        if (!keyLocker.isKeyLocked(Key.J) && Keyboard.isKeyDown(Key.J)) {
+        if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
             screenCoordinator.setGameState(GameState.MENU);
         }
     }
 
+    //draw each element of the credit screen
     public void draw(GraphicsHandler graphicsHandler) {
         background.draw(graphicsHandler);
         creditsLabel.draw(graphicsHandler);

@@ -1,3 +1,13 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Screens
+ * class- MenuScreen: Manages the main menu screen, handling menu navigation, item selection, 
+ * and transitions to other game states based on user input
+
+ */
 package Screens;
 
 import Engine.*;
@@ -9,7 +19,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
-// This is the class for the main menu screen
 public class MenuScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected ScreenManager screenManager;
@@ -24,11 +33,13 @@ public class MenuScreen extends Screen {
     protected int screenWidth;
     protected int screenHeight;
 
+    //constructor with ScreenCoordinator parameter
     public MenuScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         this.screenManager = new ScreenManager();
     }
 
+    //initialize main menu screen elements
     @Override
     public void initialize() {
         playGame = new SpriteFont("PLAY GAME", 200, 123, "Apple Chancery", 30, new Color(184, 15, 10));
@@ -43,20 +54,8 @@ public class MenuScreen extends Screen {
         keyLocker.lockKey(Key.SPACE);
     }
 
+    //update
     public void update() {
-        //open journal
-        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
-			//isJournalOpen = !isJournalOpen;
-			keyLocker.lockKey(Key.J);
-            screenCoordinator.setGameState(GameState.JOURNAL);
-            screenCoordinator.setPrevState(GameState.MENU);
-		}
-
-		if (Keyboard.isKeyUp(Key.J)) {
-			keyLocker.unlockKey(Key.J);
-		}
-
-
         // update background map (to play tile animations)
         //background.update(null);
 
@@ -107,6 +106,7 @@ public class MenuScreen extends Screen {
         }
     }
 
+    //draw each element of the main menu
     public void draw(GraphicsHandler graphicsHandler) {
         int screenWidth = 800;
         int screenHeight = 590;

@@ -1,3 +1,12 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Engine
+ * class- Default 
+ */
+
 package Engine;
 
 /*
