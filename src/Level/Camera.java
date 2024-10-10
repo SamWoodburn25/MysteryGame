@@ -173,7 +173,7 @@ public class Camera extends Rectangle {
     // so this does not include the extra range granted by the UPDATE_OFF_SCREEN_RANGE value
     public void drawMapTilesBottomLayer(GraphicsHandler graphicsHandler) {
         Point tileIndex = getTileIndexByCameraPosition();
-        for (int i = tileIndex.y - 1; i <= tileIndex.y + 1; i++) {
+        for (int i = tileIndex.y - 1; i <= tileIndex.y + height + 1; i++) {
             for (int j = tileIndex.x - 1; j <= tileIndex.x + width + 1; j++) {
                 MapTile tile = map.getMapTile(j, i);
                 if (tile != null) {
@@ -192,7 +192,7 @@ public class Camera extends Rectangle {
     // draws the top layer of visible map tiles to the screen where applicable
     public void drawMapTilesTopLayer(GraphicsHandler graphicsHandler) {
         Point tileIndex = getTileIndexByCameraPosition();
-        for (int i = tileIndex.y - 1; i <= tileIndex.y + 1; i++) {
+        for (int i = tileIndex.y - 1; i <= tileIndex.y + height +  1; i++) {
             for (int j = tileIndex.x - 1; j <= tileIndex.x + width + 1; j++) {
                 MapTile tile = map.getMapTile(j, i);
                 if (tile != null && tile.getTopLayer() != null) {

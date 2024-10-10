@@ -50,13 +50,15 @@ public class TestMap extends Map {
         npcs.add(mom);
 
         ExGf ex = new ExGf(1, getMapTile(5, 20).getLocation().subtractY(40));
-        //ex.setInteractScript(new ExGfScript());
+        ex.setInteractScript(new BrotherExGFScript());
         npcs.add(ex);
 
-        MHDaughter daughter = new MHDaughter(1, getMapTile(4, 28).getLocation().subtractY(40));
+        MHDaughter daughter = new MHDaughter(1, getMapTile(4, 26).getLocation().subtractY(40));
+        daughter.setInteractScript(new DrugDealerScript());
         npcs.add(daughter);
 
-        Butcher butcher = new Butcher(3, getMapTile(7, 12).getLocation().subtractX(20));
+        Butcher butcher = new Butcher(3, getMapTile(7, 17).getLocation().subtractX(20));
+        butcher.setInteractScript(new ButcherScript());
         npcs.add(butcher);
 
         // Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
