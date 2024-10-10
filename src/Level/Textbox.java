@@ -34,13 +34,13 @@ public class Textbox {
     protected final int optionX = 600;
     protected final int optionBottomY = 350;
     protected final int optionTopY = 130;
-    protected final int optionWidth = 150;
+    protected final int optionWidth = 160;
     protected final int optionHeight = 100;
     protected final int fontOptionX = 606;
     protected final int fontOptionBottomYStart = 365;
     protected final int fontOptionTopYStart = 145;
     protected final int fontOptionSpacing = 35;
-    protected final int optionPointerX = 690;
+    protected final int optionPointerX = 603;
     protected final int optionPointerYBottomStart = 378;
     protected final int optionPointerYTopStart = 158;
 

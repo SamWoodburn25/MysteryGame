@@ -40,7 +40,7 @@ public class ButcherScript extends Script {
                 });
 
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Peter: I know you don't believe me because of your face, \nbut I assure you I have no reason to lie.");
+                    addText("Peter: I know you don't believe me because of your \nface, but I assure you I have no reason to lie.");
                 }});
             }});
 
@@ -53,7 +53,7 @@ public class ButcherScript extends Script {
                     }
                 });
                 
-                addScriptAction(new TextboxScriptAction("Peter: I'm very sad too, I'm sure I didn't want it to be like this,\nbut it's the truth."));
+                addScriptAction(new TextboxScriptAction("Peter: I'm very sad too, I'm sure I didn't want it to be like \nthis, but it's the truth."));
             }});
         }});
 

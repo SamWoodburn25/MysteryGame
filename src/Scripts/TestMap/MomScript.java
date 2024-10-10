@@ -19,7 +19,7 @@ public class MomScript extends Script {
             addRequirement(new FlagRequirement("hasTalkedToMom", false));
             addScriptAction(new TextboxScriptAction() {{
             addText("Mom: Hey kiddo, hope you slept well.");
-            addText("You can check the fridge (press space) nto see if \nyou’re hungry at all.");
+            //addText("You can check the fridge (press space) to see if \nyou’re hungry at all.");
             addText("I’m headed to work  in a few, just wanted to make sure \nyou ate breakfast before I left…");
             addText("You can check the fridge (press space) to see if you’re \nhungry at all.");
             addText("Ah I see you still have your brother’s journal (press j).");
