@@ -18,7 +18,7 @@ public class BrotherExGFScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToWalrus", false));
+                addRequirement(new FlagRequirement("hasTalkedToGF", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Jamie: Ew it is you. ");
                     addText("I thought I told your brother not to let you talk \nto me in public now that we aren’t together anymore. ");
@@ -27,7 +27,7 @@ public class BrotherExGFScript extends Script {
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
+                addRequirement(new FlagRequirement("hasTalkedToGF", true));
             }});
         }});
 

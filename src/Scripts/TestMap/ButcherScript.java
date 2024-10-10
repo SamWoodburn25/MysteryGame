@@ -22,11 +22,11 @@ public class ButcherScript extends Script {
             addText("Peter:Welcome to Butcher Shop, how could I help you today? ");
             addText("Oh, you’re asking about your brother...? ");
             addText("Oh, we didn’t really talk much, sorry I can’t help you.");
-            addText("Alex told you about me? Ah... yeah your brother wasn’t... \na very good friend.");
+            addText("Alex told you about me? Ah... yeah your brother \nwasn’t... a very good friend.");
             addText("Honestly, he wasn’t a very good person at all.");
-            addText("He ---- I know this is probably a lot to take in... hope that helps.");
+            addText("He tormented me, I know this is probably a lot to take \nin...  hope that helps.");
             addText("I know maybe you want to keep quiet, but \nI really want to know what you're thinking right now.");
-            addText("What do you think about that?", new String[] { "You don’t believe him ", "You tell him you’re sorry" });
+            addText("What do you think about that?", new String[] { "\"Yeah sure\"", "\"I'm sorry\"" });
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{

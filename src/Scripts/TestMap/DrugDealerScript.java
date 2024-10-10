@@ -19,8 +19,9 @@ public class DrugDealerScript extends Script {
         scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("Mad Hatter: Please! Help my father!");
-            addText("Do you have a phone? Call 911!", new String[] { "Call 911", "Tell her to do it herself" });
+            addText("Mad Hatter's Daughter: Please! Help my father!");
+            addText("Do you have a phone? Call 911!", new String[] { "Call 911", "Ignore her" });
+            
         }});
 
         scriptActions.add(new ConditionalScriptAction() {{
@@ -34,7 +35,7 @@ public class DrugDealerScript extends Script {
                 });
 
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Mad Hatter: Let’s describe our location and help us right now  ");
+                    addText("Mad Hatter's Daughter: Let’s describe our location and help us right now  ");
                 }});
             }});
 
@@ -47,9 +48,9 @@ public class DrugDealerScript extends Script {
                     }
                 });
                 
-                addScriptAction(new TextboxScriptAction("Mad Hatter:Are you kidding? My dad's dying here. Give me the phone."));
+                addScriptAction(new TextboxScriptAction("Mad Hatter:Are you kidding? My dad's dying here. \nGive me the phone."));
                 addScriptAction(new TextboxScriptAction("I'll call him and take care of it."));
-                addScriptAction(new TextboxScriptAction("Calling 911... My father is very bad we are waiting for you to come immediately."));
+                addScriptAction(new TextboxScriptAction("Calling 911... My father is very hurt, please help us..."));
             }});
         }});
 
