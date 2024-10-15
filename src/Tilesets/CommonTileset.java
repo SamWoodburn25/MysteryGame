@@ -214,7 +214,7 @@ public class CommonTileset extends Tileset {
         mapTiles.add(middleTopTreeBranchNewTile);
 
         // top right tree new
-        Frame rightTopTreeBranchNewFrame = new FrameBuilder(getSubImage(4, 3))
+        Frame rightTopTreeBranchNewFrame = new FrameBuilder(getSubImage(5, 3))
                 .withScale(tileScale)
                 .build();
 
@@ -234,6 +234,8 @@ public class CommonTileset extends Tileset {
         .withTileType(TileType.PASSABLE);
        
         mapTiles.add(bottomTreeBranchNewTile);
+
+        // grass tile (6,0) implemented at top of class
 
         // sand
         Frame sandFrame = new FrameBuilder(getSubImage(6, 1))
@@ -508,6 +510,280 @@ public class CommonTileset extends Tileset {
 
         mapTiles.add(topWaterTile);
 
+        // sign
+        Frame signFrame = new FrameBuilder(getSubImage(9, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder signTile = new MapTileBuilder(grassFrame)
+                .withTopLayer(signFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(signTile);
+
+        // top left couch
+        Frame topLeftNewCouchFrame = new FrameBuilder(getSubImage(12, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder topLeftNewCouchTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(topLeftNewCouchFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(topLeftNewCouchTile);
+
+        // top middle couch
+        Frame topMiddleNewCouchFrame = new FrameBuilder(getSubImage(12, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder topMiddleNewCouchTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(topMiddleNewCouchFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(topMiddleNewCouchTile);
+
+        // top right couch
+        Frame topRightNewCouchFrame = new FrameBuilder(getSubImage(12, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder topRightNewCouchTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(topRightNewCouchFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(topRightNewCouchTile);
+
+        // bottom left couch
+        Frame bottomLeftNewCouchFrame = new FrameBuilder(getSubImage(13, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder bottomLeftNewCouchTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomLeftNewCouchFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(bottomLeftNewCouchTile);
+
+        // bottom middle couch
+        Frame bottomMiddleNewCouchFrame = new FrameBuilder(getSubImage(13, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder bottomMiddleNewCouchTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomMiddleNewCouchFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(bottomMiddleNewCouchTile);
+
+        // bottom left couch
+        Frame bottomRightNewCouchFrame = new FrameBuilder(getSubImage(13, 2))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder bottomRightNewCouchTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomRightNewCouchFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(bottomRightNewCouchTile);
+
+        // left table
+        Frame leftNewTableFrame = new FrameBuilder(getSubImage(13, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder leftNewTableTile = new MapTileBuilder(darkWallFrame)
+                .withTopLayer(leftNewTableFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(leftNewTableTile);
+
+        // middle table
+        Frame middleNewTableFrame = new FrameBuilder(getSubImage(12, 4))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder middleNewTableTile = new MapTileBuilder(darkWallFrame)
+                .withTopLayer(middleNewTableFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(middleNewTableTile);
+
+        // right table
+        Frame rightNewTableFrame = new FrameBuilder(getSubImage(12, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder rightNewTableTile = new MapTileBuilder(darkWallFrame)
+                .withTopLayer(rightNewTableFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(rightNewTableTile);
+
+        // right luggage
+        Frame rightLuggageFrame = new FrameBuilder(getSubImage(5, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder rightLuggageTile = new MapTileBuilder(floorFrame)
+        .withTopLayer(rightLuggageFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(rightLuggageTile);
+
+        // middle luggage
+        Frame middleLuggageFrame = new FrameBuilder(getSubImage(5, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder middleLuggageTile = new MapTileBuilder(floorFrame)
+        .withTopLayer(middleLuggageFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(middleLuggageTile);
+
+        // top luggage
+        Frame topLuggageFrame = new FrameBuilder(getSubImage(5, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topLuggageTile = new MapTileBuilder(floorFrame)
+        .withTopLayer(topLuggageFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(topLuggageTile);
+
+        // bottom fridge
+        Frame bottomFridgeFrame = new FrameBuilder(getSubImage(13, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder bottomFridgeTile = new MapTileBuilder(wallLivingRoomFrame)
+                .withTopLayer(bottomFridgeFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(bottomFridgeTile);
+
+        // middle fridge
+        Frame middleFridgeFrame = new FrameBuilder(getSubImage(15, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder middleFridgeTile = new MapTileBuilder(wallLivingRoomFrame)
+                .withTopLayer(middleFridgeFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(middleFridgeTile);
+
+        // top fridge
+        Frame topFridgeFrame = new FrameBuilder(getSubImage(14, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topFridgeTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(topFridgeFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(topFridgeTile);
+
+        // top left stove
+        Frame topLeftStoveFrame = new FrameBuilder(getSubImage(14, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topLeftStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(topLeftStoveFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(topLeftStoveTile);
+
+        // bottom left stove
+        Frame bottomLeftStoveFrame = new FrameBuilder(getSubImage(15, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomLeftStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(bottomLeftStoveFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(bottomLeftStoveTile);
+
+        // top right stove
+        Frame topRightStoveFrame = new FrameBuilder(getSubImage(14, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topRightStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(topRightStoveFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(topRightStoveTile);
+
+        // bottom right stove
+        Frame bottomRightStoveFrame = new FrameBuilder(getSubImage(15, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomRightStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(bottomRightStoveFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(bottomRightStoveTile);
+
+        // top right counter
+        Frame topRightCounterFrame = new FrameBuilder(getSubImage(14, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topRightCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(topRightCounterFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(topRightCounterTile);
+
+        // bottom right counter
+        Frame bottomRightCounterFrame = new FrameBuilder(getSubImage(15, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomRightCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(bottomRightCounterFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(bottomRightCounterTile);
+
+        // top right stove
+        Frame topLeftCounterFrame = new FrameBuilder(getSubImage(14, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topLeftCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(topLeftCounterFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(topLeftCounterTile);
+
+        // bottom left counter
+        Frame bottomLeftCounterFrame = new FrameBuilder(getSubImage(15, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomLeftCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        .withTopLayer(bottomLeftCounterFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(bottomLeftCounterTile);
 
         return mapTiles;
     }
