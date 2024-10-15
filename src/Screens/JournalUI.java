@@ -47,6 +47,10 @@ public class JournalUI {
         currPage = 0;
     }
 
+    public void setFlagManager(FlagManager flagManager){
+        this.flagManager = flagManager;
+    }
+
     //is the journal screen visible
     public void toggleVisibility() {
         journalIsVisible = !journalIsVisible;

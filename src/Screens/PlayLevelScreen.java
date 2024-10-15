@@ -29,7 +29,9 @@ import Utils.Direction;
 
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map map;
+    protected Map currMap;
+    protected Map insideMap;
+    protected Map outsideMap;
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
@@ -38,14 +40,15 @@ public class PlayLevelScreen extends Screen {
     protected JournalUI journal;
     private boolean journalVisible = false;
 
- 
-    
-
-
 
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        // define/setup current map
+        this.currMap = new TestMap();
+
+        //setup journal
+        journal = new JournalUI(this.currMap.getFlagManager());
     }
 
     //initialize, set up screen
@@ -58,27 +61,30 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("exitInteract",false);
+        flagManager.addFlag("enteringHome", false);
 
-        // define/setup map
-        map = new TestMap();
-        map.setFlagManager(flagManager);
+        this.currMap.setFlagManager(flagManager);
+        journal.setFlagManager(flagManager);
 
-        //setup journal
-        journal = new JournalUI(map.getFlagManager());
+        //define other maps
+        insideMap = new TestMap();
+        insideMap.setFlagManager(this.currMap.getFlagManager());
+        outsideMap = new MyMap();
+        outsideMap.setFlagManager(this.currMap.getFlagManager());
 
         // setup player
-        player = new MC(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
-        player.setMap(map);
+        player = new MC(this.currMap.getPlayerStartPosition().x, this.currMap.getPlayerStartPosition().y);
+        player.setMap(this.currMap);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
-        map.setPlayer(player);
+        this.currMap.setPlayer(player);
 
         // let pieces of map know which button to listen for as the "interact" button
-        map.getTextbox().setInteractKey(player.getInteractKey());
+        this.currMap.getTextbox().setInteractKey(player.getInteractKey());
 
         // preloads all scripts ahead of time rather than loading them dynamically
         // both are supported, however preloading is recommended
-        map.preloadScripts();
+        this.currMap.preloadScripts();
 
         //set up win screen
         winScreen = new WinScreen(this);
@@ -106,7 +112,7 @@ public class PlayLevelScreen extends Screen {
                 // if level is "running" update player and map to keep game logic for the platformer level going
                 case RUNNING:
                     player.update();
-                    map.update(player);
+                    this.currMap.update(player);
                     break;
                 // if level has been completed, bring up level cleared screen
                 case LEVEL_COMPLETED:
@@ -114,16 +120,31 @@ public class PlayLevelScreen extends Screen {
                     break;
             }
         }
+        //if leaving through door on left, switch maps
+        if(this.currMap.getFlagManager().isFlagSet("exitInteract")){
+            this.currMap = outsideMap;
+            initialize();
+
+        }
+        //going back into house, switch maps
+        if(this.currMap.getFlagManager().isFlagSet("enteringHome")){
+            this.currMap = insideMap;
+            initialize();
+            //set location to doorway
+            
+        }
 
         /* FOR CAT GAME */
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+        if (this.currMap.getFlagManager().isFlagSet("hasFoundBall")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
 
-        if (map.getFlagManager().isFlagSet("exitInteract")) {
+        /* 
+        if (currMap.getFlagManager().isFlagSet("exitInteract")) {
             screenCoordinator.setGameState(GameState.MYMAP);
         }
+        */
 
     }
 
@@ -136,7 +157,7 @@ public class PlayLevelScreen extends Screen {
         else{
             switch (playLevelScreenState) {
                 case RUNNING:
-                    map.draw(player, graphicsHandler);
+                    this.currMap.draw(player, graphicsHandler);
                     break;
                 case LEVEL_COMPLETED:
                     winScreen.draw(graphicsHandler);
