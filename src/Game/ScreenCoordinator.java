@@ -7,6 +7,7 @@ import Screens.CreditsScreen;
 import Screens.MenuScreen;
 import Screens.MyMapScreen;
 import Screens.PlayLevelScreen;
+import Screens.ButcherShopScreen;
 
 /*
  * Based on the current game state, this class determines which Screen should be shown
@@ -64,6 +65,8 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case MYMAP:
 						currentScreen = new MyMapScreen(this);
+					case BUTCHERSHOP:
+						currentScreen = new ButcherShopScreen(this);
 				}
 				currentScreen.initialize();
 			}

@@ -4,6 +4,7 @@ import Level.Map;
 import Maps.TestMap;
 import Maps.TitleScreenMap;
 import Maps.MyMap;
+import Maps.ButcherShopMap;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class EditorMaps {
             add("TestMap");
             add("TitleScreen");
             add("MyMap");
+            add("ButcherShop");
         }};
     }
 
@@ -24,6 +26,8 @@ public class EditorMaps {
                 return new TitleScreenMap();
             case "MyMap":
                 return new MyMap();
+            case "ButcherShop":
+                return new ButcherShopMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

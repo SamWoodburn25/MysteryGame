@@ -785,6 +785,282 @@ public class CommonTileset extends Tileset {
        
         mapTiles.add(bottomLeftCounterTile);
 
+        // wall one butcher
+        Frame wallOneButcherFrame = new FrameBuilder(getSubImage(16, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder wallOneButcherTile = new MapTileBuilder(wallOneButcherFrame);       
+        mapTiles.add(wallOneButcherTile);
+ 
+        // wall two butcher
+        Frame wallTwoButcherFrame = new FrameBuilder(getSubImage(16, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder wallTwoButcherTile = new MapTileBuilder(wallTwoButcherFrame);       
+        mapTiles.add(wallTwoButcherTile);
+
+        // left top butcher table
+        Frame leftTopButcherTableFrame = new FrameBuilder(getSubImage(16, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder leftTopButcherTableTile = new MapTileBuilder(wallTwoButcherFrame)
+        .withTopLayer(leftTopButcherTableFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(leftTopButcherTableTile);
+                
+        // middle butcher table
+        Frame middleButcherTableFrame = new FrameBuilder(getSubImage(16, 3))
+        .withScale(tileScale)
+                .build();
+
+        MapTileBuilder middleButcherTableTile = new MapTileBuilder(wallOneButcherFrame)
+        .withTopLayer(middleButcherTableFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(middleButcherTableTile);
+
+        // right top butcher table
+        Frame rightTopButcherTableFrame = new FrameBuilder(getSubImage(16, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder rightTopButcherTableTile = new MapTileBuilder(wallTwoButcherFrame)
+        .withTopLayer(rightTopButcherTableFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(rightTopButcherTableTile);
+
+        // floor butcher
+        Frame floorButcherFrame = new FrameBuilder(getSubImage(17, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder floorButcherTile = new MapTileBuilder(floorButcherFrame);       
+        mapTiles.add(floorButcherTile);
+
+        // right butcher table leg
+        Frame rightButcherTableLegFrame = new FrameBuilder(getSubImage(17, 4))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder rightButcherTableLegTile = new MapTileBuilder(floorButcherFrame)
+        .withTopLayer(rightButcherTableLegFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(rightButcherTableLegTile);
+
+         // left butcher table leg
+         Frame leftButcherTableLegFrame = new FrameBuilder(getSubImage(17, 2))
+         .withScale(tileScale)
+         .build();
+
+        MapTileBuilder leftButcherTableLegTile = new MapTileBuilder(floorButcherFrame)
+        .withTopLayer(leftButcherTableLegFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(leftButcherTableLegTile);
+
+        // top pig body
+        Frame topPigBodyFrame = new FrameBuilder(getSubImage(18, 0))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder topPigBodyTile = new MapTileBuilder(wallOneButcherFrame)
+        .withTopLayer(topPigBodyFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(topPigBodyTile);
+
+        // middle pig body
+        Frame middlePigBodyFrame = new FrameBuilder(getSubImage(17, 1))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder middlePigBodyTile = new MapTileBuilder(wallTwoButcherFrame)
+        .withTopLayer(middlePigBodyFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(middlePigBodyTile);
+
+        // bottom pig body
+        Frame bottomPigBodyFrame = new FrameBuilder(getSubImage(18, 1))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder bottomPigBodyTile = new MapTileBuilder(wallOneButcherFrame)
+        .withTopLayer(bottomPigBodyFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(bottomPigBodyTile);
+
+        // blood splatter one
+        Frame bloodSplatterOneFrame = new FrameBuilder(getSubImage(18, 2))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder bloodSplatterOneTile = new MapTileBuilder(floorButcherFrame)
+        .withTopLayer(bloodSplatterOneFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(bloodSplatterOneTile);
+
+        // blood splatter one
+        Frame bloodSplatterTwoFrame = new FrameBuilder(getSubImage(18, 3))
+        .withScale(tileScale)
+        .build();
+
+        MapTileBuilder bloodSplatterTwoTile = new MapTileBuilder(floorButcherFrame)
+        .withTopLayer(bloodSplatterTwoFrame)
+        .withTileType(TileType.PASSABLE);
+       
+        mapTiles.add(bloodSplatterTwoTile);
+
+        // top door butcher
+        Frame topDoorButcherFrame = new FrameBuilder(getSubImage(19, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topDoorButcherTile = new MapTileBuilder(topDoorButcherFrame);       
+        mapTiles.add(topDoorButcherTile);
+
+        // middle door butcher
+        Frame middleDoorButcherFrame = new FrameBuilder(getSubImage(19, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder middleDoorButcherTile = new MapTileBuilder(middleDoorButcherFrame);       
+        mapTiles.add(middleDoorButcherTile);
+
+        // bottom door butcher
+        Frame bottomDoorButcherFrame = new FrameBuilder(getSubImage(19, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomDoorButcherTile = new MapTileBuilder(bottomDoorButcherFrame);       
+        mapTiles.add(bottomDoorButcherTile);
+        
+        // right middle door butcher
+        Frame rMiddleDoorButcherFrame = new FrameBuilder(getSubImage(19, 1))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder rMiddleDoorButcherTile = new MapTileBuilder(rMiddleDoorButcherFrame);
+        mapTiles.add(rMiddleDoorButcherTile);
+
+        // bottom door butcher
+        Frame rBottomDoorButcherFrame = new FrameBuilder(getSubImage(19, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder rBottomDoorButcherTile = new MapTileBuilder(rBottomDoorButcherFrame);       
+        mapTiles.add(rBottomDoorButcherTile);
+
+        // outside butcher wall 1
+        Frame outsideButcherWallOneFrame = new FrameBuilder(getSubImage(18, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder outsideButcherWallOneTile = new MapTileBuilder(outsideButcherWallOneFrame);       
+        mapTiles.add(outsideButcherWallOneTile);
+
+        // outside butcher wall 2
+        Frame outsideButcherWallTwoFrame = new FrameBuilder(getSubImage(19, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder outsideButcherWallTwoTile = new MapTileBuilder(outsideButcherWallTwoFrame);       
+        mapTiles.add(outsideButcherWallTwoTile);
+        
+        // outside butcher wall w right window
+        Frame outsideButcherWallRightWindowFrame = new FrameBuilder(getSubImage(19, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder outsideButcherWallRightWindowTile = new MapTileBuilder(outsideButcherWallRightWindowFrame);       
+        mapTiles.add(outsideButcherWallRightWindowTile);
+
+        // bottom door butcher
+        Frame outsideButcherWallLeftWindowFrame = new FrameBuilder(getSubImage(19, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder outsideButcherWallLeftWindowTile = new MapTileBuilder(outsideButcherWallLeftWindowFrame);       
+        mapTiles.add(outsideButcherWallLeftWindowTile);
+
+        // right roof butcher
+        Frame rightButcherRoofFrame = new FrameBuilder(getSubImage(20, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder rightButcherRoofTile = new MapTileBuilder(grassFrame)
+        .withTopLayer(rightButcherRoofFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(rightButcherRoofTile);
+
+        // left roof butcher
+        Frame leftButcherRoofFrame = new FrameBuilder(getSubImage(20, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder leftButcherRoofTile = new MapTileBuilder(grassFrame)
+        .withTopLayer(leftButcherRoofFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(leftButcherRoofTile);
+
+        // chimney roof butcher
+        Frame chimneyButcherRoofFrame = new FrameBuilder(getSubImage(20, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder chimneyButcherRoofTile = new MapTileBuilder(grassFrame)
+        .withTopLayer(chimneyButcherRoofFrame)
+        .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(chimneyButcherRoofTile);
+
+        // outside butcher grate left
+        Frame outsideButcherGrateLeftFrame = new FrameBuilder(getSubImage(20, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder outsideButcherGrateLeftTile = new MapTileBuilder(outsideButcherGrateLeftFrame);       
+        mapTiles.add(outsideButcherGrateLeftTile);
+       
+        // outside butcher grate middle
+        Frame outsideButcherGrateMiddleFrame = new FrameBuilder(getSubImage(20, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder outsideButcherGrateMiddleTile = new MapTileBuilder(outsideButcherGrateMiddleFrame);       
+        mapTiles.add(outsideButcherGrateMiddleTile);
+
+        // outside butcher grate right
+        Frame outsideButcherGrateRightFrame = new FrameBuilder(getSubImage(20, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder outsideButcherGrateRightTile = new MapTileBuilder(outsideButcherGrateRightFrame);       
+        mapTiles.add(outsideButcherGrateRightTile);
+
+
+
+
+
+
+
+
+
+
         return mapTiles;
     }
 }
