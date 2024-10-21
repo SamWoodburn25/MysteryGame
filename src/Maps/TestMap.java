@@ -26,6 +26,20 @@ public class TestMap extends Map {
     public TestMap() {
         super("test_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
+        currMapInt = 0;
+        currMap = this;
+    }
+
+    public void initialize(){
+        new TestMap();
+    }
+
+     // setter getter map
+    public void setCurrMapInt(int currMapInt){
+        this.currMapInt = currMapInt;
+    }
+    public int getCurrMapInt(){
+        return this.currMapInt;
     }
 
     @Override
@@ -80,10 +94,8 @@ public class TestMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
+        //point of the map where the door is to exit
         Point tileLocation1 = getMapTile(1, 21).getLocation();
-        /*triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
         triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 10,160, new ExitScript(), "exitInteract" ));
         return triggers;
     }

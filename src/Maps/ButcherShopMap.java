@@ -4,7 +4,7 @@
  * Fall 2024
  * 
  * package- Maps
- * class- MyMap: displays the meat shop map
+ * class- ButcherShop: displays the meat shop map
  */
 
 package Maps;
@@ -20,6 +20,15 @@ public class ButcherShopMap extends Map {
     public ButcherShopMap() {
         super("butcher_shop.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(14, 10).getLocation();
+        currMapInt = 2;
+    }
+
+     // setter getter map
+    public void setCurrMapInt(int currMapInt){
+        this.currMapInt = currMapInt;
+    }
+    public int getCurrMapInt(){
+        return this.currMapInt;
     }
  
      @Override

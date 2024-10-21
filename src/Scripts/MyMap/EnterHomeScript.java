@@ -11,23 +11,65 @@ package Scripts.MyMap;
 
 import java.util.ArrayList;
 
+import Builders.FrameBuilder;
+import Builders.MapTileBuilder;
+import GameObject.Frame;
 import Level.*;
 import ScriptActions.*;
+import Utils.Point;
 
 
+// script for talking to dino npc
+// checkout the documentation website for a detailed guide on how this script works
 public class EnterHomeScript extends Script {
-
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
+
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-        scriptActions.add(new LockPlayerScriptAction());
 
-        //change the exit interact flag to true
-        scriptActions.add(new ChangeFlagScriptAction("enteringHome", true));
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                //addScriptAction(new ChangeFlagScriptAction("exitInteract", false));
+                addRequirement(new FlagRequirement("canEnter", true));
+                addScriptAction(new ScriptAction() {
+                    @Override
+                    public ScriptState execute() {
+                        // change current map int to the outside map (1)
+                        map.setCurrMapInt(0);
+                        System.out.println("entering, setting to 0");
+                        return ScriptState.COMPLETED;
+                    }
+                });
 
-                System.out.println("entering");
+                addScriptAction(new ChangeFlagScriptAction("enteringHome", true));
+            }});
+        }});
 
         scriptActions.add(new UnlockPlayerScriptAction());
         return scriptActions;
+    };
+
+
+    /* 
+            public ArrayList<ScriptAction> loadScriptActions() {
+        ArrayList<ScriptAction> scriptActions = new ArrayList<>();
+        scriptActions.add(new ScriptAction() {
+            @Override
+            public ScriptState execute() {
+                if (!map.getFlagManager().isFlagSet("recentlyTransitioned")) {
+                    map.setCurrMapInt(0);
+                    scriptActions.add( new ChangeFlagScriptAction("recentlyTransitioned", true));
+                    System.out.println("exiting, setting to 0");
+                    return ScriptState.COMPLETED;
+                }
+                return ScriptState.RUNNING;
+            }
+        });
+        scriptActions.add(new UnlockPlayerScriptAction());
+        return scriptActions;
     }
-}
+
+    */
+
+
+};
