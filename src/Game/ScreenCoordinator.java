@@ -5,7 +5,6 @@ import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
 import Screens.MenuScreen;
-import Screens.MyMapScreen;
 import Screens.PlayLevelScreen;
 import Screens.ButcherShopScreen;
 
@@ -63,8 +62,6 @@ public class ScreenCoordinator extends Screen {
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
 						break;
-					case MYMAP:
-						currentScreen = new MyMapScreen(this);
 					case BUTCHERSHOP:
 						currentScreen = new ButcherShopScreen(this);
 				}

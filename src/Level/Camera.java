@@ -30,13 +30,16 @@ public class Camera extends Rectangle {
     // determines how many tiles off screen an entity can be before it will be deemed inactive and not included in the update/draw cycles until it comes back in range
     private final int UPDATE_OFF_SCREEN_RANGE = 4;
 
+  
+
     public Camera(int startX, int startY, int tileWidth, int tileHeight, Map map) {
-        super(startX, startY, ScreenManager.getScreenWidth() / tileWidth, ScreenManager.getScreenHeight() / tileHeight);
+        super(startX, startY, ScreenManager.getScreenWidth() / tileWidth , ScreenManager.getScreenHeight() / tileHeight);
         this.map = map;
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
         this.leftoverSpaceX = ScreenManager.getScreenWidth() % tileWidth;
         this.leftoverSpaceY = ScreenManager.getScreenHeight() % tileHeight;
+
     }
 
     // gets the tile index that the camera's x and y values are currently on (top left tile)

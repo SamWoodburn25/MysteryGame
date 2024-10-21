@@ -8,8 +8,8 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.MyMap;
-// import Maps.TestMap;
+import Maps.TownMap;
+
 // import Players.Cat;
 import Players.MC;
 import Utils.Direction;
@@ -38,7 +38,7 @@ public class ButcherShopScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
         // define/setup map
-        map = new MyMap();
+        map = new TownMap();
         map.setFlagManager(flagManager);
 
         //setup journal
