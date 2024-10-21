@@ -4,30 +4,33 @@
  * Fall 2024
  * 
  * package- Maps
- * class- MyMap: displays the meat shop map
+ * class- ButcherShopmap: displays the meat shop map
  */
 
 package Maps;
 
 import Level.*;
-// import Scripts.MyMap.EnterHomeScript;
-// import Scripts.TestMap.ExitScript;
+import Scripts.TestMap.ExitScript;
+import Scripts.TestMap.PopUpButcherImageScript;
 import Tilesets.CommonTileset;
-// import Utils.Point;
+import Utils.Point;
 import java.util.ArrayList;
 
 public class ButcherShopMap extends Map {
     public ButcherShopMap() {
         super("butcher_shop.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(14, 10).getLocation();
+        this.playerStartPosition = getMapTile(10, 10).getLocation();
     }
  
      @Override
      public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        // Point tileLocation1 = getMapTile(16, 19).getLocation();
-        //entering main home
-        // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 60,60, new EnterHomeScript(), "enteringHome"));
+        // Point tileLocation1 = getMapTile(10, 10).getLocation();
+
+        // // pop-up butcher image
+        //     triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 10,160, new PopUpButcherImageScript(), "popUpButcherImage"));
+
+
         return triggers;
     } 
 }

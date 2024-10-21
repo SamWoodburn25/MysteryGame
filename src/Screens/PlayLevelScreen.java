@@ -39,6 +39,8 @@ public class PlayLevelScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
     private boolean journalVisible = false;
+    protected GoreyButcherShopScreen butcherShopScreen;
+    private boolean popUpVisible = false;
 
 
     //constructor 
@@ -49,6 +51,8 @@ public class PlayLevelScreen extends Screen {
 
         //setup journal
         journal = new JournalUI(this.currMap.getFlagManager());
+
+        butcherShopScreen = new GoreyButcherShopScreen(this.currMap.getFlagManager());
     }
 
     //initialize, set up screen
@@ -62,6 +66,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("exitInteract",false);
         flagManager.addFlag("enteringHome", false);
+        flagManager.addFlag("popUpButcherImage", false);
 
         this.currMap.setFlagManager(flagManager);
         journal.setFlagManager(flagManager);
@@ -133,6 +138,16 @@ public class PlayLevelScreen extends Screen {
             //set location to doorway
             
         }
+
+        //if walking through trigger, play image
+        if(this.currMap.getFlagManager().isFlagSet("popUpImageButcher")){
+            popUpVisible = !popUpVisible;
+            butcherShopScreen.toggleVisibility();
+            initialize();
+        }
+
+
+
 
         /* FOR CAT GAME */
         // if flag is set at any point during gameplay, game is "won"

@@ -177,8 +177,7 @@ public class CommonTileset extends Tileset {
                 .withBounds(1, 2, 14, 14)
                 .build();
 
-        MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame);
 
         mapTiles.add(gravelTile);
 

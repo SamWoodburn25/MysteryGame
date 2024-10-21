@@ -85,7 +85,12 @@ public class TestMap extends Map {
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
         triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 10,160, new ExitScript(), "exitInteract" ));
-        return triggers;
+
+        // // pop-up butcher image
+        Point tileLocation2 = getMapTile(19, 18).getLocation();
+        triggers.add(new Trigger(tileLocation2.x, tileLocation2.y, 10,160, new PopUpButcherImageScript(), "popUpButcherImage"));
+        
+       return triggers;
     }
 
     @Override
