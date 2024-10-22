@@ -25,11 +25,16 @@ public class TownMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        Point house1 = getPositionByTileIndex(16,20);
+        
+        Point house1 = getPositionByTileIndex(16,23);
         //Point tileLocation1 = getMapTile(16, 19).getLocation();
         //entering main home
         //triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 60,60, new EnterHomeScript(), "enteringHome"));
         triggers.add(new Trigger(house1.x, house1.y, 95,10, new TownToHouse1Script(),"townToHouse1"));
+
+        //trigger to enter butcher
+        Point butcherShop = getPositionByTileIndex(17,56);
+        triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20,10, new TownToButcherScrpt(), "townToButcher"));
 
         return triggers;
     }

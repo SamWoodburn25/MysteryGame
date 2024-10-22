@@ -77,6 +77,10 @@ public abstract class Map {
     // reference to current player
     protected Player player;
 
+    //current map
+    protected int currMapInt = 0;
+    public Map currMap;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
@@ -103,7 +107,16 @@ public abstract class Map {
         this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
         this.playerStartPosition = new Point(0, 0);
     }
+
+    public void initialize(){}
     
+    // setter getter map
+    public void setCurrMapInt(int currMapInt){
+        this.currMapInt = currMapInt;
+    }
+    public int getCurrMapInt(){
+        return this.currMapInt;
+    }
     // sets up map by reading in the map file to create the tile map
     // loads in enemies, enhanced map tiles, and npcs
     // and instantiates a Camera

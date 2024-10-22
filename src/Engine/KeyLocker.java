@@ -23,4 +23,11 @@ public class KeyLocker {
     public boolean isKeyLocked(Key key) {
         return lockedKeys.contains(key);
     }
+
+    public void unlockAll(){
+        unlockKey(Key.LEFT);
+        unlockKey(Key.RIGHT);
+        unlockKey(Key.UP);
+        unlockKey(Key.DOWN);
+    }
 }

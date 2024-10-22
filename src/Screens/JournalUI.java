@@ -19,10 +19,10 @@ import java.util.LinkedList;
 
 public class JournalUI {
     protected LinkedList<BufferedImage> journalPages;
-    protected BufferedImage journalCover;
-    protected BufferedImage emptyJournal;
-    protected BufferedImage journalPageIntro;
-    protected BufferedImage journalPageFromMom;
+    //basic pages
+    protected BufferedImage journalCover, emptyJournal, journalPageIntro;
+    //specific journal pages- journalPage_whoItIsAbout
+    protected BufferedImage journalPage_Max;
     protected BufferedImage currPagePic;
     protected FlagManager flagManager;
     protected int currPage;
@@ -37,7 +37,7 @@ public class JournalUI {
         journalCover = ImageLoader.load("JournalCover.png");
         emptyJournal = ImageLoader.load("EmptyJournal.png");
         journalPageIntro = ImageLoader.load("JPageIntro.png");
-        journalPageFromMom = ImageLoader.load("JPageMom.png");
+        journalPage_Max = ImageLoader.load("JPage_Max.png");
         //add first images to list and a few empty
         journalPages = new LinkedList<BufferedImage>();
         journalPages.add(journalCover);
@@ -62,13 +62,14 @@ public class JournalUI {
         //if the player has talked to mom, add that page
         if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMom")) {
             // Check if the page from mom is not already added to avoid adding it multiple times
-            if (!journalPages.contains(journalPageFromMom)) {
+            if (!journalPages.contains(journalPage_Max)) {
                 journalPages.removeLast();
-                journalPages.add(journalPageFromMom);
+                journalPages.add(journalPage_Max);
                 journalPages.add(emptyJournal);
             }
 
             /* add in other journal pages when other flags are set (butcher, ex-girlfriend, etc) */
+
         }
 
         //if right arrow key is clicked, increase current page count, move to next page if available in list

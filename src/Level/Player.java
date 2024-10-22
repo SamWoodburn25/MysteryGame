@@ -68,6 +68,9 @@ public abstract class Player extends GameObject {
             lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
             lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
         }
+        else{
+            System.out.println("player locked");
+        }
 
         handlePlayerAnimation();
 
@@ -75,6 +78,19 @@ public abstract class Player extends GameObject {
 
         // update player's animation
         super.update();
+    }
+
+    public void unlockPlayer(){
+        
+    }
+
+    public void setMap(Map newMap){
+        map = newMap;
+    }
+
+    public void setPosition(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
     // based on player's current state, call appropriate player state handling method
