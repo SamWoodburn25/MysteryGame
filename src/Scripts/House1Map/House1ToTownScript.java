@@ -13,8 +13,7 @@ public class House1ToTownScript extends Script {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
        // scriptActions.add(new LockPlayerScriptAction());
 
-       System.out.println("house1totownscript triggered");
-
+       
         //change the exit interact flag to true
         scriptActions.add(new ChangeFlagScriptAction("house1ToTown", true));
 

@@ -27,7 +27,6 @@ public class House1Map extends Map {
         super("house1_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 19).getLocation();
         System.out.println("Player starting at: " + playerStartPosition.x + ", " + playerStartPosition.y);
-
     }
 
     @Override
@@ -45,9 +44,8 @@ public class House1Map extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
-
         Mom mom = new Mom(1, getMapTile(13, 18).getLocation().subtractY(40));
+
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
@@ -82,7 +80,10 @@ public class House1Map extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        Point townLoc = getPositionByTileIndex(18,22);
+        //trigger to enter town
+        Point townLoc = getPositionByTileIndex(17,25);
+        System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
+        triggers.add(new Trigger(townLoc.x - 50, townLoc.y+50, 200, 10, new House1ToTownScript(), "house1ToTown"));
         //Point townLoc = getPositionByTileIndex(18,24);
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
         //Point tileLocation1 = getMapTile(6, 14).getLocation();
@@ -90,7 +91,10 @@ public class House1Map extends Map {
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
         //triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new ExitScript(), "exitInteract" ));
-        triggers.add(new Trigger(townLoc.x - 50, townLoc.y+50, 200, 10, new House1ToTownScript(), "house1ToTown"));
+        
+        triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));
+        System.out.println("house1totownscript triggered");
+
         System.out.println("Trigger set at: " + townLoc.x + ", " + townLoc.y);
 
         return triggers;

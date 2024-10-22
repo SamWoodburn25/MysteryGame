@@ -27,36 +27,36 @@ public class Mom extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(0, 4, 14, 20)
+                            .withBounds(12, 32, 20, 4)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(2)
-                           .withBounds(4, 4, 14, 20)
+                           .withBounds(12, 32, 20, 4)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
                     .withScale(3)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 2, 20, 20)
+                    .withBounds(12, 32, 20, 4)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
                     .withScale(3)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 2, 20, 20)
+                    .withBounds(12, 32, 20, 4)
                     .build()
             });
             put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
                         .withScale(3)
-                        .withBounds(4, 2, 20, 20)
+                        .withBounds(12, 32, 20, 4)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
                         .withScale(3)
-                        .withBounds(4, 2, 20, 20)
+                        .withBounds(12, 32, 20, 4)
                         .build()
             });
         }};

@@ -24,36 +24,36 @@ public class MHDaughter extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(4)
-                            .withBounds(16, -5, 14, 10)
+                            .withBounds(16, -5, 14, 2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(4)
-                           .withBounds(6, -5, 14, 10)
+                           .withBounds(6, -5, 14, 2)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                     .withScale(4)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(6, -5, 14, 10)
+                    .withBounds(10, 20, 10, 1)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
                     .withScale(4)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(6, -5, 14, 10)
+                    .withBounds(10, 20, 10, 1)
                     .build()
             });
             put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 14)
                         .withScale(4)
-                        .withBounds(6, -5, 14, 10)
+                        .withBounds(10, 20, 10, 1)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 14)
                         .withScale(4)
-                        .withBounds(6, -5, 14, 10)
+                        .withBounds(10, 20, 10, 1)
                         .build()
             });
         }};
