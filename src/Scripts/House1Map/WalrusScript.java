@@ -1,4 +1,4 @@
-package Scripts.TestMap;
+package Scripts.House1Map;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import ScriptActions.*;
 
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
-public class BrotherExGFScript extends Script {
+public class WalrusScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -18,16 +18,18 @@ public class BrotherExGFScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToGF", false));
+                addRequirement(new FlagRequirement("hasTalkedToWalrus", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Jamie: Ew it is you. ");
-                    addText("I thought I told your brother not to let you talk \nto me in public now that we aren’t together anymore. ");
-                    addText("Well, what do you want and hurry up I don’t \nwant to be seen with you. ");
+                    addText("Hi Cat!");
+                    addText("...oh, you lost your ball?");
+                    addText("Hmmm...my walrus brain remembers seeing Dino with\nit last. Maybe you can check with him?");
                 }});
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToWalrus", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToGF", true));
+                addRequirement(new FlagRequirement("hasTalkedToWalrus", true));
+                addScriptAction(new TextboxScriptAction("I sure love doing walrus things!"));
             }});
         }});
 

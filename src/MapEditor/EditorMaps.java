@@ -1,29 +1,33 @@
 package MapEditor;
 
 import Level.Map;
-import Maps.TestMap;
 import Maps.TitleScreenMap;
-import Maps.MyMap;
+import Maps.TownMap;
+import Maps.ButcherShopMap;
+import Maps.House1Map;
 
 import java.util.ArrayList;
 
 public class EditorMaps {
     public static ArrayList<String> getMapNames() {
         return new ArrayList<String>() {{
-            add("TestMap");
+            add("House1Map");
             add("TitleScreen");
-            add("MyMap");
+            add("TownMap");
+            add("ButcherShop");
         }};
     }
 
     public static Map getMapByName(String mapName) {
         switch(mapName) {
-            case "TestMap":
-                return new TestMap();
+            case "House1Map":
+                return new House1Map();
             case "TitleScreen":
                 return new TitleScreenMap();
-            case "MyMap":
-                return new MyMap();
+            case "TownMap":
+                return new TownMap();
+            case "ButcherShop":
+                return new ButcherShopMap();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

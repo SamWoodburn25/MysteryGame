@@ -19,17 +19,22 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.MyMap;
-import Maps.TestMap;
+import Maps.TownMap;
+import Maps.House1Map;
 //import Players.Cat;
 import Players.MC;
 import Utils.Direction;
+import Utils.Point;
 
 
 
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    protected Map map;
+    protected Map currMap;
+    //protected Map insideMap;
+    //protected Map outsideMap;
+    //protected Map map;
+    protected Map house1Map, townMap;
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
@@ -37,15 +42,17 @@ public class PlayLevelScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
     private boolean journalVisible = false;
-
- 
-    
-
+    protected Point point;
 
 
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        // define/setup current map
+        // this.currMap = new House1Map();
+
+        //setup journal
+        //journal = new JournalUI(this.currMap.getFlagManager());
     }
 
     //initialize, set up screen
@@ -58,27 +65,49 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("exitInteract",false);
+        flagManager.addFlag("enteringHome", false);
 
-        // define/setup map
-        map = new TestMap();
-        map.setFlagManager(flagManager);
+        /*this.currMap.setFlagManager(flagManager);
+        journal.setFlagManager(flagManager);*/
+        flagManager.addFlag("house1ToTown", false);
+        flagManager.addFlag("townToHouse1", false);
 
-        //setup journal
-        journal = new JournalUI(map.getFlagManager());
 
+        //define other maps
+        /*insideMap = new House1Map();
+        insideMap.setFlagManager(this.currMap.getFlagManager());
+        outsideMap = new TownMap();
+        outsideMap.setFlagManager(this.currMap.getFlagManager()); */
+
+        // Define and set up maps
+        house1Map = new House1Map();
+        house1Map.setFlagManager(flagManager);
+
+        townMap = new TownMap();
+        townMap.setFlagManager(flagManager);
+
+        // Set the initial map to house1Map (starting map)
+        currMap = house1Map;
+        currMap.setFlagManager(flagManager);
+
+        // Setup journal with the flag manager of the current map
+        journal = new JournalUI(currMap.getFlagManager());
+
+
+        
         // setup player
-        player = new MC(map.getPlayerStartPosition().x, map.getPlayerStartPosition().y);
-        player.setMap(map);
+        player = new MC(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+        player.setMap(currMap);
         playLevelScreenState = PlayLevelScreenState.RUNNING;
         player.setFacingDirection(Direction.LEFT);
-        map.setPlayer(player);
+        currMap.setPlayer(player);
 
         // let pieces of map know which button to listen for as the "interact" button
-        map.getTextbox().setInteractKey(player.getInteractKey());
+        currMap.getTextbox().setInteractKey(player.getInteractKey());
 
         // preloads all scripts ahead of time rather than loading them dynamically
         // both are supported, however preloading is recommended
-        map.preloadScripts();
+        currMap.preloadScripts();
 
         //set up win screen
         winScreen = new WinScreen(this);
@@ -106,7 +135,7 @@ public class PlayLevelScreen extends Screen {
                 // if level is "running" update player and map to keep game logic for the platformer level going
                 case RUNNING:
                     player.update();
-                    map.update(player);
+                    currMap.update(player);
                     break;
                 // if level has been completed, bring up level cleared screen
                 case LEVEL_COMPLETED:
@@ -114,15 +143,49 @@ public class PlayLevelScreen extends Screen {
                     break;
             }
         }
+        //if leaving through door on left, switch maps
+        /*if(this.currMap.getFlagManager().isFlagSet("exitInteract")){
+            this.currMap = outsideMap;
+            initialize();
+
+        }
+        //going back into house, switch maps
+        if(this.currMap.getFlagManager().isFlagSet("enteringHome")){
+            this.currMap = insideMap;
+            initialize();
+            //set location to doorway
+            
+        } */
 
         /* FOR CAT GAME */
         // if flag is set at any point during gameplay, game is "won"
-        if (map.getFlagManager().isFlagSet("hasFoundBall")) {
+        if (currMap.getFlagManager().isFlagSet("hasFoundBall")) {
             playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
         }
 
-        if (map.getFlagManager().isFlagSet("exitInteract")) {
+        /* 
+        if (currMap.getFlagManager().isFlagSet("exitInteract")) {
             screenCoordinator.setGameState(GameState.MYMAP);
+        }
+        */
+        if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
+            currMap = townMap;
+            point = currMap.getPositionByTileIndex(17, 24);
+            player.setMap(currMap);
+            player.setLocation(point.x, point.y);
+            System.out.println("Switching to Town Map. Player Position: " + point.x + ", " + point.y);
+            System.out.println("Before Setting Facing Direction: " + player.getFacingDirection());
+            player.setFacingDirection(Direction.UP);
+            System.out.println("After Setting Facing Direction: " + player.getFacingDirection());
+            flagManager.unsetFlag("house1ToTown");
+        }
+        if (currMap.getFlagManager().isFlagSet("townToHouse1")) {
+            currMap = house1Map;
+            point = currMap.getPositionByTileIndex(17, 21); //6,4
+            player.setMap(currMap);
+            player.setLocation(point.x, point.y);
+            player.setFacingDirection(Direction.DOWN);
+            flagManager.unsetFlag("townToHouse1");
         }
 
     }
@@ -136,7 +199,7 @@ public class PlayLevelScreen extends Screen {
         else{
             switch (playLevelScreenState) {
                 case RUNNING:
-                    map.draw(player, graphicsHandler);
+                    currMap.draw(player, graphicsHandler);
                     break;
                 case LEVEL_COMPLETED:
                     winScreen.draw(graphicsHandler);
