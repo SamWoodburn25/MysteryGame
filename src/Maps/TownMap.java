@@ -10,10 +10,12 @@
 package Maps;
 
 import Level.*;
+import Scripts.House1Map.BrotherExGFScript;
 import Scripts.TownMap.*;
 import Tilesets.CommonTileset;
 import Utils.Point;
 import java.util.ArrayList;
+import NPCs.Max;
 
 
 public class TownMap extends Map {
@@ -21,6 +23,18 @@ public class TownMap extends Map {
         super("town_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
     }
+
+    @Override
+    public ArrayList<NPC> loadNPCs() {
+        ArrayList<NPC> npcs = new ArrayList<>();
+
+        Max max = new Max(1, getMapTile(18, 20).getLocation().subtractY(0));
+        max.setInteractScript(new BrotherExGFScript());
+        npcs.add(max);
+
+        return npcs;
+    }
+
 
     @Override
     public ArrayList<Trigger> loadTriggers() {

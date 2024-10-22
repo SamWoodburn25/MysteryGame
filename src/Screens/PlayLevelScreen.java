@@ -88,7 +88,7 @@ public class PlayLevelScreen extends Screen {
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
-        currMap.setFlagManager(flagManager);
+        //currMap.setFlagManager(flagManager);
 
         // Setup journal with the flag manager of the current map
         journal = new JournalUI(currMap.getFlagManager());
