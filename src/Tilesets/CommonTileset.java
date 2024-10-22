@@ -22,6 +22,8 @@ public class CommonTileset extends Tileset {
     public ArrayList<MapTileBuilder> defineTiles() {
         ArrayList<MapTileBuilder> mapTiles = new ArrayList<>();
 
+        
+
         // grass
         Frame grassFrame = new FrameBuilder(getSubImage(6, 0))
         .withScale(tileScale)
