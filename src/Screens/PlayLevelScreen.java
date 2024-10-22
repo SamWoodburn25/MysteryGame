@@ -33,6 +33,9 @@ public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map currMap;
     protected Map house1Map, townMap, butcherShop;
+    //protected Map insideMap;
+    //protected Map outsideMap;
+    //protected Map map;
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
@@ -46,6 +49,12 @@ public class PlayLevelScreen extends Screen {
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+
+        // define/setup current map
+        // this.currMap = new House1Map();
+
+        //setup journal
+        //journal = new JournalUI(this.currMap.getFlagManager());
     }
 
     //initialize, set up screen
@@ -92,10 +101,8 @@ public class PlayLevelScreen extends Screen {
         player.setFacingDirection(Direction.LEFT);
         currMap.setPlayer(player);
 
-
         // let pieces of map know which button to listen for as the "interact" button
         currMap.getTextbox().setInteractKey(player.getInteractKey());
-
 
         // preloads all scripts ahead of time rather than loading them dynamically
         // both are supported, however preloading is recommended
@@ -136,12 +143,6 @@ public class PlayLevelScreen extends Screen {
             }
         }
 
-        /* FOR CAT GAME */
-        // if flag is set at any point during gameplay, game is "won"
-        if (currMap.getFlagManager().isFlagSet("hasFoundBall")) {
-            playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
-        }
-
         //leaving through door at bottom of house1 to get to down
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
@@ -160,6 +161,7 @@ public class PlayLevelScreen extends Screen {
             point = currMap.getPositionByTileIndex(17, 21); //6,4
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
+            System.out.println("Switching to house Map. Player Position: " + point.x + ", " + point.y);
             player.setFacingDirection(Direction.DOWN);
             flagManager.unsetFlag("townToHouse1");
         }

@@ -23,14 +23,14 @@ public class ExGf extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(2, -3, 46, 70)
+                            .withBounds(12, 40, 24, 12)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(2)
-                           .withBounds(2, -3, 46, 70)
+                           .withBounds(12, 40, 24, 12)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
@@ -58,19 +58,19 @@ public class ExGf extends NPC {
             put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
                         .withScale(2)
-                        .withBounds(-3, -3, 46, 40)
+                        .withBounds(4, 72, 28, 2)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
                         .withScale(2)
-                        .withBounds(-3, -3, 46, 40)
+                        .withBounds(4, 72, 28, 2)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 2), 12)
                         .withScale(2)
-                        .withBounds(-3, -3, 46, 40)
+                        .withBounds(4, 72, 28, 2)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 3), 12)
                         .withScale(2)
-                        .withBounds(-3, -3, 46, 40)
+                        .withBounds(4, 72, 28, 2)
                         .build()
             });
         }};
