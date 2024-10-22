@@ -19,7 +19,7 @@ public class ButcherScript extends Script {
         scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new TextboxScriptAction() {{
-            addText("Peter:Welcome to Butcher Shop, how could I help you today? ");
+            addText("Peter: Welcome to Butcher Shop, how could I help you today? ");
             addText("Oh, you’re asking about your brother...? ");
             addText("Oh, we didn’t really talk much, sorry I can’t help you.");
             addText("Alex told you about me? Ah... yeah your brother \nwasn’t... a very good friend.");

@@ -60,6 +60,9 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
+						break;
+					// case BUTCHERSHOP:
+					// 	currentScreen = new ButcherShopScreen(this);
 				}
 				currentScreen.initialize();
 			}
