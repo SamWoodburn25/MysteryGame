@@ -174,9 +174,9 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             System.out.println("Switching to Town Map. Player Position: " + point.x + ", " + point.y);
-            System.out.println("Before Setting Facing Direction: " + player.getFacingDirection());
+
             player.setFacingDirection(Direction.UP);
-            System.out.println("After Setting Facing Direction: " + player.getFacingDirection());
+        
             flagManager.unsetFlag("house1ToTown");
         }
         if (currMap.getFlagManager().isFlagSet("townToHouse1")) {
@@ -184,6 +184,7 @@ public class PlayLevelScreen extends Screen {
             point = currMap.getPositionByTileIndex(17, 21); //6,4
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
+            System.out.println("Switching to house Map. Player Position: " + point.x + ", " + point.y);
             player.setFacingDirection(Direction.DOWN);
             flagManager.unsetFlag("townToHouse1");
         }
