@@ -14,7 +14,7 @@ public class Game {
     boolean musicInitialized = false;
 
     public static void main(String[] args) {
-        new Game(); 
+        new Game();
     }
 
     public Game() {
