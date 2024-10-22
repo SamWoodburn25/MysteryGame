@@ -106,7 +106,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder blackSpotTile = new MapTileBuilder(blackSpotFrame);
+        MapTileBuilder blackSpotTile = new MapTileBuilder(blackSpotFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(blackSpotTile);
 
@@ -161,8 +162,8 @@ public class CommonTileset extends Tileset {
         
         // right window roof complex
         Frame rightWindowRoofComplexFrame = new FrameBuilder(getSubImage(3, 1))
-        .withScale(tileScale)
-        .build();
+                .withScale(tileScale)
+                .build();
        
         MapTileBuilder rightWindowRoofComplexTile = new MapTileBuilder(grassFrame)
                 .withTopLayer(rightWindowRoofComplexFrame)
@@ -255,16 +256,14 @@ public class CommonTileset extends Tileset {
    
         mapTiles.add(floorTile); 
 
-        //left couch
-        Frame leftCouchFrame = new FrameBuilder(getSubImage(6, 3))
+        //living room wall tile
+        Frame livingRoomWallFrame  = new FrameBuilder(getSubImage(6, 3))
                 .withScale(tileScale)
                 .build();
    
-        MapTileBuilder leftCouchTile = new MapTileBuilder(floorFrame)
-                .withTopLayer(leftCouchFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+        MapTileBuilder livingRoomWallTile = new MapTileBuilder(livingRoomWallFrame);
    
-        mapTiles.add(leftCouchTile); 
+        mapTiles.add(livingRoomWallTile); 
          
         // right couch
         Frame rightCouchFrame = new FrameBuilder(getSubImage(6, 4))
@@ -665,33 +664,38 @@ public class CommonTileset extends Tileset {
         // bottom fridge
         Frame bottomFridgeFrame = new FrameBuilder(getSubImage(13, 3))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                //.withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder bottomFridgeTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder bottomFridgeTile = new MapTileBuilder(floorFrame)
                 .withTopLayer(bottomFridgeFrame)
                 .withTileType(TileType.PASSABLE);
 
         mapTiles.add(bottomFridgeTile);
 
-        // middle fridge
-        Frame middleFridgeFrame = new FrameBuilder(getSubImage(15, 0))
+        // middle right fridge
+        Frame middleRightFridgeFrame = new FrameBuilder(getSubImage(15, 0))
                 .withScale(tileScale)
-                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                //.withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                 .build();
 
-        MapTileBuilder middleFridgeTile = new MapTileBuilder(wallLivingRoomFrame)
-                .withTopLayer(middleFridgeFrame)
+        MapTileBuilder middleRightFridgeTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(middleRightFridgeFrame)
                 .withTileType(TileType.PASSABLE);
 
-        mapTiles.add(middleFridgeTile);
+        mapTiles.add(middleRightFridgeTile);
+
+        
+
+       
+
 
         // top fridge
         Frame topFridgeFrame = new FrameBuilder(getSubImage(14, 0))
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder topFridgeTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder topFridgeTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(topFridgeFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -702,7 +706,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder topLeftStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder topLeftStoveTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(topLeftStoveFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -713,7 +717,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder bottomLeftStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder bottomLeftStoveTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(bottomLeftStoveFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -724,7 +728,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder topRightStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder topRightStoveTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(topRightStoveFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -735,7 +739,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder bottomRightStoveTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder bottomRightStoveTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(bottomRightStoveFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -746,7 +750,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder topRightCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder topRightCounterTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(topRightCounterFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -757,7 +761,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder bottomRightCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder bottomRightCounterTile = new MapTileBuilder(floorFrame)
         .withTopLayer(bottomRightCounterFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -768,7 +772,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder topLeftCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder topLeftCounterTile = new MapTileBuilder(livingRoomWallFrame)
         .withTopLayer(topLeftCounterFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -779,7 +783,7 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
 
-        MapTileBuilder bottomLeftCounterTile = new MapTileBuilder(wallLivingRoomFrame)
+        MapTileBuilder bottomLeftCounterTile = new MapTileBuilder(floorFrame)
         .withTopLayer(bottomLeftCounterFrame)
         .withTileType(TileType.PASSABLE);
        
@@ -888,19 +892,19 @@ public class CommonTileset extends Tileset {
 
         // bottom pig body
         Frame bottomPigBodyFrame = new FrameBuilder(getSubImage(18, 1))
-        .withScale(tileScale)
-        .build();
+                .withScale(tileScale)
+                .build();
 
         MapTileBuilder bottomPigBodyTile = new MapTileBuilder(wallOneButcherFrame)
-        .withTopLayer(bottomPigBodyFrame)
-        .withTileType(TileType.NOT_PASSABLE);
+                .withTopLayer(bottomPigBodyFrame)
+                .withTileType(TileType.NOT_PASSABLE);
        
         mapTiles.add(bottomPigBodyTile);
 
         // blood splatter one
         Frame bloodSplatterOneFrame = new FrameBuilder(getSubImage(18, 2))
-        .withScale(tileScale)
-        .build();
+                .withScale(tileScale)
+                .build();
 
         MapTileBuilder bloodSplatterOneTile = new MapTileBuilder(floorButcherFrame)
         .withTopLayer(bloodSplatterOneFrame)
@@ -1051,6 +1055,481 @@ public class CommonTileset extends Tileset {
 
         MapTileBuilder outsideButcherGrateRightTile = new MapTileBuilder(outsideButcherGrateRightFrame);       
         mapTiles.add(outsideButcherGrateRightTile);
+
+        // left border
+        Frame leftBorderFrame = new FrameBuilder(getSubImage(21, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder leftBorderTile = new MapTileBuilder(leftBorderFrame);       
+        mapTiles.add(leftBorderTile);
+
+         // top border
+         Frame topBorderFrame = new FrameBuilder(getSubImage(21, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topBorderTile = new MapTileBuilder(topBorderFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        
+        mapTiles.add(topBorderTile);
+
+         // right border
+         Frame rightBorderFrame = new FrameBuilder(getSubImage(21, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder rightBorderTile = new MapTileBuilder(rightBorderFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        
+        mapTiles.add(rightBorderTile);
+
+         // bottom border
+         Frame bottomBorderFrame = new FrameBuilder(getSubImage(21, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomBorderTile = new MapTileBuilder(bottomBorderFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bottomBorderTile);
+
+        // left corner border
+        Frame leftCornerBorderFrame = new FrameBuilder(getSubImage(21, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder leftCornerBorderTile = new MapTileBuilder(leftCornerBorderFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+        
+        mapTiles.add(leftCornerBorderTile);
+
+         //right corner border
+         Frame rightCornerBorderFrame = new FrameBuilder(getSubImage(22, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder rightCornerBorderTile = new MapTileBuilder(rightCornerBorderFrame)      
+                .withTileType(TileType.NOT_PASSABLE);
+        mapTiles.add(rightCornerBorderTile);
+
+        //bottom wall
+        Frame bottomWallFrame = new FrameBuilder(getSubImage(22, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomWallTile = new MapTileBuilder(bottomWallFrame);       
+        mapTiles.add(bottomWallTile);
+
+        // nightstand
+        Frame nightstandFrame = new FrameBuilder(getSubImage(17, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder nightstandTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(nightstandFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(nightstandTile);
+
+        // top floor lamp
+        Frame TopFloorLampFrame = new FrameBuilder(getSubImage(22, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topFloorLampTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(TopFloorLampFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(topFloorLampTile);
+
+        // middle floor lamp 
+        Frame middleFloorLampFrame = new FrameBuilder(getSubImage(23, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder middleFloorLampTile = new MapTileBuilder(bottomWallFrame)
+                .withTopLayer(middleFloorLampFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(middleFloorLampTile);
+
+        // bottom floor lamp 
+        Frame bottomFloorLampFrame = new FrameBuilder(getSubImage(24, 2))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomFloorLampTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomFloorLampFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bottomFloorLampTile);
+
+        // top right of book shelf
+        Frame topRightShelfFrame = new FrameBuilder(getSubImage(22, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topRightShelfTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(topRightShelfFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(topRightShelfTile);
+
+         // top left of book shelf
+        Frame topLeftShelfFrame = new FrameBuilder(getSubImage(22, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topLeftShelfTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(topLeftShelfFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(topLeftShelfTile);
+
+         // bottom left of book shelf
+         Frame bottomLeftShelfFrame = new FrameBuilder(getSubImage(23, 3))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomLeftShelfTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomLeftShelfFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bottomLeftShelfTile);
+
+        // bottom right of book shelf
+        Frame bottomRightShelfFrame = new FrameBuilder(getSubImage(23, 4))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomRightShelfTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomRightShelfFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(bottomRightShelfTile);
+
+
+        // top left table
+        Frame topLeftTableFrame = new FrameBuilder(getSubImage(23, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topLeftTableTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(topLeftTableFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(topLeftTableTile);
+
+        // top right table 
+        Frame topRightTableFrame = new FrameBuilder(getSubImage(23, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topRightTableTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(topRightTableFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(topRightTableTile);
+
+        // bottom left table
+        Frame bottomLeftTableFrame = new FrameBuilder(getSubImage(24, 0))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomLeftTableTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomLeftTableFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(bottomLeftTableTile);
+
+
+        // bottom right table 
+        Frame bottomRightTableFrame = new FrameBuilder(getSubImage(24, 1))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomRightTableTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomRightTableFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(bottomRightTableTile);
+
+        //  side couch tile 1
+        Frame sideCouch1Frame = new FrameBuilder(getSubImage(0, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder sideCouch1Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(sideCouch1Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(sideCouch1Tile);
+
+        // side couch tile 2
+        Frame sideCouch2Frame = new FrameBuilder(getSubImage(1, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder sideCouch2Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(sideCouch2Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(sideCouch2Tile);
+
+        // side couch tile 3
+        Frame sideCouch3Frame = new FrameBuilder(getSubImage(2, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder sideCouch3Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(sideCouch3Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(sideCouch3Tile);
+
+        // side couch tile 4
+        Frame sideCouch4Frame = new FrameBuilder(getSubImage(3, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder sideCouch4Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(sideCouch4Frame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(sideCouch4Tile); 
+
+        // right dinner table
+        Frame rightDinnerTableFrame = new FrameBuilder(getSubImage(4, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder rightDinnerTableTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(rightDinnerTableFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+       
+        mapTiles.add(rightDinnerTableTile); 
+
+         // left dinner table
+         Frame leftDinnerTableFrame = new FrameBuilder(getSubImage(5, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder leftDinnerTableTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(leftDinnerTableFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(leftDinnerTableTile);
+
+         // chair
+         Frame livingRoomChairFrame = new FrameBuilder(getSubImage(6, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder livingRoomChairTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(livingRoomChairFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(livingRoomChairTile);
+
+        // top left window
+        Frame topLeftWindowFrame = new FrameBuilder(getSubImage(7, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topLeftWindowTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(topLeftWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(topLeftWindowTile);
+
+        // bottom  left window
+        Frame bottomLeftWindowFrame = new FrameBuilder(getSubImage(8, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomLeftWindowTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(bottomLeftWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bottomLeftWindowTile);
+
+         // top right window
+         Frame topRightWindowFrame = new FrameBuilder(getSubImage(9, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder topRightWindowTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(topRightWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(topRightWindowTile);
+
+        // bottom  right window
+        Frame bottomRightWindowFrame = new FrameBuilder(getSubImage(10, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder bottomRightWindowTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(bottomRightWindowFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
+        mapTiles.add(bottomRightWindowTile);
+
+
+        Frame middleLeftFridgeFrame = new FrameBuilder(getSubImage(15, 0))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder middleLeftFridgeTile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(middleLeftFridgeFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(middleLeftFridgeTile);
+
+        // bottom left fridge
+        Frame bottomLeftFridgeFrame = new FrameBuilder(getSubImage(13, 3))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder bottomLeftFridgeTile = new MapTileBuilder(floorFrame)
+                .withTopLayer(bottomLeftFridgeFrame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(bottomLeftFridgeTile);
+
+
+
+        // counter 1
+        Frame counter1Frame = new FrameBuilder(getSubImage(11, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter1Tile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(counter1Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter1Tile);
+
+        // counter 2
+        Frame counter2Frame = new FrameBuilder(getSubImage(12, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter2Tile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(counter2Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter2Tile);
+
+        // counter 3
+        Frame counter3Frame = new FrameBuilder(getSubImage(13, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter3Tile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(counter3Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter3Tile);
+
+        // counter 4
+        Frame counter4Frame = new FrameBuilder(getSubImage(14, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter4Tile = new MapTileBuilder(bottomWallFrame)
+                .withTopLayer(counter4Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter4Tile);
+
+        // counter 5
+        Frame counter5Frame = new FrameBuilder(getSubImage(15, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter5Tile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(counter5Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter5Tile);
+
+        // counter 6
+        Frame counter6Frame = new FrameBuilder(getSubImage(16, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter6Tile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(counter6Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter6Tile);
+
+        // counter 7
+        Frame counter7Frame = new FrameBuilder(getSubImage(17, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter7Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(counter7Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter7Tile);
+        
+        // counter 8
+        Frame counter8Frame = new FrameBuilder(getSubImage(18, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter8Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(counter8Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter8Tile);
+
+        // counter 9
+        Frame counter9Frame = new FrameBuilder(getSubImage(19, 5))
+                .withScale(tileScale)
+                .build();
+
+        MapTileBuilder counter9Tile = new MapTileBuilder(floorFrame)
+                .withTopLayer(counter9Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter9Tile);
+
+        // counter 10
+        Frame counter10Frame = new FrameBuilder(getSubImage(13, 5))
+                .withScale(tileScale)
+                .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                .build();
+
+        MapTileBuilder counter10Tile = new MapTileBuilder(livingRoomWallFrame)
+                .withTopLayer(counter10Frame)
+                .withTileType(TileType.PASSABLE);
+
+        mapTiles.add(counter10Tile);
+
+
+
+        
+
+
+
+         
+
+         
+
+
+
+
+
+
 
 
 

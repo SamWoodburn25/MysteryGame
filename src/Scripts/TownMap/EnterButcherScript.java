@@ -7,7 +7,7 @@
  * class- enterButcherScript: script action to enter the main home
  */
 
-package Scripts.MyMap;
+package Scripts.TownMap;
 
 import java.util.ArrayList;
 
