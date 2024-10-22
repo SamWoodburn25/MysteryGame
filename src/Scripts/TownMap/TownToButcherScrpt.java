@@ -4,30 +4,25 @@
  * Fall 2024
  * 
  * package- Scripts- MyMap
- * class- enter home script: script action to enter the main home
+ * class- enterButcherScript: script action to enter the main home
  */
 
 package Scripts.TownMap;
-
 import java.util.ArrayList;
 
 import Level.*;
 import ScriptActions.*;
 
 
-public class EnterHomeScript extends Script {
-
+public class TownToButcherScrpt extends Script{
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-        scriptActions.add(new LockPlayerScriptAction());
 
-        //change the exit interact flag to true
-        scriptActions.add(new ChangeFlagScriptAction("enteringHome", true));
+        //change the exit townToHouse1 flag to true and return it
+        scriptActions.add(new ChangeFlagScriptAction("townToButcher", true));
 
-                System.out.println("entering");
-
-        scriptActions.add(new UnlockPlayerScriptAction());
         return scriptActions;
     }
+    
 }

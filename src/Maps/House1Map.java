@@ -27,7 +27,6 @@ public class House1Map extends Map {
         super("house1_map.txt", new CommonTileset());
         this.playerStartPosition = getMapTile(17, 19).getLocation();
         System.out.println("Player starting at: " + playerStartPosition.x + ", " + playerStartPosition.y);
-
     }
 
     @Override
@@ -61,35 +60,30 @@ public class House1Map extends Map {
         butcher.setInteractScript(new ButcherScript());
         npcs.add(butcher);
 
-        // Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
-        // walrus.setInteractScript(new WalrusScript());
-        // npcs.add(walrus);
-
-        // Dinosaur dinosaur = new Dinosaur(2, getMapTile(13, 4).getLocation());
-        // dinosaur.setExistenceFlag("hasTalkedToDinosaur");
-        // dinosaur.setInteractScript(new DinoScript());
-        // npcs.add(dinosaur);
-        
-        // Bug bug = new Bug(3, getMapTile(7, 12).getLocation().subtractX(20));
-        // bug.setInteractScript(new BugScript());
-        // npcs.add(bug);
-
         return npcs;
     }
 
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        Point townLoc = getPositionByTileIndex(18,22);
+        //trigger to enter town
+        Point townLoc = getPositionByTileIndex(17,25);
+        System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
+        triggers.add(new Trigger(townLoc.x - 50, townLoc.y+50, 200, 10, new House1ToTownScript(), "house1ToTown"));
         //Point townLoc = getPositionByTileIndex(18,24);
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
-        //Point tileLocation1 = getMapTile(6, 14).getLocation();
-        /*triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
-        triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
-        //triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new ExitScript(), "exitInteract" ));
-        triggers.add(new Trigger(townLoc.x - 50, townLoc.y+50, 200, 10, new House1ToTownScript(), "house1ToTown"));
+        
+        
+        triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));
+        System.out.println("house1totownscript triggered");
+
         System.out.println("Trigger set at: " + townLoc.x + ", " + townLoc.y);
+
+        // pop up image trigger
+        Point photoLoc = getPositionByTileIndex(24, 15);
+
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 100, new PopUpButcherImageScript(), "popUpButcherImage"));
+        System.out.println("Trigger set at: " + photoLoc.x + ", " + photoLoc.y);
 
         return triggers;
     }
