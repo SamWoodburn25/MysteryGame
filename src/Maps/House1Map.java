@@ -60,7 +60,6 @@ public class House1Map extends Map {
         butcher.setInteractScript(new ButcherScript());
         npcs.add(butcher);
 
-<<<<<<< HEAD
         // Walrus walrus = new Walrus(1, getMapTile(4, 28).getLocation().subtractY(40));
         // walrus.setInteractScript(new WalrusScript());
         // npcs.add(walrus);
@@ -74,8 +73,6 @@ public class House1Map extends Map {
         // bug.setInteractScript(new BugScript());
         // npcs.add(bug);
 
-=======
->>>>>>> 3bb74c653a8b697aecb80d53db5330e58766752f
         return npcs;
     }
 
@@ -88,7 +85,6 @@ public class House1Map extends Map {
         triggers.add(new Trigger(townLoc.x - 50, townLoc.y + 50, 200, 10, new House1ToTownScript(), "house1ToTown"));
         // Point townLoc = getPositionByTileIndex(18,24);
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
-<<<<<<< HEAD
         // Point tileLocation1 = getMapTile(6, 14).getLocation();
         /*
          * triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(),
@@ -101,12 +97,9 @@ public class House1Map extends Map {
         // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new
         // ExitScript(), "exitInteract" ));
 
-        triggers.add(new Trigger(townLoc.x, townLoc.y, 200, 10, new House1ToTownScript(), "house1ToTown"));
-=======
         
         
         triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));
->>>>>>> 3bb74c653a8b697aecb80d53db5330e58766752f
         System.out.println("house1totownscript triggered");
 
         System.out.println("Trigger set at: " + townLoc.x + ", " + townLoc.y);
