@@ -12,7 +12,7 @@ import NPCs.MHDaughter;
 import NPCs.Mom;
 //import NPCs.Walrus;
 import Scripts.SimpleTextScript;
-import Scripts.TestMap.*;
+import Scripts.House1Map.*;
 import Tilesets.CommonTileset;
 import Utils.Point;
 
@@ -21,11 +21,13 @@ import java.util.ArrayList;
 import Engine.ImageLoader;
 
 // Represents a test map to be used in a level
-public class TestMap extends Map {
+public class House1Map extends Map {
 
-    public TestMap() {
-        super("test_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(17, 20).getLocation();
+    public House1Map() {
+        super("house1_map.txt", new CommonTileset());
+        this.playerStartPosition = getMapTile(17, 19).getLocation();
+        System.out.println("Player starting at: " + playerStartPosition.x + ", " + playerStartPosition.y);
+
     }
 
     @Override
@@ -45,19 +47,19 @@ public class TestMap extends Map {
 
         
 
-        Mom mom = new Mom(1, getMapTile(10, 20).getLocation().subtractY(40));
+        Mom mom = new Mom(1, getMapTile(13, 18).getLocation().subtractY(40));
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
-        ExGf ex = new ExGf(1, getMapTile(5, 20).getLocation().subtractY(40));
+        ExGf ex = new ExGf(1, getMapTile(25, 17).getLocation().subtractY(40));
         ex.setInteractScript(new BrotherExGFScript());
         npcs.add(ex);
 
-        MHDaughter daughter = new MHDaughter(1, getMapTile(4, 26).getLocation().subtractY(40));
+        MHDaughter daughter = new MHDaughter(1, getMapTile(29, 16).getLocation().subtractY(40));
         daughter.setInteractScript(new DrugDealerScript());
         npcs.add(daughter);
 
-        Butcher butcher = new Butcher(3, getMapTile(7, 17).getLocation().subtractX(20));
+        Butcher butcher = new Butcher(3, getMapTile(23, 18).getLocation().subtractX(20));
         butcher.setInteractScript(new ButcherScript());
         npcs.add(butcher);
 
@@ -80,11 +82,17 @@ public class TestMap extends Map {
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        Point tileLocation1 = getMapTile(1, 21).getLocation();
+        Point townLoc = getPositionByTileIndex(18,22);
+        //Point townLoc = getPositionByTileIndex(18,24);
+        System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
+        //Point tileLocation1 = getMapTile(6, 14).getLocation();
         /*triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(), "hasLostBall"));
         triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(), "hasLostBall"));*/
-        triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 10,160, new ExitScript(), "exitInteract" ));
+        //triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new ExitScript(), "exitInteract" ));
+        triggers.add(new Trigger(townLoc.x - 50, townLoc.y+50, 200, 10, new House1ToTownScript(), "house1ToTown"));
+        System.out.println("Trigger set at: " + townLoc.x + ", " + townLoc.y);
+
         return triggers;
     }
 
