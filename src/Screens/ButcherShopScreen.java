@@ -8,15 +8,15 @@ import Engine.Screen;
 import Game.GameState;
 import Game.ScreenCoordinator;
 import Level.*;
-import Maps.MyMap;
-import Maps.TestMap;
-import Players.Cat;
+import Maps.TownMap;
+
+// import Players.Cat;
 import Players.MC;
 import Utils.Direction;
 
 
 // This class is for when the RPG game is actually being played
-public class MyMapScreen extends Screen {
+public class ButcherShopScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
     protected Map map;
     protected Player player;
@@ -30,7 +30,7 @@ public class MyMapScreen extends Screen {
     
 
 
-    public MyMapScreen(ScreenCoordinator screenCoordinator) {
+    public ButcherShopScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
     }
 
@@ -38,7 +38,7 @@ public class MyMapScreen extends Screen {
         // setup state
         flagManager = new FlagManager();
         // define/setup map
-        map = new MyMap();
+        map = new TownMap();
         map.setFlagManager(flagManager);
 
         //setup journal

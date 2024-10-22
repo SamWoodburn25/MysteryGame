@@ -23,13 +23,14 @@ import java.awt.image.BufferedImage;
      protected FlagManager flagManager;
      protected boolean popUpVisible = false;
      protected KeyLocker keyLocker = new KeyLocker();
+     protected boolean popUpShown = false;
  
+
      //constructor with FlagManager parameter
      public GoreyButcherShopScreen(FlagManager flagManager) {
         this.flagManager = flagManager;
-
         // Load butcher pop up image
-        goreyButcherShop = ImageLoader.load("goreyButcherShop.jpg");
+        goreyButcherShop = ImageLoader.load("goreyButcherShop.png");
      }
  
      public void setFlagManager(FlagManager flagManager){
@@ -38,7 +39,7 @@ import java.awt.image.BufferedImage;
  
      //is the photo pop up screen visible
      public void toggleVisibility() {
-        popUpVisible = !popUpVisible;
+        popUpVisible = !popUpVisible; //makes it true
      }
 
      //draw
@@ -46,6 +47,7 @@ import java.awt.image.BufferedImage;
          //draw while the image is visible
          if (popUpVisible) {
              graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
+             graphicsHandler.drawImage(goreyButcherShop, 0, 0, 800, 550);
          }
      }
  

@@ -10,8 +10,8 @@
 package Maps;
 
 import Level.*;
-import Scripts.TestMap.ExitScript;
-import Scripts.TestMap.PopUpButcherImageScript;
+// import Scripts.House1Map.ExitScript;
+// import Scripts.House1Map.PopUpButcherImageScript;
 import Tilesets.CommonTileset;
 import Utils.Point;
 import java.util.ArrayList;
