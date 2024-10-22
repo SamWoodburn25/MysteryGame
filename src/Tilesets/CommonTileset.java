@@ -179,7 +179,7 @@ public class CommonTileset extends Tileset {
                 .build();
 
         MapTileBuilder gravelTile = new MapTileBuilder(gravelFrame)
-                .withTileType(TileType.NOT_PASSABLE);
+                .withTileType(TileType.PASSABLE);
 
         mapTiles.add(gravelTile);
 
