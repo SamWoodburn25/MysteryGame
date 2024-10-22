@@ -24,36 +24,36 @@ public class Butcher extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(4)
-                            .withBounds(12, 20, 24, 12)
+                            .withBounds(12, 40, 24, 12)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(4)
-                           .withBounds(12, 20, 24, 12)
+                           .withBounds(12, 20, 32, 12)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
                     .withScale(4)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(12, 20, 24, 12)
+                    .withBounds(12, 20, 32, 12)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
                     .withScale(4)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(12, 20, 24, 12)
+                    .withBounds(12, 20, 32, 12)
                     .build()
             });
             put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
                         .withScale(4)
-                        .withBounds(12, 20, 24, 12)
+                        .withBounds(12, 40, 32, 12)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
                         .withScale(4)
-                        .withBounds(12, 20, 24, 12)
+                        .withBounds(12, 40, 32, 12)
                         .build()
             });
         }};

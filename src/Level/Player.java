@@ -16,6 +16,7 @@ public abstract class Player extends GameObject {
     // values that affect player movement
     // these should be set in a subclass
     protected float walkSpeed = 0;
+    protected double sprintBar = 10;
     protected int interactionRange = 1;
     protected Direction currentWalkingXDirection;
     protected Direction currentWalkingYDirection;
@@ -98,9 +99,13 @@ public abstract class Player extends GameObject {
             map.entityInteract(this);
         }
 
+        if(sprintBar < 5 && playerState != PlayerState.RUNNING){
+            sprintBar = sprintBar + .05;
+        }
+
         // if a walk key is pressed, player enters WALKING or RUNNING state
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
-            if(Keyboard.isKeyDown(MOVE_FAST_KEY)){
+            if(Keyboard.isKeyDown(MOVE_FAST_KEY) && sprintBar > 0){
                 playerState = PlayerState.RUNNING;
             } else {
                 playerState = PlayerState.WALKING;
@@ -113,6 +118,10 @@ public abstract class Player extends GameObject {
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
+        }
+
+        if(sprintBar < 5 && playerState != PlayerState.RUNNING){
+            sprintBar = sprintBar + .05;
         }
 
         // if walk left key is pressed, move player to the left
@@ -162,7 +171,7 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyUp(MOVE_LEFT_KEY) && Keyboard.isKeyUp(MOVE_RIGHT_KEY) && Keyboard.isKeyUp(MOVE_UP_KEY) && Keyboard.isKeyUp(MOVE_DOWN_KEY)) {
             playerState = PlayerState.STANDING;
         } else if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
-            if(Keyboard.isKeyDown(MOVE_FAST_KEY)){
+            if(Keyboard.isKeyDown(MOVE_FAST_KEY) && sprintBar > 0){
                 playerState = PlayerState.RUNNING;
             }
         }
@@ -173,6 +182,10 @@ public abstract class Player extends GameObject {
         if (!keyLocker.isKeyLocked(INTERACT_KEY) && Keyboard.isKeyDown(INTERACT_KEY)) {
             keyLocker.lockKey(INTERACT_KEY);
             map.entityInteract(this);
+        }
+
+        if(playerState == PlayerState.RUNNING){
+            sprintBar = sprintBar - .05; 
         }
 
         // if walk left key is pressed, move player to the left
@@ -226,8 +239,11 @@ public abstract class Player extends GameObject {
         if (Keyboard.isKeyDown(MOVE_LEFT_KEY) || Keyboard.isKeyDown(MOVE_RIGHT_KEY) || Keyboard.isKeyDown(MOVE_UP_KEY) || Keyboard.isKeyDown(MOVE_DOWN_KEY)) {
             if(!Keyboard.isKeyDown(MOVE_FAST_KEY)){
                 playerState = PlayerState.WALKING;
+            } else if(sprintBar < 0){
+                sprintBar = -4;
+                playerState = PlayerState.WALKING;
             }
-        }
+        } 
     }
 
 
@@ -301,6 +317,7 @@ public abstract class Player extends GameObject {
     public void setFacingDirection(Direction facingDirection) {
         this.facingDirection = facingDirection;
     }
+
 
     public Rectangle getInteractionRange() {
         return new Rectangle(
@@ -392,10 +409,10 @@ public abstract class Player extends GameObject {
     }
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
-    /*
-    public void draw(GraphicsHandler graphicsHandler) {
-        super.draw(graphicsHandler);
-        drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
-    }
-    */
+    
+    // public void draw(GraphicsHandler graphicsHandler) {
+    //     super.draw(graphicsHandler);
+    //     drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+    // }
+    
 }

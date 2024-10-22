@@ -43,8 +43,6 @@ public class TestMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        
-
         Mom mom = new Mom(1, getMapTile(10, 20).getLocation().subtractY(40));
         mom.setInteractScript(new MomScript());
         npcs.add(mom);

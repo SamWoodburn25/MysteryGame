@@ -282,8 +282,8 @@ public class CommonTileset extends Tileset {
                 .withScale(tileScale)
                 .build();
    
-        MapTileBuilder middleTreeOldTile = new MapTileBuilder(grassFrame)
-                .withTopLayer(middleTreeOldFrame)
+        MapTileBuilder middleTreeOldTile = new MapTileBuilder(middleTreeOldFrame)
+                //.withTopLayer(middleTreeOldFrame)
                 .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(middleTreeOldTile);
