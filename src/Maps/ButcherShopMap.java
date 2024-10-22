@@ -10,9 +10,11 @@
 package Maps;
 
 import Level.*;
-// import Scripts.MyMap.EnterHomeScript;
-// import Scripts.TestMap.ExitScript;
+import Scripts.*;
+import Scripts.ButcherShopMap.*;
 import Tilesets.CommonTileset;
+import Utils.Point;
+
 // import Utils.Point;
 import java.util.ArrayList;
 
@@ -34,9 +36,11 @@ public class ButcherShopMap extends Map {
      @Override
      public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
-        // Point tileLocation1 = getMapTile(16, 19).getLocation();
-        //entering main home
-        // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 60,60, new EnterHomeScript(), "enteringHome"));
+
+         //trigger to enter town
+        Point town = getPositionByTileIndex(3,11);
+        triggers.add(new Trigger(town.x, town.y, 20,10, new ButcherToTownScript(), "ButcherToTown"));
+
         return triggers;
     } 
 }
