@@ -1,4 +1,4 @@
-package Scripts.House1Map;
+package Scripts.TownMap;
 
 import java.util.ArrayList;
 

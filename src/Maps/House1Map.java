@@ -44,7 +44,6 @@ public class House1Map extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         Mom mom = new Mom(1, getMapTile(13, 18).getLocation().subtractY(40));
-
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
