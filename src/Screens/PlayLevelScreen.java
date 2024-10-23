@@ -33,22 +33,19 @@ import java.awt.image.BufferedImage;
 
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
+    //maps
     protected Map currMap;
     protected Map house1Map, townMap, butcherShop;
-    //protected Map insideMap;
-    //protected Map outsideMap;
-    //protected Map map;
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
-    protected GoreyButcherShopScreen goreyButcherScreen;
     protected WinScreen winScreen;
     protected FlagManager flagManager;
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
     private boolean journalVisible = false;
     protected Point point;
-    
-    protected GoreyButcherShopScreen butcherShopScreen;
+    //pop up variables
+    protected GoreyButcherShopScreen goreyButcherScreen;
     private boolean popUpVisible = false;
     protected BufferedImage popUp;
 
@@ -56,19 +53,11 @@ public class PlayLevelScreen extends Screen {
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
-
-        // define/setup current map
-        // this.currMap = new House1Map();
-
-        //setup journal
-        //journal = new JournalUI(this.currMap.getFlagManager());
-
-        // butcherShopScreen = new GoreyButcherShopScreen(this.currMap.getFlagManager());
     }
 
     //initialize, set up screen
     public void initialize() {
-        //flag manager- flags to keep track of game play
+        //flag manager- flags to keep track of who has been talked to
         flagManager = new FlagManager();
         flagManager.addFlag("hasLostBall", false);
         flagManager.addFlag("hasTalkedToWalrus", false);
@@ -82,10 +71,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("townToButcher", false);
         flagManager.addFlag("butcherToTown", false);
 
-
-
+        //flag to manage pop-up
         flagManager.addFlag("popUpButcherImage", false);
-        popUp = ImageLoader.load("goreyButcherShop.png");
 
         
         // Define and set up maps
@@ -98,8 +85,8 @@ public class PlayLevelScreen extends Screen {
         butcherShop = new ButcherShopMap();
         butcherShop.setFlagManager(flagManager);
 
+        //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
-        goreyButcherScreen.setFlagManager(flagManager);
 
 
         // Set the initial map to house1Map (starting map)
@@ -109,9 +96,6 @@ public class PlayLevelScreen extends Screen {
 
         // Setup journal with the flag manager of the current map
         journal = new JournalUI(currMap.getFlagManager());
-
-        //Setup pop up with flag manager of current map
-        //butcherShopScreen = new GoreyButcherShopScreen(currMap.getFlagManager());
         
         // setup player
         player = new MC(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
@@ -134,15 +118,6 @@ public class PlayLevelScreen extends Screen {
 
     //update
     public void update() {
-        // close pop up on 'esc' key
-        if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-            popUpVisible = !popUpVisible;
-            butcherShopScreen.toggleVisibility();
-            keyLocker.lockKey(Key.ESC);
-        }
-        if(Keyboard.isKeyUp(Key.ESC)){
-            keyLocker.unlockKey(Key.ESC);
-        } 
 
         //open/close journal on 'j' click
         if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
@@ -175,9 +150,26 @@ public class PlayLevelScreen extends Screen {
 
         if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
             goreyButcherScreen.toggleVisibility();
+            popUpVisible = true;
             System.out.println("toggle");
         }
+        /* 
+         // close pop up on 'esc' key
+        if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
+            popUpVisible = true;
+            System.out.println("true");
+        }
 
+        if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+            popUpVisible = !popUpVisible;
+            goreyButcherScreen.toggleVisibility();
+            keyLocker.lockKey(Key.ESC);
+        }
+        if(Keyboard.isKeyUp(Key.ESC)){
+            keyLocker.unlockKey(Key.ESC);
+        } 
+
+        */
         //leaving through door at bottom of house1 to get to down
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
@@ -227,10 +219,10 @@ public class PlayLevelScreen extends Screen {
         if(journalVisible){
             journal.draw(graphicsHandler);
         }
-        //if popUp image is toggled, draw
-        if(popUpVisible){
-            butcherShopScreen.draw(graphicsHandler);
-        }
+        //if popUp image is toggled, draw 
+        else if(popUpVisible){
+            goreyButcherScreen.draw(graphicsHandler);
+        } 
 
         //otherwise draw appropriate graphics based on the screen state
         else{

@@ -42,12 +42,21 @@ import java.awt.image.BufferedImage;
         popUpVisible = !popUpVisible; //makes it true
      }
 
+     //update
+    public void update() {
+        
+    }
+
      //draw
      public void draw(GraphicsHandler graphicsHandler) {
          //draw while the image is visible
          if (popUpVisible) {
+            System.out.println("visible");
              graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
              graphicsHandler.drawImage(goreyButcherShop, 0, 0, 800, 550);
+         }
+         else{
+            System.out.println("invisible");
          }
      }
  
