@@ -39,25 +39,19 @@ import java.awt.image.BufferedImage;
  
      //is the photo pop up screen visible
      public void toggleVisibility() {
-        popUpVisible = !popUpVisible; //makes it true
+        //popUpShown = !popUpShown; //makes it true
+        //flagManager.unsetFlag("popUpButcherImage");
      }
 
      //update
     public void update() {
-        
     }
 
      //draw
      public void draw(GraphicsHandler graphicsHandler) {
          //draw while the image is visible
-         if (popUpVisible) {
-            System.out.println("visible");
-             graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
-             graphicsHandler.drawImage(goreyButcherShop, 0, 0, 800, 550);
-         }
-         else{
-            System.out.println("invisible");
-         }
+        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
+        graphicsHandler.drawImage(goreyButcherShop, 0, 0, 800, 550);
      }
  
  } 

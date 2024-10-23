@@ -46,7 +46,8 @@ public class PlayLevelScreen extends Screen {
     protected Point point;
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
-    private boolean popUpVisible = false;
+    protected boolean popUpVisible = false;
+    protected boolean drawPopUP = false;
 
 
     //constructor 
@@ -131,6 +132,13 @@ public class PlayLevelScreen extends Screen {
         if (journalVisible) {
             journal.update();
         } 
+        /* 
+        else if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
+            goreyButcherScreen.toggleVisibility();
+            drawPopUP = !drawPopUP;
+            System.out.println("toggle");
+        }
+        */
         //otherwise, update other game logic
         else {
             // based on screen state, perform specific actions
@@ -139,6 +147,7 @@ public class PlayLevelScreen extends Screen {
                 case RUNNING:
                     player.update();
                     currMap.update(player);
+                    System.out.println("map");
                     break;
                 // if level has been completed, bring up level cleared screen
                 case LEVEL_COMPLETED:
@@ -149,26 +158,20 @@ public class PlayLevelScreen extends Screen {
 
         if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
             goreyButcherScreen.toggleVisibility();
-            popUpVisible = true;
+            drawPopUP = true;
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawPopUP = false;
+                currMap.getFlagManager().unsetFlag("popUpButcherImage");
+                goreyButcherScreen.toggleVisibility();
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
             System.out.println("toggle");
-        }
-        /* 
-         // close pop up on 'esc' key
-        if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
-            popUpVisible = true;
-            System.out.println("true");
-        }
+        }                                                                                                         
 
-        if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-            popUpVisible = !popUpVisible;
-            goreyButcherScreen.toggleVisibility();
-            keyLocker.lockKey(Key.ESC);
-        }
-        if(Keyboard.isKeyUp(Key.ESC)){
-            keyLocker.unlockKey(Key.ESC);
-        } 
 
-        */
         //leaving through door at bottom of house1 to get to down
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
@@ -219,15 +222,22 @@ public class PlayLevelScreen extends Screen {
             journal.draw(graphicsHandler);
         }
         //if popUp image is toggled, draw 
-        else if(popUpVisible){
-            goreyButcherScreen.draw(graphicsHandler);
-        } 
+        //else if(popUpVisible){
+         //   goreyButcherScreen.draw(graphicsHandler);
+        //} 
 
         //otherwise draw appropriate graphics based on the screen state
         else{
             switch (playLevelScreenState) {
                 case RUNNING:
-                    currMap.draw(player, graphicsHandler);
+                    if(drawPopUP){
+                        goreyButcherScreen.draw(graphicsHandler);
+                        System.out.println("drawing pop up");
+                    }
+                    else{
+                        currMap.draw(player, graphicsHandler);
+                        System.out.println("drawing map");
+                    }
                     break;
                 case LEVEL_COMPLETED:
                     winScreen.draw(graphicsHandler);
