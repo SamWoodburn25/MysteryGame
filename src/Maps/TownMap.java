@@ -14,7 +14,7 @@ import Scripts.House1Map.BrotherExGFScript;
 import Scripts.SimpleTextScript;
 import Scripts.House1Map.TreeScript;
 import Scripts.TownMap.*;
-import Tilesets.CommonTileset;
+//import Tilesets.CommonTileset;
 import Tilesets.TownTileset;
 import Utils.Point;
 import java.util.ArrayList;

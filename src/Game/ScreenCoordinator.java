@@ -1,3 +1,13 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Game
+ * class- ScreenCoordinator: Based on the current game state, this class determines which Screen 
+ * should be shown; There can only be one "currentScreen", although screens can have "nested" screens
+ */
+
 package Game;
 
 import Engine.DefaultScreen;
@@ -7,19 +17,13 @@ import Screens.CreditsScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 
-/*
- * Based on the current game state, this class determines which Screen should be shown
- * There can only be one "currentScreen", although screens can have "nested" screens
- */
+
 public class ScreenCoordinator extends Screen {
 	// currently shown Screen
 	protected Screen currentScreen = new DefaultScreen();
-
 	// keep track of gameState so ScreenCoordinator knows which Screen to show
 	protected GameState gameState;
 	protected GameState previousGameState;
-
-	private PlayLevelScreen playLevelScreen;
 
 
 	public GameState getGameState() {
@@ -60,9 +64,6 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
-						break;
-					// case BUTCHERSHOP:
-					// 	currentScreen = new ButcherShopScreen(this);
 				}
 				currentScreen.initialize();
 			}
