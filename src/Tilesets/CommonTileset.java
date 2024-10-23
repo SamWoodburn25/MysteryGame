@@ -666,7 +666,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder bottomFridgeTile = new MapTileBuilder(floorFrame)
                                 .withTopLayer(bottomFridgeFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomFridgeTile);
 
@@ -678,7 +678,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder middleRightFridgeTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(middleRightFridgeFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(middleRightFridgeTile);
 
@@ -689,7 +689,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder topFridgeTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(topFridgeFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topFridgeTile);
 
@@ -700,7 +700,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder topLeftStoveTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(topLeftStoveFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLeftStoveTile);
 
@@ -711,7 +711,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder bottomLeftStoveTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(bottomLeftStoveFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomLeftStoveTile);
 
@@ -722,7 +722,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder topRightStoveTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(topRightStoveFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topRightStoveTile);
 
@@ -733,7 +733,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder bottomRightStoveTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(bottomRightStoveFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomRightStoveTile);
 
@@ -744,7 +744,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder topRightCounterTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(topRightCounterFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topRightCounterTile);
 
@@ -755,7 +755,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder bottomRightCounterTile = new MapTileBuilder(floorFrame)
                                 .withTopLayer(bottomRightCounterFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomRightCounterTile);
 
@@ -766,7 +766,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder topLeftCounterTile = new MapTileBuilder(livingRoomWallFrame)
                                 .withTopLayer(topLeftCounterFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLeftCounterTile);
 
@@ -777,7 +777,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder bottomLeftCounterTile = new MapTileBuilder(floorFrame)
                                 .withTopLayer(bottomLeftCounterFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomLeftCounterTile);
 

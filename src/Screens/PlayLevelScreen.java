@@ -120,6 +120,8 @@ public class PlayLevelScreen extends Screen {
         player.setFacingDirection(Direction.LEFT);
         currMap.setPlayer(player);
 
+       
+
 
         // let pieces of map know which button to listen for as the "interact" button
         currMap.getTextbox().setInteractKey(player.getInteractKey());
@@ -159,6 +161,7 @@ public class PlayLevelScreen extends Screen {
         } 
         //otherwise, update other game logic
         else {
+
             // based on screen state, perform specific actions
             switch (playLevelScreenState) {
                 // if level is "running" update player and map to keep game logic for the platformer level going
@@ -181,13 +184,12 @@ public class PlayLevelScreen extends Screen {
         //leaving through door at bottom of house1 to get to down
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(17, 24);
+            point = currMap.getPositionByTileIndex(3, 21);
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
-            System.out.println("Switching to Town Map. Player Position: " + point.x + ", " + point.y);
-            System.out.println("Before Setting Facing Direction: " + player.getFacingDirection());
             player.setFacingDirection(Direction.UP);
-            System.out.println("After Setting Facing Direction: " + player.getFacingDirection());
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
             flagManager.unsetFlag("house1ToTown");
         }
         //leaving town to enter the house1 map
@@ -196,8 +198,9 @@ public class PlayLevelScreen extends Screen {
             point = currMap.getPositionByTileIndex(17, 21); //6,4
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
-            System.out.println("Switching to house Map. Player Position: " + point.x + ", " + point.y);
             player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
             flagManager.unsetFlag("townToHouse1");
         }
         //leaving town to enter the butcher shop map
@@ -207,6 +210,8 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
             flagManager.unsetFlag("townToButcher");
             System.out.println("entering butcher");
         }
@@ -217,6 +222,8 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
             flagManager.unsetFlag("butcherToTown");
             System.out.println("entering town");
         }

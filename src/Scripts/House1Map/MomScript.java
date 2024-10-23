@@ -21,7 +21,7 @@ public class MomScript extends Script {
             addText("Mom: Hey kiddo, hope you slept well.");
             //addText("You can check the fridge (press space) to see if \nyou’re hungry at all.");
             addText("I’m headed to work  in a few, just wanted to make sure \nyou ate breakfast before I left…");
-            addText("You can check the fridge (press space) to see if you’re \nhungry at all.");
+            //addText("You can check the fridge (press space) to see if you’re \nhungry at all.");
             addText("Ah I see you still have your brother’s journal (press j).");
             addText("I know you miss him honey, hopefully he’ll show up \nsome time or another");
             addText("Poor thing, I miss him too. I know how close you \nboth were.");

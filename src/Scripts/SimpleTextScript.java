@@ -21,9 +21,10 @@ public class SimpleTextScript extends Script {
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-        // scriptActions.add(new LockPlayerScriptAction());
+       
+        scriptActions.add(new LockPlayerScriptAction());
         scriptActions.add(new TextboxScriptAction(textItems));
-        // scriptActions.add(new UnlockPlayerScriptAction());
+        scriptActions.add(new UnlockPlayerScriptAction());
         return scriptActions;
     }
 }

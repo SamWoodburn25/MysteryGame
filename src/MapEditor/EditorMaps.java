@@ -3,6 +3,7 @@ package MapEditor;
 import Level.Map;
 import Maps.TitleScreenMap;
 import Maps.TownMap;
+import Maps.TownMap1;
 import Maps.ButcherShopMap;
 import Maps.House1Map;
 
@@ -15,6 +16,7 @@ public class EditorMaps {
             add("TitleScreen");
             add("TownMap");
             add("ButcherShop");
+            add("TownMap1");
         }};
     }
 
@@ -28,6 +30,8 @@ public class EditorMaps {
                 return new TownMap();
             case "ButcherShop":
                 return new ButcherShopMap();
+            case "TownMap1":
+                return new TownMap1();
             default:
                 throw new RuntimeException("Unrecognized map name");
         }

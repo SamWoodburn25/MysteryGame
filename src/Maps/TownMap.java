@@ -22,7 +22,7 @@ import NPCs.Max;
 
 public class TownMap extends Map {
     public TownMap() {
-        super("town_map.txt", new CommonTileset());
+        super("town_map.txt", new TownTileset());
         this.playerStartPosition = getMapTile(17, 20).getLocation();
     }
 
@@ -30,7 +30,7 @@ public class TownMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Max max = new Max(1, getMapTile(18, 20).getLocation().subtractY(0));
+        Max max = new Max(1, getMapTile(28, 5).getLocation().subtractY(0));
         max.setInteractScript(new BrotherExGFScript());
         npcs.add(max);
 
@@ -42,12 +42,13 @@ public class TownMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        Point house1 = getPositionByTileIndex(16, 23);
+        Point house1 = getPositionByTileIndex(3, 21);
         // Point tileLocation1 = getMapTile(16, 19).getLocation();
         // entering main home
         // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 60,60, new
         // EnterHomeScript(), "enteringHome"));
         triggers.add(new Trigger(house1.x, house1.y, 95, 10, new TownToHouse1Script(), "townToHouse1"));
+
 
         // trigger to enter butcher
         Point butcherShop = getPositionByTileIndex(17, 56);
@@ -58,13 +59,14 @@ public class TownMap extends Map {
 
     @Override
     public void loadScripts() {
-        getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));
 
-        getMapTile(7, 26).setInteractScript(new SimpleTextScript("Walrus's house"));
-
-        getMapTile(20, 4).setInteractScript(new SimpleTextScript("Dino's house"));
+        getMapTile(6, 23).setInteractScript(new SimpleTextScript("Your house"));
 
         getMapTile(15, 57).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
+
+        getMapTile(24, 10).setInteractScript(new SimpleTextScript("Max's house - locked"));
+
+        getMapTile(42, 28).setInteractScript(new SimpleTextScript("?? house"));
 
         getMapTile(2, 6).setInteractScript(new TreeScript());
     }

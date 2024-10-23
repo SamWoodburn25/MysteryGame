@@ -80,9 +80,7 @@ public class House1Map extends Map {
         ArrayList<Trigger> triggers = new ArrayList<>();
         // trigger to enter town
         Point townLoc = getPositionByTileIndex(17, 25);
-        System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
-        triggers.add(new Trigger(townLoc.x - 50, townLoc.y + 50, 200, 10, new House1ToTownScript(), "house1ToTown"));
-        // Point townLoc = getPositionByTileIndex(18,24);
+        
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
         // Point tileLocation1 = getMapTile(6, 14).getLocation();
         /*
