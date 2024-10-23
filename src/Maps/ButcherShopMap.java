@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ButcherShopMap extends Map {
     public ButcherShopMap() {
         super("butcher_shop.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(14, 10).getLocation();
+        this.playerStartPosition = getMapTile(4, 6).getLocation();
         currMapInt = 2;
     }
 
@@ -39,7 +39,7 @@ public class ButcherShopMap extends Map {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
          //trigger to enter town
-        Point town = getPositionByTileIndex(3,11);
+        Point town = getPositionByTileIndex(4,5);
         triggers.add(new Trigger(town.x, town.y, 20,10, new ButcherToTownScript(), "ButcherToTown"));
 
         return triggers;

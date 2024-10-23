@@ -203,7 +203,7 @@ public class PlayLevelScreen extends Screen {
         //leaving town to enter the butcher shop map
          if (currMap.getFlagManager().isFlagSet("townToButcher")) {
             currMap = butcherShop;
-            point = currMap.getPositionByTileIndex(4, 11); 
+            point = currMap.getPositionByTileIndex(4, 5); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
@@ -228,7 +228,7 @@ public class PlayLevelScreen extends Screen {
             journal.draw(graphicsHandler);
         }
         //if popUp image is toggled, draw
-        if(popUpVisible){
+        else if(popUpVisible){
             butcherShopScreen.draw(graphicsHandler);
         }
 
