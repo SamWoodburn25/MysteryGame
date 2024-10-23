@@ -1,16 +1,17 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Maps
+ * class- House1Map: displays the main living room map
+ */
+
 package Maps;
 
 import EnhancedMapTiles.PushableRock;
-import GameObject.Frame;
-import GameObject.SpriteSheet;
 import Level.*;
-//import NPCs.Bug;
-import NPCs.Butcher;
-//import NPCs.Dinosaur;
-import NPCs.ExGf;
-import NPCs.MHDaughter;
-import NPCs.Mom;
-//import NPCs.Walrus;
+import NPCs.*;
 import Scripts.SimpleTextScript;
 import Scripts.House1Map.*;
 import Tilesets.CommonTileset;
@@ -18,9 +19,7 @@ import Utils.Point;
 
 import java.util.ArrayList;
 
-import Engine.ImageLoader;
 
-// Represents a test map to be used in a level
 public class House1Map extends Map {
 
     public House1Map() {
@@ -29,20 +28,12 @@ public class House1Map extends Map {
         System.out.println("Player starting at: " + playerStartPosition.x + ", " + playerStartPosition.y);
     }
 
-    @Override
-    public ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
-        ArrayList<EnhancedMapTile> enhancedMapTiles = new ArrayList<>();
-
-        PushableRock pushableRock = new PushableRock(getMapTile(2, 7).getLocation());
-        enhancedMapTiles.add(pushableRock);
-
-        return enhancedMapTiles;
-    }
-
+    //load in NPCs
     @Override
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
+        //add in mom with script
         Mom mom = new Mom(1, getMapTile(13, 18).getLocation().subtractY(40));
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
@@ -55,13 +46,10 @@ public class House1Map extends Map {
         daughter.setInteractScript(new DrugDealerScript());
         npcs.add(daughter);
 
-        Butcher butcher = new Butcher(3, getMapTile(23, 18).getLocation().subtractX(20));
-        butcher.setInteractScript(new ButcherScript());
-        npcs.add(butcher);
-
         return npcs;
     }
 
+    //load in triggers
     @Override
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
@@ -72,14 +60,10 @@ public class House1Map extends Map {
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
         System.out.println("house1totownscript triggered");
 
-        // pop up image trigger
-        Point photoLoc = getPositionByTileIndex(24, 16);
-        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 10, 10, new PopUpButcherImageScript(), "popUpButcherImage"));
-        System.out.println("Trigger set at: " + photoLoc.x + ", " + photoLoc.y);
-
         return triggers;
     }
 
+    //load in scripts
     @Override
     public void loadScripts() {
         getMapTile(21, 19).setInteractScript(new SimpleTextScript("Cat's house"));

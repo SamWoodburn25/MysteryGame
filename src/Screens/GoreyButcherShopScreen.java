@@ -4,7 +4,7 @@
  * Fall 2024
  * 
  * package- Screens
- * class- ButcherShopScreen: Manages the butcher shop pop up in the game, handling visibility toggles
+ * class- ButcherShopScreen: Manages drawing the butcher shop pop up in the game
  */
 
 package Screens;
@@ -12,7 +12,6 @@ package Screens;
 import Engine.*;
 import Game.ScreenCoordinator;
 import Level.FlagManager;
-import NPCs.Butcher;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,21 +31,12 @@ import java.awt.image.BufferedImage;
         // Load butcher pop up image
         goreyButcherShop = ImageLoader.load("goreyButcherShop.png");
      }
- 
+     
+     //set flag manager
      public void setFlagManager(FlagManager flagManager){
          this.flagManager = flagManager;
      }
- 
-     //is the photo pop up screen visible
-     public void toggleVisibility() {
-        //popUpShown = !popUpShown; //makes it true
-        //flagManager.unsetFlag("popUpButcherImage");
-     }
-
-     //update
-    public void update() {
-    }
-
+     
      //draw
      public void draw(GraphicsHandler graphicsHandler) {
          //draw while the image is visible

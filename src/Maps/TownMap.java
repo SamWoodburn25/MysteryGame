@@ -22,15 +22,16 @@ import NPCs.Max;
 public class TownMap extends Map {
     public TownMap() {
         super("town_map.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(17, 20).getLocation();
+        this.playerStartPosition = getMapTile(17, 18).getLocation();
     }
 
     @Override
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Max max = new Max(1, getMapTile(18, 20).getLocation().subtractY(0));
-        max.setInteractScript(new BrotherExGFScript());
+        //add max to the town map (right outside house1)
+        Max max = new Max(1, getMapTile(20, 22).getLocation().subtractY(0));
+        max.setInteractScript(new ExBestFriendScript());
         npcs.add(max);
 
         return npcs;
@@ -41,14 +42,11 @@ public class TownMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
+        //trigger to enter house1 from the town
         Point house1 = getPositionByTileIndex(16, 23);
-        // Point tileLocation1 = getMapTile(16, 19).getLocation();
-        // entering main home
-        // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 60,60, new
-        // EnterHomeScript(), "enteringHome"));
         triggers.add(new Trigger(house1.x, house1.y, 95, 10, new TownToHouse1Script(), "townToHouse1"));
 
-        // trigger to enter butcher
+        // trigger to enter butcher shop
         Point butcherShop = getPositionByTileIndex(17, 56);
         triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScrpt(), "townToButcher"));
 

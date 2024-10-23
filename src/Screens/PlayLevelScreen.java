@@ -12,7 +12,6 @@
 package Screens;
 
 import Engine.GraphicsHandler;
-import Engine.ImageLoader;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
@@ -23,19 +22,14 @@ import Level.*;
 import Maps.TownMap;
 import Maps.ButcherShopMap;
 import Maps.House1Map;
-//import Players.Cat;
 import Players.MC;
 import Utils.Direction;
 import Utils.Point;
-import java.awt.image.BufferedImage;
 
 
 
 public class PlayLevelScreen extends Screen {
     protected ScreenCoordinator screenCoordinator;
-    //maps
-    protected Map currMap;
-    protected Map house1Map, townMap, butcherShop;
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
@@ -44,6 +38,9 @@ public class PlayLevelScreen extends Screen {
     protected JournalUI journal;
     private boolean journalVisible = false;
     protected Point point;
+    //maps
+    protected Map currMap;
+    protected Map house1Map, townMap, butcherShop;
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected boolean popUpVisible = false;
@@ -132,22 +129,14 @@ public class PlayLevelScreen extends Screen {
         if (journalVisible) {
             journal.update();
         } 
-        /* 
-        else if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
-            goreyButcherScreen.toggleVisibility();
-            drawPopUP = !drawPopUP;
-            System.out.println("toggle");
-        }
-        */
         //otherwise, update other game logic
         else {
             // based on screen state, perform specific actions
             switch (playLevelScreenState) {
-                // if level is "running" update player and map to keep game logic for the platformer level going
+                // if level is "running" update player and map 
                 case RUNNING:
                     player.update();
                     currMap.update(player);
-                    System.out.println("map");
                     break;
                 // if level has been completed, bring up level cleared screen
                 case LEVEL_COMPLETED:
@@ -156,31 +145,35 @@ public class PlayLevelScreen extends Screen {
             }
         }
 
+        //if pop up flag set draw the image
         if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
-            goreyButcherScreen.toggleVisibility();
             drawPopUP = true;
+            //close image on escape click
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 drawPopUP = false;
                 currMap.getFlagManager().unsetFlag("popUpButcherImage");
-                goreyButcherScreen.toggleVisibility();
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-            System.out.println("toggle");
         }                                                                                                         
 
-
+        /*
+         * flags for switching maps: update player, flags, and scripts for each change of currMap
+         */
         //leaving through door at bottom of house1 to get to down
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
             point = currMap.getPositionByTileIndex(17, 24);
             player.setMap(currMap);
-            player.setLocation(point.x, point.y);
+            player.setLocation(point.x, (point.y)-10);
             System.out.println("Switching to Town Map. Player Position: " + point.x + ", " + point.y);
             System.out.println("Before Setting Facing Direction: " + player.getFacingDirection());
             player.setFacingDirection(Direction.UP);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
             System.out.println("After Setting Facing Direction: " + player.getFacingDirection());
             flagManager.unsetFlag("house1ToTown");
         }
@@ -192,6 +185,9 @@ public class PlayLevelScreen extends Screen {
             player.setLocation(point.x, point.y);
             System.out.println("Switching to house Map. Player Position: " + point.x + ", " + point.y);
             player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
             flagManager.unsetFlag("townToHouse1");
         }
         //leaving town to enter the butcher shop map
@@ -201,16 +197,22 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
             flagManager.unsetFlag("townToButcher");
             System.out.println("entering butcher");
         }
-        //leaving butcher shop mao to enter town
+        //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
             point = currMap.getPositionByTileIndex(17, 56); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
-            player.setFacingDirection(Direction.DOWN);
+            player.setFacingDirection(Direction.UP);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
             flagManager.unsetFlag("butcherToTown");
             System.out.println("entering town");
         }
@@ -221,22 +223,18 @@ public class PlayLevelScreen extends Screen {
         if(journalVisible){
             journal.draw(graphicsHandler);
         }
-        //if popUp image is toggled, draw 
-        //else if(popUpVisible){
-         //   goreyButcherScreen.draw(graphicsHandler);
-        //} 
 
         //otherwise draw appropriate graphics based on the screen state
         else{
             switch (playLevelScreenState) {
                 case RUNNING:
+                    //draw the butcher shop pop up if triggered (drawPopUp is true)
                     if(drawPopUP){
                         goreyButcherScreen.draw(graphicsHandler);
-                        System.out.println("drawing pop up");
                     }
+                    //otherwise draw current map
                     else{
                         currMap.draw(player, graphicsHandler);
-                        System.out.println("drawing map");
                     }
                     break;
                 case LEVEL_COMPLETED:
@@ -246,6 +244,7 @@ public class PlayLevelScreen extends Screen {
         }
     }
 
+    //getter for current playLevelScreenState
     public PlayLevelScreenState getPlayLevelScreenState() {
         return playLevelScreenState;
     }

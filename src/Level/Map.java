@@ -304,7 +304,7 @@ public abstract class Map {
     }
 
     // list of scripts defined to be a part of the map, should be overridden in a subclass
-    protected void loadScripts() { }
+    public void loadScripts() { }
 
     // list of enhanced map tiles defined to be a part of the map, should be overridden in a subclass
     protected ArrayList<EnhancedMapTile> loadEnhancedMapTiles() {
