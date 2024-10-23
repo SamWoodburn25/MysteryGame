@@ -39,7 +39,7 @@ public class ButcherShopMap extends Map {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
          //trigger to enter town
-        Point town = getPositionByTileIndex(3,11);
+        Point town = getPositionByTileIndex(4,5);
         triggers.add(new Trigger(town.x, town.y, 20,10, new ButcherToTownScript(), "ButcherToTown"));
 
         return triggers;
