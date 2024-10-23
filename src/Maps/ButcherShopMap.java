@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ButcherShopMap extends Map {
     public ButcherShopMap() {
         super("butcher_shop.txt", new CommonTileset());
-        this.playerStartPosition = getMapTile(4, 6).getLocation();
+        this.playerStartPosition = getMapTile(14, 10).getLocation();
         currMapInt = 2;
     }
 
