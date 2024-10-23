@@ -31,7 +31,7 @@ public class TownMap extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         Max max = new Max(1, getMapTile(28, 5).getLocation().subtractY(0));
-        max.setInteractScript(new BrotherExGFScript());
+        max.setInteractScript(new ExBestFriendScript());
         npcs.add(max);
 
         return npcs;

@@ -10,7 +10,6 @@ import GameObject.Frame;
 import GameObject.ImageEffect;
 import Level.TileType;
 import Level.Tileset;
-
 public class TownTileset extends Tileset{
 
     public TownTileset() {
