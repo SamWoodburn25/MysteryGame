@@ -228,7 +228,7 @@ public class PlayLevelScreen extends Screen {
             journal.draw(graphicsHandler);
         }
         //if popUp image is toggled, draw
-        if(popUpVisible){
+        else if(popUpVisible){
             butcherShopScreen.draw(graphicsHandler);
         }
 
