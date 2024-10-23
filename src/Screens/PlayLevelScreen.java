@@ -47,7 +47,6 @@ public class PlayLevelScreen extends Screen {
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
     private boolean popUpVisible = false;
-    protected BufferedImage popUp;
 
 
     //constructor 
@@ -195,7 +194,7 @@ public class PlayLevelScreen extends Screen {
         //leaving town to enter the butcher shop map
          if (currMap.getFlagManager().isFlagSet("townToButcher")) {
             currMap = butcherShop;
-            point = currMap.getPositionByTileIndex(4, 11); 
+            point = currMap.getPositionByTileIndex(4, 5); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);

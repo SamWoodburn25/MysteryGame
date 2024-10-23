@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import Level.Script;
 import ScriptActions.*;
 
-
 // simple reusable script that just shows text in textbox
 // useful for generic dialogue, signs, etc.
 // checkout the documentation website for a detailed guide on how this script works
@@ -18,13 +17,13 @@ public class SimpleTextScript extends Script {
     public SimpleTextScript(String[] text) {
         this.textItems = text;
     }
-    
+
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-        scriptActions.add(new LockPlayerScriptAction());
+        // scriptActions.add(new LockPlayerScriptAction());
         scriptActions.add(new TextboxScriptAction(textItems));
-        scriptActions.add(new UnlockPlayerScriptAction());
+        // scriptActions.add(new UnlockPlayerScriptAction());
         return scriptActions;
     }
 }
