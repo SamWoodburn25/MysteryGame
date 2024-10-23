@@ -44,7 +44,6 @@ public class House1Map extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         Mom mom = new Mom(1, getMapTile(13, 18).getLocation().subtractY(40));
-
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
@@ -97,7 +96,6 @@ public class House1Map extends Map {
         // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new
         // ExitScript(), "exitInteract" ));
 
-        
         
         triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));
         System.out.println("house1totownscript triggered");

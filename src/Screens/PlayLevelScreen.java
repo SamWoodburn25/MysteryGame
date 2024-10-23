@@ -104,7 +104,7 @@ public class PlayLevelScreen extends Screen {
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
-        currMap.setFlagManager(flagManager);
+        //currMap.setFlagManager(flagManager);
 
 
         // Setup journal with the flag manager of the current map
@@ -203,7 +203,7 @@ public class PlayLevelScreen extends Screen {
         //leaving town to enter the butcher shop map
          if (currMap.getFlagManager().isFlagSet("townToButcher")) {
             currMap = butcherShop;
-            point = currMap.getPositionByTileIndex(4, 11); 
+            point = currMap.getPositionByTileIndex(4, 5); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);

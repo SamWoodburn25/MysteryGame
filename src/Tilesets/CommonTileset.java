@@ -786,7 +786,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder wallOneButcherTile = new MapTileBuilder(wallOneButcherFrame);
+                MapTileBuilder wallOneButcherTile = new MapTileBuilder(wallOneButcherFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
                 mapTiles.add(wallOneButcherTile);
 
                 // wall two butcher
@@ -794,7 +796,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder wallTwoButcherTile = new MapTileBuilder(wallTwoButcherFrame);
+                MapTileBuilder wallTwoButcherTile = new MapTileBuilder(wallTwoButcherFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
                 mapTiles.add(wallTwoButcherTile);
 
                 // left top butcher table
@@ -802,8 +806,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder leftTopButcherTableTile = new MapTileBuilder(wallTwoButcherFrame)
-                                .withTopLayer(leftTopButcherTableFrame)
+                MapTileBuilder leftTopButcherTableTile = new MapTileBuilder(leftTopButcherTableFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(leftTopButcherTableTile);
@@ -813,8 +816,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder middleButcherTableTile = new MapTileBuilder(wallOneButcherFrame)
-                                .withTopLayer(middleButcherTableFrame)
+                MapTileBuilder middleButcherTableTile = new MapTileBuilder(middleButcherTableFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(middleButcherTableTile);
@@ -824,8 +826,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder rightTopButcherTableTile = new MapTileBuilder(wallTwoButcherFrame)
-                                .withTopLayer(rightTopButcherTableFrame)
+                MapTileBuilder rightTopButcherTableTile = new MapTileBuilder(rightTopButcherTableFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(rightTopButcherTableTile);
@@ -843,9 +844,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder rightButcherTableLegTile = new MapTileBuilder(floorButcherFrame)
-                                .withTopLayer(rightButcherTableLegFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder rightButcherTableLegTile = new MapTileBuilder(rightButcherTableLegFrame);
 
                 mapTiles.add(rightButcherTableLegTile);
 
@@ -854,9 +853,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder leftButcherTableLegTile = new MapTileBuilder(floorButcherFrame)
-                                .withTopLayer(leftButcherTableLegFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder leftButcherTableLegTile = new MapTileBuilder(leftButcherTableLegFrame);
 
                 mapTiles.add(leftButcherTableLegTile);
 
@@ -865,8 +862,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topPigBodyTile = new MapTileBuilder(wallOneButcherFrame)
-                                .withTopLayer(topPigBodyFrame)
+                MapTileBuilder topPigBodyTile = new MapTileBuilder(topPigBodyFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topPigBodyTile);
@@ -876,8 +872,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder middlePigBodyTile = new MapTileBuilder(wallTwoButcherFrame)
-                                .withTopLayer(middlePigBodyFrame)
+                MapTileBuilder middlePigBodyTile = new MapTileBuilder(middlePigBodyFrame)
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(middlePigBodyTile);
@@ -887,9 +882,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomPigBodyTile = new MapTileBuilder(wallOneButcherFrame)
-                                .withTopLayer(bottomPigBodyFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomPigBodyTile = new MapTileBuilder(bottomPigBodyFrame);
 
                 mapTiles.add(bottomPigBodyTile);
 
@@ -898,8 +891,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bloodSplatterOneTile = new MapTileBuilder(floorButcherFrame)
-                                .withTopLayer(bloodSplatterOneFrame)
+                MapTileBuilder bloodSplatterOneTile = new MapTileBuilder(bloodSplatterOneFrame)
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bloodSplatterOneTile);
@@ -909,8 +901,7 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bloodSplatterTwoTile = new MapTileBuilder(floorButcherFrame)
-                                .withTopLayer(bloodSplatterTwoFrame)
+                MapTileBuilder bloodSplatterTwoTile = new MapTileBuilder(bloodSplatterTwoFrame)
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bloodSplatterTwoTile);
