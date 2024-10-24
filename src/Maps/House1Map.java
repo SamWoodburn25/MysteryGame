@@ -70,6 +70,10 @@ public class House1Map extends Map {
         // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new
         // ExitScript(), "exitInteract" ));
 
+        //fridge pop up trigger
+        Point photoLoc = getPositionByTileIndex(24, 15);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 1, 1, new PopUpFridgeImageScript(), "popUpButcherImage"));
+
         
         triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);

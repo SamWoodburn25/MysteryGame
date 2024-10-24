@@ -26,6 +26,8 @@ public class CreditsScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected SpriteFont creditsLabel;
     protected SpriteFont createdByLabel;
+    protected SpriteFont alteredByLabel;
+    protected SpriteFont secondAlteredByLabel;
     protected SpriteFont returnInstructionsLabel;
 
     //constructor with a ScreenCoordinator parameter
@@ -38,10 +40,12 @@ public class CreditsScreen extends Screen {
         // setup graphics on screen (background map, spritefont text)
         background = new TitleScreenMap();
         background.setAdjustCamera(false);
-        creditsLabel = new SpriteFont("Credits", 15, 7, "Times New Roman", 30, Color.white);
-        createdByLabel = new SpriteFont("Created by Alex Thimineur", 130, 121, "Times New Roman", 20, Color.white);
-        returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Times New Roman", 30, Color.white);
-        keyLocker.lockKey(Key.J);
+        creditsLabel = new SpriteFont("Credits", 15, 7, "Apple Chancery", 30, new Color(184, 15, 10));
+        createdByLabel = new SpriteFont("Created by Alex Thimineur", 100, 91, "Apple Chancery", 20, new Color(184, 15, 10));
+        alteredByLabel = new SpriteFont("Altered by Morgan Montz, Ella Berry, Adelina ChoCho,", 100, 130, "Apple Chancery", 20, new Color(184, 15, 10));
+        secondAlteredByLabel = new SpriteFont("                    Sam Woodburn, and Tuana Turhan", 100, 160, "Apple Chancery", 20, new Color(184, 15, 10));
+        returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Apple Chancery", 30,  new Color(184, 15, 10));
+        keyLocker.lockKey(Key.SPACE);
     }
 
     //update, if the space key is pressed go back to main menu
@@ -60,6 +64,8 @@ public class CreditsScreen extends Screen {
         background.draw(graphicsHandler);
         creditsLabel.draw(graphicsHandler);
         createdByLabel.draw(graphicsHandler);
+        alteredByLabel.draw(graphicsHandler);
+        secondAlteredByLabel.draw(graphicsHandler);
         returnInstructionsLabel.draw(graphicsHandler);
     }
 }

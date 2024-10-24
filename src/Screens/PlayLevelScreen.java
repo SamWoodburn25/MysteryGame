@@ -43,8 +43,10 @@ public class PlayLevelScreen extends Screen {
     protected Map house1Map, townMap, butcherShop;
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
+    protected FridgeScreen fridgeScreen;
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
+    protected boolean drawFridgePopUP = false;
 
 
     //constructor 
@@ -72,6 +74,7 @@ public class PlayLevelScreen extends Screen {
 
         //flag to manage pop-up
         flagManager.addFlag("popUpButcherImage", false);
+        flagManager.addFlag("popUpFridgeImage", false);
 
         
         // Define and set up maps
@@ -86,6 +89,7 @@ public class PlayLevelScreen extends Screen {
 
         //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
+        fridgeScreen = new FridgeScreen(flagManager);
 
 
         // Set the initial map to house1Map (starting map)
@@ -157,6 +161,18 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 drawPopUP = false;
                 currMap.getFlagManager().unsetFlag("popUpButcherImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        }  
+        if(currMap.getFlagManager().isFlagSet("popUpFridgeImage")){
+            drawFridgePopUP = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawFridgePopUP = false;
+                currMap.getFlagManager().unsetFlag("popUpFridgeImage");
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
@@ -245,6 +261,9 @@ public class PlayLevelScreen extends Screen {
                     //draw the butcher shop pop up if triggered (drawPopUp is true)
                     if(drawPopUP){
                         goreyButcherScreen.draw(graphicsHandler);
+                    }
+                    else if(drawFridgePopUP){
+                        fridgeScreen.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{
