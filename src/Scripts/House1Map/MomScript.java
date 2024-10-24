@@ -18,17 +18,16 @@ public class MomScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
             addRequirement(new FlagRequirement("hasTalkedToMom", false));
             addScriptAction(new TextboxScriptAction() {{
-            addText("Mom: Hey kiddo, hope you slept well.");
-            //addText("You can check the fridge (press space) to see if \nyou’re hungry at all.");
-            addText("I’m headed to work  in a few, just wanted to make sure \nyou ate breakfast before I left…");
-            //addText("You can check the fridge (press space) to see if you’re \nhungry at all.");
-            addText("Ah I see you still have your brother’s journal (press j).");
-            addText("I know you miss him honey, hopefully he’ll show up \nsome time or another");
-            addText("Poor thing, I miss him too. I know how close you \nboth were.");
-            addText("Take care my child, don’t forget to enjoy your time\n back from school.");
+            addText("Hey kiddo, hope you slept well. I’m about to head to work,\njust wanted to make sure you unpack from college");
+            addText("If you are hungry, you can check the fridge (press space).");
+            addText("Oh I see you found your brother’s journal (press j).");
+            addText("No. I don’t know where he went but I’m not worrying about\nit, and you shouldn’t either.");
+            addText("Why? Well after you left for college, Alex has been nothing\nbut cold and a pain for me.");
+            addText("Look, I know how close you both were but don’t waste your\ntime.");
+            addText("Ugh, you seriously aren’t going to let this go. Fine. Last\nthing I remember is him running out the door saying he");
+            addText("was going to that friend Max’s. Go ask him he’d know more\nthan me.");
             }});
             addScriptAction(new ChangeFlagScriptAction("hasTalkedToMom", true));
-            addScriptAction(new TextboxScriptAction("Character:Okay, thank you mom. See you after school"));
             }});
         }});
 
