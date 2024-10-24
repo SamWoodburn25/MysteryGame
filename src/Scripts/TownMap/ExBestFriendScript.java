@@ -18,7 +18,7 @@ public class ExBestFriendScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToExBestFriend", false));
+                addRequirement(new FlagRequirement("hasTalkedToMax", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Max: Oh... it’s been a while since I’ve seen you.  ");
                     addText("Any news on your brother? " );
@@ -28,11 +28,11 @@ public class ExBestFriendScript extends Script {
                     addText("Honestly, no. He had a target on his back, considering how he treated people.");
                     addText("");
                 }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToExBestFriend", true));
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToMax", true));
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToExBestFriend", true));
+                addRequirement(new FlagRequirement("hasTalkedToMax", true));
                 addScriptAction(new TextboxScriptAction("Character:Wait, what do you mean?"));
                 addScriptAction(new TextboxScriptAction("Max: Look, I don't want to get involved but if \nyou want to get some more information."));
                 addScriptAction(new TextboxScriptAction("I know that one of his favorite targets now \nworks for his father in the butcher shop."));
