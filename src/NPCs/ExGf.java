@@ -23,36 +23,36 @@ public class ExGf extends NPC {
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(2)
-                            .withBounds(12, 40, 24, 12)
+                            .withBounds(4, 72, 28, 2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
                            .withScale(2)
-                           .withBounds(12, 40, 24, 12)
+                           .withBounds(4, 72, 28, 2)
                            .build()
            });
            put("BOUNCE_LEFT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(0, 0), 10)
                     .withScale(2)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(-3, -3, 46, 40)
+                    .withBounds(4, 72, 28, 2)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 1), 10)
                     .withScale(2)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(-3, -3, 46, 40)
+                    .withBounds(4, 72, 28, 2)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 2), 10)
                     .withScale(2)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(-3, -3, 46, 40)
+                    .withBounds(4, 72, 28, 2)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 3), 10)
                     .withScale(2)
                     .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(-3, -3, 46, 40)
+                    .withBounds(4, 72, 28, 2)
                     .build()
             });
             put("BOUNCE_RIGHT", new Frame[] {
