@@ -1366,8 +1366,8 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder middleLeftFridgeTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(middleLeftFridgeFrame)
+                MapTileBuilder middleLeftFridgeTile = new MapTileBuilder(middleLeftFridgeFrame)
+                                //.withTopLayer(middleLeftFridgeFrame)
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(middleLeftFridgeTile);
