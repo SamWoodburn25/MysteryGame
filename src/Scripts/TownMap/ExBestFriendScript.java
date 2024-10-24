@@ -37,11 +37,11 @@ public class ExBestFriendScript extends Script {
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToMax", true));
-                // addScriptAction(new TextboxScriptAction("Character:Wait, what do you mean?"));
                 addScriptAction(new TextboxScriptAction("Listen, I already told you, I don't want to \nget involved."));
                 addScriptAction(new TextboxScriptAction("I know that one of his favorite targets now \nworks for his father in the butcher shop."));
                 addScriptAction(new TextboxScriptAction("Or I heard that he goes to his now ex, Jamie \n likes to hang in the Mad Hatter Bar's alley."));
             }});
+            
         }});
         
 
