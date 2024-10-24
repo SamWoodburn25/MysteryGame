@@ -16,7 +16,7 @@ import Level.FlagManager;
 import java.awt.*;
 import java.awt.image.BufferedImage;
  
- public class FridgeScreen {
+ public class FridgeScreen extends Screen {
      protected BufferedImage fridge;
      protected ScreenCoordinator screenCoordinator;
      protected FlagManager flagManager;
@@ -43,5 +43,17 @@ import java.awt.image.BufferedImage;
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         graphicsHandler.drawImage(fridge, 0, 0, 800, 550);
      }
+
+    @Override
+    public void initialize() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    }
+
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
  
  } 

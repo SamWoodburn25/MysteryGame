@@ -38,13 +38,13 @@ public class House1Map extends Map {
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
-        ExGf ex = new ExGf(1, getMapTile(25, 17).getLocation().subtractY(40));
-        ex.setInteractScript(new BrotherExGFScript());
-        npcs.add(ex);
+        // ExGf ex = new ExGf(1, getMapTile(25, 17).getLocation().subtractY(40));
+        // ex.setInteractScript(new BrotherExGFScript());
+        // npcs.add(ex);
 
-        MHDaughter daughter = new MHDaughter(1, getMapTile(29, 16).getLocation().subtractY(40));
-        daughter.setInteractScript(new DrugDealerScript());
-        npcs.add(daughter);
+        // MHDaughter daughter = new MHDaughter(1, getMapTile(29, 16).getLocation().subtractY(40));
+        // daughter.setInteractScript(new DrugDealerScript());
+        // npcs.add(daughter);
 
         return npcs;
     }
