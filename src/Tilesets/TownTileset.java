@@ -211,8 +211,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder tree16Tile = new MapTileBuilder(grassFrame)
-            .withTopLayer(tree16Frame)
+        MapTileBuilder tree16Tile = new MapTileBuilder(tree16Frame)
+           
             .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(tree16Tile);
@@ -244,8 +244,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder tree19Tile = new MapTileBuilder(grassFrame)
-            .withTopLayer(tree19Frame)
+        MapTileBuilder tree19Tile = new MapTileBuilder(tree19Frame)
+          
             .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(tree19Tile);
@@ -255,8 +255,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder tree20Tile = new MapTileBuilder(grassFrame)
-            .withTopLayer(tree20Frame)
+        MapTileBuilder tree20Tile = new MapTileBuilder(tree20Frame)
+            
             .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(tree20Tile);
@@ -337,7 +337,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder house1ExtWallTile = new MapTileBuilder(house1ExtWallFrame);
+        MapTileBuilder house1ExtWallTile = new MapTileBuilder(house1ExtWallFrame)
+            .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(house1ExtWallTile);
 
@@ -405,8 +406,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder signTile = new MapTileBuilder(grassFrame)
-            .withTopLayer(signFrame)
+        MapTileBuilder signTile = new MapTileBuilder(signFrame)
+            
             .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(signTile);
@@ -628,7 +629,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder house2ExtWallTile = new MapTileBuilder(house2ExtWallFrame);
+        MapTileBuilder house2ExtWallTile = new MapTileBuilder(house2ExtWallFrame)
+            .withTileType(TileType.NOT_PASSABLE);
 
         mapTiles.add(house2ExtWallTile);
 

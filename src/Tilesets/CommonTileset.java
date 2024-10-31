@@ -523,9 +523,9 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder topLeftNewCouchTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(topLeftNewCouchFrame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder topLeftNewCouchTile = new MapTileBuilder(topLeftNewCouchFrame)
+                              
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLeftNewCouchTile);
 
@@ -535,9 +535,9 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder topMiddleNewCouchTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(topMiddleNewCouchFrame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder topMiddleNewCouchTile = new MapTileBuilder(topMiddleNewCouchFrame)
+                               
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topMiddleNewCouchTile);
 
@@ -547,9 +547,9 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder topRightNewCouchTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(topRightNewCouchFrame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder topRightNewCouchTile = new MapTileBuilder(topRightNewCouchFrame)
+                              
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topRightNewCouchTile);
 
@@ -559,8 +559,8 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder bottomLeftNewCouchTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomLeftNewCouchFrame)
+                MapTileBuilder bottomLeftNewCouchTile = new MapTileBuilder(bottomLeftNewCouchFrame)
+                              
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomLeftNewCouchTile);
@@ -571,8 +571,8 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder bottomMiddleNewCouchTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomMiddleNewCouchFrame)
+                MapTileBuilder bottomMiddleNewCouchTile = new MapTileBuilder(bottomMiddleNewCouchFrame)
+                                
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomMiddleNewCouchTile);
@@ -583,8 +583,8 @@ public class CommonTileset extends Tileset {
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder bottomRightNewCouchTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomRightNewCouchFrame)
+                MapTileBuilder bottomRightNewCouchTile = new MapTileBuilder(bottomRightNewCouchFrame)
+                                
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomRightNewCouchTile);
@@ -630,9 +630,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder rightLuggageTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(rightLuggageFrame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder rightLuggageTile = new MapTileBuilder(rightLuggageFrame)
+                              
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(rightLuggageTile);
 
@@ -641,9 +641,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder middleLuggageTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(middleLuggageFrame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder middleLuggageTile = new MapTileBuilder(middleLuggageFrame)
+                                
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(middleLuggageTile);
 
@@ -652,9 +652,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topLuggageTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(topLuggageFrame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder topLuggageTile = new MapTileBuilder(topLuggageFrame)
+                                
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLuggageTile);
 
@@ -697,8 +697,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topLeftStoveTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(topLeftStoveFrame)
+                MapTileBuilder topLeftStoveTile = new MapTileBuilder(topLeftStoveFrame)
+                                
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLeftStoveTile);
@@ -708,9 +708,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomLeftStoveTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(bottomLeftStoveFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomLeftStoveTile = new MapTileBuilder(bottomLeftStoveFrame)
+                               
+                                .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomLeftStoveTile);
 
@@ -719,8 +719,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topRightStoveTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(topRightStoveFrame)
+                MapTileBuilder topRightStoveTile = new MapTileBuilder(topRightStoveFrame)
+                             
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topRightStoveTile);
@@ -730,9 +730,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomRightStoveTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(bottomRightStoveFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomRightStoveTile = new MapTileBuilder(bottomRightStoveFrame)
+                                
+                                .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomRightStoveTile);
 
@@ -741,8 +741,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topRightCounterTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(topRightCounterFrame)
+                MapTileBuilder topRightCounterTile = new MapTileBuilder(topRightCounterFrame)
+                           
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topRightCounterTile);
@@ -752,9 +752,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomRightCounterTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomRightCounterFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomRightCounterTile = new MapTileBuilder(bottomRightCounterFrame)
+                              
+                                .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomRightCounterTile);
 
@@ -763,8 +763,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topLeftCounterTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(topLeftCounterFrame)
+                MapTileBuilder topLeftCounterTile = new MapTileBuilder(topLeftCounterFrame)
+                               
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLeftCounterTile);
@@ -774,9 +774,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomLeftCounterTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomLeftCounterFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomLeftCounterTile = new MapTileBuilder(bottomLeftCounterFrame)
+                              
+                                .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomLeftCounterTile);
 
@@ -1119,12 +1119,12 @@ public class CommonTileset extends Tileset {
                 mapTiles.add(nightstandTile);
 
                 // top floor lamp
-                Frame TopFloorLampFrame = new FrameBuilder(getSubImage(22, 2))
+                Frame topFloorLampFrame = new FrameBuilder(getSubImage(22, 2))
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topFloorLampTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(TopFloorLampFrame)
+                MapTileBuilder topFloorLampTile = new MapTileBuilder(topFloorLampFrame)
+                               
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topFloorLampTile);
@@ -1134,8 +1134,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder middleFloorLampTile = new MapTileBuilder(bottomWallFrame)
-                                .withTopLayer(middleFloorLampFrame)
+                MapTileBuilder middleFloorLampTile = new MapTileBuilder(middleFloorLampFrame)
+                                
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(middleFloorLampTile);
@@ -1145,8 +1145,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomFloorLampTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomFloorLampFrame)
+                MapTileBuilder bottomFloorLampTile = new MapTileBuilder(bottomFloorLampFrame)
+                                
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomFloorLampTile);
@@ -1156,8 +1156,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topRightShelfTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(topRightShelfFrame)
+                MapTileBuilder topRightShelfTile = new MapTileBuilder(topRightShelfFrame)
+                         
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topRightShelfTile);
@@ -1167,8 +1167,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topLeftShelfTile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(topLeftShelfFrame)
+                MapTileBuilder topLeftShelfTile = new MapTileBuilder(topLeftShelfFrame)
+                            
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topLeftShelfTile);
@@ -1178,9 +1178,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomLeftShelfTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomLeftShelfFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomLeftShelfTile = new MapTileBuilder(bottomLeftShelfFrame)
+                                
+                                .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomLeftShelfTile);
 
@@ -1189,9 +1189,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomRightShelfTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(bottomRightShelfFrame)
-                                .withTileType(TileType.NOT_PASSABLE);
+                MapTileBuilder bottomRightShelfTile = new MapTileBuilder(bottomRightShelfFrame)
+                               
+                                .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(bottomRightShelfTile);
 
@@ -1245,8 +1245,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder sideCouch1Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(sideCouch1Frame)
+                MapTileBuilder sideCouch1Tile = new MapTileBuilder(sideCouch1Frame)
+                               
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(sideCouch1Tile);
@@ -1256,8 +1256,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder sideCouch2Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(sideCouch2Frame)
+                MapTileBuilder sideCouch2Tile = new MapTileBuilder(sideCouch2Frame)
+                                
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(sideCouch2Tile);
@@ -1267,8 +1267,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder sideCouch3Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(sideCouch3Frame)
+                MapTileBuilder sideCouch3Tile = new MapTileBuilder(sideCouch3Frame)
+                               
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(sideCouch3Tile);
@@ -1278,8 +1278,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder sideCouch4Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(sideCouch4Frame)
+                MapTileBuilder sideCouch4Tile = new MapTileBuilder(sideCouch4Frame)
+                                
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(sideCouch4Tile);
@@ -1311,8 +1311,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder livingRoomChairTile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(livingRoomChairFrame)
+                MapTileBuilder livingRoomChairTile = new MapTileBuilder(livingRoomChairFrame)
+                                
                                 .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(livingRoomChairTile);
@@ -1368,7 +1368,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder middleLeftFridgeTile = new MapTileBuilder(middleLeftFridgeFrame)
                                 //.withTopLayer(middleLeftFridgeFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(middleLeftFridgeTile);
 
@@ -1380,7 +1380,7 @@ public class CommonTileset extends Tileset {
 
                 MapTileBuilder bottomLeftFridgeTile = new MapTileBuilder(bottomLeftFridgeFrame)
                                 //.withTopLayer(bottomLeftFridgeFrame)
-                                .withTileType(TileType.PASSABLE);
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomLeftFridgeTile);
 
@@ -1389,9 +1389,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter1Tile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(counter1Frame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder counter1Tile = new MapTileBuilder(counter1Frame)
+                                
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(counter1Tile);
 
@@ -1400,9 +1400,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter2Tile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(counter2Frame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder counter2Tile = new MapTileBuilder(counter2Frame)
+                            
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(counter2Tile);
 
@@ -1411,9 +1411,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter3Tile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(counter3Frame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder counter3Tile = new MapTileBuilder(counter3Frame)
+                               
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(counter3Tile);
 
@@ -1422,9 +1422,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter4Tile = new MapTileBuilder(bottomWallFrame)
-                                .withTopLayer(counter4Frame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder counter4Tile = new MapTileBuilder(counter4Frame)
+                                
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(counter4Tile);
 
@@ -1433,9 +1433,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter5Tile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(counter5Frame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder counter5Tile = new MapTileBuilder(counter5Frame)
+                          
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(counter5Tile);
 
@@ -1444,9 +1444,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter6Tile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(counter6Frame)
-                                .withTileType(TileType.PASSABLE);
+                MapTileBuilder counter6Tile = new MapTileBuilder(counter6Frame)
+                               
+                                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(counter6Tile);
 
@@ -1455,8 +1455,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter7Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(counter7Frame)
+                MapTileBuilder counter7Tile = new MapTileBuilder(counter7Frame)
+                              
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(counter7Tile);
@@ -1466,8 +1466,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter8Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(counter8Frame)
+                MapTileBuilder counter8Tile = new MapTileBuilder(counter8Frame)
+                                
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(counter8Tile);
@@ -1477,23 +1477,23 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder counter9Tile = new MapTileBuilder(floorFrame)
-                                .withTopLayer(counter9Frame)
+                MapTileBuilder counter9Tile = new MapTileBuilder(counter9Frame)
+                                
                                 .withTileType(TileType.PASSABLE);
 
                 mapTiles.add(counter9Tile);
 
                 // counter 10
-                Frame counter10Frame = new FrameBuilder(getSubImage(13, 5))
+                /*Frame counter10Frame = new FrameBuilder(getSubImage(13, 5))
                                 .withScale(tileScale)
                                 .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                                 .build();
 
-                MapTileBuilder counter10Tile = new MapTileBuilder(livingRoomWallFrame)
-                                .withTopLayer(counter10Frame)
+                MapTileBuilder counter10Tile = new MapTileBuilder(counter10Frame)
+                                
                                 .withTileType(TileType.PASSABLE);
 
-                mapTiles.add(counter10Tile);
+                mapTiles.add(counter10Tile);*/
 
                 return mapTiles;
         }

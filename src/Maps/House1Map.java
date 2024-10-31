@@ -34,7 +34,7 @@ public class House1Map extends Map {
         ArrayList<NPC> npcs = new ArrayList<>();
 
         //add in mom with script
-        Mom mom = new Mom(1, getMapTile(13, 18).getLocation().subtractY(40));
+        Mom mom = new Mom(1, getMapTile(18, 18).getLocation().subtractY(40));
         mom.setInteractScript(new MomScript());
         npcs.add(mom);
 
