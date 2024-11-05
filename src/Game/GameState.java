@@ -12,6 +12,6 @@
 package Game;
 
 public enum GameState {
-    MENU, LEVEL, CREDITS
+    MENU, CONTEXT0, CONTEXT1, LEVEL, CREDITS
  
 }
