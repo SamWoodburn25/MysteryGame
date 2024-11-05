@@ -48,7 +48,7 @@ public class MenuScreen extends Screen {
         credits = new SpriteFont("CREDITS", 200, 223, "Apple Chancery", 30, new Color(184, 15, 10));
         credits.setOutlineColor(Color.black);
         credits.setOutlineThickness(3);
-        howToPlay = new SpriteFont("HowToPlay", 200, 323, "Apple Chancery", 30, new Color(184, 15, 10));
+        howToPlay = new SpriteFont("HOW TO PLAY", 200, 323, "Apple Chancery", 30, new Color(184, 15, 10));
         howToPlay.setOutlineColor(Color.black);
         howToPlay.setOutlineThickness(3);
         background = ImageLoader.load("TitleScreen.png");
