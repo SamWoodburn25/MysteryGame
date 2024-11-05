@@ -65,8 +65,44 @@ public abstract class Player extends GameObject {
             } while (previousPlayerState != playerState);
 
             // move player with respect to map collisions based on how much player needs to move this frame
-            lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
-            lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
+            //lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
+            //lastAmountMovedX = super.moveXHandleCollision(moveAmountX);
+
+            //map boundaries
+            int startBoundX = map.getStartBoundX();
+            int startBoundY = map.getStartBoundY();
+            int endBoundX = map.getEndBoundX();
+            int endBoundY = map.getEndBoundY();
+
+            //player's new position when touches map boundaries shown in camera view
+            float newX = x + moveAmountX; 
+            float newY = y + moveAmountY;
+
+            //checks map boundary in the x direction first
+            if(newX >= startBoundX && (newX + getWidth()) <= endBoundX) {
+                lastAmountMovedX = super.moveXHandleCollision(moveAmountX); //can move if within the map boundaries
+            } else if (newX < startBoundX) {
+                x = startBoundX; //player is at left boundary
+                moveAmountX = 0;
+            } else if (newX + getWidth() > endBoundX) {
+                x = endBoundX - getWidth(); //sets player at the right boundary and won't move
+                moveAmountX = 0;
+            }
+
+            //checks map boundary in the y direction 
+            if (newY >= startBoundY && (newY + getHeight() <= endBoundY)) {
+                lastAmountMovedY = super.moveYHandleCollision(moveAmountY);
+            } else if (newY < startBoundY) {
+                y = startBoundY; //player is at top boundary
+                moveAmountY = 0;
+            } else if (newY + getHeight() > endBoundY) {
+                y = endBoundY - getHeight(); //players at bottom 
+                moveAmountY = 0;
+            }
+           
+            
+
+            
         }
         else{
             System.out.println("player locked");
@@ -426,9 +462,9 @@ public abstract class Player extends GameObject {
 
     // Uncomment this to have game draw player's bounds to make it easier to visualize
     
-    // public void draw(GraphicsHandler graphicsHandler) {
-    //     super.draw(graphicsHandler);
-    //     drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
-    // }
+     /*public void draw(GraphicsHandler graphicsHandler) {
+         super.draw(graphicsHandler);
+         drawBounds(graphicsHandler, new Color(255, 0, 0, 100));
+     }*/
     
 }

@@ -96,7 +96,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder topDoorTile = new MapTileBuilder(topDoorFrame);
+                MapTileBuilder topDoorTile = new MapTileBuilder(topDoorFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(topDoorTile);
 
@@ -185,7 +186,8 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomDoorTile = new MapTileBuilder(bottomDoorFrame);
+                MapTileBuilder bottomDoorTile = new MapTileBuilder(bottomDoorFrame)
+                .withTileType(TileType.NOT_PASSABLE);
 
                 mapTiles.add(bottomDoorTile);
 
@@ -919,6 +921,7 @@ public class CommonTileset extends Tileset {
                                 .build();
 
                 MapTileBuilder middleDoorButcherTile = new MapTileBuilder(middleDoorButcherFrame);
+               
                 mapTiles.add(middleDoorButcherTile);
 
                 // bottom door butcher
@@ -1104,7 +1107,9 @@ public class CommonTileset extends Tileset {
                                 .withScale(tileScale)
                                 .build();
 
-                MapTileBuilder bottomWallTile = new MapTileBuilder(bottomWallFrame);
+                MapTileBuilder bottomWallTile = new MapTileBuilder(bottomWallFrame)
+                .withTileType(TileType.NOT_PASSABLE);
+
                 mapTiles.add(bottomWallTile);
 
                 // nightstand

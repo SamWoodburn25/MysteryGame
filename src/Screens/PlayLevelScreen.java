@@ -186,7 +186,7 @@ public class PlayLevelScreen extends Screen {
         //leaving through door at bottom of house1 to get to down
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(3, 21);
+            point = currMap.getPositionByTileIndex(21, 15);
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setLocation(point.x, (point.y)-10);
@@ -233,7 +233,7 @@ public class PlayLevelScreen extends Screen {
         //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(17, 56); 
+            point = currMap.getPositionByTileIndex(75, 45); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
