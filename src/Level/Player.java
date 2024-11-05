@@ -116,7 +116,7 @@ public abstract class Player extends GameObject {
             map.entityInteract(this);
         }
 
-        if(sprintBar < 5 && playerState != PlayerState.RUNNING){
+        if(sprintBar < 10 && playerState != PlayerState.RUNNING){
             sprintBar = sprintBar + .05;
         }
 
@@ -137,7 +137,7 @@ public abstract class Player extends GameObject {
             map.entityInteract(this);
         }
 
-        if(sprintBar < 5 && playerState != PlayerState.RUNNING){
+        if(sprintBar < 10 && playerState != PlayerState.RUNNING){
             sprintBar = sprintBar + .05;
         }
 
