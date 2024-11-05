@@ -16,7 +16,8 @@ public class MC extends Player {
 
     public MC(float x, float y) {
         super(new SpriteSheet(ImageLoader.load("mc.png"), 40, 90), x, y, "STAND_FORWARD");
-        walkSpeed = 2.3f;
+        //CHANGE BACK TO 2.3
+        walkSpeed = 5.3f;
     }
 
     public void update() {

@@ -22,7 +22,8 @@ public class JournalUI {
     //basic pages
     protected BufferedImage journalCover, emptyJournal, journalPageIntro;
     //specific journal pages- journalPage_whoItIsAbout
-    protected BufferedImage journalPage_Max, journalPage_Peter, journalPage_Exgf;
+    protected BufferedImage journalPage_Max1, journalPage_Max2, journalPage_Peter1, journalPage_Peter2, journalPage_Exgf1, journalPage_Exgf2;
+    protected BufferedImage clueFromPeter;
     protected BufferedImage currPagePic;
     protected FlagManager flagManager;
     protected int currPage;
@@ -37,9 +38,13 @@ public class JournalUI {
         journalCover = ImageLoader.load("JournalCover.png");
         emptyJournal = ImageLoader.load("EmptyJournal.png");
         journalPageIntro = ImageLoader.load("JPageIntro.png");
-        journalPage_Max = ImageLoader.load("jPage_Max.png");
-        journalPage_Peter = ImageLoader.load("jPage_Peter.png");
-        journalPage_Exgf = ImageLoader.load("jPage_exGf.png");
+        journalPage_Max1 = ImageLoader.load("jPage_max_1.png");
+        journalPage_Max2 = ImageLoader.load("jPage_max_2.png");
+        journalPage_Peter1 = ImageLoader.load("jPage_Peter_1.png");
+        journalPage_Peter2 = ImageLoader.load("jPage_Peter_2.png");
+        journalPage_Exgf1 = ImageLoader.load("jPage_exgf_1.png");
+        journalPage_Exgf2 = ImageLoader.load("jPage_exgf_2.png");
+        clueFromPeter = ImageLoader.load("clueFromPeterTemp.png");
         //add first images to list and a few empty
         journalPages = new LinkedList<BufferedImage>();
         journalPages.add(journalCover);
@@ -59,30 +64,47 @@ public class JournalUI {
         bookOpen = false; // Reset to cover when toggled
     }
 
+    public void setCurrPage(int currPage){
+        this.currPage = currPage;
+    }
+    public int getCurrPage(){
+        return this.currPage;
+    }
+
     //update
     public void update() {
         //if the player has talked to mom, add that page
         if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMom")) {
             // Check if the page from mom is not already added to avoid adding it multiple times
-            if (!journalPages.contains(journalPage_Max)) {
+            if (!journalPages.contains(journalPage_Max1)) {
                 //remove blank page, add page from max, add blank page back
                 journalPages.removeLast();
-                journalPages.add(journalPage_Max);
+                journalPages.add(journalPage_Max1);
+                journalPages.add(journalPage_Max2);
                 journalPages.add(emptyJournal);
             }
             //check for talking to max
             if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMax")) {
                 //check if added, if not add butcher page than ex gf page
-                if(!journalPages.contains(journalPage_Peter)  &&  !journalPages.contains(journalPage_Exgf)){
+                if(!journalPages.contains(journalPage_Peter1)  &&  !journalPages.contains(journalPage_Exgf1)){
                     //remove blank page, add others, add blank page back
                     journalPages.removeLast();
-                    journalPages.add(journalPage_Peter);
-                    journalPages.add(journalPage_Exgf);
+                    journalPages.add(journalPage_Peter1);
+                    journalPages.add(journalPage_Peter2);
+                    journalPages.add(journalPage_Exgf1);
+                    journalPages.add(journalPage_Exgf2);
                     journalPages.add(emptyJournal);
                 }
-            }
-            
+            }   
+
         }
+        if (journalIsVisible && flagManager.isFlagSet("butcherPuzzleSolved")) {
+                if(!journalPages.contains(clueFromPeter)){
+                    journalPages.removeLast();
+                    journalPages.add(clueFromPeter);
+                    journalPages.add(emptyJournal);
+                }
+            } 
 
         //if right arrow key is clicked, increase current page count, move to next page if available in list
         if (Keyboard.isKeyUp(Key.RIGHT) && !keyLocker.isKeyLocked(Key.RIGHT)) {
@@ -118,6 +140,7 @@ public class JournalUI {
         }
     }
 
+
     //draw
     public void draw(GraphicsHandler graphicsHandler) {
         //draw while the journal is visible/ is open
@@ -125,7 +148,7 @@ public class JournalUI {
             graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
             //if the book was opened draw the current page, if not draw the cover
             if (bookOpen) {
-                graphicsHandler.drawImage(currPagePic, 0, 0, 800, 550);
+                graphicsHandler.drawImage(currPagePic, 0, 0, 700, 600);
             }
             else{
                 graphicsHandler.drawImage(journalCover, 20, 20, 700, 550);

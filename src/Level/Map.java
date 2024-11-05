@@ -626,6 +626,8 @@ public abstract class Map {
 
     public Textbox getTextbox() { return textbox; }
 
+    public int getStartBoundX() { return startBoundX; }
+    public int getStartBoundY() { return startBoundY; }
     public int getEndBoundX() { return endBoundX; }
     public int getEndBoundY() { return endBoundY; }
 
