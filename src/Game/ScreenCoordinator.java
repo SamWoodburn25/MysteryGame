@@ -17,6 +17,9 @@ import Screens.CreditsScreen;
 import Screens.HowToPlay;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.Context0Screen;
+import Screens.Context1Screen;
+
 
 
 public class ScreenCoordinator extends Screen {
@@ -69,6 +72,11 @@ public class ScreenCoordinator extends Screen {
 					case HOWTOPLAY:
 					currentScreen = new HowToPlay(this);
 					break;
+					case CONTEXT0:
+						currentScreen = new Context0Screen(this);
+						break;
+					case CONTEXT1:
+						currentScreen = new Context1Screen(this);
 				}
 				currentScreen.initialize();
 			}
