@@ -16,7 +16,7 @@ import Level.Tileset;
 public class TownTileset extends Tileset{
 
     public TownTileset() {
-                super(ImageLoader.load("TownTileset.png"), 16, 16, 1);
+                super(ImageLoader.load("TownTileset.png"), 16, 16, 3);
         }
 
     @Override
