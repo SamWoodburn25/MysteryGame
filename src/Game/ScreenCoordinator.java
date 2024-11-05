@@ -14,6 +14,7 @@ import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
+import Screens.HowToPlay;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 
@@ -64,6 +65,10 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
+						break;
+					case HOWTOPLAY:
+					currentScreen = new HowToPlay(this);
+					break;
 				}
 				currentScreen.initialize();
 			}
