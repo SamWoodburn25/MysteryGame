@@ -47,6 +47,10 @@ public class PlayLevelScreen extends Screen {
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
     protected boolean drawFridgePopUP = false;
+    //butcher puzzle variables
+    protected ButcherPuzzle butcherPuzzle;
+    protected boolean puzzleVisible = false;
+    protected boolean drawPuzzle = false;
 
 
     //constructor 
@@ -64,6 +68,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasTalkedToMax", false);
+        flagManager.addFlag("hasTalkedToButcher", false);
 
 
         //flags for map switching
@@ -75,6 +80,10 @@ public class PlayLevelScreen extends Screen {
         //flag to manage pop-up
         flagManager.addFlag("popUpButcherImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
+
+        //flag to open puzzle game screens
+        flagManager.addFlag("openButcherPuzzle", false);
+        flagManager.addFlag("butcherPuzzleSolved", false);
 
         
         // Define and set up maps
@@ -90,7 +99,7 @@ public class PlayLevelScreen extends Screen {
         //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
-
+        butcherPuzzle = new ButcherPuzzle(flagManager);
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
@@ -137,9 +146,11 @@ public class PlayLevelScreen extends Screen {
         if (journalVisible) {
             journal.update();
         } 
+        else  if(drawPuzzle){
+            butcherPuzzle.update();
+        }
         //otherwise, update other game logic
         else {
-
             // based on screen state, perform specific actions
             switch (playLevelScreenState) {
                 // if level is "running" update player and map 
@@ -178,7 +189,23 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-        }                                                                                                         
+        }      
+        //butcher puzzle
+        if(currMap.getFlagManager().isFlagSet("openButcherPuzzle")){
+            drawPuzzle = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openButcherPuzzle");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        }       
+        if(currMap.getFlagManager().isFlagSet("butcherPuzzleSolved")) {
+            drawPuzzle = false;
+        }                                                                                              
 
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
@@ -256,6 +283,8 @@ public class PlayLevelScreen extends Screen {
 
         //otherwise draw appropriate graphics based on the screen state
         else{
+            //fixing the journal bug, set back to cover page after closing journal
+            journal.setCurrPage(0);
             switch (playLevelScreenState) {
                 case RUNNING:
                     //draw the butcher shop pop up if triggered (drawPopUp is true)
@@ -264,6 +293,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(drawFridgePopUP){
                         fridgeScreen.draw(graphicsHandler);
+                    }
+                    else if(drawPuzzle){
+                        butcherPuzzle.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{
