@@ -13,7 +13,6 @@ import Level.*;
 import NPCs.Butcher;
 import Scripts.ButcherShopMap.*;
 import Scripts.House1Map.ButcherScript;
-import Scripts.House1Map.PopUpButcherImageScript;
 import Tilesets.CommonTileset;
 import Utils.Point;
 
@@ -49,8 +48,7 @@ public class ButcherShopMap extends Map {
 
         // pop up image trigger
         Point photoLoc = getPositionByTileIndex(7, 7);
-        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 2, 2, new PopUpButcherImageScript(), "popUpButcherImage"));
-        System.out.println("Trigger set at: " + photoLoc.x + ", " + photoLoc.y);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 1, 2, new PopUpButcherImageScript(), "popUpButcherImage"));
 
         return triggers;
     } 
