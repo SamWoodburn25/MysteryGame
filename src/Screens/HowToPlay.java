@@ -59,7 +59,7 @@ public class HowToPlay extends Screen {
     Rule9label = new SpriteFont("7-)Hold down 'shift' to sprint and view the red bar in the top right corner to see how", 70, 440, "Apple Chancery", 20, new Color(184, 15, 10));
     Rule10label = new SpriteFont("far you can run.", 70, 480, "Apple Chancery", 20, new Color(184, 15, 10));
     Rule11label = new SpriteFont("8-)If a pop-up appears, use 'esc' to close it ", 70, 520, "Apple Chancery", 20, new Color(184, 15, 10));
-    EndOflabel = new SpriteFont("Press SPACE to return to menu...", 70, 550, "Apple Chancery", 20, new Color(184, 15, 10));
+    EndOflabel = new SpriteFont("Press SPACE to return to menu...", 70, 550, "Apple Chancery", 20, new Color(255, 255, 255));
     
     keyLocker.lockKey(Key.SPACE);
 }
