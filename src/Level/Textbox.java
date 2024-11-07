@@ -31,16 +31,16 @@ public class Textbox {
     protected final int height = 100;
 
     // options textbox constants
-    protected final int optionX = 600;
+    protected final int optionX = 560;
     protected final int optionBottomY = 350;
     protected final int optionTopY = 130;
-    protected final int optionWidth = 160;
+    protected final int optionWidth = 220;
     protected final int optionHeight = 100;
-    protected final int fontOptionX = 606;
+    protected final int fontOptionX = 560;
     protected final int fontOptionBottomYStart = 365;
     protected final int fontOptionTopYStart = 145;
     protected final int fontOptionSpacing = 35;
-    protected final int optionPointerX = 603;
+    protected final int optionPointerX = 565;
     protected final int optionPointerYBottomStart = 378;
     protected final int optionPointerYTopStart = 158;
 
@@ -183,7 +183,7 @@ public class Textbox {
                 // of the bottom like usual
                 // to prevent it from covering the player
                 int optionY = !map.getCamera().isAtBottomOfMap() ? optionBottomY : optionTopY;
-                graphicsHandler.drawFilledRectangleWithBorder(optionX, optionY, optionWidth, optionHeight, Color.black,
+                graphicsHandler.drawFilledRectangleWithBorder(optionX, optionY, optionWidth, optionHeight, transparency,
                         Color.white, 2);
 
                 // draw each option text
