@@ -51,7 +51,10 @@ public class PlayLevelScreen extends Screen {
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
     protected boolean drawPuzzle = false;
-
+    //exgf puzzle variables
+    protected ExgfPuzzle exgfPuzzle;
+    protected boolean exPuzzleVisible = false;
+    protected boolean exDrawPuzzle = false;
 
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -69,6 +72,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasTalkedToMax", false);
         flagManager.addFlag("hasTalkedToButcher", false);
+        flagManager.addFlag("hasTalkedToGF", false);
 
 
         //flags for map switching
@@ -84,6 +88,8 @@ public class PlayLevelScreen extends Screen {
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
         flagManager.addFlag("butcherPuzzleSolved", false);
+        flagManager.addFlag("openExgfPuzzle", false);
+        flagManager.addFlag("exGfPuzzleSolved", false);
 
         
         // Define and set up maps
@@ -99,7 +105,10 @@ public class PlayLevelScreen extends Screen {
         //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
+
+        //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
+        exgfPuzzle = new ExgfPuzzle(flagManager);
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
@@ -134,7 +143,7 @@ public class PlayLevelScreen extends Screen {
     public void update() {
 
         //open/close journal on 'j' click
-        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
+        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J) && !currMap.getFlagManager().isFlagSet("openExgfPuzzle")) {
             journalVisible = !journalVisible;
             journal.toggleVisibility();
             keyLocker.lockKey(Key.J);
@@ -148,6 +157,9 @@ public class PlayLevelScreen extends Screen {
         } 
         else  if(drawPuzzle){
             butcherPuzzle.update();
+        }
+        else if(exDrawPuzzle){
+            exgfPuzzle.update();
         }
         //otherwise, update other game logic
         else {
@@ -205,7 +217,23 @@ public class PlayLevelScreen extends Screen {
         }       
         if(currMap.getFlagManager().isFlagSet("butcherPuzzleSolved")) {
             drawPuzzle = false;
-        }                                                                                              
+        } 
+        //ex puzzle
+        if(currMap.getFlagManager().isFlagSet("openExgfPuzzle")){
+            exDrawPuzzle = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                exDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openExgfPuzzle");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        } 
+        if(currMap.getFlagManager().isFlagSet("exGfPuzzleSolved")) {
+            exDrawPuzzle = false;
+        }                                                                                             
 
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
@@ -296,6 +324,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(drawPuzzle){
                         butcherPuzzle.draw(graphicsHandler);
+                    }
+                    else if(exDrawPuzzle){
+                        exgfPuzzle.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{
