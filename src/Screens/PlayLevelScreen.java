@@ -276,7 +276,7 @@ public class PlayLevelScreen extends Screen {
         //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(75, 45); 
+            point = currMap.getPositionByTileIndex(69, 46); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
