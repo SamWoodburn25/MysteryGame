@@ -25,7 +25,7 @@ public class ButcherScript extends Script {
                     addText("Hmm... how can I package this... ugh I hate math...\nWelcome to the Butcher’s Shoppe, what can I help you with?");
                     addText("Oh... I don’t know who you’re talking about, sorry!   ");
                     addText("Erm sorry I’m busy running the shop and Alex");
-                    addText("I don’t know whoever you’re talking about, if you’re not going to get anything please leave... ", new String[] { "\"Ask if he need\"", "\"ignore him\"" });
+                    addText("I don’t know whoever you’re talking about, if you’re not going to get anything please leave... ", new String[] { "\"Help him\"", "\"ignore him\"" });
                 }});
             }});
         }});

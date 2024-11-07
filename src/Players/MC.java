@@ -14,8 +14,8 @@ import java.util.HashMap;
 // basically just sets some values for physics and then defines animations
 public class MC extends Player {
 
-    public MC(float x, float y, String characterImage) {
-        super(new SpriteSheet(ImageLoader.load(characterImage), 40, 90), x, y, "STAND_FORWARD");
+    public MC(float x, float y, String hairType) {
+        super(new SpriteSheet(ImageLoader.load(hairType), 40, 90), x, y, "STAND_FORWARD");
         //CHANGE BACK TO 2.3
         walkSpeed = 5.3f;
     }

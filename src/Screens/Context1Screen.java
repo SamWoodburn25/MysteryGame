@@ -65,7 +65,7 @@
              keyLocker.unlockKey(Key.SPACE);
          }
          if (!keyLocker.isKeyLocked(Key.SPACE) && Keyboard.isKeyDown(Key.SPACE)) {
-             screenCoordinator.setGameState(GameState.LEVEL);
+             screenCoordinator.setGameState(GameState.CHARSELECT);
          }
      }
  

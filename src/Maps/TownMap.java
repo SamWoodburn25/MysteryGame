@@ -12,6 +12,7 @@
  import Level.*;
  import Scripts.SimpleTextScript;
 import Scripts.House1Map.BrotherExGFScript;
+import Scripts.House1Map.InvestigatorScript;
 import Scripts.House1Map.TreeScript;
  import Scripts.TownMap.*;
  import Tilesets.TownTileset;
@@ -33,17 +34,22 @@ import Scripts.House1Map.TreeScript;
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
+
+         Investigator investigator = new Investigator(1, getMapTile(30, 50).getLocation().subtractY(40));
+         investigator.setInteractScript(new InvestigatorScript());
+         npcs.add(investigator);
+
+         Boss boss = new Boss(1, getMapTile(26, 52).getLocation().subtractY(40));
+         npcs.add(boss);
+
+         Crow crow1 = new Crow(1, getMapTile(36, 50).getLocation().subtractY(40));
+         npcs.add(crow1);
+
          ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
         ex.setInteractScript(new BrotherExGFScript());
         npcs.add(ex); 
 
-        Crow crow1 = new Crow(2, getMapTile(67, 8).getLocation().subtractY(0));
-        
-        npcs.add(crow1); 
 
-        Crow crow2 = new Crow(2, getMapTile(73, 7).getLocation().subtractY(0));
-        
-        npcs.add(crow2); 
  
          return npcs;
      }
