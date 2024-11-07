@@ -28,13 +28,13 @@ package Scripts.House1Map;
       
          scriptActions.add(new ConditionalScriptAction() {{
              addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                 addRequirement(new FlagRequirement("hasTalkedToDrugDealerDaughter", false));
                  addScriptAction(new TextboxScriptAction() {{
                     addText("Keep it moving, nothing to see here (it’ll be okay, dad, just breathe)");
                     addText("Keep it moving- Oh you know the code, um sorry it’s a bad time right now... ");
                     addText("You don’t happen to have anything like a phone or narcan, do you? ", new String[] { "\"Look in bag\"", "\"No \"" });
                  }});
-              addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
+              addScriptAction(new ChangeFlagScriptAction("hasTalkedToDrugDealerDaughter", true));
              }});
          }});
  

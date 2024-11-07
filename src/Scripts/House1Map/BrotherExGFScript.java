@@ -28,13 +28,13 @@ public class BrotherExGFScript extends Script {
      
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                addRequirement(new FlagRequirement("hasTalkedToBrotherExGF", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hmm? Oh wait aren’t you Alex’s... what do you want? ...\noh you’re hoping to find him?... ");
                     addText("It’s hopeless, he’s been gone for months you’re not going to find anything.");
                     addText(" Now get out of here, you sicken me...", new String[] { "\"Offer to help play game\n\"", "\"Ignore her\"" });
                 }});
-             addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
+             addScriptAction(new ChangeFlagScriptAction("hasTalkedToBrotherExGF", true));
             }});
         }});
 

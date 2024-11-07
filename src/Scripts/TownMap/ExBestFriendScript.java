@@ -21,7 +21,7 @@ public class ExBestFriendScript extends Script {
       
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                addRequirement(new FlagRequirement("hasTalkedToExBestFriend", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("HUH?! Oh hey, it’s been a while. Hm, this is for my mom?\n Thanks... oh Alex? ");
                     addText("it’s been a while since I’ve heard that name... ");
@@ -30,7 +30,7 @@ public class ExBestFriendScript extends Script {
                     addText("Also, these may help you more than they did for me... \nsome papers with your brother’s handwriting on them.");
                     addText("Planned on giving them to your mom, but you might get\n more use out of them. Good luck! ", new String[] { "\"Ask about ex\"", "\"Ask about Peter\"" });
                 }});
-             addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
+             addScriptAction(new ChangeFlagScriptAction("hasTalkedToExBestFriend", true));
             }});
         }});
         //Ask about Ex-Girlfriend
@@ -66,7 +66,7 @@ public class ExBestFriendScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", true));
+                addRequirement(new FlagRequirement("hasTalkedToExBestFriend", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Sorry, I don’t really want to get involved. Maybe those \npages I gave you can help you out. ");
                    

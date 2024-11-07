@@ -28,14 +28,20 @@ package Scripts.House1Map;
  
          scriptActions.add(new NPCFacePlayerScriptAction());
  
-         scriptActions.add(new TextboxScriptAction() {{
-            addText("What a nice day..");
-            addText("Oh Hello! Hm.. Oh, he looks familiar... I think I saw that kid a couple months ago. ");
-            addText("It was outside the cemetery, was riding his bike all disheveled.... ");
-            addText("I think the bike is still over there, but he sure looked like he was in a rush- actually here’s a key that he dropped on his way there. ");
-            addText("These pages also flew out from his back pocket, couldn’t figure out what it was talking about but maybe you can use it... ");
-            addText("Anyhow haven’t seen him since. Maybe you can check out his bike or something... good luck!  ");
-         }});
+         scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasTalkedToBystander", false));
+                addScriptAction(new TextboxScriptAction() {{
+                    addText("What a nice day..");
+                    addText("Oh Hello! Hm.. Oh, he looks familiar... I think I saw that kid a couple months ago. ");
+                    addText("It was outside the cemetery, was riding his bike all disheveled.... ");
+                    addText("I think the bike is still over there, but he sure looked like he was in a rush- actually here’s a key that he dropped on his way there. ");
+                    addText("These pages also flew out from his back pocket, couldn’t figure out what it was talking about but maybe you can use it... ");
+                    addText("Anyhow haven’t seen him since. Maybe you can check out his bike or something... good luck!  ");
+        
+                }});
+            }});
+        }});
  
          scriptActions.add(new NPCUnlockScriptAction());
          scriptActions.add(new UnlockPlayerScriptAction());
