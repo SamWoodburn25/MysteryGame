@@ -17,7 +17,7 @@ package Scripts.House1Map;
  
  // script for talking to bug npc
  // checkout the documentation website for a detailed guide on how this script works
- public class InvestigatorScript extends Script {
+ public class ScooterGirlScript extends Script {
  
      @Override
      public ArrayList<ScriptAction> loadScriptActions() {
@@ -29,9 +29,8 @@ package Scripts.House1Map;
          scriptActions.add(new NPCFacePlayerScriptAction());
  
          scriptActions.add(new TextboxScriptAction() {{
-            addText("Huh? Oh hey kid... oh Alex? He your brother or something? *puffs cigarette* ahhh him.");
-            addText("That case has been closed for a while now, ruled it a disappearance. Nothing we can do about it, sorry. ");
-            addText("Sorry kid, we did all we could do.  ");
+            addText("Stupid scooter... hmph! ");
+            addText("Huh, you talking to me? Sorry my moms said not to talk to strangers! ");
          }});
  
          scriptActions.add(new NPCUnlockScriptAction());
