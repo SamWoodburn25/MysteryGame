@@ -53,8 +53,8 @@
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScrpt(), "townToButcher"));
  
         // pop up image trigger
-        Point photoLoc = getPositionByTileIndex(7, 7);
-        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 4, 4, new PopUpGraveyardImageScript(), "graveyardImage"));
+        Point photoLoc = getPositionByTileIndex(68, 13);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 5, new PopUpGraveyardImageScript(), "graveyardImage"));
 
          return triggers;
      }
