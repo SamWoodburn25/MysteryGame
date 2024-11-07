@@ -51,9 +51,8 @@ public class ButcherPuzzle extends Screen{
     }
 
     @Override
-    public void initialize() {
-        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
-    }
+    public void initialize() {}
+    
     @Override
     public void update() {
         if(instructionsVisible){

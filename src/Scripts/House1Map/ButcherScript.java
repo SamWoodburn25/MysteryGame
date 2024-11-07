@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import Level.Script;
 import ScriptActions.*;
 
-// script for talking to bug npc
-// checkout the documentation website for a detailed guide on how this script works
+// script for talking to butcher npc
 public class ButcherScript extends Script {
 
     @Override
