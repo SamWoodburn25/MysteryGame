@@ -43,19 +43,25 @@ public class PlayLevelScreen extends Screen {
     protected Map house1Map, townMap, butcherShop;
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
+    protected ScaryGraveyardScreen scaryGraveyardScreen;
     protected FridgeScreen fridgeScreen;
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
+    protected boolean drawGravePopUP = false;
     protected boolean drawFridgePopUP = false;
     protected boolean drawCharSelect = false;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
     protected boolean drawPuzzle = false;
+    //exgf puzzle variables
+    protected ExgfPuzzle exgfPuzzle;
+    protected boolean exPuzzleVisible = false;
+    protected boolean exDrawPuzzle = false;
+
     //character selection variables
     protected CharacterSelectScreen charSelectScreen;
     protected boolean charHair;
-
 
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -73,6 +79,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasTalkedToMax", false);
         flagManager.addFlag("hasTalkedToButcher", false);
+        flagManager.addFlag("hasTalkedToGF", false);
 
 
         //flags for map switching
@@ -83,12 +90,15 @@ public class PlayLevelScreen extends Screen {
 
         //flag to manage pop-up
         flagManager.addFlag("popUpButcherImage", false);
+        flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
         flagManager.addFlag("charSelectScreen", false);
 
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
         flagManager.addFlag("butcherPuzzleSolved", false);
+        flagManager.addFlag("openExgfPuzzle", false);
+        flagManager.addFlag("exGfPuzzleSolved", false);
 
         
         // Define and set up maps
@@ -103,8 +113,12 @@ public class PlayLevelScreen extends Screen {
 
         //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
+        scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
+
+        //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
+        exgfPuzzle = new ExgfPuzzle(flagManager);
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
@@ -149,7 +163,8 @@ public class PlayLevelScreen extends Screen {
     public void update() {
 
         //open/close journal on 'j' click
-        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J)) {
+        if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J) && !currMap.getFlagManager().isFlagSet("openExgfPuzzle")) {
+            //jClicked
             journalVisible = !journalVisible;
             journal.toggleVisibility();
             keyLocker.lockKey(Key.J);
@@ -157,13 +172,17 @@ public class PlayLevelScreen extends Screen {
         if(Keyboard.isKeyUp(Key.J)){
             keyLocker.unlockKey(Key.J);
         }
+        //update puzzles
+        if(drawPuzzle){
+            butcherPuzzle.update();
+        }
+        if(exDrawPuzzle){
+            exgfPuzzle.update();
+        }
         //if the journal is open update that
         if (journalVisible) {
             journal.update();
         } 
-        else  if(drawPuzzle){
-            butcherPuzzle.update();
-        }
         //otherwise, update other game logic
         else {
             // based on screen state, perform specific actions
@@ -195,6 +214,18 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.unlockKey(Key.ESC);
             } 
         }  
+        if(currMap.getFlagManager().isFlagSet("graveyardImage")){
+            drawGravePopUP = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawGravePopUP = false;
+                currMap.getFlagManager().unsetFlag("graveyardImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        }  
         if(currMap.getFlagManager().isFlagSet("popUpFridgeImage")){
             drawFridgePopUP = true;
             //close image on escape click
@@ -217,12 +248,31 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
+                currMap.getFlagManager().unsetFlag("openButcherPuzzle");
                 keyLocker.unlockKey(Key.ESC);
             } 
         }       
         if(currMap.getFlagManager().isFlagSet("butcherPuzzleSolved")) {
             drawPuzzle = false;
-        }    
+        } 
+        //ex puzzle
+        if(currMap.getFlagManager().isFlagSet("openExgfPuzzle")){
+            exDrawPuzzle = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                exDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openExgfPuzzle");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        } 
+        if(currMap.getFlagManager().isFlagSet("exGfPuzzleSolved")) {
+            exDrawPuzzle = false;
+            currMap.getFlagManager().unsetFlag("openExgfPuzzle");
+        }                                                                                             
+            
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
             drawCharSelect = true;
@@ -292,7 +342,7 @@ public class PlayLevelScreen extends Screen {
         //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(75, 45); 
+            point = currMap.getPositionByTileIndex(69, 46); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
@@ -329,12 +379,18 @@ public class PlayLevelScreen extends Screen {
                     if(drawPopUP){
                         goreyButcherScreen.draw(graphicsHandler);
                     }
+                    else if(drawGravePopUP) {
+                        scaryGraveyardScreen.draw(graphicsHandler);
+                    }
                     else if(drawFridgePopUP){
                         fridgeScreen.draw(graphicsHandler);
                     }
                     else if(drawPuzzle){
                         butcherPuzzle.draw(graphicsHandler);
-                    } 
+                    }
+                    else if(exDrawPuzzle){
+                        exgfPuzzle.draw(graphicsHandler);
+                    }
                     //otherwise draw current map
                     else{
                         currMap.draw(player, graphicsHandler);

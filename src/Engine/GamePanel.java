@@ -102,6 +102,7 @@ public class GamePanel extends JPanel {
 	}
 
 	private void updatePauseState() {
+		/* 
 		if (Keyboard.isKeyDown(pauseKey) && !keyLocker.isKeyLocked(pauseKey)) {
 			isGamePaused = !isGamePaused;
 			keyLocker.lockKey(pauseKey);
@@ -110,6 +111,7 @@ public class GamePanel extends JPanel {
 		if (Keyboard.isKeyUp(pauseKey)) {
 			keyLocker.unlockKey(pauseKey);
 		}
+		*/
 	}
 
 	private void updateShowFPSState() {

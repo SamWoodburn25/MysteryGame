@@ -23,7 +23,7 @@ public class JournalUI {
     protected BufferedImage journalCover, emptyJournal, journalPageIntro;
     //specific journal pages- journalPage_whoItIsAbout
     protected BufferedImage journalPage_Max1, journalPage_Max2, journalPage_Peter1, journalPage_Peter2, journalPage_Exgf1, journalPage_Exgf2;
-    protected BufferedImage clueFromPeter;
+    protected BufferedImage clueFromPeter, clueFromEx;
     protected BufferedImage currPagePic;
     protected FlagManager flagManager;
     protected int currPage;
@@ -45,6 +45,7 @@ public class JournalUI {
         journalPage_Exgf1 = ImageLoader.load("jPage_exgf_1.png");
         journalPage_Exgf2 = ImageLoader.load("jPage_exgf_2.png");
         clueFromPeter = ImageLoader.load("clueFromPeterTemp.png");
+        clueFromEx = ImageLoader.load("clueFromExTemp.png");
         //add first images to list and a few empty
         journalPages = new LinkedList<BufferedImage>();
         journalPages.add(journalCover);
@@ -75,7 +76,7 @@ public class JournalUI {
     public void update() {
         //if the player has talked to mom, add that page
         if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMom")) {
-            // Check if the page from mom is not already added to avoid adding it multiple times
+            // check if the page from mom is not already added to avoid adding it multiple times
             if (!journalPages.contains(journalPage_Max1)) {
                 //remove blank page, add page from max, add blank page back
                 journalPages.removeLast();
@@ -98,13 +99,22 @@ public class JournalUI {
             }   
 
         }
+        //butcher puzzle
         if (journalIsVisible && flagManager.isFlagSet("butcherPuzzleSolved")) {
-                if(!journalPages.contains(clueFromPeter)){
-                    journalPages.removeLast();
-                    journalPages.add(clueFromPeter);
-                    journalPages.add(emptyJournal);
-                }
-            } 
+            if(!journalPages.contains(clueFromPeter)){
+                journalPages.removeLast();
+                journalPages.add(clueFromPeter);
+                journalPages.add(emptyJournal);
+            }
+        } 
+        //ex puzzle
+        if (journalIsVisible && flagManager.isFlagSet("exGfPuzzleSolved")) {
+            if(!journalPages.contains(clueFromEx)){
+                journalPages.removeLast();
+                journalPages.add(clueFromEx);
+                journalPages.add(emptyJournal);
+            }
+        }
 
         //if right arrow key is clicked, increase current page count, move to next page if available in list
         if (Keyboard.isKeyUp(Key.RIGHT) && !keyLocker.isKeyLocked(Key.RIGHT)) {

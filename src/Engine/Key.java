@@ -2,6 +2,7 @@ package Engine;
 
 // Used by the Keyboard class to define a key to their key codes
 public enum Key {
+    BACKSPACE,
     UP, 
     DOWN, 
     RIGHT, 

@@ -11,12 +11,13 @@
 
  import Level.*;
  import Scripts.SimpleTextScript;
- import Scripts.House1Map.TreeScript;
+import Scripts.House1Map.BrotherExGFScript;
+import Scripts.House1Map.TreeScript;
  import Scripts.TownMap.*;
  import Tilesets.TownTileset;
  import Utils.Point;
  import java.util.ArrayList;
- import NPCs.Max;
+ import NPCs.*;
  
  public class TownMap extends Map {
      public TownMap() {
@@ -31,6 +32,10 @@
          Max max = new Max(1, getMapTile(40, 8).getLocation().subtractY(0));
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
+
+         ExGf ex = new ExGf(1, getMapTile(36, 55).getLocation().subtractY(40));
+        ex.setInteractScript(new BrotherExGFScript());
+        npcs.add(ex);
  
          return npcs;
      }
@@ -49,9 +54,13 @@
  
  
          // trigger to enter butcher
-         Point butcherShop = getPositionByTileIndex(75, 44);
+         Point butcherShop = getPositionByTileIndex(69, 46);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScrpt(), "townToButcher"));
  
+        // pop up image trigger
+        Point photoLoc = getPositionByTileIndex(68, 13);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 5, new PopUpGraveyardImageScript(), "graveyardImage"));
+
          return triggers;
      }
  
