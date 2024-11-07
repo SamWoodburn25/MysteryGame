@@ -96,10 +96,10 @@ public class ExgfPuzzle extends Screen{
                     q3Ans.clear();
                 }
             }
-        }
 
-        if(gfPuzzleSolved){
-            flagManager.setFlag("exGfPuzzleSolved");
+            if(gfPuzzleSolved){
+                flagManager.setFlag("exGfPuzzleSolved");
+            }
         }
     }
 

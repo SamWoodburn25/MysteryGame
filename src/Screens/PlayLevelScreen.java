@@ -148,6 +148,7 @@ public class PlayLevelScreen extends Screen {
 
         //open/close journal on 'j' click
         if (Keyboard.isKeyDown(Key.J) && !keyLocker.isKeyLocked(Key.J) && !currMap.getFlagManager().isFlagSet("openExgfPuzzle")) {
+            //jClicked
             journalVisible = !journalVisible;
             journal.toggleVisibility();
             keyLocker.lockKey(Key.J);
@@ -155,16 +156,17 @@ public class PlayLevelScreen extends Screen {
         if(Keyboard.isKeyUp(Key.J)){
             keyLocker.unlockKey(Key.J);
         }
+        //update puzzles
+        if(drawPuzzle){
+            butcherPuzzle.update();
+        }
+        if(exDrawPuzzle){
+            exgfPuzzle.update();
+        }
         //if the journal is open update that
         if (journalVisible) {
             journal.update();
         } 
-        else  if(drawPuzzle){
-            butcherPuzzle.update();
-        }
-        else if(exDrawPuzzle){
-            exgfPuzzle.update();
-        }
         //otherwise, update other game logic
         else {
             // based on screen state, perform specific actions
@@ -228,6 +230,7 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
+                currMap.getFlagManager().unsetFlag("openButcherPuzzle");
                 keyLocker.unlockKey(Key.ESC);
             } 
         }       
@@ -249,6 +252,7 @@ public class PlayLevelScreen extends Screen {
         } 
         if(currMap.getFlagManager().isFlagSet("exGfPuzzleSolved")) {
             exDrawPuzzle = false;
+            currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }                                                                                             
 
         /*
