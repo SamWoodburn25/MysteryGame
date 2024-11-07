@@ -31,8 +31,8 @@ public class BrotherExGFScript extends Script {
                 addRequirement(new FlagRequirement("hasTalkedToBrotherExGF", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hmm? Oh wait aren’t you Alex’s... what do you want? ...\noh you’re hoping to find him?... ");
-                    addText("It’s hopeless, he’s been gone for months you’re not going to find anything.");
-                    addText(" Now get out of here, you sicken me...", new String[] { "\"Offer to help play game\n\"", "\"Ignore her\"" });
+                    addText("It’s hopeless, he’s been gone for months you’re not going \nto find anything.");
+                    addText(" Now get out of here, you sicken me...", new String[] { "\"Offer to help\n\"", "\"Ignore her\"" });
                 }});
              addScriptAction(new ChangeFlagScriptAction("hasTalkedToBrotherExGF", true));
             }});
@@ -49,9 +49,10 @@ public class BrotherExGFScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("hank you... hmm.. Thinking about it maybe this page will\n help, it showed up on my desk one day, I know it’s your brother’s, it’s his handwriting. ");
-                    addText("Maybe you can find him that way, otherwise, maybe you can\n investigate the Mad Hatter- the guy not the bar, me and your brother used to...");
-                    addText("Do business with him let's say. He might know where he went\n off to. ");
+                    addText("Thank you... hmm.. Thinking about it maybe this page will\n help, it showed up on my desk one day. ");
+                    addText("I know it’s your brother’s, it’s his handwriting. Maybe you\n can find him that way. ");
+                    addText("Otherwise, maybe you can investigate the Mad Hatter- \nthe guy not the bar, me and your brother used to...");
+                    addText("Do business with him let's say. He might know where\n he went off to. ");
                 }});
             }});
             
@@ -64,7 +65,7 @@ public class BrotherExGFScript extends Script {
                         return answer == 1;
                     }
                 });
-                addScriptAction(new TextboxScriptAction("I don’t want to think about it... maybe the page I gave you can help. "));
+                addScriptAction(new TextboxScriptAction("I don’t want to think about it... maybe the page I gave you\n can help. "));
             }});
         }});
         
