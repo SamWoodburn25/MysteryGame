@@ -33,9 +33,9 @@ import Scripts.House1Map.TreeScript;
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
-         ExGf ex = new ExGf(1, getMapTile(36, 55).getLocation().subtractY(40));
+         ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
         ex.setInteractScript(new BrotherExGFScript());
-        npcs.add(ex);
+        npcs.add(ex); 
  
          return npcs;
      }
