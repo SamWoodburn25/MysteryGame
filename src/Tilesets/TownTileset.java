@@ -1858,44 +1858,44 @@ MapTileBuilder randD3Tile = new MapTileBuilder(randD3Frame)
 
 mapTiles.add(randD3Tile);
 
-//random door part 4
-Frame randD4Frame = new FrameBuilder(getSubImage(3, 13))
+//left bar wall
+Frame lBarWallFrame = new FrameBuilder(getSubImage(3, 13))
 .withScale(tileScale)
 
 .build();
 
-MapTileBuilder randD4Tile = new MapTileBuilder(randD4Frame)
+MapTileBuilder lBarWallTile = new MapTileBuilder(lBarWallFrame)
 
 
 .withTileType(TileType.PASSABLE);
 
-mapTiles.add(randD4Tile);
+mapTiles.add(lBarWallTile);
 
-//random door part 5
-Frame randD5Frame = new FrameBuilder(getSubImage(3, 14))
+//bar wall
+Frame barWallFrame = new FrameBuilder(getSubImage(3, 14))
 .withScale(tileScale)
 
 .build();
 
-MapTileBuilder randD5Tile = new MapTileBuilder(randD5Frame)
+MapTileBuilder barWallTile = new MapTileBuilder(barWallFrame)
 
 
 .withTileType(TileType.PASSABLE);
 
-mapTiles.add(randD5Tile);
+mapTiles.add(barWallTile);
 
-//random door part 6
-Frame randD6Frame = new FrameBuilder(getSubImage(3, 15))
+//right bar wall
+Frame rBarWallFrame = new FrameBuilder(getSubImage(3, 15))
 .withScale(tileScale)
 
 .build();
 
-MapTileBuilder randD6Tile = new MapTileBuilder(randD6Frame)
+MapTileBuilder rBarWallTile = new MapTileBuilder(rBarWallFrame)
 
 
 .withTileType(TileType.PASSABLE);
 
-mapTiles.add(randD6Tile);
+mapTiles.add(rBarWallTile);
 
 //random window part 1
 Frame randW1Frame = new FrameBuilder(getSubImage(3, 16))
@@ -2086,6 +2086,66 @@ MapTileBuilder hWindow4Tile = new MapTileBuilder(b2WallFrame)
 .withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(hWindow4Tile);
+
+//left bar sign 
+Frame lBarSignFrame = new FrameBuilder(getSubImage(4, 12))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder lBarSignTile = new MapTileBuilder(barWallFrame)
+.withTopLayer(lBarSignFrame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(lBarSignTile);
+
+//bar sign 
+Frame barSignFrame = new FrameBuilder(getSubImage(4, 13))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder barSignTile = new MapTileBuilder(barWallFrame)
+.withTopLayer(barSignFrame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(barSignTile);
+
+//right bar sign 
+Frame rBarSignFrame = new FrameBuilder(getSubImage(4, 14))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder rBarSignTile = new MapTileBuilder(barWallFrame)
+.withTopLayer(rBarSignFrame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(rBarSignTile);
+
+//top neon sign 
+Frame topNeonSignFrame = new FrameBuilder(getSubImage(4, 15))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder topNeonSignTile = new MapTileBuilder(barWallFrame)
+.withTopLayer(topNeonSignFrame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(topNeonSignTile);
+
+//bottom neon sign 
+Frame btmNeonSignFrame = new FrameBuilder(getSubImage(4, 16))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder btmNeonSignTile = new MapTileBuilder(barWallFrame)
+.withTopLayer(btmNeonSignFrame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(btmNeonSignTile);
 
 
 
