@@ -8,7 +8,7 @@ public class BackgroundMusic {
     private Clip clip;
 
     public BackgroundMusic(String filePath) {
-        /* 
+        
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(filePath));
             clip = AudioSystem.getClip();
@@ -16,7 +16,7 @@ public class BackgroundMusic {
         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
-        */
+        
     }
 
     public void play() {

@@ -1,12 +1,12 @@
 package Scripts.TownMap;
 
+
 import java.util.ArrayList;
 
 import Level.Script;
 import ScriptActions.*;
 
-// script for talking to walrus npc
-// checkout the documentation website for a detailed guide on how this script works
+
 public class ExBestFriendScript extends Script {
 
     @Override
@@ -14,37 +14,68 @@ public class ExBestFriendScript extends Script {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
 
+        scriptActions.add(new NPCLockScriptAction());
+
         scriptActions.add(new NPCFacePlayerScriptAction());
+
+      
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                addScriptAction(new TextboxScriptAction() {{
+                    addText("HUH?! Oh hey, it’s been a while. Hm, this is for my mom?\n Thanks... oh Alex? ");
+                    addText("it’s been a while since I’ve heard that name... ");
+                    addText("Maybe you didn’t know but a couple months ago we went\n our separate ways.");
+                    addText("Basically ditched me for that girlfriend of his. \nI’d also keep my eye on the butcher’s son, Peter. ");
+                    addText("Also, these may help you more than they did for me... \nsome papers with your brother’s handwriting on them.");
+                    addText("Planned on giving them to your mom, but you might get\n more use out of them. Good luck! ", new String[] { "\"Ask about ex\"", "\"Ask about Peter\"" });
+                }});
+             addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
+            }});
+        }});
+        //Ask about Ex-Girlfriend
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new CustomRequirement() {
+                    @Override
+                    public boolean isRequirementMet() {
+                        int answer = outputManager.getFlagData("TEXTBOX_OPTION_SELECTION");
+                        return answer == 0;
+                    }
+                });
+                addScriptAction(new TextboxScriptAction() {{
+                    addText("Alex’s girlfriend, Camilla, might know more, she’s \nusually hanging around town.");
+                    addText("Maybe she’s out shopping or something- whatever,\n none of my business.");
+                }});
+            }});
+            //option- Ask about peter
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new CustomRequirement() {
+                    @Override
+                    public boolean isRequirementMet() {
+                        int answer = outputManager.getFlagData("TEXTBOX_OPTION_SELECTION");
+                        return answer == 1;
+                    }
+                });
+                addScriptAction(new TextboxScriptAction("I’d also keep my eye on the butcher’s son, Peter."));
+                addScriptAction(new TextboxScriptAction("Your brother might’ve really done it this time, pushing his\n buttons and tormenting him all the time."));
+                addScriptAction(new TextboxScriptAction("He’s usually working at the butcher shop."));
+            }});
+        }});
+
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToMax", false));
+                addRequirement(new FlagRequirement("hasTalkedToButcher", true));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Max: Oh... it’s been a while since I’ve seen you.  ");
-                    addText("Really? you came here to ask me about your brother, Alex?  \nAs if I’d know anything." );
-                    addText("He didn’t tell you, really? Jeez, he really has changed.");
-                    addText("Look, I haven’t heard from him since he ditched me for that \ngirl Jamie, wrote me a note saying he's over being friends.");
-                    addText("Then handed me these ripped out pages from his journal.");
-                    addText("Am I surprised that he has gone missing?");
-                    addText("Honestly, no. He had a target on his back, considering how \nhe has been treated people lately.");
-                    addText("What do I mean? God, you seriously haven’t heard about any \n of this?");
-                    addText("I’m sorry, but I don't want to get involved in whatever has \nbeen going on around here.");
-                    addText("If you want to get some more information, I hear one of his\nfavorite targets works in the butcher shop now for his father");
-                    addText("or go to his now ex, Jamie who likes to hang out outside of \nthe Mad Hatter Bar in the alley (EX NOT ADDED YET).");
+                    addText("Sorry, I don’t really want to get involved. Maybe those \npages I gave you can help you out. ");
+                   
                 }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToMax", true));
             }});
-
-            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToMax", true));
-                addScriptAction(new TextboxScriptAction("Listen, I already told you, I don't want to \nget involved."));
-                addScriptAction(new TextboxScriptAction("I know that one of his favorite targets now \nworks for his father in the butcher shop."));
-                addScriptAction(new TextboxScriptAction("Or I heard that he goes to his now ex, Jamie \n likes to hang in the Mad Hatter Bar's alley."));
-            }});
-            
         }});
         
-
+               
+        scriptActions.add(new NPCUnlockScriptAction());
         scriptActions.add(new UnlockPlayerScriptAction());
 
         return scriptActions;
