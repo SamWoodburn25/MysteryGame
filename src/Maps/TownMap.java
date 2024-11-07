@@ -36,6 +36,14 @@ import Scripts.House1Map.TreeScript;
          ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
         ex.setInteractScript(new BrotherExGFScript());
         npcs.add(ex); 
+
+        Crow crow1 = new Crow(2, getMapTile(67, 8).getLocation().subtractY(0));
+        
+        npcs.add(crow1); 
+
+        Crow crow2 = new Crow(2, getMapTile(73, 7).getLocation().subtractY(0));
+        
+        npcs.add(crow2); 
  
          return npcs;
      }
