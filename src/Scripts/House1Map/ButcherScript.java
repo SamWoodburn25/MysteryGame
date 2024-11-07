@@ -20,7 +20,7 @@ public class ButcherScript extends Script {
         //script for puzzle trigger
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                addRequirement(new FlagRequirement("hasTalkedToButcher", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hmm... how can I package this... ugh I hate math...\nWelcome to the Butcher’s Shoppe, what can I help you with?");
                     addText("Oh... I don’t know who you’re talking about, sorry!   ");

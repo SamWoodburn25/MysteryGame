@@ -49,6 +49,7 @@ public class PlayLevelScreen extends Screen {
     protected boolean drawPopUP = false;
     protected boolean drawGravePopUP = false;
     protected boolean drawFridgePopUP = false;
+    protected boolean drawCharSelect = false;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
@@ -57,6 +58,10 @@ public class PlayLevelScreen extends Screen {
     protected ExgfPuzzle exgfPuzzle;
     protected boolean exPuzzleVisible = false;
     protected boolean exDrawPuzzle = false;
+
+    //character selection variables
+    protected CharacterSelectScreen charSelectScreen;
+    protected boolean charHair;
 
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -87,6 +92,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("popUpButcherImage", false);
         flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
+        flagManager.addFlag("charSelectScreen", false);
 
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
@@ -122,10 +128,20 @@ public class PlayLevelScreen extends Screen {
         // Setup journal with the flag manager of the current map
         journal = new JournalUI(currMap.getFlagManager());
         
-        // setup player
-        player = new MC(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y);
+        //char select
+        charSelectScreen = new CharacterSelectScreen(this);
+        
+
+        if(this.charHair){
+            player = new MC(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y,"mc.png");
+        } else {
+            player = new MC(currMap.getPlayerStartPosition().x, currMap.getPlayerStartPosition().y,"mcSH.png");
+
+        }
+
+        
         player.setMap(currMap);
-        playLevelScreenState = PlayLevelScreenState.RUNNING;
+        playLevelScreenState = PlayLevelScreenState.CHARSELECT;
         player.setFacingDirection(Direction.LEFT);
         currMap.setPlayer(player);
 
@@ -171,6 +187,8 @@ public class PlayLevelScreen extends Screen {
         else {
             // based on screen state, perform specific actions
             switch (playLevelScreenState) {
+                case CHARSELECT:
+                    charSelectScreen.update();
                 // if level is "running" update player and map 
                 case RUNNING:
                     player.update();
@@ -254,6 +272,22 @@ public class PlayLevelScreen extends Screen {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }                                                                                             
+            
+        //character selection
+        if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
+            drawCharSelect = true;
+            //close screen with space 
+            if(Keyboard.isKeyDown(Key.SPACE) && !keyLocker.isKeyLocked(Key.SPACE)){
+                drawCharSelect = false; 
+                currMap.getFlagManager().unsetFlag("charSelectScreen");
+                keyLocker.lockKey(Key.SPACE);
+            }
+            if(Keyboard.isKeyUp(Key.SPACE)){
+                keyLocker.unlockKey(Key.SPACE);
+            } 
+
+            
+        }  
 
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
@@ -334,6 +368,12 @@ public class PlayLevelScreen extends Screen {
             //fixing the journal bug, set back to cover page after closing journal
             journal.setCurrPage(0);
             switch (playLevelScreenState) {
+                case CHARSELECT:
+                    charSelectScreen.draw(graphicsHandler);
+                    // if(f){
+                    //     playLevelScreenState = PlayLevelScreenState.RUNNING;
+                    // }
+                    break;
                 case RUNNING:
                     //draw the butcher shop pop up if triggered (drawPopUp is true)
                     if(drawPopUP){
@@ -373,13 +413,21 @@ public class PlayLevelScreen extends Screen {
         initialize();
     }
 
-    //back to menu game state
+    //back to menu game state   
     public void goBackToMenu() {
         screenCoordinator.setGameState(GameState.MENU);
     }
 
+    //back to menu game state
+    public void startGame(boolean hair) {
+        this.charHair = hair;
+        charSelectScreen.character = hair;
+        playLevelScreenState = PlayLevelScreenState.RUNNING;
+    }
+
+
     //this enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        CHARSELECT, RUNNING, LEVEL_COMPLETED
     }
 }
