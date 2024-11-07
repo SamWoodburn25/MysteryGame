@@ -293,6 +293,7 @@ public class PlayLevelScreen extends Screen {
          * flags for switching maps: update player, flags, and scripts for each change of currMap
          */
         //leaving through door at bottom of house1 to get to down
+        
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
             point = currMap.getPositionByTileIndex(21, 15);
