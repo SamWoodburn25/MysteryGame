@@ -42,7 +42,7 @@ public class CreditsScreen extends Screen {
         background.setAdjustCamera(false);
         creditsLabel = new SpriteFont("Credits", 15, 7, "Apple Chancery", 30, new Color(184, 15, 10));
         createdByLabel = new SpriteFont("Created by Alex Thimineur", 100, 91, "Apple Chancery", 20, new Color(184, 15, 10));
-        alteredByLabel = new SpriteFont("Altered by Morgan Montz, Ella Berry, Adelina ChoCho,", 100, 130, "Apple Chancery", 20, new Color(184, 15, 10));
+        alteredByLabel = new SpriteFont("Altered by Morgan Montz, Ella Berry, Adelina Chocho,", 100, 130, "Apple Chancery", 20, new Color(184, 15, 10));
         secondAlteredByLabel = new SpriteFont("                    Sam Woodburn, and Tuana Turhan", 100, 160, "Apple Chancery", 20, new Color(184, 15, 10));
         returnInstructionsLabel = new SpriteFont("Press Space to return to the menu", 20, 532, "Apple Chancery", 30,  new Color(184, 15, 10));
         keyLocker.lockKey(Key.SPACE);

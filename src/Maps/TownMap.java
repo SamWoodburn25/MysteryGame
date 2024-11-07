@@ -49,7 +49,7 @@
  
  
          // trigger to enter butcher
-         Point butcherShop = getPositionByTileIndex(75, 44);
+         Point butcherShop = getPositionByTileIndex(69, 46);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScrpt(), "townToButcher"));
  
          return triggers;
