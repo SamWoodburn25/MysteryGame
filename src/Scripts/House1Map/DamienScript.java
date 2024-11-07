@@ -47,4 +47,6 @@ package Scripts.House1Map;
  
          return scriptActions;
      }
+
  }
+
