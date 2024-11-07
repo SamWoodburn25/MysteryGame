@@ -81,6 +81,7 @@ public class Keyboard {
     private static EnumMap<Key, Integer> buildKeyMap() {
     	return new EnumMap<Key, Integer>(Key.class)
 			{{
+				put(Key.BACKSPACE, 8);
 				 put(Key.UP, 38);
 				 put(Key.DOWN, 40);
 				 put(Key.RIGHT, 39);

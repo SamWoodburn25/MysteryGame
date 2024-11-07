@@ -1,8 +1,5 @@
 package Level;
 
-import java.awt.Color;
-
-import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
 import Engine.Keyboard;
@@ -10,7 +7,6 @@ import GameObject.GameObject;
 import GameObject.Rectangle;
 import GameObject.SpriteSheet;
 import Utils.Direction;
-import Utils.Point;
 
 public abstract class Player extends GameObject {
     // values that affect player movement
@@ -106,7 +102,7 @@ public abstract class Player extends GameObject {
             
         }
         else{
-            System.out.println("player locked");
+            //System.out.println("player locked");
         }
 
         handlePlayerAnimation();

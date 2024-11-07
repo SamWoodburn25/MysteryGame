@@ -67,7 +67,6 @@ public class GraphicsHandler {
 
     public void drawString(String text, int x, int y, Font font, Color color) {
         g.setFont(font);
-        // g.setFont(new Font("TimesRoman", Font.BOLD, 24)); 
         g.setColor(color);
         g.drawString(text, x, y);
     }
