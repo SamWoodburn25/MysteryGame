@@ -17,6 +17,7 @@ import Screens.CreditsScreen;
 import Screens.HowToPlay;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.CharacterSelectScreen;
 import Screens.Context0Screen;
 import Screens.Context1Screen;
 
@@ -77,6 +78,9 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CONTEXT1:
 						currentScreen = new Context1Screen(this);
+						break;
+					case CHARSELECT:
+						currentScreen = new CharacterSelectScreen(this);
 				}
 				currentScreen.initialize();
 			}

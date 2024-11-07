@@ -92,47 +92,47 @@ public class Crow extends NPC {
             });
 
             put("BOUNCE_RIGHT", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 0), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 1), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 2), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 2), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 3), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 3), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 4), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 4), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 5), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 5), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 6), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 6), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 7), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 7), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 8), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 8), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 9), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 9), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build(),
-                new FrameBuilder(spriteSheet.getSprite(0, 10), 12)
+                new FrameBuilder(spriteSheet.getSprite(1, 10), 12)
                         .withScale(2)
                         .withBounds(4, 72, 28, 2)
                         .build()

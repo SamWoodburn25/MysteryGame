@@ -28,11 +28,11 @@ public class MomScript extends Script {
      
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                addRequirement(new FlagRequirement("hasTalkedToMom", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hey kiddo, sleep well? What’s your plan for the day??", new String[] { "\"Tell her\"", "\"Don't tell her\"" });
                 }});
-             addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
+             addScriptAction(new ChangeFlagScriptAction("hasTalkedToMom", true));
             }});
         }});
 
@@ -71,7 +71,7 @@ public class MomScript extends Script {
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", true));
+                addRequirement(new FlagRequirement("hasTalkedToMom", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Well, I hope you have a nice day honey. Oh and if you could\n go stop by Max’s house at some point today.");
                     addText(" I’d greatly appreciate it. He’s right down the street!\n Thanks honey, please drop off the letter to Max soon! ");
