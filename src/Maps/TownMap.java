@@ -57,6 +57,10 @@ import Scripts.House1Map.TreeScript;
          Point butcherShop = getPositionByTileIndex(69, 46);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScrpt(), "townToButcher"));
  
+        // pop up image trigger
+        Point photoLoc = getPositionByTileIndex(68, 13);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 5, new PopUpGraveyardImageScript(), "graveyardImage"));
+
          return triggers;
      }
  

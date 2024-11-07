@@ -43,9 +43,11 @@ public class PlayLevelScreen extends Screen {
     protected Map house1Map, townMap, butcherShop;
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
+    protected ScaryGraveyardScreen scaryGraveyardScreen;
     protected FridgeScreen fridgeScreen;
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
+    protected boolean drawGravePopUP = false;
     protected boolean drawFridgePopUP = false;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
@@ -83,6 +85,7 @@ public class PlayLevelScreen extends Screen {
 
         //flag to manage pop-up
         flagManager.addFlag("popUpButcherImage", false);
+        flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
 
         //flag to open puzzle game screens
@@ -104,6 +107,7 @@ public class PlayLevelScreen extends Screen {
 
         //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
+        scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
 
         //puzzles
@@ -184,6 +188,18 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 drawPopUP = false;
                 currMap.getFlagManager().unsetFlag("popUpButcherImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        }  
+        if(currMap.getFlagManager().isFlagSet("graveyardImage")){
+            drawGravePopUP = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawGravePopUP = false;
+                currMap.getFlagManager().unsetFlag("graveyardImage");
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
@@ -318,6 +334,9 @@ public class PlayLevelScreen extends Screen {
                     //draw the butcher shop pop up if triggered (drawPopUp is true)
                     if(drawPopUP){
                         goreyButcherScreen.draw(graphicsHandler);
+                    }
+                    else if(drawGravePopUP) {
+                        scaryGraveyardScreen.draw(graphicsHandler);
                     }
                     else if(drawFridgePopUP){
                         fridgeScreen.draw(graphicsHandler);
