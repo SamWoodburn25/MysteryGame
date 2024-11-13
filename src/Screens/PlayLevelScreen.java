@@ -301,7 +301,7 @@ public class PlayLevelScreen extends Screen {
             
         }  
 
-       
+      
 
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
