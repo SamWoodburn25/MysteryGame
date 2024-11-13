@@ -35,26 +35,27 @@ public class CharacterSelectScreen extends Screen {
     
         //constructor with ScreenCoordinator parameter
         public CharacterSelectScreen(ScreenCoordinator screenCoordinator) {
+            // background = ImageLoader.load("titleScreen.png");
             this.screenCoordinator = screenCoordinator;
             this.screenManager = new ScreenManager();
         }
     
-        //initialize character select screen elements
+        //initialize chara6cter select screen elements
         @Override
         public void initialize() {
-            getChar = new SpriteFont("Select Your Character's Hair Length", 200, 123, "Apple Chancery", 30, new Color(184, 15, 10));
+            getChar = new SpriteFont("Select Your Character's Hair Length", 190, 123, "Apple Chancery", 30, new Color(184, 15, 10));
             getChar.setOutlineColor(Color.black);
             getChar.setOutlineThickness(3);
     
-            char1 = new SpriteFont("Long", 150, 323, "Apple Chancery", 30, new Color(184, 15, 10));
+            char1 = new SpriteFont("Long", 225, 317, "Apple Chancery", 30, new Color(184, 15, 10));
             char1.setOutlineColor(Color.black);
             char1.setOutlineThickness(3);
     
-            char2 = new SpriteFont("Short", 450, 323, "Apple Chancery", 30, new Color(184, 15, 10));
+            char2 = new SpriteFont("Short", 570, 317, "Apple Chancery", 30, new Color(184, 15, 10));
             char2.setOutlineColor(Color.black);
             char2.setOutlineThickness(3);
 
-            background = ImageLoader.load("ContextScreen0.png");
+            background = ImageLoader.load("characterCustomization.png");
             keyPressTimer = 0;
             menuItemSelected = -1;
             keyLocker.lockKey(Key.SPACE);
@@ -85,9 +86,9 @@ public class CharacterSelectScreen extends Screen {
             // Set pointer location and color based on the hovered item
             pointerLocationY = 330;
             if (currentMenuItemHovered == 0) {
-                pointerLocationX = 170;
+                pointerLocationX = 190;
             } else if (currentMenuItemHovered == 1) {
-                pointerLocationY = 470;
+                pointerLocationY = 540;
             } 
     
     
@@ -95,12 +96,12 @@ public class CharacterSelectScreen extends Screen {
             if (currentMenuItemHovered == 0) {
                 char1.setColor(new Color(184, 15, 10));
                 char1.setColor(new Color(184, 15, 10));
-                pointerLocationX = 170;
+                pointerLocationX = 190;
                 pointerLocationY = 330;
             } else if (currentMenuItemHovered == 1) {
                 char2.setColor(new Color(184, 15, 10));
                 char2.setColor(new Color(184, 15, 10));
-                pointerLocationX = 470;
+                pointerLocationX = 540;
                 pointerLocationY = 330;
             }
     
@@ -125,7 +126,6 @@ public class CharacterSelectScreen extends Screen {
             int screenWidth = 800;
             int screenHeight = 590;
             graphicsHandler.drawImage(background, 0, 0, screenWidth, screenHeight);
-    
             getChar.draw(graphicsHandler);
             char1.draw(graphicsHandler);
             char2.draw(graphicsHandler);
