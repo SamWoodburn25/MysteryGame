@@ -10,7 +10,8 @@
  package Maps;
 
  import Level.*;
- import Scripts.SimpleTextScript;
+import Scripts.LockedAreaScript;
+import Scripts.SimpleTextScript;
 import Scripts.House1Map.BrotherExGFScript;
 import Scripts.House1Map.InvestigatorScript;
 import Scripts.House1Map.TreeScript;
@@ -59,18 +60,27 @@ import Scripts.House1Map.TreeScript;
      public ArrayList<Trigger> loadTriggers() {
          ArrayList<Trigger> triggers = new ArrayList<>();
  
+         //trigger to enter the main character's house
          Point house1 = getPositionByTileIndex(21, 13);
-         // Point tileLocation1 = getMapTile(16, 19).getLocation();
-         // entering main home
-         // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 60,60, new
-         // EnterHomeScript(), "enteringHome"));
          triggers.add(new Trigger(house1.x, house1.y, 95, 10, new TownToHouse1Script(), "townToHouse1"));
  
  
          // trigger to enter butcher
          Point butcherShop = getPositionByTileIndex(69, 46);
-         triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScrpt(), "townToButcher"));
+         triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScript(), "townToButcher"));
+
+         //trigger to enter cemetery
+         Point cemetery = getPositionByTileIndex(96, 18);
+         triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
  
+ 
+         Point lockedCemetery = getPositionByTileIndex(96, 21);
+         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
+ 
+ 
+
+
+
         // pop up image trigger
         Point photoLoc = getPositionByTileIndex(68, 13);
         triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 5, new PopUpGraveyardImageScript(), "graveyardImage"));

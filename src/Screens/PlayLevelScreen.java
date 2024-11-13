@@ -21,6 +21,7 @@ import Game.ScreenCoordinator;
 import Level.*;
 import Maps.TownMap;
 import Maps.ButcherShopMap;
+import Maps.CemeteryMap;
 import Maps.House1Map;
 import Players.MC;
 import Utils.Direction;
@@ -40,7 +41,7 @@ public class PlayLevelScreen extends Screen {
     protected Point point;
     //maps
     protected Map currMap;
-    protected Map house1Map, townMap, butcherShop;
+    protected Map house1Map, townMap, butcherShop, cemetery;
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected ScaryGraveyardScreen scaryGraveyardScreen;
@@ -87,6 +88,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("townToHouse1", false);
         flagManager.addFlag("townToButcher", false);
         flagManager.addFlag("butcherToTown", false);
+        flagManager.addFlag("townToCemetery", false);
+        flagManager.addFlag("cemeteryToTown", false);
+
 
         //flag to manage pop-up
         flagManager.addFlag("popUpButcherImage", false);
@@ -100,6 +104,11 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("openExgfPuzzle", false);
         flagManager.addFlag("exGfPuzzleSolved", false);
 
+        flagManager.addFlag("lockedCemetery", false);
+
+
+
+
         
         // Define and set up maps
         house1Map = new House1Map();
@@ -110,6 +119,10 @@ public class PlayLevelScreen extends Screen {
 
         butcherShop = new ButcherShopMap();
         butcherShop.setFlagManager(flagManager);
+
+        cemetery = new CemeteryMap();
+        cemetery.setFlagManager(flagManager);
+        
 
         //define and set up pop-up with flag manager
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
@@ -288,6 +301,8 @@ public class PlayLevelScreen extends Screen {
             
         }  
 
+       
+
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
          */
@@ -353,6 +368,39 @@ public class PlayLevelScreen extends Screen {
             currMap.loadScripts();
             flagManager.unsetFlag("butcherToTown");
             System.out.println("entering town");
+        }
+
+        //leaving town to enter cemetery
+        if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+            currMap = cemetery;
+            point = currMap.getPositionByTileIndex(1, 23); 
+            player.setMap(currMap);
+            player.setLocation(point.x, point.y);
+            player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
+            flagManager.unsetFlag("townToCemetery");
+            
+        }
+        
+        //leaving cemetery to enter town
+        if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
+            currMap = townMap;
+            point = currMap.getPositionByTileIndex(95, 17); 
+            player.setMap(currMap);
+            player.setLocation(point.x, point.y);
+            player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            player.setFacingDirection(Direction.UP);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
+            flagManager.unsetFlag("cemeteryToTown");
+    
         }
     }
 
