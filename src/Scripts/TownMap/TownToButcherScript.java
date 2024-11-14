@@ -14,7 +14,7 @@ import Level.*;
 import ScriptActions.*;
 
 
-public class TownToButcherScrpt extends Script{
+public class TownToButcherScript extends Script{
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
