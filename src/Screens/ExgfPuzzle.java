@@ -1,3 +1,13 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Screens
+ * class- exgfPuzzle: puzzle to help the brothers ex girlfriend (helping her with her crossword), triggered
+ * in conversation with her
+ */
+
 package Screens;
 
 import java.awt.Color;
