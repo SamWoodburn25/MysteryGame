@@ -2147,7 +2147,17 @@ MapTileBuilder btmNeonSignTile = new MapTileBuilder(barWallFrame)
 
 mapTiles.add(btmNeonSignTile);
 
+//bottom left decoder clue 1 
+Frame btmlftClue1Frame = new FrameBuilder(getSubImage(9, 10))
+.withScale(tileScale)
 
+.build();
+
+MapTileBuilder btmlftClue1Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(btmlftClue1Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(btmlftClue1Tile);
 
 
 

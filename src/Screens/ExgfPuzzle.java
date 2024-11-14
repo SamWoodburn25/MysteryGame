@@ -201,7 +201,7 @@ public class ExgfPuzzle extends Screen{
                     inputText.append('D');
                 }
                 else{
-                    bKeyUsed = true;
+                    dKeyUsed = true;
                 }
                 keyLocker.lockKey(Key.D);
             }
