@@ -20,6 +20,7 @@ import Screens.PlayLevelScreen;
 import Screens.CharacterSelectScreen;
 import Screens.Context0Screen;
 import Screens.Context1Screen;
+import Screens.MissingPosterScreen;
 
 
 
@@ -71,13 +72,16 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new CreditsScreen(this);
 						break;
 					case HOWTOPLAY:
-					currentScreen = new HowToPlay(this);
-					break;
+						currentScreen = new HowToPlay(this);
+						break;
 					case CONTEXT0:
 						currentScreen = new Context0Screen(this);
 						break;
 					case CONTEXT1:
 						currentScreen = new Context1Screen(this);
+						break;
+					case MISSINGPOSTER:
+						currentScreen = new MissingPosterScreen(this);
 						break;
 					case CHARSELECT:
 						currentScreen = new CharacterSelectScreen(this);

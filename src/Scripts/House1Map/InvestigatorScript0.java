@@ -17,7 +17,7 @@ package Scripts.House1Map;
  
  // script for talking to bug npc
  // checkout the documentation website for a detailed guide on how this script works
- public class InvestigatorScript extends Script {
+ public class InvestigatorScript0 extends Script {
  
      @Override
      public ArrayList<ScriptAction> loadScriptActions() {

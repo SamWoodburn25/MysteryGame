@@ -26,6 +26,7 @@ import Maps.House1Map;
 import Players.MC;
 import Utils.Direction;
 import Utils.Point;
+import java.awt.event.MouseEvent;
 
 
 
@@ -45,10 +46,12 @@ public class PlayLevelScreen extends Screen {
     //pop up variables
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected ScaryGraveyardScreen scaryGraveyardScreen;
+    protected FBIFileScreen fileScreen;
     protected FridgeScreen fridgeScreen;
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
     protected boolean drawGravePopUP = false;
+    protected boolean drawFilePopUp = false;
     protected boolean drawFridgePopUP = false;
     protected boolean drawCharSelect = false;
     //butcher puzzle variables
@@ -97,6 +100,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
         flagManager.addFlag("charSelect", false);
+        flagManager.addFlag("fileImage", false);
 
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
@@ -128,6 +132,7 @@ public class PlayLevelScreen extends Screen {
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
         scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
+        fileScreen = new FBIFileScreen(flagManager);
 
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
@@ -237,6 +242,19 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
+        }
+        //file image pop up
+        if(currMap.getFlagManager().isFlagSet("fileImage")){
+            drawFilePopUp = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawFilePopUp = false;
+                currMap.getFlagManager().unsetFlag("fileImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
         }  
         if(currMap.getFlagManager().isFlagSet("popUpFridgeImage")){
             drawFridgePopUP = true;
@@ -297,7 +315,7 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.SPACE)){
                 keyLocker.unlockKey(Key.SPACE);
             } 
-
+            
             
         }  
 
@@ -425,6 +443,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(drawFridgePopUP){
                         fridgeScreen.draw(graphicsHandler);
+                    }
+                    else if (drawFilePopUp){
+                        fileScreen.draw(graphicsHandler);
                     }
                     else if(drawPuzzle){
                         butcherPuzzle.draw(graphicsHandler);

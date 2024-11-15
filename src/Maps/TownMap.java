@@ -13,8 +13,10 @@
 import Scripts.LockedAreaScript;
 import Scripts.SimpleTextScript;
 import Scripts.House1Map.BrotherExGFScript;
-import Scripts.House1Map.InvestigatorScript;
+import Scripts.House1Map.InvestigatorScript0;
+import Scripts.House1Map.InvestigatorScript1;
 import Scripts.House1Map.TreeScript;
+import Scripts.TownMap.PopUpFileImageScript;
  import Scripts.TownMap.*;
  import Tilesets.TownTileset;
  import Utils.Point;
@@ -36,9 +38,14 @@ import Scripts.House1Map.TreeScript;
          npcs.add(max);
 
 
-         Investigator investigator = new Investigator(1, getMapTile(30, 50).getLocation().subtractY(40));
-         investigator.setInteractScript(new InvestigatorScript());
-         npcs.add(investigator);
+         Investigator investigator0 = new Investigator(1, getMapTile(30, 50).getLocation().subtractY(40));
+         investigator0.setInteractScript(new InvestigatorScript0());
+         npcs.add(investigator0);
+
+         Investigator investigator1 = new Investigator(1, getMapTile(91, 14).getLocation().subtractY(40));
+         investigator1.setInteractScript(new InvestigatorScript1());
+         npcs.add(investigator1);
+
 
          Boss boss = new Boss(1, getMapTile(26, 52).getLocation().subtractY(40));
          npcs.add(boss);
@@ -77,9 +84,9 @@ import Scripts.House1Map.TreeScript;
          Point lockedCemetery = getPositionByTileIndex(96, 21);
          triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
- 
-
-
+        // // trigger for file pickup
+        // Point fileImage = getPositionByTileIndex(95, 77);
+        // triggers.add(new Trigger(fileImage.x, fileImage.y, 100, 100, new PopUpFileImageScript(), "fileImage"));
 
         // pop up image trigger
         Point photoLoc = getPositionByTileIndex(68, 13);
@@ -91,6 +98,8 @@ import Scripts.House1Map.TreeScript;
      @Override
      public void loadScripts() {
  
+         getMapTile(95, 77).setInteractScript(new PopUpFileImageScript());
+
          getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
  
          getMapTile(73, 44).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
@@ -99,7 +108,12 @@ import Scripts.House1Map.TreeScript;
  
          getMapTile(52, 44).setInteractScript(new SimpleTextScript("Town Hall"));
  
+
+
+
          getMapTile(2, 6).setInteractScript(new TreeScript());
+
+
      }
  
  }
