@@ -39,6 +39,7 @@ public class PlayLevelScreen extends Screen {
     protected JournalUI journal;
     private boolean journalVisible = false;
     protected Point point;
+   
     //maps
     protected Map currMap;
     protected Map house1Map, townMap, butcherShop, cemetery;
@@ -59,6 +60,8 @@ public class PlayLevelScreen extends Screen {
     protected ExgfPuzzle exgfPuzzle;
     protected boolean exPuzzleVisible = false;
     protected boolean exDrawPuzzle = false;
+    
+
 
     //character selection variables
     protected CharacterSelectScreen charSelectScreen;
@@ -67,6 +70,7 @@ public class PlayLevelScreen extends Screen {
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        
     }
 
     //initialize, set up screen
@@ -104,7 +108,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("openExgfPuzzle", false);
         flagManager.addFlag("exGfPuzzleSolved", false);
 
-        flagManager.addFlag("lockedCemetery", false);
+     
 
 
 
@@ -283,7 +287,9 @@ public class PlayLevelScreen extends Screen {
         if(currMap.getFlagManager().isFlagSet("exGfPuzzleSolved")) {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
-        }                                                                                             
+        }       
+        
+      
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -298,8 +304,9 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.unlockKey(Key.SPACE);
             } 
 
-            
         }  
+
+
 
       
 
@@ -338,6 +345,7 @@ public class PlayLevelScreen extends Screen {
             currMap.loadScripts();
             flagManager.unsetFlag("townToHouse1");
         }
+    
         //leaving town to enter the butcher shop map
          if (currMap.getFlagManager().isFlagSet("townToButcher")) {
             currMap = butcherShop;
@@ -402,6 +410,7 @@ public class PlayLevelScreen extends Screen {
             flagManager.unsetFlag("cemeteryToTown");
     
         }
+        
     }
 
     public void draw(GraphicsHandler graphicsHandler) {

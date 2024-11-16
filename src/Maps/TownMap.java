@@ -74,9 +74,7 @@ import Scripts.House1Map.TreeScript;
          triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
  
  
-         Point lockedCemetery = getPositionByTileIndex(96, 21);
-         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
- 
+        
  
 
 
