@@ -16,6 +16,7 @@ import NPCs.BodyBone;
 import NPCs.BodyBoneThree;
 import NPCs.BodyBoneTwo;
 import NPCs.BottomLegs;
+import NPCs.Brother;
 import NPCs.Crow;
 import NPCs.RandBone;
 import NPCs.Skull;
@@ -24,6 +25,7 @@ import NPCs.SkullThree;
 import NPCs.SkullTwo;
 import Scripts.CemeteryMap.CemeteryToTownScript;
 import Scripts.CemeteryMap.DeathScript;
+import Scripts.House1Map.BrotherScript;
 import Tilesets.CemeteryTileset;
 
 import Utils.Point;
@@ -75,6 +77,10 @@ public class CemeteryMap extends Map {
 
         RandBone randBone2 = new RandBone (4, getMapTile(11,29).getLocation().subtractY(0));
         npcs.add(randBone2);
+        
+        Brother max = new Brother(1, getMapTile(28, 5).getLocation().subtractY(0));
+        max.setInteractScript(new BrotherScript());
+        npcs.add(max);
 
         return npcs;
     }

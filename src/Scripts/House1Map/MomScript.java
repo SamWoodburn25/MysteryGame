@@ -65,6 +65,7 @@ public class MomScript extends Script {
                 addScriptAction(new TextboxScriptAction("Not much, huh? I see you’ve got your brother’s journal [j]\n, maybe reading it will help you feel better."));
                 addScriptAction(new TextboxScriptAction("Hmm... maybe I’ll give the investigator a call to see how\n things are going... probably nothing as usual... huh? "));
                 addScriptAction(new TextboxScriptAction("Nothing honey, carry on with your day, you’ve got to relax\n after you finally come back home. "));
+                addScriptAction(new ChangeFlagScriptAction("lieMom", true));
             }});
         }});
 

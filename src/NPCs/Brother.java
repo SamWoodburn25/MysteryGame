@@ -10,11 +10,11 @@ import Level.NPC;
 import Utils.Point;
 import java.util.HashMap;
 
-// This class is for the ex gf NPC
-public class Boss extends NPC {
+// This class is for the mom NPC
+public class Brother extends NPC {
 
-    public Boss(int id, Point location) {
-        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("carman.png"), 45, 70), "BOUNCE_RIGHT");
+    public Brother(int id, Point location) {
+        super(id, location.x, location.y, new SpriteSheet(ImageLoader.load("alex.png"), 40, 100), "BOUNCE_RIGHT");
     }
 
     @Override
@@ -22,37 +22,51 @@ public class Boss extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
-                            .withScale(3)
+                            .withScale(2)
                             .withBounds(4, 72, 28, 2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
-                           .withScale(3)
+                           .withScale(2)
                            .withBounds(4, 72, 28, 2)
                            .build()
            });
-           put("BOUNCE_RIGHT", new Frame[] {
+           put("BOUNCE_LEFT", new Frame[] {
             new FrameBuilder(spriteSheet.getSprite(0, 0), 10)
-                    .withScale(3)
-                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 48, 28, 2)
+                    .withScale(2)
+                    .withBounds(4, 72, 28, 2)
                     .build(),
             new FrameBuilder(spriteSheet.getSprite(0, 1), 10)
-                    .withScale(3)
-                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 48, 28, 2)
+                    .withScale(2)
+                    .withBounds(4, 72, 28, 2)
+                    .build(),
+            new FrameBuilder(spriteSheet.getSprite(0, 2), 10)
+                    .withScale(2)
+                    .withBounds(4, 72, 28, 2)
+                    .build(),
+            new FrameBuilder(spriteSheet.getSprite(0, 3), 10)
+                    .withScale(2)
+                    .withBounds(4, 72, 28, 2)
                     .build()
             });
-            put("BOUNCE_LEFT", new Frame[] {
+            put("BOUNCE_RIGHT", new Frame[] {
                 new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
-                        .withScale(3)
-                        .withBounds(4, 48, 28, 2)
+                        .withScale(2)
+                        .withBounds(4, 72, 28, 2)
                         .build(),
                 new FrameBuilder(spriteSheet.getSprite(0, 1), 12)
-                        .withScale(3)
-                        .withBounds(4, 48, 28, 2)
+                        .withScale(2)
+                        .withBounds(4, 72, 28, 2)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(0, 2), 12)
+                        .withScale(2)
+                        .withBounds(4, 72, 28, 2)
+                        .build(),
+                new FrameBuilder(spriteSheet.getSprite(0, 3), 12)
+                        .withScale(2)
+                        .withBounds(4, 72, 28, 2)
                         .build()
             });
         }};
