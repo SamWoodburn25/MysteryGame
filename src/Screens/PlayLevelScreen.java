@@ -39,6 +39,7 @@ public class PlayLevelScreen extends Screen {
     protected JournalUI journal;
     private boolean journalVisible = false;
     protected Point point;
+   
     //maps
     protected Map currMap;
     protected Map house1Map, townMap, butcherShop, cemetery;
@@ -61,6 +62,10 @@ public class PlayLevelScreen extends Screen {
     protected ExgfPuzzle exgfPuzzle;
     protected boolean exPuzzleVisible = false;
     protected boolean exDrawPuzzle = false;
+    //graveyard puzzle variables
+    protected GraveYardPuzzle graveyardPuzzle;
+    protected boolean graveyardPuzzleVisible = false;
+    protected boolean graveyardDrawPuzzle = false;
 
     //character selection variables
     protected CharacterSelectScreen charSelectScreen;
@@ -69,6 +74,7 @@ public class PlayLevelScreen extends Screen {
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
+        
     }
 
     //initialize, set up screen
@@ -81,9 +87,19 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasTalkedToMax", false);
+        flagManager.addFlag("max_aboutPeter", false);
+        flagManager.addFlag("max_aboutEx", false);
         flagManager.addFlag("hasTalkedToButcher", false);
         flagManager.addFlag("hasTalkedToGF", false);
+        flagManager.addFlag("hasTalkedToDrugDealerDaughter", false);
+        flagManager.addFlag("hasTalkedToDrugDealer", false);
+        flagManager.addFlag("hasTalkedToDamien", false);
 
+        //flags for endings
+        flagManager.addFlag("lieMom", false);
+        flagManager.addFlag("badButcher", false);
+        flagManager.addFlag("badDD", false);
+        flagManager.addFlag("badGF", false);
 
         //flags for map switching
         flagManager.addFlag("house1ToTown", false);
@@ -106,8 +122,11 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("butcherPuzzleSolved", false);
         flagManager.addFlag("openExgfPuzzle", false);
         flagManager.addFlag("exGfPuzzleSolved", false);
+        flagManager.addFlag("openGraveyardPuzzle", false);
+        flagManager.addFlag("graveyardPuzzleSolved", false);
 
-        flagManager.addFlag("lockedCemetery", false);
+        //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
+        flagManager.addFlag("deathScreen", false);
 
 
 
@@ -136,6 +155,7 @@ public class PlayLevelScreen extends Screen {
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
         exgfPuzzle = new ExgfPuzzle(flagManager);
+        graveyardPuzzle = new GraveYardPuzzle(flagManager);
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
@@ -196,6 +216,9 @@ public class PlayLevelScreen extends Screen {
         }
         if(exDrawPuzzle){
             exgfPuzzle.update();
+        }
+        if(graveyardDrawPuzzle){
+            graveyardPuzzle.update();
         }
         //if the journal is open update that
         if (journalVisible) {
@@ -300,7 +323,8 @@ public class PlayLevelScreen extends Screen {
         if(currMap.getFlagManager().isFlagSet("exGfPuzzleSolved")) {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
-        }                                                                                             
+        }  
+                                                                                                   
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -318,12 +342,15 @@ public class PlayLevelScreen extends Screen {
             
         }  
 
-       
+
+
+      
 
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
          */
         //leaving through door at bottom of house1 to get to down
+        
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
             point = currMap.getPositionByTileIndex(21, 15);
@@ -355,6 +382,7 @@ public class PlayLevelScreen extends Screen {
             currMap.loadScripts();
             flagManager.unsetFlag("townToHouse1");
         }
+    
         //leaving town to enter the butcher shop map
          if (currMap.getFlagManager().isFlagSet("townToButcher")) {
             currMap = butcherShop;
@@ -388,10 +416,61 @@ public class PlayLevelScreen extends Screen {
         }
 
         //leaving town to enter cemetery
+        // if(flagManager.isFlagSet("unlockedCemetery")){
+        //     if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+        //         currMap = cemetery;
+        //         point = currMap.getPositionByTileIndex(1, 23); 
+        //         player.setMap(currMap);
+        //         player.setLocation(point.x, point.y);
+        //         player.setFacingDirection(Direction.DOWN);
+        //         currMap.setPlayer(player);
+        //         currMap.preloadScripts();
+        //         currMap.setPlayer(player);
+        //         currMap.preloadScripts();
+        //         currMap.loadScripts();
+        //         flagManager.unsetFlag("townToCemetery");
+                
+        //     }
+           
+                // if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+                // currMap = cemetery;
+                // point = currMap.getPositionByTileIndex(1, 23); 
+                // player.setMap(currMap);
+                // player.setLocation(point.x, point.y);
+                // player.setFacingDirection(Direction.DOWN);
+                // currMap.setPlayer(player);
+                // currMap.preloadScripts();
+                // currMap.setPlayer(player);
+                // currMap.preloadScripts();
+                // currMap.loadScripts();
+                // flagManager.unsetFlag("townToCemetery");
+
+                // keyLocker.lockKey(Key.C);
+                
+        
         if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+            //open graveyard puzzle
+            graveyardDrawPuzzle = true;
+            currMap.getFlagManager().setFlag("openGraveyardPuzzle");
+            //close puzzle on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                graveyardDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                currMap.getFlagManager().setFlag("cemeteryToTown");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+            //if you solve it close the puzzle and set cemetery map
+            if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
+                graveyardDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+            } 
             currMap = cemetery;
             point = currMap.getPositionByTileIndex(1, 23); 
             player.setMap(currMap);
+            player.update();
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
@@ -400,26 +479,30 @@ public class PlayLevelScreen extends Screen {
             currMap.preloadScripts();
             currMap.loadScripts();
             flagManager.unsetFlag("townToCemetery");
+        }
             
+            //leaving cemetery to enter town
+            if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
+                currMap = townMap;
+                point = currMap.getPositionByTileIndex(92, 16); 
+                player.setMap(currMap);
+                player.setLocation(point.x, point.y);
+                player.setFacingDirection(Direction.DOWN);
+                currMap.setPlayer(player);
+                currMap.preloadScripts();
+                player.setFacingDirection(Direction.UP);
+                currMap.setPlayer(player);
+                currMap.preloadScripts();
+                currMap.loadScripts();
+                flagManager.unsetFlag("cemeteryToTown");
+            }
+
+            //death
+            if(currMap.getFlagManager().isFlagSet("deathScreen")) {
+                screenCoordinator.setGameState(GameState.DEATH);
+               
+            }
         }
-        
-        //leaving cemetery to enter town
-        if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
-            currMap = townMap;
-            point = currMap.getPositionByTileIndex(95, 17); 
-            player.setMap(currMap);
-            player.setLocation(point.x, point.y);
-            player.setFacingDirection(Direction.DOWN);
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            player.setFacingDirection(Direction.UP);
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            currMap.loadScripts();
-            flagManager.unsetFlag("cemeteryToTown");
-    
-        }
-    }
 
     public void draw(GraphicsHandler graphicsHandler) {
         //if the journal is currently open draw that
@@ -451,6 +534,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(exDrawPuzzle){
                         exgfPuzzle.draw(graphicsHandler);
+                    }
+                    else if(graveyardDrawPuzzle && !currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")){
+                        graveyardPuzzle.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{

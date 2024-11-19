@@ -88,9 +88,9 @@ import Scripts.TownMap.PopUpFileImageScript;
          Point lockedCemetery = getPositionByTileIndex(96, 21);
          triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
-        // // trigger for file pickup
-        // Point fileImage = getPositionByTileIndex(95, 75);
-        // triggers.add(new Trigger(fileImage.x, fileImage.y, 40, 50, new PopUpFileImageScript(), "fileImage"));
+        // trigger for file pickup
+        Point fileImage = getPositionByTileIndex(95, 75);
+        triggers.add(new Trigger(fileImage.x, fileImage.y, 40, 50, new PopUpFileImageScript(), "fileImage"));
 
         // pop up image trigger
         Point photoLoc = getPositionByTileIndex(68, 13);

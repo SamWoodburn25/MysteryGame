@@ -17,9 +17,9 @@ public class InvestigatorScript2 extends Script{
          scriptActions.add(new NPCFacePlayerScriptAction());
  
          scriptActions.add(new TextboxScriptAction() {{
-            addText("Huh? Oh hey kid... oh Alex? He your brother or \nsomething? *puffs cigarette* ahhh him.");
-            addText("That case has been closed for a while now, ruled it a\n disappearance. Nothing we can do about it, sorry. ");
-            addText("Sorry kid, we did all we could do.  ");
+            addText("Huh? Oh hey kid... oh Alex? He your brother or something? \n*puffs cigarette* ahhh him.");
+            addText("What information have we gotten so far? Listen kid, let the \nprofessionals handle this");
+            addText("We don't need any children messing up the investigation. \nJust stay home and comfort your mom.");
          }});
  
          scriptActions.add(new NPCUnlockScriptAction());

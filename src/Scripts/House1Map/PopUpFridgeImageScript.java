@@ -11,7 +11,6 @@ package Scripts.House1Map;
 
 import java.util.ArrayList;
 
-import Engine.ImageLoader;
 import Level.*;
 import ScriptActions.*;
  
