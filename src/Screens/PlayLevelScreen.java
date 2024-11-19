@@ -112,6 +112,9 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("openGraveyardPuzzle", false);
         flagManager.addFlag("unlockedCemetery", false);
 
+        //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
+        flagManager.addFlag("deathScreen", false);
+
 
 
 
@@ -325,6 +328,8 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.unlockKey(Key.SPACE);
             } 
 
+        
+
         }  
 
 
@@ -449,6 +454,12 @@ public class PlayLevelScreen extends Screen {
                 currMap.preloadScripts();
                 currMap.loadScripts();
                 flagManager.unsetFlag("cemeteryToTown");
+            }
+
+            //death
+            if(currMap.getFlagManager().isFlagSet("deathScreen")) {
+                screenCoordinator.setGameState(GameState.DEATH);
+               
             }
         }
         

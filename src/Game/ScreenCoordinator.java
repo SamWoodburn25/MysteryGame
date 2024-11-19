@@ -14,6 +14,7 @@ import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
+import Screens.Death;
 import Screens.HowToPlay;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
@@ -71,8 +72,8 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new CreditsScreen(this);
 						break;
 					case HOWTOPLAY:
-					currentScreen = new HowToPlay(this);
-					break;
+						currentScreen = new HowToPlay(this);
+						break;
 					case CONTEXT0:
 						currentScreen = new Context0Screen(this);
 						break;
@@ -81,6 +82,10 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CHARSELECT:
 						currentScreen = new CharacterSelectScreen(this);
+						break;
+					case DEATH:
+						currentScreen = new Death(this);
+				
 				}
 				currentScreen.initialize();
 			}
