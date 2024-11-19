@@ -15,6 +15,7 @@ import Scripts.SimpleTextScript;
 import Scripts.House1Map.BrotherExGFScript;
 import Scripts.House1Map.InvestigatorScript0;
 import Scripts.House1Map.InvestigatorScript1;
+import Scripts.House1Map.InvestigatorScript2;
 import Scripts.House1Map.TreeScript;
 import Scripts.TownMap.PopUpFileImageScript;
  import Scripts.TownMap.*;
@@ -38,14 +39,17 @@ import Scripts.TownMap.PopUpFileImageScript;
          npcs.add(max);
 
 
-         Investigator investigator0 = new Investigator(1, getMapTile(30, 50).getLocation().subtractY(40));
+         Investigator investigator0 = new Investigator(1, getMapTile(26, 50).getLocation().subtractY(40));
          investigator0.setInteractScript(new InvestigatorScript0());
          npcs.add(investigator0);
 
-         Investigator investigator1 = new Investigator(1, getMapTile(91, 14).getLocation().subtractY(40));
+         Investigator investigator1 = new Investigator(1, getMapTile(91, 8).getLocation().subtractY(40));
          investigator1.setInteractScript(new InvestigatorScript1());
          npcs.add(investigator1);
 
+         Investigator investigator2 = new Investigator(1, getMapTile(17, 18).getLocation().subtractY(40));
+         investigator2.setInteractScript(new InvestigatorScript2());
+         npcs.add(investigator2);
 
          Boss boss = new Boss(1, getMapTile(26, 52).getLocation().subtractY(40));
          npcs.add(boss);
@@ -85,8 +89,8 @@ import Scripts.TownMap.PopUpFileImageScript;
          triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
         // // trigger for file pickup
-        // Point fileImage = getPositionByTileIndex(95, 77);
-        // triggers.add(new Trigger(fileImage.x, fileImage.y, 100, 100, new PopUpFileImageScript(), "fileImage"));
+        // Point fileImage = getPositionByTileIndex(95, 75);
+        // triggers.add(new Trigger(fileImage.x, fileImage.y, 40, 50, new PopUpFileImageScript(), "fileImage"));
 
         // pop up image trigger
         Point photoLoc = getPositionByTileIndex(68, 13);
@@ -97,8 +101,15 @@ import Scripts.TownMap.PopUpFileImageScript;
  
      @Override
      public void loadScripts() {
- 
-         getMapTile(95, 77).setInteractScript(new PopUpFileImageScript());
+        
+        // file image needs multiple so player can touch file from anywhere and open
+        getMapTile(94, 73).setInteractScript(new PopUpFileImageScript());
+        getMapTile(95, 73).setInteractScript(new PopUpFileImageScript());
+        getMapTile(93, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(94, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(94, 75).setInteractScript(new PopUpFileImageScript());
+        getMapTile(95, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(95, 75).setInteractScript(new PopUpFileImageScript());
 
          getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
  

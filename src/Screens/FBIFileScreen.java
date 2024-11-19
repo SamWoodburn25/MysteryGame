@@ -21,7 +21,7 @@ public class FBIFileScreen {
     public FBIFileScreen(FlagManager flagManager) {
         this.flagManager = flagManager;
         // Load file pop up image
-        fileImage = ImageLoader.load("graveyardPopUp.png");
+        fileImage = ImageLoader.load("SuspectList.png");
     }
       
     //set flag manager

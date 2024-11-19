@@ -22,7 +22,7 @@ public class PopUpFileImageScript extends Script{
 
         //change the image interact flag to true
         scriptActions.add(new ChangeFlagScriptAction("fileImage", true));
-      
+        
         return scriptActions;
     }
 }

@@ -2148,6 +2148,15 @@ MapTileBuilder btmNeonSignTile = new MapTileBuilder(barWallFrame)
 mapTiles.add(btmNeonSignTile);
 
 
+// file
+Frame fileFrame = new FrameBuilder(getSubImage(4, 17)) 
+.withScale(tileScale)
+.build();
+
+MapTileBuilder fileTile = new MapTileBuilder(fileFrame)
+.withTileType(TileType.PASSABLE);
+
+mapTiles.add(fileTile);
 
 
 

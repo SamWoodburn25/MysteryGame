@@ -26,7 +26,6 @@ import Maps.House1Map;
 import Players.MC;
 import Utils.Direction;
 import Utils.Point;
-import java.awt.event.MouseEvent;
 
 
 
