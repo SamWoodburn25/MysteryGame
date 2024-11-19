@@ -253,7 +253,7 @@ public class ExgfPuzzle extends Screen{
          * for other people looking at this, i know there is a better
          * way to do it but i don't have time and this is easiest
          */
-        protected boolean aKeyUsed, bKeyUsed, cKeyUsed, dKeyUsed, eKeyUsed, fKeyUsed, gKeyUsed, hKeyUsed, iKeyUsed, jKeyUsed, kKeyUsed, lKeyUsed, mKeyUsed, nKeyUsed, oKeyUsed, pKeyUsed, qKeyUsed, rKeyUsed, sKeyUsed, tKeyUsed, uKeyUsed, vKeyUsed, wKeyUsed, xKeyUsed, yKeyUsed, zKeyUsed = false;
+        protected boolean aKeyUsed, bKeyUsed, cKeyUsed, dKeyUsed, eKeyUsed, fKeyUsed, gKeyUsed, hKeyUsed, iKeyUsed, jKeyUsed, kKeyUsed, lKeyUsed, mKeyUsed, nKeyUsed, oKeyUsed, pKeyUsed, qKeyUsed, rKeyUsed, sKeyUsed, tKeyUsed, uKeyUsed, vKeyUsed, wKeyUsed, xKeyUsed, yKeyUsed, zKeyUsed = true;
 
         public InputTextBox(int x, int y, int width, int height) {
             this.x = x;
