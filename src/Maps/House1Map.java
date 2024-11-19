@@ -13,6 +13,8 @@ import EnhancedMapTiles.PushableRock;
 import Level.*;
 import NPCs.*;
 import Scripts.SimpleTextScript;
+import Scripts.ButcherShopMap.PopUpButcherImageScript;
+import Scripts.House.PopUpHouseImage;
 import Scripts.House1Map.*;
 import Tilesets.CommonTileset;
 import Utils.Point;
@@ -58,6 +60,8 @@ public class House1Map extends Map {
         Point townLoc = getPositionByTileIndex(17, 25);
         
         System.out.println("Trigger for transition set at: " + townLoc.x + ", " + townLoc.y);
+        
+
         // Point tileLocation1 = getMapTile(6, 14).getLocation();
         /*
          * triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(),
@@ -73,6 +77,10 @@ public class House1Map extends Map {
         //fridge pop up trigger
         Point photoLoc = getPositionByTileIndex(24, 15);
         triggers.add(new Trigger(photoLoc.x, photoLoc.y, 1, 1, new PopUpFridgeImageScript(), "popUpButcherImage"));
+
+        //  alex pop up image trigger
+        Point photoLoc1 = getPositionByTileIndex(16, 14);
+        triggers.add(new Trigger(photoLoc1.x, photoLoc1.y, 1, 1, new PopUpHouseImage(), "popUpHouseImage"));
 
         
         triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));

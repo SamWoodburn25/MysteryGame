@@ -34,6 +34,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected LostScreen lostScreen;
     protected FlagManager flagManager;
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
@@ -43,11 +44,13 @@ public class PlayLevelScreen extends Screen {
     protected Map currMap;
     protected Map house1Map, townMap, butcherShop, cemetery;
     //pop up variables
+    protected AFrameHPScreen aFrameHPScreen;
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected ScaryGraveyardScreen scaryGraveyardScreen;
     protected FridgeScreen fridgeScreen;
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
+    protected boolean drawPopUpHouse=false;
     protected boolean drawGravePopUP = false;
     protected boolean drawFridgePopUP = false;
     protected boolean drawCharSelect = false;
@@ -93,6 +96,7 @@ public class PlayLevelScreen extends Screen {
 
 
         //flag to manage pop-up
+        flagManager.addFlag("popUpHouseImage",false);
         flagManager.addFlag("popUpButcherImage", false);
         flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
@@ -125,6 +129,7 @@ public class PlayLevelScreen extends Screen {
         
 
         //define and set up pop-up with flag manager
+        aFrameHPScreen= new AFrameHPScreen(flagManager);
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
         scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
@@ -171,6 +176,8 @@ public class PlayLevelScreen extends Screen {
 
         //set up win screen
         winScreen = new WinScreen(this);
+        lostScreen = new LostScreen(this);
+
     }
 
     //update
@@ -210,8 +217,25 @@ public class PlayLevelScreen extends Screen {
                 case LEVEL_COMPLETED:
                     winScreen.update();
                     break;
+                case LEVEL_NOT_COMPLETED:
+                    lostScreen.update();
+                    break;
             }
         }
+
+        //if pop up flag set draw the image
+        if(currMap.getFlagManager().isFlagSet("popUpHouseImage")){
+            drawPopUP = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawPopUP = false;
+                currMap.getFlagManager().unsetFlag("popUpHouseImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        } 
 
         //if pop up flag set draw the image
         if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
@@ -307,6 +331,7 @@ public class PlayLevelScreen extends Screen {
          * flags for switching maps: update player, flags, and scripts for each change of currMap
          */
         //leaving through door at bottom of house1 to get to down
+        
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
             point = currMap.getPositionByTileIndex(21, 15);
@@ -432,6 +457,9 @@ public class PlayLevelScreen extends Screen {
                     else if(exDrawPuzzle){
                         exgfPuzzle.draw(graphicsHandler);
                     }
+                    else if (drawPopUpHouse){
+                        aFrameHPScreen.draw(graphicsHandler);
+                    }
                     //otherwise draw current map
                     else{
                         currMap.draw(player, graphicsHandler);
@@ -439,6 +467,9 @@ public class PlayLevelScreen extends Screen {
                     break;
                 case LEVEL_COMPLETED:
                     winScreen.draw(graphicsHandler);
+                    break;
+                case  LEVEL_NOT_COMPLETED:
+                    lostScreen.draw(graphicsHandler);
                     break;
             }
         }
@@ -463,6 +494,6 @@ public class PlayLevelScreen extends Screen {
 
     //this enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        RUNNING, LEVEL_COMPLETED, LEVEL_NOT_COMPLETED
     }
 }

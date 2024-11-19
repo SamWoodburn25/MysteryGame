@@ -1,5 +1,6 @@
 package Level;
 
+import Engine.BackgroundMusic;
 import Engine.Config;
 import Engine.GraphicsHandler;
 import Engine.ScreenManager;
@@ -81,9 +82,41 @@ public abstract class Map {
     protected int currMapInt = 0;
     public Map currMap;
 
+    //location 
+    public static final String LOCATION_TOWN ="town";
+    public static final String LOCATION_HOUSE =" house";
+    public static final String LOCATION_BUTCHER = "butcher";
+    //house Location 
+    private static final int HOUSE_START_X =9;
+    private static final int HOUSE_END_X =34;
+    private static final int HOUSE_START_Y =11;
+    private static final int HOUSE_END_Y =26;
+    //butcher location 
+    private static final int BUTCHER_START_X =2;
+    private static final int BUTCHER_END_X =16;
+    private static final int BUTCHER_START_Y =2;
+    private static final int BUTCHER_END_Y =9;
+    //town  location 
+    private static final int TOWN_START_X =0;
+    private static final int TOWN_END_X =96;
+    private static final int TOWN_START_Y =0;
+    private static final int TOWN_END_Y =78;
+
+    // current location 
+    protected String currentLocation = LOCATION_TOWN;
+    //music system 
+    protected BackgroundMusic backgroundMusic;
+    protected boolean musicInitialized = false;
+
     public Map(String mapFileName, Tileset tileset) {
         this.mapFileName = mapFileName;
         this.tileset = tileset;
+        //begin music system 
+        if (!musicInitialized){
+            backgroundMusic= new BackgroundMusic("Resources/GameSong.wav");
+            musicInitialized=true;
+            backgroundMusic.PlayMainMusic();
+        }
         setupMap();
         this.startBoundX = 0;
         this.startBoundY = 0;
@@ -92,6 +125,48 @@ public abstract class Map {
         this.xMidPoint = ScreenManager.getScreenWidth() / 2;
         this.yMidPoint = (ScreenManager.getScreenHeight() / 2);
         this.playerStartPosition = new Point(0, 0);
+    }
+
+    //Location control metod
+    private boolean isInHouseArea(Point position){
+        return position.x >= HOUSE_START_X && position.x <= HOUSE_END_X &&
+        position.y >= HOUSE_START_Y && position.y <= HOUSE_END_Y;
+    }
+    private boolean isInTownArea(Point position) {
+        return position.x >= TOWN_START_X && position.x <= TOWN_END_X &&
+               position.y >= TOWN_START_Y && position.y <= TOWN_END_Y;
+    }
+    
+    private boolean isInButcherArea(Point position) {
+        return position.x >= BUTCHER_START_X && position.x <= BUTCHER_END_X &&
+               position.y >= BUTCHER_START_Y && position.y <= BUTCHER_END_Y;
+    }
+    public void updateLocation(){
+        if (player != null){
+            Point playerPosition = new Point(Math.round(player.getX()),Math.round(player.getY()));
+
+            if (isInHouseArea(playerPosition)){
+                if(!currentLocation.equals(LOCATION_HOUSE)){
+                    currentLocation = LOCATION_HOUSE;
+                    backgroundMusic.playLocationMusic("house");
+                }
+            }
+            else if (isInButcherArea(playerPosition)){
+                if (!currentLocation.equals(LOCATION_BUTCHER)){
+                    currentLocation = LOCATION_BUTCHER;
+                    backgroundMusic.playLocationMusic("butcher");
+                }
+            }
+            else if (isInTownArea(playerPosition)){
+                if(!currentLocation.equals(LOCATION_TOWN)){
+                    currentLocation = LOCATION_TOWN;
+                    backgroundMusic.playLocationMusic("town");
+                }
+            }
+        }
+    }
+    public void update(){
+        updateLocation();
     }
 
     public Map(BufferedImage bufferedImage) {

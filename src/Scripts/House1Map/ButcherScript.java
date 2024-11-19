@@ -20,7 +20,7 @@ public class ButcherScript extends Script {
         //script for puzzle trigger
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToButcher", true));
+                addRequirement(new FlagRequirement("hasTalkedToButcher", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hmm... how can I package this... ugh I hate math...\nWelcome to the Butcher’s Shoppe, what can I help you with?");
                     addText("Oh... I don’t know who you’re talking about, sorry!   ");
@@ -40,7 +40,7 @@ public class ButcherScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction() {{
-                    addScriptAction(new ChangeFlagScriptAction("openButcherPuzzle", false));
+                    addScriptAction(new ChangeFlagScriptAction("openButcherPuzzle", true));
                 }});
             }});
             //option- ignore him 
@@ -59,13 +59,13 @@ public class ButcherScript extends Script {
         //after puzzle is solved
          scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("butcherPuzzleSolved", false));
+                addRequirement(new FlagRequirement("butcherPuzzleSolved", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Alright fine, since you helped me out... Your brother, Alex...\n he.. He wasn’t a good person.");
                     addText("He was always playing his “jokes” on me, keeping me \naround for his and his friends amusement.");
                     addText("One day he took it too far, I almost died in.. There *shutters* \nwell anyways that’s why I don’t want to talk about him.... ", new String[] { "\"That’s awful\"", "\"Push for more\"" });
                 }});
-             addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", false));
+             addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
             }});
         }});
 
