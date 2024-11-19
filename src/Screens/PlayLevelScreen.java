@@ -85,6 +85,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasFoundBall", false);
         flagManager.addFlag("hasTalkedToMom", false);
         flagManager.addFlag("hasTalkedToMax", false);
+        flagManager.addFlag("max_aboutPeter", false);
+        flagManager.addFlag("max_aboutEx", false);
         flagManager.addFlag("hasTalkedToButcher", false);
         flagManager.addFlag("hasTalkedToGF", false);
         flagManager.addFlag("hasTalkedToDrugDealerDaughter", false);
@@ -118,7 +120,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("openExgfPuzzle", false);
         flagManager.addFlag("exGfPuzzleSolved", false);
         flagManager.addFlag("openGraveyardPuzzle", false);
-        flagManager.addFlag("unlockedCemetery", false);
+        flagManager.addFlag("graveyardPuzzleSolved", false);
 
         //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
         flagManager.addFlag("deathScreen", false);
@@ -305,23 +307,7 @@ public class PlayLevelScreen extends Screen {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }  
-        //graveyard puzzle
-        if(currMap.getFlagManager().isFlagSet("openGraveyardPuzzle")){
-            graveyardDrawPuzzle = true;
-            //close image on escape click
-            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-                graveyardDrawPuzzle = false;
-                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                keyLocker.lockKey(Key.ESC);
-            }
-            if(Keyboard.isKeyUp(Key.ESC)){
-                keyLocker.unlockKey(Key.ESC);
-            } 
-        } 
-        if(currMap.getFlagManager().isFlagSet("unlockedCemetery")) {
-            exDrawPuzzle = false;
-            currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-        }                                                                                            
+                                                                                                   
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -430,28 +416,59 @@ public class PlayLevelScreen extends Screen {
                 
         //     }
            
-                if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
-                currMap = cemetery;
-                point = currMap.getPositionByTileIndex(1, 23); 
-                player.setMap(currMap);
-                player.setLocation(point.x, point.y);
-                player.setFacingDirection(Direction.DOWN);
-                currMap.setPlayer(player);
-                currMap.preloadScripts();
-                currMap.setPlayer(player);
-                currMap.preloadScripts();
-                currMap.loadScripts();
-                flagManager.unsetFlag("townToCemetery");
+                // if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+                // currMap = cemetery;
+                // point = currMap.getPositionByTileIndex(1, 23); 
+                // player.setMap(currMap);
+                // player.setLocation(point.x, point.y);
+                // player.setFacingDirection(Direction.DOWN);
+                // currMap.setPlayer(player);
+                // currMap.preloadScripts();
+                // currMap.setPlayer(player);
+                // currMap.preloadScripts();
+                // currMap.loadScripts();
+                // flagManager.unsetFlag("townToCemetery");
 
-                keyLocker.lockKey(Key.C);
+                // keyLocker.lockKey(Key.C);
                 
-            }
         
+        if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+            //open graveyard puzzle
+            graveyardDrawPuzzle = true;
+            currMap.getFlagManager().setFlag("openGraveyardPuzzle");
+            //close puzzle on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                graveyardDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                currMap.getFlagManager().setFlag("cemeteryToTown");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+            //if you solve it close the puzzle and set cemetery map
+            if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
+                graveyardDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+            } 
+            currMap = cemetery;
+            point = currMap.getPositionByTileIndex(1, 23); 
+            player.setMap(currMap);
+            player.update();
+            player.setLocation(point.x, point.y);
+            player.setFacingDirection(Direction.DOWN);
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.setPlayer(player);
+            currMap.preloadScripts();
+            currMap.loadScripts();
+            flagManager.unsetFlag("townToCemetery");
+        }
             
             //leaving cemetery to enter town
             if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
                 currMap = townMap;
-                point = currMap.getPositionByTileIndex(95, 17); 
+                point = currMap.getPositionByTileIndex(92, 16); 
                 player.setMap(currMap);
                 player.setLocation(point.x, point.y);
                 player.setFacingDirection(Direction.DOWN);
@@ -470,8 +487,6 @@ public class PlayLevelScreen extends Screen {
                
             }
         }
-        
-    
 
     public void draw(GraphicsHandler graphicsHandler) {
         //if the journal is currently open draw that
@@ -501,7 +516,7 @@ public class PlayLevelScreen extends Screen {
                     else if(exDrawPuzzle){
                         exgfPuzzle.draw(graphicsHandler);
                     }
-                    else if(graveyardDrawPuzzle){
+                    else if(graveyardDrawPuzzle && !currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")){
                         graveyardPuzzle.draw(graphicsHandler);
                     }
                     //otherwise draw current map

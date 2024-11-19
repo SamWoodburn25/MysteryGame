@@ -43,6 +43,7 @@ public class ExBestFriendScript extends Script {
                         return answer == 0;
                     }
                 });
+                addScriptAction(new ChangeFlagScriptAction("max_aboutEx", true));
                 addRequirement(new FlagRequirement("hasTalkedToMax", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Alex’s girlfriend, Camilla, might know more, she’s \nusually hanging around town.");
@@ -58,6 +59,16 @@ public class ExBestFriendScript extends Script {
                         return answer == 1;
                     }
                 });
+                addScriptAction(new ChangeFlagScriptAction("max_aboutPeter", true));
+                addScriptAction(new TextboxScriptAction("I’d also keep my eye on the butcher’s son, Peter."));
+                addScriptAction(new TextboxScriptAction("Your brother might’ve really done it this time, pushing his\n buttons and tormenting him all the time."));
+                addScriptAction(new TextboxScriptAction("He’s usually working at the butcher shop."));
+            }});
+        }});
+
+
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToMax", true));
                 addScriptAction(new TextboxScriptAction("Your brother loved hanging around town, sometimes at the \nbar sometimes in the woods."));
                 addScriptAction(new TextboxScriptAction("He loved to do hunt with your uncle and stuff the prizes, \nalways thought they were creepy."));
