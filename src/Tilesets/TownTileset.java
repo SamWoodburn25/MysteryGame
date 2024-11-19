@@ -2147,7 +2147,125 @@ MapTileBuilder btmNeonSignTile = new MapTileBuilder(barWallFrame)
 
 mapTiles.add(btmNeonSignTile);
 
+//decoder clue 1_1 
+Frame clue1_1Frame = new FrameBuilder(getSubImage(4, 17))
+.withScale(tileScale)
 
+.build();
+
+MapTileBuilder clue1_1Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue1_1Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue1_1Tile);
+
+//decoder clue 1_2 
+Frame clue1_2Frame = new FrameBuilder(getSubImage(4, 18))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue1_2Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue1_2Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue1_2Tile);
+
+//decoder clue 2_1 
+Frame clue2_1Frame = new FrameBuilder(getSubImage(5, 15))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue2_1Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue2_1Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue2_1Tile);
+
+//decoder clue 2_2 
+Frame clue2_2Frame = new FrameBuilder(getSubImage(6, 15))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue2_2Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue2_2Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue2_2Tile);
+
+//decoder clue 2_3 
+Frame clue2_3Frame = new FrameBuilder(getSubImage(5, 16))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue2_3Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue2_3Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue2_3Tile);
+
+//decoder clue 2_4
+Frame clue2_4Frame = new FrameBuilder(getSubImage(6, 16))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue2_4Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue2_4Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue2_4Tile);
+
+//decoder clue 3_1 
+Frame clue3_1Frame = new FrameBuilder(getSubImage(4, 19))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue3_1Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue3_1Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue3_1Tile);
+
+//decoder clue 3_2
+Frame clue3_2Frame = new FrameBuilder(getSubImage(5, 19))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue3_2Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue3_2Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue3_2Tile);
+
+//decoder clue 4_1 
+Frame clue4_1Frame = new FrameBuilder(getSubImage(5, 17))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue4_1Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue4_1Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue4_1Tile);
+
+//decoder clue 4_2
+Frame clue4_2Frame = new FrameBuilder(getSubImage(5, 18))
+.withScale(tileScale)
+
+.build();
+
+MapTileBuilder clue4_2Tile = new MapTileBuilder(barWallFrame)
+.withTopLayer(clue4_2Frame)
+.withTileType(TileType.NOT_PASSABLE);
+
+mapTiles.add(clue4_2Tile);
 
 
 

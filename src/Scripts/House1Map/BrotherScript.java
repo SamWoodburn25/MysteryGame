@@ -1,12 +1,3 @@
-/*
- * SER225- Mystery Game
- * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
- * Fall 2024
- * 
- * package- Scripts- ButcherShopMap
- * class- butcherToTownScript: script action to enter the town from the butcher shop
- */
-
 package Scripts.House1Map;
 
 import java.util.ArrayList;
@@ -14,29 +5,36 @@ import java.util.ArrayList;
 import Level.Script;
 import ScriptActions.*;
 
-// script for talking to bug npc
+// script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
-public class DrugDealerScript extends Script {
+public class BrotherScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
 
-        scriptActions.add(new NPCLockScriptAction());
-
         scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
-                addRequirement(new FlagRequirement("hasTalkedToDrugDealer", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("*cough cough*");
+                // addRequirement(new FlagRequirement("badMax", true));
+                addRequirement(new FlagRequirement("badButcher", true));
+                addRequirement(new FlagRequirement("badGF", true));
+                addRequirement(new FlagRequirement("badDD", true));
+                    addText("... Help");
+                    //good ending (join him) cuscene
                 }});
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToDrugDealer", true));
+            }});
+
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                
+                addScriptAction(new TextboxScriptAction("...Die"));
+                //bad ending (die) cutscene
             }});
         }});
-        scriptActions.add(new NPCUnlockScriptAction());
+
         scriptActions.add(new UnlockPlayerScriptAction());
 
         return scriptActions;

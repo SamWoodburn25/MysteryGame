@@ -12,9 +12,7 @@
  import Level.*;
 import Scripts.LockedAreaScript;
 import Scripts.SimpleTextScript;
-import Scripts.House1Map.BrotherExGFScript;
-import Scripts.House1Map.InvestigatorScript;
-import Scripts.House1Map.TreeScript;
+import Scripts.House1Map.*;
  import Scripts.TownMap.*;
  import Tilesets.TownTileset;
  import Utils.Point;
@@ -35,21 +33,24 @@ import Scripts.House1Map.TreeScript;
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
-
          Investigator investigator = new Investigator(1, getMapTile(30, 50).getLocation().subtractY(40));
          investigator.setInteractScript(new InvestigatorScript());
          npcs.add(investigator);
 
          Boss boss = new Boss(1, getMapTile(26, 52).getLocation().subtractY(40));
+         boss.setInteractScript(new DamienScript());
          npcs.add(boss);
 
          Crow crow1 = new Crow(1, getMapTile(36, 50).getLocation().subtractY(40));
          npcs.add(crow1);
 
          ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
-        ex.setInteractScript(new BrotherExGFScript());
-        npcs.add(ex); 
+         ex.setInteractScript(new BrotherExGFScript());
+         npcs.add(ex); 
 
+         MHDaughter daughter = new MHDaughter(1, getMapTile(33, 40).getLocation().subtractY(40));
+         daughter.setInteractScript(new DrugDealerDaughterScript());
+         npcs.add(daughter);
 
  
          return npcs;
@@ -70,12 +71,12 @@ import Scripts.House1Map.TreeScript;
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery
-         Point cemetery = getPositionByTileIndex(96, 18);
-         triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
+         //Point cemetery = getPositionByTileIndex(96, 18);
+         //triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
  
  
-         Point lockedCemetery = getPositionByTileIndex(96, 21);
-         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
+         Point lockedCemetery = getPositionByTileIndex(96, 18);
+         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
  
  
 

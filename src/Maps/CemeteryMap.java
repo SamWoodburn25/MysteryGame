@@ -27,7 +27,7 @@ public class CemeteryMap extends Map {
     public ArrayList<NPC> loadNPCs() {
         ArrayList<NPC> npcs = new ArrayList<>();
 
-        Max max = new Max(1, getMapTile(28, 5).getLocation().subtractY(0));
+        Brother max = new Brother(1, getMapTile(28, 5).getLocation().subtractY(0));
         max.setInteractScript(new ExBestFriendScript());
         npcs.add(max);
 
