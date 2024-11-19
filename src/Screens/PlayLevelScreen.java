@@ -241,10 +241,10 @@ public class PlayLevelScreen extends Screen {
 
         //if pop up flag set draw the image
         if(currMap.getFlagManager().isFlagSet("popUpHouseImage")){
-            drawPopUP = true;
+            drawPopUpHouse = true;
             //close image on escape click
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-                drawPopUP = false;
+                drawPopUpHouse = false;
                 currMap.getFlagManager().unsetFlag("popUpHouseImage");
                 keyLocker.lockKey(Key.ESC);
             }

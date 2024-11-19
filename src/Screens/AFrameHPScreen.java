@@ -28,7 +28,7 @@ import java.awt.image.BufferedImage;
      //constructor with FlagManager parameter
      public AFrameHPScreen(FlagManager flagManager) {
         this.flagManager = flagManager;
-        // Load butcher pop up image
+        // Load alex pop up image
         AFrameHP = ImageLoader.load("Alexframe.png");
      }
      

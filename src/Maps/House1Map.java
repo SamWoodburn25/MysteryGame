@@ -13,8 +13,6 @@ import EnhancedMapTiles.PushableRock;
 import Level.*;
 import NPCs.*;
 import Scripts.SimpleTextScript;
-import Scripts.ButcherShopMap.PopUpButcherImageScript;
-import Scripts.House.PopUpHouseImage;
 import Scripts.House1Map.*;
 import Tilesets.CommonTileset;
 import Utils.Point;
@@ -76,11 +74,11 @@ public class House1Map extends Map {
 
         //fridge pop up trigger
         Point photoLoc = getPositionByTileIndex(24, 15);
-        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 1, 1, new PopUpFridgeImageScript(), "popUpButcherImage"));
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 10, 100, new PopUpFridgeImageScript(), "popUpButcherImage"));
 
         //  alex pop up image trigger
-        Point photoLoc1 = getPositionByTileIndex(16, 14);
-        triggers.add(new Trigger(photoLoc1.x, photoLoc1.y, 1, 1, new PopUpHouseImage(), "popUpHouseImage"));
+        Point photoLoc1 = getPositionByTileIndex(16, 16);
+        triggers.add(new Trigger(photoLoc1.x, photoLoc1.y, 100, 50, new PopUpHouseImageScript(), "popUpHouseImage"));
 
         
         triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));

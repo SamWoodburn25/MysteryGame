@@ -7,13 +7,13 @@
  * class: PopUpButcherImageScript - pop-up butcher image butcher script action to pop-up image in butcher shop
 */
 
-package Scripts.House;
+package Scripts.House1Map;
 
 import java.util.ArrayList;
 import Level.*;
 import ScriptActions.*;
  
-public class PopUpHouseImage extends Script {
+public class PopUpHouseImageScript extends Script {
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
