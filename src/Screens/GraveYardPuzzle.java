@@ -12,6 +12,7 @@ package Screens;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.List;
 
 import Engine.*;
@@ -20,29 +21,37 @@ import SpriteFont.SpriteFont;
 
 public class GraveYardPuzzle extends Screen{
     protected SpriteFont header1, header2;
-    protected BufferedImage code;
-    protected InputNumberBox input;
+    protected BufferedImage code, exitSign;
+    protected InputNumberBox input1, input2, input3, input4, currInput;
+    protected List<InputNumberBox> inputBoxes;
     protected int selectedIndex = 0;
     protected KeyLocker keyLocker = new KeyLocker();
     protected boolean solved = false;
+    protected boolean firstCorrect, secondCorrect, thirdCorrect, fourthCorrect = false;
     protected FlagManager flagManager;
+    protected ImageLoader imageLoader = new ImageLoader();
 
     public GraveYardPuzzle(FlagManager flagManager){
-        new ImageLoader();
         this.flagManager = flagManager;
 
         //instructions message
-        header1 = new SpriteFont("This part of the map is locked.", 50, 50, "Apple Chancery", 30, Color.black);
+        header1 = new SpriteFont("This part of the map is locked.", 140, 50, "Apple Chancery", 40, Color.black);
         header1.setOutlineColor(Color.black);
-        header1.setOutlineThickness(3);
+        header1.setOutlineThickness(5);
 
-        header2 = new SpriteFont("Find clues around the map to enter.", 50, 75, "Apple Chancery", 30, Color.black);
+        header2 = new SpriteFont("Find clues around the map to enter.", 120, 110, "Apple Chancery", 40, Color.black);
         header2.setOutlineColor(Color.black);
-        header2.setOutlineThickness(3);
+        header2.setOutlineThickness(5);
 
-        code = ImageLoader.load("gravepuzzleCode.png");
+        code = imageLoader.load("gravepuzzleCode.png");
+        exitSign = imageLoader.load("exitPuzzle.png");
 
-        input = new InputNumberBox(200, 500, 200, 50);
+        input1 = new InputNumberBox(210, 400, 50, 60);
+        input2 = new InputNumberBox(330, 400, 50, 60);
+        input3 = new InputNumberBox(450, 400, 50, 60);
+        input4 = new InputNumberBox(570, 400, 50, 60);
+
+        inputBoxes = Arrays.asList(input1, input2, input3, input4);
     }
 
     @Override
@@ -50,25 +59,117 @@ public class GraveYardPuzzle extends Screen{
     
     @Override
     public void update() {
-        if(solved){
-            flagManager.setFlag("unlockedCemetery");
+        //if all boxes are full check if they're right and delete the incorrect (code = 2837)
+        if(!input1.getText().equals("") && !input2.getText().equals("") && !input3.getText().equals("") && !input4.getText().equals("")){
+            //input1
+            if(input1.getText().equals("2")){
+                firstCorrect = true;
+            }
+            else{ input1.clear(); }
+            //input2
+            if(input2.getText().equals("8")){
+                secondCorrect = true;
+            }
+            else{ input2.clear(); }
+            //input3
+            if(input3.getText().equals("3")){
+                thirdCorrect = true;
+            }
+            else{ input3.clear(); }
+            //input4
+            if(input4.getText().equals("7")){
+                fourthCorrect = true;
+            }
+            else{ input4.clear(); }
+
+            //check if all are correct
+            if(firstCorrect && secondCorrect && thirdCorrect && fourthCorrect){
+                flagManager.setFlag("graveyardPuzzleSolved");
+            }
+            else{
+                selectedIndex = 0;
+            }
+        }
+
+
+
+        //move right after a number is entered the list
+        if (!input1.getText().equals("")) { 
+            selectedIndex = 1;
+            if (!input2.getText().equals("")) { 
+                selectedIndex = 2; 
+                if (!input3.getText().equals("")) { 
+                    selectedIndex = 3; 
+                } 
+                else { selectedIndex = 2; }
+            } 
+            else { selectedIndex = 1; }
+         } 
+        else { selectedIndex = 0; }
+
+
+        //setting which input is active
+        if(selectedIndex == 0){
+            input1.setActive(true);
+            input1.update();
+            input2.setActive(false);
+            input3.setActive(false);
+            input4.setActive(false);
+        }
+        else if(selectedIndex == 1){
+            input2.setActive(true);
+            input2.update();
+            input1.setActive(false);
+            input3.setActive(false);
+            input4.setActive(false);
+        }
+        else if(selectedIndex == 2){
+            input3.setActive(true);
+            input3.update();
+            input1.setActive(false);
+            input2.setActive(false);
+            input4.setActive(false);
+        }
+        else if(selectedIndex == 3){
+            input4.setActive(true);
+            input4.update();
+            input1.setActive(false);
+            input2.setActive(false);
+            input3.setActive(false);
         }
     }
 
     @Override
     public void draw(GraphicsHandler graphicsHandler) {
+        //background
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), new Color(32,61,44));
+        //headers (instructions)
         header1.draw(graphicsHandler);
         header2.draw(graphicsHandler);
-        graphicsHandler.drawImage(code, 25, 100, 550, 100);
-        input.draw(graphicsHandler);
-    
+        //exit and secret code
+        graphicsHandler.drawImage(code, 75, 160, 675, 275);
+        graphicsHandler.drawImage(exitSign, 5, 5, 125, 45);
+        //draw input boxes
+        input1.draw(graphicsHandler);
+        input2.draw(graphicsHandler);
+        input3.draw(graphicsHandler);
+        input4.draw(graphicsHandler);
+        //draw selected box
+        int xValue = 210;
+        int yValue = 400;
+        for(int i=0; i<inputBoxes.size(); i++){
+            currInput = inputBoxes.get(i);
+            if (i == selectedIndex) {
+                drawInputBoxWithBorder(graphicsHandler, currInput, xValue, yValue); // Highlight selected
+            }
+            xValue+=120;
+        }
     }
 
     //draw the border around the selected image
-    public void drawImageWithBorder(GraphicsHandler g, BufferedImage img, int x, int y){
-        g.drawImage(img, x, y, 62, 62);
-        g.drawRectangle(x, y, 63, 63, Color.black,10);
+    public void drawInputBoxWithBorder(GraphicsHandler g, InputNumberBox inp, int x, int y){
+        inp.draw(g);
+        g.drawRectangle(x, y, 50, 60, Color.white,5);
     }
 }
 
@@ -118,7 +219,7 @@ public class GraveYardPuzzle extends Screen{
             /* key 2 */
             if (Keyboard.isKeyUp(Key.TWO) && !keyLocker.isKeyLocked(Key.TWO)) {
                 if(key2Used){
-                    inputText.append('B');
+                    inputText.append('2');
                 }
                 else{
                     key2Used = true;
@@ -170,7 +271,7 @@ public class GraveYardPuzzle extends Screen{
             /* key 6 */
             if (Keyboard.isKeyUp(Key.SIX) && !keyLocker.isKeyLocked(Key.SIX)) {
                 if(key6Used){
-                    inputText.append('F');
+                    inputText.append('6');
                 }
                 else{
                     key6Used = true;
@@ -183,7 +284,7 @@ public class GraveYardPuzzle extends Screen{
             /* key 7 */
             if (Keyboard.isKeyUp(Key.SEVEN) && !keyLocker.isKeyLocked(Key.SEVEN)) {
                 if(key7Used){
-                    inputText.append('G');
+                    inputText.append('7');
                 }
                 else{
                     key7Used = true;
@@ -196,7 +297,7 @@ public class GraveYardPuzzle extends Screen{
             /* key 8 */
             if (Keyboard.isKeyUp(Key.EIGHT) && !keyLocker.isKeyLocked(Key.EIGHT)) {
                 if(key8Used){
-                    inputText.append('H');
+                    inputText.append('8');
                 }
                 else{
                     key8Used = true;
@@ -209,7 +310,7 @@ public class GraveYardPuzzle extends Screen{
             /* key 9 */
             if (Keyboard.isKeyUp(Key.NINE) && !keyLocker.isKeyLocked(Key.NINE)) {
                 if(key9Used){
-                    inputText.append('I');
+                    inputText.append('9');
                 }
                 else{
                     key9Used = true;
@@ -222,7 +323,7 @@ public class GraveYardPuzzle extends Screen{
             /* key 0 */
             if (Keyboard.isKeyUp(Key.ZERO) && !keyLocker.isKeyLocked(Key.ZERO)) {
                 if(key0Used){
-                    inputText.append('J');
+                    inputText.append('0');
                 }
                 else{
                     key0Used = true;
@@ -236,8 +337,8 @@ public class GraveYardPuzzle extends Screen{
         }
 
         public void draw(GraphicsHandler graphicsHandler) {
-            graphicsHandler.drawFilledRectangle(x, y, width, height, Color.WHITE);
-            graphicsHandler.drawMeatString(inputText.toString(), x + 5, y +30, null, Color.BLACK);
+            graphicsHandler.drawFilledRectangle(x, y, width, height, new Color(120, 161, 137));
+            graphicsHandler.drawMeatString(inputText.toString(), x + 15, y +40, null, Color.BLACK);
         }
 
         public void setActive(boolean isActive) {

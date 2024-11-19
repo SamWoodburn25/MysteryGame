@@ -22,7 +22,8 @@ import Scripts.House1Map.TreeScript;
  import NPCs.*;
  
  public class TownMap extends Map {
-     public TownMap() {
+
+    public TownMap() {
          super("town_map1.txt", new TownTileset());
          this.playerStartPosition = getMapTile(17, 20).getLocation();
      }
@@ -47,7 +48,7 @@ import Scripts.House1Map.TreeScript;
          npcs.add(crow1);
 
          ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
-        ex.setInteractScript(new BrotherExGFScript());
+         ex.setInteractScript(new BrotherExGFScript());
         npcs.add(ex); 
 
 
@@ -69,14 +70,10 @@ import Scripts.House1Map.TreeScript;
          Point butcherShop = getPositionByTileIndex(69, 46);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScript(), "townToButcher"));
 
-         //trigger to enter cemetery
-         //Point cemetery = getPositionByTileIndex(96, 18);
-         //triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
- 
- 
-         Point lockedCemetery = getPositionByTileIndex(96, 18);
-         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
- 
+
+        Point lockedCemetery = getPositionByTileIndex(96, 19);
+        //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
+        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 10, new TownToCemeteryScript(), "townToCemetery"));
  
 
 
@@ -90,7 +87,6 @@ import Scripts.House1Map.TreeScript;
  
      @Override
      public void loadScripts() {
- 
          getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
  
          getMapTile(73, 44).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
@@ -101,6 +97,7 @@ import Scripts.House1Map.TreeScript;
  
          getMapTile(2, 6).setInteractScript(new TreeScript());
      }
+
  
  }
  

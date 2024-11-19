@@ -4,7 +4,7 @@
  * Fall 2024
  * 
  * package- Maps
- * class- TownMap: displays the outdoor town map
+ * class- CemeteryMap: displays the outdoor cemetery map
  */
 
 package Maps;
@@ -39,8 +39,8 @@ public class CemeteryMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
-        Point toTown = getPositionByTileIndex(0,24);
-        triggers.add(new Trigger(toTown.x + 10, toTown.y, 10,100, new CemeteryToTownScript(), "ButcherToTown"));
+        Point toTown = getPositionByTileIndex(0,20);
+        triggers.add(new Trigger(toTown.x + 10, toTown.y, 10,100, new CemeteryToTownScript(), "CemeteryToTown"));
     
         return triggers;
     }
@@ -50,13 +50,6 @@ public class CemeteryMap extends Map {
 
         getMapTile(6, 23).setInteractScript(new SimpleTextScript("Your house"));
 
-        getMapTile(15, 57).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
-
-        getMapTile(24, 10).setInteractScript(new SimpleTextScript("Max's house - locked"));
-
-        getMapTile(42, 28).setInteractScript(new SimpleTextScript("?? house"));
-
-        getMapTile(2, 6).setInteractScript(new TreeScript());
     }*/
 
 }

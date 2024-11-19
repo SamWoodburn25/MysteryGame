@@ -84,19 +84,28 @@ public class JournalUI {
                 journalPages.add(journalPage_Max2);
                 journalPages.add(emptyJournal);
             }
-            //check for talking to max
-            if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMax")) {
-                //check if added, if not add butcher page than ex gf page
-                if(!journalPages.contains(journalPage_Peter1)  &&  !journalPages.contains(journalPage_Exgf1)){
+            //check for talking to max about peter
+            if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMax") && flagManager.isFlagSet("max_aboutPeter")) {
+                //check if added, if not add butcher page 
+                if(!journalPages.contains(journalPage_Peter1)){
                     //remove blank page, add others, add blank page back
                     journalPages.removeLast();
                     journalPages.add(journalPage_Peter1);
                     journalPages.add(journalPage_Peter2);
+                    journalPages.add(emptyJournal);
+                }
+            }   
+            //check for talking to max about ex
+            if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMax") && flagManager.isFlagSet("max_aboutEx")) {
+                //check if added, if not add butcher page than ex gf page
+                if(!journalPages.contains(journalPage_Exgf1)){
+                    //remove blank page, add others, add blank page back
+                    journalPages.removeLast();
                     journalPages.add(journalPage_Exgf1);
                     journalPages.add(journalPage_Exgf2);
                     journalPages.add(emptyJournal);
                 }
-            }   
+            }  
 
         }
         //butcher puzzle
