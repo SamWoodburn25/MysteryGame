@@ -81,7 +81,15 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("hasTalkedToMax", false);
         flagManager.addFlag("hasTalkedToButcher", false);
         flagManager.addFlag("hasTalkedToGF", false);
+        flagManager.addFlag("hasTalkedToDrugDealerDaughter", false);
+        flagManager.addFlag("hasTalkedToDrugDealer", false);
+        flagManager.addFlag("hasTalkedToDamien", false);
 
+        //flags for endings
+        flagManager.addFlag("lieMom", false);
+        flagManager.addFlag("badButcher", false);
+        flagManager.addFlag("badDD", false);
+        flagManager.addFlag("badGF", false);
 
         //flags for map switching
         flagManager.addFlag("house1ToTown", false);

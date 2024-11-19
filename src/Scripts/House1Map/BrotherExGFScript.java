@@ -86,6 +86,7 @@ import java.util.ArrayList;
 
 import Level.Script;
 import ScriptActions.*;
+import Utils.Visibility;
 
 // script for talking to walrus npc
 // checkout the documentation website for a detailed guide on how this script works
@@ -102,11 +103,9 @@ public class BrotherExGFScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToGF", false));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText("Jamie: Ew it is you. ");
-                    addText("I thought I told your brother not to let you talk \nto me in public now that we aren’t together anymore. ");
-                    addText("Well, what do you want and hurry up I don’t \nwant to be seen with you. ");
-                    addText("Jamie: while you're still here, I'm stuck on this crossword");
-                    addText("i just have a few left, then maybe after I can \nhelp out with your brother a bit more.", new String[] { "\"I'll help!\"", "\"No thanks\"" });
+                    addText("Hmm? Oh wait aren’t you Alex’s... what do you want? ...\noh you’re hoping to find him?... ");
+                    addText("It’s hopeless, he’s been gone for months you’re not going \nto find anything.");
+                    addText(" Now get out of here... unless... Hey are you good \nat crosswords? I'm stuck with this one...", new String[] { "\"Offer to help\n\"", "\"Ignore her\"" });
                 }});
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToGF", true));
             }});
@@ -125,6 +124,7 @@ public class BrotherExGFScript extends Script {
                 });
                 addScriptAction(new TextboxScriptAction() {{
                     addScriptAction(new ChangeFlagScriptAction("openExgfPuzzle", true));
+                    
                 }});
             }});
             //option- no
@@ -136,9 +136,26 @@ public class BrotherExGFScript extends Script {
                         return answer == 1;
                     }
                 });
-                addScriptAction(new TextboxScriptAction("Jamie: Oh, okay."));
+                addScriptAction(new ChangeFlagScriptAction("badGF", true));
+                addScriptAction(new TextboxScriptAction("Thanks for nothing, go ask someone else like the \nmad hatter or something"));
+                addScriptAction(new TextboxScriptAction("He's usually hanging around in some alley"));
+                addScriptAction(new TextboxScriptAction("Now beat it, moron."));
             }});
         }});
+
+        //after puzzle is solved
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("exGfPuzzleSolved", true));
+                addScriptAction(new TextboxScriptAction() {{
+                    addText("Thank you... hmm. Thinking about it maybe this page will\nhelp, it showed up on my desk one day, it’s his handwriting...");
+                    addText("Maybe you can find him that way, otherwise, maybe you \ncan investigate the Mad Hatter- the guy not the bar");
+                    addText("Me and your brother used to... do business with him let's \nsay. He might know where he went off to. ");
+                    addText("He's usually hanging out in an alley around town.");
+                }});
+            }});
+        }});
+        
 
         scriptActions.add(new UnlockPlayerScriptAction());
 
