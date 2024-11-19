@@ -1,7 +1,16 @@
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Screens
+ * class- ButcherPuzzle: manages the puzzle that displays after talking to peter in the butcher shop; play
+ * game using arrow keys to add and remove meat to the scale and match the desired weight
+ */
+
 package Screens;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +18,6 @@ import java.util.List;
 
 import Engine.*;
 import Level.FlagManager;
-import Level.Map;
 
 public class ButcherPuzzle extends Screen{
     protected BufferedImage scale, currMeat, meatCut1, meatCut2, meatCut3, meatCut4, meatCut5, meatCut6, meatCut7, meatCut8, meatCut9, meatCut10, meatCut11, meatCut12, meatCut13, meatCut14;
@@ -52,7 +60,7 @@ public class ButcherPuzzle extends Screen{
 
     @Override
     public void initialize() {}
-    
+
     @Override
     public void update() {
         if(instructionsVisible){

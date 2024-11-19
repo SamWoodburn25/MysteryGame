@@ -59,6 +59,10 @@ public class PlayLevelScreen extends Screen {
     protected ExgfPuzzle exgfPuzzle;
     protected boolean exPuzzleVisible = false;
     protected boolean exDrawPuzzle = false;
+    //graveyard puzzle variables
+    protected GraveYardPuzzle graveyardPuzzle;
+    protected boolean graveyardPuzzleVisible = false;
+    protected boolean graveyardDrawPuzzle = false;
 
     //character selection variables
     protected CharacterSelectScreen charSelectScreen;
@@ -111,8 +115,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("butcherPuzzleSolved", false);
         flagManager.addFlag("openExgfPuzzle", false);
         flagManager.addFlag("exGfPuzzleSolved", false);
-
-        flagManager.addFlag("lockedCemetery", false);
+        flagManager.addFlag("openGraveyardPuzzle", false);
+        flagManager.addFlag("unlockedCemetery", false);
 
 
 
@@ -140,6 +144,7 @@ public class PlayLevelScreen extends Screen {
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
         exgfPuzzle = new ExgfPuzzle(flagManager);
+        graveyardPuzzle = new GraveYardPuzzle(flagManager);
 
         // Set the initial map to house1Map (starting map)
         currMap = house1Map;
@@ -200,6 +205,9 @@ public class PlayLevelScreen extends Screen {
         }
         if(exDrawPuzzle){
             exgfPuzzle.update();
+        }
+        if(graveyardDrawPuzzle){
+            graveyardPuzzle.update();
         }
         //if the journal is open update that
         if (journalVisible) {
@@ -291,7 +299,24 @@ public class PlayLevelScreen extends Screen {
         if(currMap.getFlagManager().isFlagSet("exGfPuzzleSolved")) {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
-        }                                                                                             
+        }  
+        //graveyard puzzle
+        if(currMap.getFlagManager().isFlagSet("openGraveyardPuzzle")){
+            graveyardDrawPuzzle = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                graveyardDrawPuzzle = false;
+                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        } 
+        if(currMap.getFlagManager().isFlagSet("unlockedCemetery")) {
+            exDrawPuzzle = false;
+            currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+        }                                                                                            
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -315,6 +340,7 @@ public class PlayLevelScreen extends Screen {
          * flags for switching maps: update player, flags, and scripts for each change of currMap
          */
         //leaving through door at bottom of house1 to get to down
+        
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
             point = currMap.getPositionByTileIndex(21, 15);
@@ -379,36 +405,37 @@ public class PlayLevelScreen extends Screen {
         }
 
         //leaving town to enter cemetery
-        if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
-            currMap = cemetery;
-            point = currMap.getPositionByTileIndex(1, 23); 
-            player.setMap(currMap);
-            player.setLocation(point.x, point.y);
-            player.setFacingDirection(Direction.DOWN);
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            currMap.loadScripts();
-            flagManager.unsetFlag("townToCemetery");
+        if(flagManager.isFlagSet("unlockedCemetery")){
+            if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+                currMap = cemetery;
+                point = currMap.getPositionByTileIndex(1, 23); 
+                player.setMap(currMap);
+                player.setLocation(point.x, point.y);
+                player.setFacingDirection(Direction.DOWN);
+                currMap.setPlayer(player);
+                currMap.preloadScripts();
+                currMap.setPlayer(player);
+                currMap.preloadScripts();
+                currMap.loadScripts();
+                flagManager.unsetFlag("townToCemetery");
+                
+            }
             
-        }
-        
-        //leaving cemetery to enter town
-        if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
-            currMap = townMap;
-            point = currMap.getPositionByTileIndex(95, 17); 
-            player.setMap(currMap);
-            player.setLocation(point.x, point.y);
-            player.setFacingDirection(Direction.DOWN);
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            player.setFacingDirection(Direction.UP);
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            currMap.loadScripts();
-            flagManager.unsetFlag("cemeteryToTown");
-    
+            //leaving cemetery to enter town
+            if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
+                currMap = townMap;
+                point = currMap.getPositionByTileIndex(95, 17); 
+                player.setMap(currMap);
+                player.setLocation(point.x, point.y);
+                player.setFacingDirection(Direction.DOWN);
+                currMap.setPlayer(player);
+                currMap.preloadScripts();
+                player.setFacingDirection(Direction.UP);
+                currMap.setPlayer(player);
+                currMap.preloadScripts();
+                currMap.loadScripts();
+                flagManager.unsetFlag("cemeteryToTown");
+            }
         }
     }
 
@@ -439,6 +466,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(exDrawPuzzle){
                         exgfPuzzle.draw(graphicsHandler);
+                    }
+                    else if(graveyardDrawPuzzle){
+                        graveyardPuzzle.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{

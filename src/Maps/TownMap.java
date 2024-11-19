@@ -71,12 +71,12 @@ import Scripts.House1Map.*;
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery
-         Point cemetery = getPositionByTileIndex(96, 18);
-         triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
+         //Point cemetery = getPositionByTileIndex(96, 18);
+         //triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
  
  
-         Point lockedCemetery = getPositionByTileIndex(96, 21);
-         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
+         Point lockedCemetery = getPositionByTileIndex(96, 18);
+         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
  
  
 

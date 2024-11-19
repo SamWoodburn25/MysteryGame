@@ -11,11 +11,7 @@ public class LockedAreaScript extends Script{
     public ArrayList<ScriptAction> loadScriptActions() {
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
         scriptActions.add(new LockPlayerScriptAction());
-        scriptActions.add(new ChangeFlagScriptAction("lockedCemetery", true));
-        scriptActions.add(new TextboxScriptAction() {{
-        addText("This area is locked. Look around the map for some clues.");
-        
-        }});
+        scriptActions.add(new ChangeFlagScriptAction("openGraveyardPuzzle", true));
         scriptActions.add(new UnlockPlayerScriptAction());
 
         return scriptActions;
