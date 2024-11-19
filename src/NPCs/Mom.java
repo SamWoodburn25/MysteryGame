@@ -29,6 +29,7 @@ public class Mom extends NPC {
                             .withScale(2)
                             .withBounds(12, 32, 20, 4)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
+                           
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {

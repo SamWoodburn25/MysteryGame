@@ -401,8 +401,23 @@ public class PlayLevelScreen extends Screen {
         }
 
         //leaving town to enter cemetery
-        if(flagManager.isFlagSet("unlockedCemetery")){
-            if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+        // if(flagManager.isFlagSet("unlockedCemetery")){
+        //     if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
+        //         currMap = cemetery;
+        //         point = currMap.getPositionByTileIndex(1, 23); 
+        //         player.setMap(currMap);
+        //         player.setLocation(point.x, point.y);
+        //         player.setFacingDirection(Direction.DOWN);
+        //         currMap.setPlayer(player);
+        //         currMap.preloadScripts();
+        //         currMap.setPlayer(player);
+        //         currMap.preloadScripts();
+        //         currMap.loadScripts();
+        //         flagManager.unsetFlag("townToCemetery");
+                
+        //     }
+           
+                if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
                 currMap = cemetery;
                 point = currMap.getPositionByTileIndex(1, 23); 
                 player.setMap(currMap);
@@ -414,8 +429,11 @@ public class PlayLevelScreen extends Screen {
                 currMap.preloadScripts();
                 currMap.loadScripts();
                 flagManager.unsetFlag("townToCemetery");
+
+                keyLocker.lockKey(Key.C);
                 
             }
+        
             
             //leaving cemetery to enter town
             if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
@@ -434,7 +452,7 @@ public class PlayLevelScreen extends Screen {
             }
         }
         
-    }
+    
 
     public void draw(GraphicsHandler graphicsHandler) {
         //if the journal is currently open draw that
