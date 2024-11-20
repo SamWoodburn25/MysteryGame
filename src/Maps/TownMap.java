@@ -9,19 +9,25 @@
 
  package Maps;
 
-import Level.*;
+ import Level.*;
 import Scripts.LockedAreaScript;
 import Scripts.SimpleTextScript;
-import Scripts.House1Map.*;
-import Scripts.TownMap.*;
-import Tilesets.TownTileset;
-import Utils.Point;
-import java.util.ArrayList;
-import NPCs.*;
+import Scripts.House1Map.BrotherExGFScript;
+import Scripts.House1Map.InvestigatorScript0;
+import Scripts.House1Map.InvestigatorScript1;
+import Scripts.House1Map.InvestigatorScript2;
+import Scripts.House1Map.TreeScript;
+import Scripts.TownMap.PopUpFileImageScript;
+import Scripts.House1Map.DamienScript;
+import Scripts.House1Map.DrugDealerDaughterScript;
+ import Scripts.TownMap.*;
+ import Tilesets.TownTileset;
+ import Utils.Point;
+ import java.util.ArrayList;
+ import NPCs.*;
  
  public class TownMap extends Map {
-
-    public TownMap() {
+     public TownMap() {
          super("town_map1.txt", new TownTileset());
          this.playerStartPosition = getMapTile(17, 20).getLocation();
      }
@@ -34,9 +40,18 @@ import NPCs.*;
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
-         Investigator investigator = new Investigator(1, getMapTile(46, 35).getLocation().subtractY(40));
-         investigator.setInteractScript(new InvestigatorScript());
-         npcs.add(investigator);
+
+         Investigator investigator0 = new Investigator(1, getMapTile(26, 50).getLocation().subtractY(40));
+         investigator0.setInteractScript(new InvestigatorScript0());
+         npcs.add(investigator0);
+
+         Investigator investigator1 = new Investigator(1, getMapTile(91, 8).getLocation().subtractY(40));
+         investigator1.setInteractScript(new InvestigatorScript1());
+         npcs.add(investigator1);
+
+         Investigator investigator2 = new Investigator(1, getMapTile(17, 18).getLocation().subtractY(40));
+         investigator2.setInteractScript(new InvestigatorScript2());
+         npcs.add(investigator2);
 
          Boss boss = new Boss(1, getMapTile(50, 66).getLocation().subtractY(40));
          boss.setInteractScript(new DamienScript());
@@ -67,28 +82,30 @@ import NPCs.*;
          ArrayList<Trigger> triggers = new ArrayList<>();
  
          //trigger to enter the main character's house
-         Point house1 = getPositionByTileIndex(15, 13);
+         Point house1 = getPositionByTileIndex(21, 13);
          triggers.add(new Trigger(house1.x, house1.y, 95, 10, new TownToHouse1Script(), "townToHouse1"));
  
  
          // trigger to enter butcher
-         Point butcherShop = getPositionByTileIndex(63, 47);
+         Point butcherShop = getPositionByTileIndex(69, 46);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 50, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery
-         //Point cemetery = getPositionByTileIndex(96, 20);
-         //triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
+        //  Point cemetery = getPositionByTileIndex(96, 18);
+        //  triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
  
  
-         //Point lockedCemetery = getPositionByTileIndex(96, 18);
-         //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
+        //  Point lockedCemetery = getPositionByTileIndex(96, 21);
+        //  triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
 
-        Point lockedCemetery = getPositionByTileIndex(90, 18);
+        Point lockedCemetery = getPositionByTileIndex(96, 18);
         //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
  
-
+        Point fbiFile = getPositionByTileIndex(95, 75);
+        triggers.add(new Trigger(fbiFile.x , fbiFile.y, 50, 50, new PopUpFileImageScript(), "fileImage"));
+ 
 
 
     
@@ -98,6 +115,16 @@ import NPCs.*;
  
      @Override
      public void loadScripts() {
+        
+        // file image needs multiple so player can touch file from anywhere and open
+        getMapTile(94, 73).setInteractScript(new PopUpFileImageScript());
+        getMapTile(95, 73).setInteractScript(new PopUpFileImageScript());
+        getMapTile(93, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(94, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(94, 75).setInteractScript(new PopUpFileImageScript());
+        getMapTile(95, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(95, 75).setInteractScript(new PopUpFileImageScript());
+
          getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
  
          getMapTile(73, 44).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
@@ -106,9 +133,13 @@ import NPCs.*;
  
          getMapTile(52, 44).setInteractScript(new SimpleTextScript("Town Hall"));
  
-         getMapTile(2, 6).setInteractScript(new TreeScript());
-     }
 
+
+
+         getMapTile(2, 6).setInteractScript(new TreeScript());
+
+
+     }
  
  }
  

@@ -21,10 +21,13 @@ import Screens.Join;
 import Screens.LostScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.ButcherDeathScreen;
 import Screens.WinScreen;
 import Screens.CharacterSelectScreen;
 import Screens.Context0Screen;
 import Screens.Context1Screen;
+import Screens.MissingPosterScreen;
+import Screens.ButcherDeathScreen;
 
 
 
@@ -102,6 +105,9 @@ public class ScreenCoordinator extends Screen {
 						currentScreen = new Context1Screen(this);
 						backgroundMusic.playLocationMusic("context1");
 						break;
+					case MISSINGPOSTER:
+						currentScreen = new MissingPosterScreen(this);
+						break;
 					case CHARSELECT:
 						currentScreen = new CharacterSelectScreen(this);
 
@@ -113,6 +119,9 @@ public class ScreenCoordinator extends Screen {
 					case LOST:
     					currentScreen = new LostScreen(new PlayLevelScreen(this));
 						break;
+					// case PETERDEATH:
+					// 	currentScreen = new ButcherDeathScreen(this);
+						// break;
 					case JOIN:
 					 	currentScreen = new Join(this);
 						break;

@@ -17,7 +17,7 @@ package Scripts.House1Map;
  
  // script for talking to bug npc
  // checkout the documentation website for a detailed guide on how this script works
- public class InvestigatorScript extends Script {
+ public class InvestigatorScript0 extends Script {
  
      @Override
      public ArrayList<ScriptAction> loadScriptActions() {
@@ -29,9 +29,11 @@ package Scripts.House1Map;
          scriptActions.add(new NPCFacePlayerScriptAction());
  
          scriptActions.add(new TextboxScriptAction() {{
-            addText("Huh? Oh hey kid... oh Alex? He your brother or something?\n*puffs cigarette* ahhh him.");
-            addText("That case has been closed for a while now, ruled it a\n disappearance. Nothing we can do about it, sorry. ");
-            addText("Sorry kid, we did all we could do.  ");
+            addText("*On the phone*\nWhat??? You lost the suspect file??");
+            addText("I am so sick of the department sending me idiots.\nCall me when you resolve this. Make it fast.");
+            addText("Oh.. it's you. So kid, you didn't hear any of that \nconversation right?");
+            addText("Good.");
+            addText("Run along now, you aren't getting anything \nout of me.");
          }});
  
          scriptActions.add(new NPCUnlockScriptAction());

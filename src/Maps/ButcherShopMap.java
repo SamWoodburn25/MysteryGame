@@ -11,6 +11,7 @@ package Maps;
 
 import Level.*;
 import NPCs.Butcher;
+import Screens.ButcherDeathScreen;
 import Scripts.ButcherShopMap.*;
 import Scripts.House1Map.ButcherScript;
 import Tilesets.CommonTileset;
@@ -50,6 +51,10 @@ public class ButcherShopMap extends Map {
         Point photoLoc = getPositionByTileIndex(7, 7);
         triggers.add(new Trigger(photoLoc.x, photoLoc.y, 1, 2, new PopUpButcherImageScript(), "popUpButcherImage"));
 
+        // pop up death image trigger
+        Point deathPhotoLoc = getPositionByTileIndex(10, 3);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 1, 2, new PopUpButcherImageScript(), "butcherDeath")); //need to change to script of pop up
+        
         return triggers;
     } 
 }

@@ -22,7 +22,7 @@ import java.awt.image.BufferedImage;
      protected FlagManager flagManager;
      protected boolean popUpVisible = false;
      protected KeyLocker keyLocker = new KeyLocker();
-     protected boolean popUpShown = false;
+     protected boolean Shown = false;
  
 
      //constructor with FlagManager parameter
