@@ -340,12 +340,13 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
-                currMap.getFlagManager().unsetFlag("openButcherPuzzle");
+                //currMap.getFlagManager().unsetFlag("openButcherPuzzle");
                 keyLocker.unlockKey(Key.ESC);
             } 
         }       
         if(currMap.getFlagManager().isFlagSet("butcherPuzzleSolved")) {
             drawPuzzle = false;
+            currMap.getFlagManager().unsetFlag("openButcherPuzzle");
         } 
         //ex puzzle
         if(currMap.getFlagManager().isFlagSet("openExgfPuzzle")){
@@ -528,6 +529,7 @@ public class PlayLevelScreen extends Screen {
             //death
             if(currMap.getFlagManager().isFlagSet("deathScreen")) {
                 screenCoordinator.setGameState(GameState.DEATH);
+                playLevelScreenState = PlayLevelScreenState.LEVEL_NOT_COMPLETED;
                
             }
             if(currMap.getFlagManager().isFlagSet("butcherDeathScreen")) {
@@ -536,6 +538,7 @@ public class PlayLevelScreen extends Screen {
             // join him
             if(currMap.getFlagManager().isFlagSet("joinScreen")) {
                 screenCoordinator.setGameState(GameState.JOIN);
+                playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
                
             }
         }

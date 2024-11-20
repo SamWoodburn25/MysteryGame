@@ -90,7 +90,7 @@ public class Join extends Screen {
             currImageIndex++;
 
             if (currImageIndex >= joinImages.length)  {
-                screenCoordinator.setGameState(GameState.MENU);
+                screenCoordinator.setGameState(GameState.WIN);
             }
         }
         
