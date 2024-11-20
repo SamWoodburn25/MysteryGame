@@ -337,7 +337,7 @@ public class PlayLevelScreen extends Screen {
         
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(21, 15);
+            point = currMap.getPositionByTileIndex(15, 15);
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setLocation(point.x, (point.y)-10);
@@ -385,7 +385,7 @@ public class PlayLevelScreen extends Screen {
         //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(69, 46); 
+            point = currMap.getPositionByTileIndex(63, 48); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setFacingDirection(Direction.DOWN);
@@ -452,11 +452,11 @@ public class PlayLevelScreen extends Screen {
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
             } 
             currMap = cemetery;
-            point = currMap.getPositionByTileIndex(11, 30); 
+            point = currMap.getPositionByTileIndex(2, 30); 
             player.setMap(currMap);
             player.update();
             player.setLocation(point.x, point.y);
-            player.setFacingDirection(Direction.DOWN);
+            player.setFacingDirection(Direction.RIGHT);
             currMap.setPlayer(player);
             currMap.preloadScripts();
             currMap.setPlayer(player);
