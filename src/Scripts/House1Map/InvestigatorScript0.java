@@ -29,9 +29,11 @@ package Scripts.House1Map;
          scriptActions.add(new NPCFacePlayerScriptAction());
  
          scriptActions.add(new TextboxScriptAction() {{
-            addText("");
-            addText("");
-            addText("");
+            addText("*On the phone*\nWhat??? You lost the suspect file??");
+            addText("I am so sick of the department sending me idiots.\nCall me when you resolve this. Make it fast.");
+            addText("Oh.. it's you. So kid, you didn't hear any of that \nconversation right?");
+            addText("Good.");
+            addText("Run along now, you aren't getting anything \nout of me.");
          }});
  
          scriptActions.add(new NPCUnlockScriptAction());

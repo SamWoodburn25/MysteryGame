@@ -48,12 +48,8 @@ public class PlayLevelScreen extends Screen {
     protected ScaryGraveyardScreen scaryGraveyardScreen;
     protected FBIFileScreen fileScreen;
     protected FridgeScreen fridgeScreen;
-    protected boolean popUpVisible = false;
-    protected boolean drawPopUP = false;
-    protected boolean drawGravePopUP = false;
-    protected boolean drawFilePopUp = false;
-    protected boolean drawFridgePopUP = false;
-    protected boolean drawCharSelect = false;
+    protected ButcherDeathScreen butcherDeathScreen;
+    protected boolean popUpVisible, drawPopUP, drawGravePopUP, drawFilePopUp, drawFridgePopUP, drawCharSelect, butcherDeathPopUp = false;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
@@ -116,6 +112,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("popUpFridgeImage", false);
         flagManager.addFlag("charSelect", false);
         flagManager.addFlag("fileImage", false);
+        flagManager.addFlag("butcherDeathPopUp", false);
 
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
@@ -127,6 +124,8 @@ public class PlayLevelScreen extends Screen {
 
         //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
         flagManager.addFlag("deathScreen", false);
+        flagManager.addFlag("butcherDeathScreen", false);
+
 
 
 
@@ -151,6 +150,7 @@ public class PlayLevelScreen extends Screen {
         scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
         fileScreen = new FBIFileScreen(flagManager);
+        // butcherDeathScreen = new ButcherDeathScreen(flagManager);
 
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
@@ -324,7 +324,20 @@ public class PlayLevelScreen extends Screen {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }  
-                                                                                                   
+
+        //peter death image pop up
+        if(currMap.getFlagManager().isFlagSet("butcherDeath")){
+            butcherDeathPopUp = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                butcherDeathPopUp = false;
+                currMap.getFlagManager().unsetFlag("butcherDeath");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        }                                                                                       
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -502,6 +515,9 @@ public class PlayLevelScreen extends Screen {
                 screenCoordinator.setGameState(GameState.DEATH);
                
             }
+            if(currMap.getFlagManager().isFlagSet("butcherDeathScreen")) {
+                screenCoordinator.setGameState(GameState.PETERDEATH);
+            }
         }
 
     public void draw(GraphicsHandler graphicsHandler) {
@@ -537,6 +553,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(graveyardDrawPuzzle && !currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")){
                         graveyardPuzzle.draw(graphicsHandler);
+                    }
+                    else if(butcherDeathPopUp) {
+                        butcherDeathScreen.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{

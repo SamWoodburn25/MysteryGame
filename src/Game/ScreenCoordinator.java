@@ -18,10 +18,12 @@ import Screens.Death;
 import Screens.HowToPlay;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.ButcherDeathScreen;
 import Screens.CharacterSelectScreen;
 import Screens.Context0Screen;
 import Screens.Context1Screen;
 import Screens.MissingPosterScreen;
+import Screens.ButcherDeathScreen;
 
 
 
@@ -89,6 +91,9 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case DEATH:
 						currentScreen = new Death(this);
+						break;
+					// case PETERDEATH:
+					// 	currentScreen = new ButcherDeathScreen(this);
 				
 				}
 				currentScreen.initialize();
