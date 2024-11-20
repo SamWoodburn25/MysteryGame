@@ -6,7 +6,7 @@ package Scripts.House1Map;
  * Fall 2024
  * 
  * package- Scripts- ButcherShopMap
- * class- butcherToTownScript: script action to enter the town from the butcher shop
+ * class- InvestigatorScript1: script action to talk to investigator by cemetery
  */
 
 
@@ -28,12 +28,28 @@ package Scripts.House1Map;
  
          scriptActions.add(new NPCFacePlayerScriptAction());
  
-         scriptActions.add(new TextboxScriptAction() {{
-            addText("Hey kid, this is still an ongoing investigation.");
-            addText("What's in the cemetery you ask?");
-            addText("Nothing you should be worrying about that's what.");
-         }});
- 
+         scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasTalkedToInvestigator", false));
+                addScriptAction(new TextboxScriptAction() {{
+                    addText("Hey kid, this is still an ongoing investigation.");
+                    addText("What's in the cemetery you ask?");
+                    addText("Nothing you should be worrying about that's what.");
+                    addText("Now scram. My team and I are busy debugging \nthe entrance's cypher.");
+                }});
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToInvestigator", true));
+            }});
+        }});
+    
+         //script for additional info trigger
+        scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasTalkedToInvestigator", true));
+                addScriptAction(new TextboxScriptAction() {{
+                    addText("I thought I told you to leave me alone.");
+                }});
+            }});
+        }});
          scriptActions.add(new NPCUnlockScriptAction());
          scriptActions.add(new UnlockPlayerScriptAction());
  
