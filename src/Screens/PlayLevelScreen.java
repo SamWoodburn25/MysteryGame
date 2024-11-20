@@ -530,15 +530,15 @@ public class PlayLevelScreen extends Screen {
             if(currMap.getFlagManager().isFlagSet("deathScreen")) {
                 screenCoordinator.setGameState(GameState.DEATH);
                 playLevelScreenState = PlayLevelScreenState.LEVEL_NOT_COMPLETED;
+                currMap.getFlagManager().unsetFlag("deathScreen");
                
             }
-            if(currMap.getFlagManager().isFlagSet("butcherDeathScreen")) {
-                screenCoordinator.setGameState(GameState.PETERDEATH);
-            }
+            
             // join him
             if(currMap.getFlagManager().isFlagSet("joinScreen")) {
                 screenCoordinator.setGameState(GameState.JOIN);
                 playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+                currMap.getFlagManager().unsetFlag("joinScreen");
                
             }
         }
