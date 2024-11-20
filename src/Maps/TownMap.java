@@ -38,7 +38,7 @@ import NPCs.*;
          investigator.setInteractScript(new InvestigatorScript());
          npcs.add(investigator);
 
-         Boss boss = new Boss(1, getMapTile(26, 52).getLocation().subtractY(40));
+         Boss boss = new Boss(1, getMapTile(36, 52).getLocation().subtractY(40));
          boss.setInteractScript(new DamienScript());
          npcs.add(boss);
 
@@ -52,6 +52,14 @@ import NPCs.*;
          MHDaughter daughter = new MHDaughter(1, getMapTile(33, 40).getLocation().subtractY(40));
          daughter.setInteractScript(new DrugDealerDaughterScript());
          npcs.add(daughter);
+
+         Bike bike = new Bike(1, getMapTile(83, 19).getLocation().subtractY(0));
+         bike.setInteractScript(new BikeTangibility());
+         npcs.add(bike);
+
+         ScaryDog dog = new ScaryDog(1, getMapTile(26,53).getLocation().subtractY(40));
+         dog.setInteractScript(new BikeTangibility());
+         npcs.add(dog);
 
  
          return npcs;

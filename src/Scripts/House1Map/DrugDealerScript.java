@@ -25,7 +25,7 @@ public class DrugDealerScript extends Script {
 
         scriptActions.add(new NPCLockScriptAction());
 
-        scriptActions.add(new NPCFacePlayerScriptAction());
+        //scriptActions.add(new NPCFacePlayerScriptAction());
 
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{

@@ -20,7 +20,6 @@ package Scripts.House1Map;
      @Override
      public ArrayList<ScriptAction> loadScriptActions() {
          ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-         scriptActions.add(new LockPlayerScriptAction());
  
          scriptActions.add(new NPCLockScriptAction());
  
