@@ -49,9 +49,13 @@ import NPCs.*;
          ex.setInteractScript(new BrotherExGFScript());
          npcs.add(ex); 
 
-         MHDaughter daughter = new MHDaughter(1, getMapTile(33, 40).getLocation().subtractY(40));
+         MHDaughter daughter = new MHDaughter(1, getMapTile(70, 57).getLocation().subtractY(40));
          daughter.setInteractScript(new DrugDealerDaughterScript());
          npcs.add(daughter);
+
+         DrugDealer drugDealer = new DrugDealer(1,getMapTile(70, 54).getLocation().subtractY(0));
+         drugDealer.setInteractScript(new DrugDealerDaughterScript());
+         npcs.add(drugDealer);
 
          Bike bike = new Bike(1, getMapTile(87, 16).getLocation().subtractY(0));
          bike.setInteractScript(new BikeTangibility());
