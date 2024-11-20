@@ -18,8 +18,10 @@ import Screens.CreditsScreen;
 import Screens.Death;
 import Screens.HowToPlay;
 import Screens.Join;
+import Screens.LostScreen;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
+import Screens.WinScreen;
 import Screens.CharacterSelectScreen;
 import Screens.Context0Screen;
 import Screens.Context1Screen;
@@ -108,8 +110,15 @@ public class ScreenCoordinator extends Screen {
 					case DEATH:
 						currentScreen = new Death(this);
 						break;
+					case LOST:
+    					currentScreen = new LostScreen(new PlayLevelScreen(this));
+						break;
 					case JOIN:
 					 	currentScreen = new Join(this);
+						break;
+					case WIN:
+						currentScreen = new WinScreen((new PlayLevelScreen(this)));
+					
 				}
 				currentScreen.initialize();
 			}
