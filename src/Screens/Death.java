@@ -54,6 +54,10 @@ public class Death extends Screen {
         //keyPressTimer = 0; //initialize timer
 
         deathImages = new BufferedImage[] {
+            ImageLoader.load("cutscene_2nd.png"),
+            ImageLoader.load("cutscene2.png"),
+            ImageLoader.load("cutscene3.png"),
+            ImageLoader.load("cutscene4.png"),
             ImageLoader.load("dead_ending1.png"),
             ImageLoader.load("dead_ending2.png"),
             ImageLoader.load("dead_ending3.png")
