@@ -316,12 +316,13 @@ public class PlayLevelScreen extends Screen {
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
-                currMap.getFlagManager().unsetFlag("openButcherPuzzle");
+                //currMap.getFlagManager().unsetFlag("openButcherPuzzle");
                 keyLocker.unlockKey(Key.ESC);
             } 
         }       
         if(currMap.getFlagManager().isFlagSet("butcherPuzzleSolved")) {
             drawPuzzle = false;
+            currMap.getFlagManager().unsetFlag("openButcherPuzzle");
         } 
         //ex puzzle
         if(currMap.getFlagManager().isFlagSet("openExgfPuzzle")){
