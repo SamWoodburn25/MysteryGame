@@ -21,7 +21,7 @@
  
          //change the exit townToHouse1 flag to true and return it
          scriptActions.add(new ChangeFlagScriptAction("townToCemetery", true));
- 
+         
          return scriptActions;
      }
      
