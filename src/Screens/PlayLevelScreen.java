@@ -452,20 +452,6 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-            /* 
-            currMap.getFlagManager().setFlag("openGraveyardPuzzle");
-            //close puzzle on escape click
-            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-                graveyardDrawPuzzle = false;
-                System.out.println("esc clicked");
-                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                //currMap.getFlagManager().setFlag("cemeteryToTown");
-                keyLocker.lockKey(Key.ESC);
-            }
-            if(Keyboard.isKeyUp(Key.ESC)){
-                keyLocker.unlockKey(Key.ESC);
-            } 
-            */
             //if you solve it close the puzzle and set cemetery map
             if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
                 graveyardDrawPuzzle = false;
