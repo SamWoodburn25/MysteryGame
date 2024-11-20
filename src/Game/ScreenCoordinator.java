@@ -10,12 +10,14 @@
 
 package Game;
 
+import Engine.BackgroundMusic;
 import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
 import Screens.Death;
 import Screens.HowToPlay;
+import Screens.Join;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 import Screens.ButcherDeathScreen;
@@ -34,6 +36,17 @@ public class ScreenCoordinator extends Screen {
 	protected GameState gameState;
 	protected GameState previousGameState;
 
+	private BackgroundMusic backgroundMusic;
+	private boolean musicInitialized = false;
+
+	public ScreenCoordinator(){
+		//Initialize main music when game starts 
+		if (!musicInitialized){
+			backgroundMusic = new BackgroundMusic("Resources/GameSong.wav");
+			musicInitialized = true;
+			backgroundMusic.PlayMainMusic();
+		}
+	}
 
 	public GameState getGameState() {
 		return gameState;
@@ -67,34 +80,45 @@ public class ScreenCoordinator extends Screen {
 				switch(gameState) {
 					case MENU:
 						currentScreen = new MenuScreen(this);
+						backgroundMusic.playLocationMusic("menu");
 						break;
 					case LEVEL:
 						currentScreen = new PlayLevelScreen(this);
+						backgroundMusic.playLocationMusic("level");
 						break;
 					case CREDITS:
 						currentScreen = new CreditsScreen(this);
+						backgroundMusic.playLocationMusic("credits");
 						break;
 					case HOWTOPLAY:
+						currentScreen = new HowToPlay(this);
+						backgroundMusic.playLocationMusic("howtoplay");
 						currentScreen = new HowToPlay(this);
 						break;
 					case CONTEXT0:
 						currentScreen = new Context0Screen(this);
+						backgroundMusic.playLocationMusic("context1");
 						break;
 					case CONTEXT1:
 						currentScreen = new Context1Screen(this);
+						backgroundMusic.playLocationMusic("context1");
 						break;
 					case MISSINGPOSTER:
 						currentScreen = new MissingPosterScreen(this);
 						break;
 					case CHARSELECT:
 						currentScreen = new CharacterSelectScreen(this);
+
+						backgroundMusic.playLocationMusic("charselect");
 						break;
 					case DEATH:
 						currentScreen = new Death(this);
 						break;
 					// case PETERDEATH:
 					// 	currentScreen = new ButcherDeathScreen(this);
-				
+						// break;
+					case JOIN:
+					 	currentScreen = new Join(this);
 				}
 				currentScreen.initialize();
 			}

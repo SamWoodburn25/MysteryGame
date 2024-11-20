@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
 import Level.FlagManager;
 
 
-public class ButcherDeathScreen{
+public class ButcherDeathScreen extends Screen{
     // protected ScreenCoordinator screenCoordinator;
     // protected ScreenManager screenManager;
     // protected BufferedImage background;
@@ -79,5 +79,15 @@ public class ButcherDeathScreen{
         //draw while the image is visible
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         graphicsHandler.drawImage(butcherDeath, 0, 0, 800, 550);
+    }
+
+    @Override
+    public void initialize() {
+        throw new UnsupportedOperationException("Unimplemented method 'initialize'");
+    }
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 } 

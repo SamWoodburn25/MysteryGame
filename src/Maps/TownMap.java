@@ -18,6 +18,8 @@ import Scripts.House1Map.InvestigatorScript1;
 import Scripts.House1Map.InvestigatorScript2;
 import Scripts.House1Map.TreeScript;
 import Scripts.TownMap.PopUpFileImageScript;
+import Scripts.House1Map.DamienScript;
+import Scripts.House1Map.DrugDealerDaughterScript;
  import Scripts.TownMap.*;
  import Tilesets.TownTileset;
  import Utils.Point;
@@ -34,7 +36,7 @@ import Scripts.TownMap.PopUpFileImageScript;
      public ArrayList<NPC> loadNPCs() {
          ArrayList<NPC> npcs = new ArrayList<>();
  
-         Max max = new Max(1, getMapTile(40, 8).getLocation().subtractY(0));
+         Max max = new Max(1, getMapTile(34, 8).getLocation().subtractY(0));
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
@@ -51,16 +53,20 @@ import Scripts.TownMap.PopUpFileImageScript;
          investigator2.setInteractScript(new InvestigatorScript2());
          npcs.add(investigator2);
 
-         Boss boss = new Boss(1, getMapTile(26, 52).getLocation().subtractY(40));
+         Boss boss = new Boss(1, getMapTile(50, 66).getLocation().subtractY(40));
+         boss.setInteractScript(new DamienScript());
          npcs.add(boss);
 
-         Crow crow1 = new Crow(1, getMapTile(36, 50).getLocation().subtractY(40));
-         npcs.add(crow1);
+         ExGf ex = new ExGf(1, getMapTile(27, 39).getLocation().subtractY(40));
+         ex.setInteractScript(new BrotherExGFScript());
+         npcs.add(ex); 
 
-         ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
-        ex.setInteractScript(new BrotherExGFScript());
-        npcs.add(ex); 
+         MHDaughter daughter = new MHDaughter(1, getMapTile(35, 31).getLocation().subtractY(40));
+         daughter.setInteractScript(new DrugDealerDaughterScript());
+         npcs.add(daughter);
 
+         Bike bike = new Bike(1, getMapTile(87, 16).getLocation().subtractY(0));
+         npcs.add(bike);
 
  
          return npcs;
@@ -78,23 +84,25 @@ import Scripts.TownMap.PopUpFileImageScript;
  
          // trigger to enter butcher
          Point butcherShop = getPositionByTileIndex(69, 46);
-         triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScript(), "townToButcher"));
+         triggers.add(new Trigger(butcherShop.x, butcherShop.y, 50, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery
-         Point cemetery = getPositionByTileIndex(96, 18);
-         triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
+        //  Point cemetery = getPositionByTileIndex(96, 18);
+        //  triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
  
  
-         Point lockedCemetery = getPositionByTileIndex(96, 21);
-         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
+        //  Point lockedCemetery = getPositionByTileIndex(96, 21);
+        //  triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
-        // trigger for file pickup
-        Point fileImage = getPositionByTileIndex(95, 75);
-        triggers.add(new Trigger(fileImage.x, fileImage.y, 40, 50, new PopUpFileImageScript(), "fileImage"));
 
-        // pop up image trigger
-        Point photoLoc = getPositionByTileIndex(68, 13);
-        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 5, new PopUpGraveyardImageScript(), "graveyardImage"));
+        Point lockedCemetery = getPositionByTileIndex(96, 18);
+        //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
+        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
+ 
+
+
+
+    
 
          return triggers;
      }

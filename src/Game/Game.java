@@ -8,38 +8,38 @@
  * From this point on the ScreenCoordinator class will dictate what the game does
  */
 
-package Game;
+ package Game;
 
-import Engine.BackgroundMusic;
-import Engine.GameWindow;
-import Engine.ScreenManager;
-
-
-public class Game {
-    BackgroundMusic backgroundMusic;
-    boolean musicInitialized = false;
-
-    public static void main(String[] args) {
-        new Game();
-    }
-
-    public Game() {
-        GameWindow gameWindow = new GameWindow();
-        ScreenManager screenManager = gameWindow.getScreenManager();
-        screenManager.setCurrentScreen(new ScreenCoordinator());
-        gameWindow.startGame();
-
-        //add in music resource file
-        if (!musicInitialized) {
-            backgroundMusic = new BackgroundMusic("Resources/GameSong.wav");
-            musicInitialized = true;
-        }
-
-        if (!backgroundMusic.isPlaying()) {
-            backgroundMusic.play(); // Start playing the background music
-        }
-    }
-
- }
-  
+ import Engine.BackgroundMusic;
+ import Engine.GameWindow;
+ import Engine.ScreenManager;
  
+ public class Game {
+     private static BackgroundMusic backgroundMusic;
+     private static boolean musicInitialized = false;
+ 
+     public static void main(String[] args) {
+         new Game();
+     }
+ 
+     public Game() {
+         // Create the game window and setup screen manager
+         GameWindow gameWindow = new GameWindow();
+         ScreenManager screenManager = gameWindow.getScreenManager();
+         screenManager.setCurrentScreen(new ScreenCoordinator());
+ 
+         // Initialize background music
+         if (!musicInitialized) {
+             backgroundMusic = new BackgroundMusic("Resources/GameSong.wav");
+             musicInitialized = true;
+         }
+ 
+         // Start the game
+         gameWindow.startGame();
+     }
+ 
+     // Getter for background music
+     public static BackgroundMusic getBackgroundMusic() {
+         return backgroundMusic;
+     }
+ }

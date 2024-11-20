@@ -11,6 +11,7 @@
 
 package Screens;
 
+import Engine.BackgroundMusic;
 import Engine.GraphicsHandler;
 import Engine.Key;
 import Engine.KeyLocker;
@@ -34,6 +35,7 @@ public class PlayLevelScreen extends Screen {
     protected Player player;
     protected PlayLevelScreenState playLevelScreenState;
     protected WinScreen winScreen;
+    protected LostScreen lostScreen;
     protected FlagManager flagManager;
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
@@ -44,12 +46,20 @@ public class PlayLevelScreen extends Screen {
     protected Map currMap;
     protected Map house1Map, townMap, butcherShop, cemetery;
     //pop up variables
+    protected AFrameHPScreen aFrameHPScreen;
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected ScaryGraveyardScreen scaryGraveyardScreen;
+    protected ButcherDeathScreen butcherDeathScreen;
     protected FBIFileScreen fileScreen;
     protected FridgeScreen fridgeScreen;
-    protected ButcherDeathScreen butcherDeathScreen;
-    protected boolean popUpVisible, drawPopUP, drawGravePopUP, drawFilePopUp, drawFridgePopUP, drawCharSelect, butcherDeathPopUp = false;
+    protected boolean popUpVisible = false;
+    protected boolean drawPopUP = false;
+    protected boolean drawPopUpHouse=false;
+    protected boolean drawGravePopUP = false;
+    protected boolean drawFridgePopUP = false;
+    protected boolean drawCharSelect = false;
+    protected boolean drawFilePopUp = false;
+    protected boolean drawButcherDeathPopUp = false;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
@@ -66,6 +76,8 @@ public class PlayLevelScreen extends Screen {
     //character selection variables
     protected CharacterSelectScreen charSelectScreen;
     protected String charHair;
+    //music 
+    private BackgroundMusic backgroundMusic;
 
     //constructor 
     public PlayLevelScreen(ScreenCoordinator screenCoordinator) {
@@ -107,6 +119,7 @@ public class PlayLevelScreen extends Screen {
 
 
         //flag to manage pop-up
+        flagManager.addFlag("popUpHouseImage",false);
         flagManager.addFlag("popUpButcherImage", false);
         flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
@@ -124,11 +137,17 @@ public class PlayLevelScreen extends Screen {
 
         //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
         flagManager.addFlag("deathScreen", false);
-        flagManager.addFlag("butcherDeathScreen", false);
+        flagManager.addFlag("butcherDeath", false);
 
 
+        //change to join ending screen but im skeptcial and also have an inkling that its not working
+        flagManager.addFlag("joinScreen", false);
 
+        // setup background music 
+        backgroundMusic= new BackgroundMusic("Resources/GameSong.wav");
 
+        //start house music 
+        backgroundMusic.playLocationMusic("house");
 
         
         // Define and set up maps
@@ -146,11 +165,12 @@ public class PlayLevelScreen extends Screen {
         
 
         //define and set up pop-up with flag manager
+        aFrameHPScreen= new AFrameHPScreen(flagManager);
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
         scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
         fileScreen = new FBIFileScreen(flagManager);
-        // butcherDeathScreen = new ButcherDeathScreen(flagManager);
+        butcherDeathScreen = new ButcherDeathScreen(flagManager);
 
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
@@ -195,6 +215,8 @@ public class PlayLevelScreen extends Screen {
 
         //set up win screen
         winScreen = new WinScreen(this);
+        lostScreen = new LostScreen(this);
+
     }
 
     //update
@@ -237,8 +259,25 @@ public class PlayLevelScreen extends Screen {
                 case LEVEL_COMPLETED:
                     winScreen.update();
                     break;
+                case LEVEL_NOT_COMPLETED:
+                    lostScreen.update();
+                    break;
             }
         }
+
+        //if pop up flag set draw the image
+        if(currMap.getFlagManager().isFlagSet("popUpHouseImage")){
+            drawPopUpHouse = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawPopUpHouse = false;
+                currMap.getFlagManager().unsetFlag("popUpHouseImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        } 
 
         //if pop up flag set draw the image
         if(currMap.getFlagManager().isFlagSet("popUpButcherImage")){
@@ -289,7 +328,8 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-        }      
+        }    
+        
         //butcher puzzle
         if(currMap.getFlagManager().isFlagSet("openButcherPuzzle")){
             drawPuzzle = true;
@@ -327,17 +367,18 @@ public class PlayLevelScreen extends Screen {
 
         //peter death image pop up
         if(currMap.getFlagManager().isFlagSet("butcherDeath")){
-            butcherDeathPopUp = true;
+            drawButcherDeathPopUp = true;
+            System.out.println("peter death triggered");
             //close image on escape click
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-                butcherDeathPopUp = false;
+                drawButcherDeathPopUp = false;
                 currMap.getFlagManager().unsetFlag("butcherDeath");
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-        }                                                                                       
+        }                                                                                      
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -357,19 +398,21 @@ public class PlayLevelScreen extends Screen {
 
 
 
-      
+      //change music 
 
         /*
          * flags for switching maps: update player, flags, and scripts for each change of currMap
          */
         //leaving through door at bottom of house1 to get to down
         
+        
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(21, 15);
+            point = currMap.getPositionByTileIndex(15, 15);
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setLocation(point.x, (point.y)-10);
+            backgroundMusic.playLocationMusic("town");
             System.out.println("Switching to Town Map. Player Position: " + point.x + ", " + point.y);
             System.out.println("Before Setting Facing Direction: " + player.getFacingDirection());
             player.setFacingDirection(Direction.UP);
@@ -387,6 +430,7 @@ public class PlayLevelScreen extends Screen {
             point = currMap.getPositionByTileIndex(17, 21); //6,4
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
+            backgroundMusic.playLocationMusic("house");
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
             currMap.preloadScripts();
@@ -402,6 +446,7 @@ public class PlayLevelScreen extends Screen {
             point = currMap.getPositionByTileIndex(4, 5); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
+            backgroundMusic.playLocationMusic("butcher");
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
             currMap.preloadScripts();
@@ -414,9 +459,10 @@ public class PlayLevelScreen extends Screen {
         //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(69, 46); 
+            point = currMap.getPositionByTileIndex(63, 48); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
+            backgroundMusic.PlayMainMusic();
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
             currMap.preloadScripts();
@@ -427,40 +473,7 @@ public class PlayLevelScreen extends Screen {
             flagManager.unsetFlag("butcherToTown");
             System.out.println("entering town");
         }
-
-        //leaving town to enter cemetery
-        // if(flagManager.isFlagSet("unlockedCemetery")){
-        //     if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
-        //         currMap = cemetery;
-        //         point = currMap.getPositionByTileIndex(1, 23); 
-        //         player.setMap(currMap);
-        //         player.setLocation(point.x, point.y);
-        //         player.setFacingDirection(Direction.DOWN);
-        //         currMap.setPlayer(player);
-        //         currMap.preloadScripts();
-        //         currMap.setPlayer(player);
-        //         currMap.preloadScripts();
-        //         currMap.loadScripts();
-        //         flagManager.unsetFlag("townToCemetery");
-                
-        //     }
-           
-                // if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
-                // currMap = cemetery;
-                // point = currMap.getPositionByTileIndex(1, 23); 
-                // player.setMap(currMap);
-                // player.setLocation(point.x, point.y);
-                // player.setFacingDirection(Direction.DOWN);
-                // currMap.setPlayer(player);
-                // currMap.preloadScripts();
-                // currMap.setPlayer(player);
-                // currMap.preloadScripts();
-                // currMap.loadScripts();
-                // flagManager.unsetFlag("townToCemetery");
-
-                // keyLocker.lockKey(Key.C);
-                
-        
+  
         if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
             //open graveyard puzzle
             graveyardDrawPuzzle = true;
@@ -469,7 +482,7 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 graveyardDrawPuzzle = false;
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                currMap.getFlagManager().setFlag("cemeteryToTown");
+                //currMap.getFlagManager().setFlag("cemeteryToTown");
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
@@ -481,10 +494,11 @@ public class PlayLevelScreen extends Screen {
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
             } 
             currMap = cemetery;
-            point = currMap.getPositionByTileIndex(1, 23); 
+            point = currMap.getPositionByTileIndex(2, 30); 
             player.setMap(currMap);
             player.update();
             player.setLocation(point.x, point.y);
+            backgroundMusic.playLocationMusic("cemetery");
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
             currMap.preloadScripts();
@@ -500,6 +514,7 @@ public class PlayLevelScreen extends Screen {
                 point = currMap.getPositionByTileIndex(92, 16); 
                 player.setMap(currMap);
                 player.setLocation(point.x, point.y);
+                backgroundMusic.PlayMainMusic();
                 player.setFacingDirection(Direction.DOWN);
                 currMap.setPlayer(player);
                 currMap.preloadScripts();
@@ -517,6 +532,11 @@ public class PlayLevelScreen extends Screen {
             }
             if(currMap.getFlagManager().isFlagSet("butcherDeathScreen")) {
                 screenCoordinator.setGameState(GameState.PETERDEATH);
+            }
+            // join him
+            if(currMap.getFlagManager().isFlagSet("joinScreen")) {
+                screenCoordinator.setGameState(GameState.JOIN);
+               
             }
         }
 
@@ -551,10 +571,13 @@ public class PlayLevelScreen extends Screen {
                     else if(exDrawPuzzle){
                         exgfPuzzle.draw(graphicsHandler);
                     }
+                    else if (drawPopUpHouse){
+                        aFrameHPScreen.draw(graphicsHandler);
+                    }
                     else if(graveyardDrawPuzzle && !currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")){
                         graveyardPuzzle.draw(graphicsHandler);
                     }
-                    else if(butcherDeathPopUp) {
+                    else if(drawButcherDeathPopUp) {
                         butcherDeathScreen.draw(graphicsHandler);
                     }
                     //otherwise draw current map
@@ -564,6 +587,9 @@ public class PlayLevelScreen extends Screen {
                     break;
                 case LEVEL_COMPLETED:
                     winScreen.draw(graphicsHandler);
+                    break;
+                case  LEVEL_NOT_COMPLETED:
+                    lostScreen.draw(graphicsHandler);
                     break;
             }
         }
@@ -588,6 +614,6 @@ public class PlayLevelScreen extends Screen {
 
     //this enum represents the different states this screen can be in
     private enum PlayLevelScreenState {
-        RUNNING, LEVEL_COMPLETED
+        RUNNING, LEVEL_COMPLETED, LEVEL_NOT_COMPLETED
     }
 }

@@ -422,7 +422,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder outsideButcherWallOneTile = new MapTileBuilder(outsideButcherWallOneFrame);
+        MapTileBuilder outsideButcherWallOneTile = new MapTileBuilder(outsideButcherWallOneFrame)
+            .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(outsideButcherWallOneTile);
 
 
@@ -431,7 +432,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder bottomDoorButcherTile = new MapTileBuilder(bottomDoorButcherFrame);
+        MapTileBuilder bottomDoorButcherTile = new MapTileBuilder(bottomDoorButcherFrame)
+            .withTileType(TileType.PASSABLE);
         mapTiles.add(bottomDoorButcherTile);
 
 
@@ -449,7 +451,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder topDoorButcherTile = new MapTileBuilder(topDoorButcherFrame);
+        MapTileBuilder topDoorButcherTile = new MapTileBuilder(topDoorButcherFrame)
+            .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(topDoorButcherTile);
 
 
@@ -458,7 +461,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder outsideButcherWallRightWindowTile = new MapTileBuilder(outsideButcherWallRightWindowFrame);
+        MapTileBuilder outsideButcherWallRightWindowTile = new MapTileBuilder(outsideButcherWallRightWindowFrame)
+            .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(outsideButcherWallRightWindowTile);
 
         // outside butcher wall 2
@@ -466,7 +470,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder outsideButcherWallTwoTile = new MapTileBuilder(outsideButcherWallTwoFrame);
+        MapTileBuilder outsideButcherWallTwoTile = new MapTileBuilder(outsideButcherWallTwoFrame)
+        .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(outsideButcherWallTwoTile);
 
         // left roof butcher
@@ -509,7 +514,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder outsideButcherGrateLeftTile = new MapTileBuilder(outsideButcherGrateLeftFrame);
+        MapTileBuilder outsideButcherGrateLeftTile = new MapTileBuilder(outsideButcherGrateLeftFrame)
+            .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(outsideButcherGrateLeftTile);
 
         // outside butcher grate middle
@@ -517,7 +523,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder outsideButcherGrateMiddleTile = new MapTileBuilder(outsideButcherGrateMiddleFrame);
+        MapTileBuilder outsideButcherGrateMiddleTile = new MapTileBuilder(outsideButcherGrateMiddleFrame)
+            .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(outsideButcherGrateMiddleTile);
 
         // outside butcher grate right
@@ -525,7 +532,8 @@ public class TownTileset extends Tileset{
             .withScale(tileScale)
             .build();
 
-        MapTileBuilder outsideButcherGrateRightTile = new MapTileBuilder(outsideButcherGrateRightFrame);
+        MapTileBuilder outsideButcherGrateRightTile = new MapTileBuilder(outsideButcherGrateRightFrame)
+            .withTileType(TileType.NOT_PASSABLE);
         mapTiles.add(outsideButcherGrateRightTile);
 
 
@@ -1188,7 +1196,7 @@ Frame lB2WallFrame = new FrameBuilder(getSubImage(10, 1))
 
 MapTileBuilder lB2WallTile  = new MapTileBuilder(lB2WallFrame)
         
-        .withTileType(TileType.PASSABLE);
+        .withTileType(TileType.NOT_PASSABLE);
 
 
 mapTiles.add(lB2WallTile);
@@ -1200,7 +1208,7 @@ Frame b2WallFrame = new FrameBuilder(getSubImage(10, 2))
 
 MapTileBuilder b2WallTile  = new MapTileBuilder(b2WallFrame)
         
-        .withTileType(TileType.PASSABLE);
+        .withTileType(TileType.NOT_PASSABLE);
 
 
 mapTiles.add(b2WallTile);
@@ -1212,7 +1220,7 @@ Frame rB2WallFrame = new FrameBuilder(getSubImage(10, 3))
 
 MapTileBuilder rB2WallTile  = new MapTileBuilder(rB2WallFrame)
         
-        .withTileType(TileType.PASSABLE);
+        .withTileType(TileType.NOT_PASSABLE);
 
 
 mapTiles.add(rB2WallTile);
@@ -1682,13 +1690,13 @@ mapTiles.add(b3WallTile);
 
 //right building 3 wall
 Frame rB3WallFrame = new FrameBuilder(getSubImage(2, 10))
-.withScale(tileScale)
+    .withScale(tileScale)
 
-.build();
+    .build();
 
 MapTileBuilder rB3WallTile = new MapTileBuilder(rB3WallFrame)
 
-.withTileType(TileType.NOT_PASSABLE);
+    .withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(rB3WallTile);
 
@@ -1867,7 +1875,7 @@ Frame lBarWallFrame = new FrameBuilder(getSubImage(3, 13))
 MapTileBuilder lBarWallTile = new MapTileBuilder(lBarWallFrame)
 
 
-.withTileType(TileType.PASSABLE);
+.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(lBarWallTile);
 
@@ -1880,7 +1888,7 @@ Frame barWallFrame = new FrameBuilder(getSubImage(3, 14))
 MapTileBuilder barWallTile = new MapTileBuilder(barWallFrame)
 
 
-.withTileType(TileType.PASSABLE);
+.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(barWallTile);
 
@@ -1893,7 +1901,7 @@ Frame rBarWallFrame = new FrameBuilder(getSubImage(3, 15))
 MapTileBuilder rBarWallTile = new MapTileBuilder(rBarWallFrame)
 
 
-.withTileType(TileType.PASSABLE);
+.withTileType(TileType.NOT_PASSABLE);
 
 mapTiles.add(rBarWallTile);
 
