@@ -30,7 +30,7 @@ import NPCs.*;
      public ArrayList<NPC> loadNPCs() {
          ArrayList<NPC> npcs = new ArrayList<>();
  
-         Max max = new Max(1, getMapTile(40, 8).getLocation().subtractY(0));
+         Max max = new Max(1, getMapTile(34, 8).getLocation().subtractY(0));
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
@@ -92,7 +92,7 @@ import NPCs.*;
          //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
  
 
-        Point lockedCemetery = getPositionByTileIndex(96, 19);
+        Point lockedCemetery = getPositionByTileIndex(90, 18);
         //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 10, new TownToCemeteryScript(), "townToCemetery"));
  
