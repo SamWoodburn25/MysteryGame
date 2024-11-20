@@ -1407,7 +1407,7 @@ MapTileBuilder lB3WallTile = new MapTileBuilder(lB3WallFrame)
 mapTiles.add(lB3WallTile);
 
 
-//top fence for cemetary 
+//top fence for cemetery
 Frame topFenceFrame = new FrameBuilder(getSubImage(0, 10))
 .withScale(tileScale)
 .build();

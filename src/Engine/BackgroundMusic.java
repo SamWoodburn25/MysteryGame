@@ -25,6 +25,7 @@ public class BackgroundMusic {
         loadLocationMusic("house","Resources/HouseMusic.wav");
         loadLocationMusic("town","Resources/GameSong.wav");
         loadLocationMusic("butcher","Resources/ButcherMusic.wav");
+        loadLocationMusic("cemetery", "Resources/CemeterySong.wav");
 
     }
     private void loadLocationMusic(String location, String filePath){

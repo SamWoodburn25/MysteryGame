@@ -61,14 +61,6 @@ public class House1Map extends Map {
         
 
         // Point tileLocation1 = getMapTile(6, 14).getLocation();
-        /*
-         * triggers.add(new Trigger(790, 1030, 100, 10, new LostBallScript(),
-         * "hasLostBall"));
-         * triggers.add(new Trigger(790, 960, 10, 80, new LostBallScript(),
-         * "hasLostBall"));
-         * triggers.add(new Trigger(890, 960, 10, 80, new LostBallScript(),
-         * "hasLostBall"));
-         */
         // triggers.add(new Trigger(tileLocation1.x, tileLocation1.y, 100,20, new
         // ExitScript(), "exitInteract" ));
 

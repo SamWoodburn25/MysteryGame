@@ -15,6 +15,7 @@ import Engine.DefaultScreen;
 import Engine.GraphicsHandler;
 import Engine.Screen;
 import Screens.CreditsScreen;
+import Screens.Death;
 import Screens.HowToPlay;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
@@ -86,9 +87,10 @@ public class ScreenCoordinator extends Screen {
 						backgroundMusic.playLocationMusic("credits");
 						break;
 					case HOWTOPLAY:
-					currentScreen = new HowToPlay(this);
-					backgroundMusic.playLocationMusic("howtoplay");
-					break;
+						currentScreen = new HowToPlay(this);
+						backgroundMusic.playLocationMusic("howtoplay");
+						currentScreen = new HowToPlay(this);
+						break;
 					case CONTEXT0:
 						currentScreen = new Context0Screen(this);
 						backgroundMusic.playLocationMusic("context1");
@@ -99,7 +101,12 @@ public class ScreenCoordinator extends Screen {
 						break;
 					case CHARSELECT:
 						currentScreen = new CharacterSelectScreen(this);
+
 						backgroundMusic.playLocationMusic("charselect");
+						break;
+					case DEATH:
+						currentScreen = new Death(this);
+						break;
 				}
 				currentScreen.initialize();
 			}

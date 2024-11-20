@@ -9,18 +9,19 @@
 
  package Maps;
 
- import Level.*;
+import Level.*;
 import Scripts.LockedAreaScript;
 import Scripts.SimpleTextScript;
 import Scripts.House1Map.*;
- import Scripts.TownMap.*;
- import Tilesets.TownTileset;
- import Utils.Point;
- import java.util.ArrayList;
- import NPCs.*;
+import Scripts.TownMap.*;
+import Tilesets.TownTileset;
+import Utils.Point;
+import java.util.ArrayList;
+import NPCs.*;
  
  public class TownMap extends Map {
-     public TownMap() {
+
+    public TownMap() {
          super("town_map1.txt", new TownTileset());
          this.playerStartPosition = getMapTile(17, 20).getLocation();
      }
@@ -71,13 +72,17 @@ import Scripts.House1Map.*;
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 20, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery
-         //Point cemetery = getPositionByTileIndex(96, 18);
-         //triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
+         //Point cemetery = getPositionByTileIndex(96, 20);
+         //triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
  
  
-         Point lockedCemetery = getPositionByTileIndex(96, 18);
-         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
+         //Point lockedCemetery = getPositionByTileIndex(96, 18);
+         //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
  
+
+        Point lockedCemetery = getPositionByTileIndex(96, 19);
+        //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
+        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 10, new TownToCemeteryScript(), "townToCemetery"));
  
 
 
@@ -91,7 +96,6 @@ import Scripts.House1Map.*;
  
      @Override
      public void loadScripts() {
- 
          getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
  
          getMapTile(73, 44).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
@@ -102,6 +106,7 @@ import Scripts.House1Map.*;
  
          getMapTile(2, 6).setInteractScript(new TreeScript());
      }
+
  
  }
  
