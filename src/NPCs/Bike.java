@@ -22,30 +22,17 @@ public class Bike extends NPC {
         return new HashMap<String, Frame[]>() {{
             put("STAND_LEFT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
-                            .withScale(3)
-                            .withBounds(4, 28, 28, 2)
+                            .withScale(4)
+                            .withBounds(4, 8, 28, 2)
                             .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .build()
             });
             put("STAND_RIGHT", new Frame[] {
                    new FrameBuilder(spriteSheet.getSprite(0, 0))
-                           .withScale(3)
-                           .withBounds(4, 28, 28, 2)
+                           .withScale(4)
+                           .withBounds(4, 8, 28, 2)
                            .build()
            });
-           put("BOUNCE_RIGHT", new Frame[] {
-            new FrameBuilder(spriteSheet.getSprite(0, 0), 10)
-                    .withScale(3)
-                    .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
-                    .withBounds(4, 28, 28, 2)
-                    .build()
-            });
-            put("BOUNCE_LEFT", new Frame[] {
-                new FrameBuilder(spriteSheet.getSprite(0, 0), 12)
-                        .withScale(3)
-                        .withBounds(4, 28, 28, 2)
-                        .build()
-            });
         }};
     }
 

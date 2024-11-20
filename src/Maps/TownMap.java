@@ -21,6 +21,7 @@ import Scripts.TownMap.PopUpFileImageScript;
 import Scripts.House1Map.DamienScript;
 import Scripts.House1Map.DrugDealerDaughterScript;
  import Scripts.TownMap.*;
+ import Scripts.House1Map.*;
  import Tilesets.TownTileset;
  import Utils.Point;
  import java.util.ArrayList;
@@ -40,12 +41,11 @@ import Scripts.House1Map.DrugDealerDaughterScript;
          max.setInteractScript(new ExBestFriendScript());
          npcs.add(max);
 
-
          Investigator investigator0 = new Investigator(1, getMapTile(26, 50).getLocation().subtractY(40));
          investigator0.setInteractScript(new InvestigatorScript0());
          npcs.add(investigator0);
 
-         Investigator investigator1 = new Investigator(1, getMapTile(91, 8).getLocation().subtractY(40));
+         Investigator investigator1 = new Investigator(1, getMapTile(87, 8).getLocation().subtractY(40));
          investigator1.setInteractScript(new InvestigatorScript1());
          npcs.add(investigator1);
 
@@ -57,7 +57,10 @@ import Scripts.House1Map.DrugDealerDaughterScript;
          boss.setInteractScript(new DamienScript());
          npcs.add(boss);
 
-         ExGf ex = new ExGf(1, getMapTile(27, 39).getLocation().subtractY(40));
+         Crow crow1 = new Crow(1, getMapTile(36, 50).getLocation().subtractY(40));
+         npcs.add(crow1);
+
+         ExGf ex = new ExGf(1, getMapTile(33, 37).getLocation().subtractY(40));
          ex.setInteractScript(new BrotherExGFScript());
          npcs.add(ex); 
 
@@ -70,7 +73,12 @@ import Scripts.House1Map.DrugDealerDaughterScript;
          npcs.add(drugDealer);
 
          Bike bike = new Bike(1, getMapTile(87, 16).getLocation().subtractY(0));
+         bike.setInteractScript(new BikeTangibility());
          npcs.add(bike);
+
+         ScaryDog dog = new ScaryDog(1, getMapTile(26,53).getLocation().subtractY(40));
+         dog.setInteractScript(new BikeTangibility());
+         npcs.add(dog);
 
  
          return npcs;
@@ -87,8 +95,9 @@ import Scripts.House1Map.DrugDealerDaughterScript;
  
  
          // trigger to enter butcher
-         Point butcherShop = getPositionByTileIndex(69, 46);
+         Point butcherShop = getPositionByTileIndex(69, 47);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 50, 10, new TownToButcherScript(), "townToButcher"));
+
 
          //trigger to enter cemetery
         //  Point cemetery = getPositionByTileIndex(96, 18);
@@ -99,16 +108,18 @@ import Scripts.House1Map.DrugDealerDaughterScript;
         //  triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
 
-        Point lockedCemetery = getPositionByTileIndex(96, 18);
+        Point lockedCemetery = getPositionByTileIndex(90, 18);
         //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
-        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
+        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 10, new TownToCemeteryScript(), "townToCemetery"));
  
-        Point fbiFile = getPositionByTileIndex(95, 75);
+        Point fbiFile = getPositionByTileIndex(89, 75);
         triggers.add(new Trigger(fbiFile.x , fbiFile.y, 50, 50, new PopUpFileImageScript(), "fileImage"));
  
 
 
-    
+        // pop up image trigger
+        Point photoLoc = getPositionByTileIndex(68, 13);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 5, new PopUpGraveyardImageScript(), "graveyardImage"));
 
          return triggers;
      }
@@ -117,13 +128,13 @@ import Scripts.House1Map.DrugDealerDaughterScript;
      public void loadScripts() {
         
         // file image needs multiple so player can touch file from anywhere and open
-        getMapTile(94, 73).setInteractScript(new PopUpFileImageScript());
-        getMapTile(95, 73).setInteractScript(new PopUpFileImageScript());
-        getMapTile(93, 74).setInteractScript(new PopUpFileImageScript());
-        getMapTile(94, 74).setInteractScript(new PopUpFileImageScript());
-        getMapTile(94, 75).setInteractScript(new PopUpFileImageScript());
-        getMapTile(95, 74).setInteractScript(new PopUpFileImageScript());
-        getMapTile(95, 75).setInteractScript(new PopUpFileImageScript());
+        getMapTile(84, 73).setInteractScript(new PopUpFileImageScript());
+        getMapTile(85, 73).setInteractScript(new PopUpFileImageScript());
+        getMapTile(83, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(84, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(84, 75).setInteractScript(new PopUpFileImageScript());
+        getMapTile(85, 74).setInteractScript(new PopUpFileImageScript());
+        getMapTile(85, 75).setInteractScript(new PopUpFileImageScript());
 
          getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
  
