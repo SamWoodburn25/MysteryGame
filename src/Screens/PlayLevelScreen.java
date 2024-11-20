@@ -427,7 +427,7 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             backgroundMusic.PlayMainMusic();
-            player.setFacingDirection(Direction.DOWN);
+            player.setFacingDirection(Direction.RIGHT);
             currMap.setPlayer(player);
             currMap.preloadScripts();
             player.setFacingDirection(Direction.UP);

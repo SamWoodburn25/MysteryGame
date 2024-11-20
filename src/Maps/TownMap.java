@@ -72,7 +72,7 @@ import NPCs.*;
  
  
          // trigger to enter butcher
-         Point butcherShop = getPositionByTileIndex(63, 46);
+         Point butcherShop = getPositionByTileIndex(63, 47);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 50, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery
