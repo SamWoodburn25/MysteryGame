@@ -329,6 +329,7 @@ public class PlayLevelScreen extends Screen {
             //close image on escape click
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 exDrawPuzzle = false;
+                System.out.println("esc clicked");
                 currMap.getFlagManager().unsetFlag("openExgfPuzzle");
                 keyLocker.lockKey(Key.ESC);
             }
@@ -340,7 +341,7 @@ public class PlayLevelScreen extends Screen {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }  
-                                                                                                   
+                                                                                                          
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -440,8 +441,18 @@ public class PlayLevelScreen extends Screen {
         if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
             //open graveyard puzzle
             graveyardDrawPuzzle = true;
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                graveyardDrawPuzzle = false;
+                System.out.println("esc clicked");
+                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                currMap.getFlagManager().setFlag("cemeteryToTown");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+            /* 
             currMap.getFlagManager().setFlag("openGraveyardPuzzle");
-            System.out.println("is key locked " + keyLocker.isKeyLocked(Key.ESC));
             //close puzzle on escape click
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 graveyardDrawPuzzle = false;
@@ -453,6 +464,7 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
+            */
             //if you solve it close the puzzle and set cemetery map
             if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
                 graveyardDrawPuzzle = false;
@@ -476,7 +488,7 @@ public class PlayLevelScreen extends Screen {
             //leaving cemetery to enter town
             if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
                 currMap = townMap;
-                point = currMap.getPositionByTileIndex(92, 16); 
+                point = currMap.getPositionByTileIndex(88, 19); 
                 player.setMap(currMap);
                 player.setLocation(point.x, point.y);
                 backgroundMusic.PlayMainMusic();

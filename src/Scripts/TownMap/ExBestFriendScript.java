@@ -28,7 +28,7 @@ public class ExBestFriendScript extends Script {
                     addText("Maybe you didn’t know but a couple months ago we went\n our separate ways.");
                     addText("Basically ditched me for that girlfriend of his...");
                     addText("Also, these may help you more than they did for me... \nsome papers with your brother’s handwriting on them.");
-                    addText("Planned on giving them to your mom, but you might get\n more use out of them. Good luck! ", new String[] { "\"Ask about ex\"", "\"Ask about brother\"" });
+                    addText("Planned on giving them to your mom, but you might get\n more use out of them. Good luck! ", new String[] { "\"Ask about ex\"", "\"Ask about butcher\"" });
                 }});
              addScriptAction(new ChangeFlagScriptAction("hasTalkedToMax", true));
             }});
