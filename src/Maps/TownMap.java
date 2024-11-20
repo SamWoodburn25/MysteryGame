@@ -87,7 +87,7 @@ import Scripts.House1Map.DrugDealerDaughterScript;
  
  
          // trigger to enter butcher
-         Point butcherShop = getPositionByTileIndex(69, 46);
+         Point butcherShop = getPositionByTileIndex(69, 47);
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 50, 10, new TownToButcherScript(), "townToButcher"));
 
          //trigger to enter cemetery

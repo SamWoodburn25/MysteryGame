@@ -65,8 +65,8 @@ public class House1Map extends Map {
         // ExitScript(), "exitInteract" ));
 
         //fridge pop up trigger
-        Point photoLoc = getPositionByTileIndex(24, 15);
-        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 10, 100, new PopUpFridgeImageScript(), "popUpButcherImage"));
+        Point photoLoc = getPositionByTileIndex(24, 16);
+        triggers.add(new Trigger(photoLoc.x, photoLoc.y, 100, 10, new PopUpFridgeImageScript(), "popUpButcherImage"));
 
         //  alex pop up image trigger
         Point photoLoc1 = getPositionByTileIndex(16, 16);

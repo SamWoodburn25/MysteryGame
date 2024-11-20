@@ -177,12 +177,12 @@ public class ButcherScript extends Script {
                     addText("Your brother thought it was funny to trap me here \nin this freezer... it was so cold");
                     addText("Don't you see how I could never want to think of him again?!", new String[] { "\"Push him\"" });
                     addText("***AAAAAA***");
-                    addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
+                    //addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
 
                     // screenCoordinator.setGameState(GameState.PETERDEATH);
                 }});
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
-                // addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
+                addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
                 
             }});
         }});
