@@ -70,7 +70,7 @@ public class House1Map extends Map {
 
         //  alex pop up image trigger
         Point photoLoc1 = getPositionByTileIndex(16, 16);
-        triggers.add(new Trigger(photoLoc1.x, photoLoc1.y, 100, 50, new PopUpHouseImageScript(), "popUpHouseImage"));
+        triggers.add(new Trigger(photoLoc1.x, photoLoc1.y, 10, 50, new PopUpHouseImageScript(), "popUpHouseImage"));
 
         
         triggers.add(new Trigger(townLoc.x, townLoc.y,200,10, new House1ToTownScript(), "house1ToTown" ));
