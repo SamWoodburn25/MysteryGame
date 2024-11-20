@@ -25,6 +25,7 @@ import NPCs.SkullThree;
 import NPCs.SkullTwo;
 import Scripts.CemeteryMap.CemeteryToTownScript;
 import Scripts.CemeteryMap.DeathScript;
+import Scripts.CemeteryMap.JoinScript;
 import Scripts.House1Map.BrotherScript;
 import Scripts.TownMap.PopUpGraveyardImageScript;
 import Tilesets.CemeteryTileset;
@@ -116,6 +117,9 @@ public class CemeteryMap extends Map {
         //temp trigger to test death cutscene
         Point deathLoc = getMapTile(40,12).getLocation();
         triggers.add(new Trigger(deathLoc.x, deathLoc.y, 10, 160, new DeathScript(), "deathScript"));
+
+        Point joinLoc = getMapTile(37,7).getLocation();
+        triggers.add(new Trigger(joinLoc.x, joinLoc.y, 10, 160, new JoinScript(), "joinScript"));
         
         Point toTown = getPositionByTileIndex(0,30);
         triggers.add(new Trigger(toTown.x +14, toTown.y,5 ,100, new CemeteryToTownScript(), "CemeteryToTown"));

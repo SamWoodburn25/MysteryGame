@@ -132,6 +132,9 @@ public class PlayLevelScreen extends Screen {
         //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
         flagManager.addFlag("deathScreen", false);
 
+        //change to join ending screen but im skeptcial and also have an inkling that its not working
+        flagManager.addFlag("joinScreen", false);
+
         // setup background music 
         backgroundMusic= new BackgroundMusic("Resources/GameSong.wav");
 
@@ -488,6 +491,11 @@ public class PlayLevelScreen extends Screen {
             //death
             if(currMap.getFlagManager().isFlagSet("deathScreen")) {
                 screenCoordinator.setGameState(GameState.DEATH);
+               
+            }
+            // join him
+            if(currMap.getFlagManager().isFlagSet("joinScreen")) {
+                screenCoordinator.setGameState(GameState.JOIN);
                
             }
         }

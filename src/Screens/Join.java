@@ -17,8 +17,8 @@ import Level.FlagManager;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Death extends Screen {
-    protected BufferedImage[] deathImages;
+public class Join extends Screen {
+    protected BufferedImage[] joinImages;
     protected ScreenCoordinator screenCoordinator;
     protected FlagManager flagManager;
     protected boolean popUpVisible = false;
@@ -35,7 +35,7 @@ public class Death extends Screen {
   
  
     
-    public Death(ScreenCoordinator screenCoordinator) {
+    public Join(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
         //this.screenManager = new ScreenManager();
         // Load image 
@@ -53,14 +53,13 @@ public class Death extends Screen {
         //deathImages = ImageLoader.load("dead_ending1.png");
         //keyPressTimer = 0; //initialize timer
 
-        deathImages = new BufferedImage[] {
+        joinImages = new BufferedImage[] {
             ImageLoader.load("cutscene_2nd.png"),
             ImageLoader.load("cutscene2.png"),
             ImageLoader.load("cutscene3.png"),
             ImageLoader.load("cutscene4.png"),
-            ImageLoader.load("dead_ending1.png"),
-            ImageLoader.load("dead_ending2.png"),
-            ImageLoader.load("dead_ending3.png")
+            ImageLoader.load("cutscene5.png"),
+
 
         };
 
@@ -90,7 +89,7 @@ public class Death extends Screen {
             frameCount = 0;
             currImageIndex++;
 
-            if (currImageIndex >= deathImages.length)  {
+            if (currImageIndex >= joinImages.length)  {
                 screenCoordinator.setGameState(GameState.MENU);
             }
         }
@@ -108,8 +107,8 @@ public class Death extends Screen {
         fadeEffect = Math.min(255, (keyPressTimer * 255)/60);
         graphicsHandler.drawFilledRectangle(0,0, screenWidth, screenHeight, new Color(0,0,0, fadeEffect) );*/
 
-        if (currImageIndex < deathImages.length) {
-            graphicsHandler.drawImage(deathImages[currImageIndex], 0, 0, screenWidth, screenHeight);
+        if (currImageIndex < joinImages.length) {
+            graphicsHandler.drawImage(joinImages[currImageIndex], 0, 0, screenWidth, screenHeight);
 
             fadeEffect = Math.min(255, (frameCount * 255)/delay);
             graphicsHandler.drawFilledRectangle(0,0, screenWidth, screenHeight, new Color(0,0,0, 255 -fadeEffect) );

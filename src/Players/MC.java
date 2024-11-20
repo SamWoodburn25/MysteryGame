@@ -17,7 +17,7 @@ public class MC extends Player {
     public MC(float x, float y, String hairType) {
         super(new SpriteSheet(ImageLoader.load(hairType), 40, 90), x, y, "STAND_FORWARD");
         //CHANGE BACK TO 5.3
-        walkSpeed = 10.3f;
+        walkSpeed = 8.3f;
     }
 
     public void update() {
