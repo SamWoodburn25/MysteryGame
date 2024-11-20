@@ -436,9 +436,11 @@ public class PlayLevelScreen extends Screen {
             //open graveyard puzzle
             graveyardDrawPuzzle = true;
             currMap.getFlagManager().setFlag("openGraveyardPuzzle");
+            System.out.println("is key locked " + keyLocker.isKeyLocked(Key.ESC));
             //close puzzle on escape click
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 graveyardDrawPuzzle = false;
+                System.out.println("esc clicked");
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
                 currMap.getFlagManager().setFlag("cemeteryToTown");
                 keyLocker.lockKey(Key.ESC);
