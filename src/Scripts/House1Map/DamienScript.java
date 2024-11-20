@@ -32,12 +32,12 @@ package Scripts.House1Map;
                 addRequirement(new FlagRequirement("hasTalkedToDamien", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hmm... we need to stock up a bit on... *he seems busy* ");
-                    addText(" hm so you’re looking for Alex? ...he’s not here, hasn’t been in months.");
+                    addText("Hmm so you’re looking for Alex? ...he’s not here, hasn’t\n been in months.");
                     addText("Actually, I sent him some letters to see how he was doing \nbut he never responded... ");
                     addText("Only thing I ever got was this weird notebook page but \nI couldn’t make any sense of it, poor kid...");
-                    addText("I knew he was acting different but, wow he really flew of his rocker!");
+                    addText("I knew he was acting different but, wow he really flew of\n his rocker!");
                     addText("Before he disappeared, he was very scatterbrained and came\n into work all muddy.");
-                    addText("Heard he crashed his bike on his way to the graveyard, \n maybe you can check around there."); 
+                    addText("Heard he crashed his bike on his way to the graveyard, maybe \nyou can check around there."); 
                     addText("He dropped these too, maybe they can help you out.");       
                 }});
                 addScriptAction(new ChangeFlagScriptAction("hasTalkedToDamien", true));
