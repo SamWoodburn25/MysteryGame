@@ -91,7 +91,7 @@ public class Death extends Screen {
             currImageIndex++;
 
             if (currImageIndex >= deathImages.length)  {
-                screenCoordinator.setGameState(GameState.MENU);
+                screenCoordinator.setGameState(GameState.LOST);
             }
         }
         
