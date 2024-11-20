@@ -1,5 +1,14 @@
 package Scripts.House1Map;
 
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Scripts- ButcherShopMap
+ * class- InvestigatorScript2: script action to talk to investigator by house
+ */
+
 import java.util.ArrayList;
  
 import Level.Script;
