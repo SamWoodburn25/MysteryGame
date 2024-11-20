@@ -21,9 +21,9 @@ public class JournalUI {
     protected LinkedList<BufferedImage> journalPages;
     //basic pages
     protected BufferedImage journalCover, emptyJournal, journalPageIntro;
-    //specific journal pages- journalPage_whoItIsAbout
-    protected BufferedImage journalPage_Max1, journalPage_Max2, journalPage_Peter1, journalPage_Peter2, journalPage_Exgf1, journalPage_Exgf2;
-    protected BufferedImage clueFromPeter, clueFromEx;
+    //specific journal pages- journalPage_whatItIsAbout
+    protected BufferedImage journalPage_Max1, journalPage_Max2, journalPage_Peter1, journalPage_Peter2, journalPage_Exgf1, journalPage_Exgf2, journalPage_Boss1, journalPage_Boss2, journalPage_Boss3, journalPage_MH1, journalPage_MH2, journalPage_MH3;
+    protected BufferedImage journalPage_Paycheck, journalPage_party1, journalPage_party2, journalPage_party3, journalPage_Medullis1, journalPage_Medullis2, journalPage_Medullis3, journalPage_Poem;
     protected BufferedImage currPagePic;
     protected FlagManager flagManager;
     protected int currPage;
@@ -34,19 +34,43 @@ public class JournalUI {
     //constructor with FlagManager parameter
     public JournalUI(FlagManager flagManager) {
         this.flagManager = flagManager;
-        // Load journal images
+        /*  Load journal images */
+        //intial pages
         journalCover = ImageLoader.load("JournalCover.png");
         emptyJournal = ImageLoader.load("EmptyJournal.png");
         journalPageIntro = ImageLoader.load("JPageIntro.png");
+        //about max
         journalPage_Max1 = ImageLoader.load("jPage_max_1.png");
         journalPage_Max2 = ImageLoader.load("jPage_max_2.png");
+        //about peter
         journalPage_Peter1 = ImageLoader.load("jPage_Peter_1.png");
         journalPage_Peter2 = ImageLoader.load("jPage_Peter_2.png");
+        //about gf
         journalPage_Exgf1 = ImageLoader.load("jPage_exgf_1.png");
         journalPage_Exgf2 = ImageLoader.load("jPage_exgf_2.png");
-        clueFromPeter = ImageLoader.load("clueFromPeterTemp.png");
-        clueFromEx = ImageLoader.load("clueFromExTemp.png");
-        //add first images to list and a few empty
+        //about boss
+        journalPage_Boss1 = ImageLoader.load("jpage_boss_1.png");
+        journalPage_Boss2 = ImageLoader.load("jpage_boss_2.png");
+        journalPage_Boss3 = ImageLoader.load("jpage_boss_3.png");
+        //about mad hatter
+        journalPage_MH1 = ImageLoader.load("jpage_MHBar_1.png");
+        journalPage_MH2 = ImageLoader.load("jpage_MHBar_2.png");
+        journalPage_MH3 = ImageLoader.load("jpage_MHBar_3.png");
+        //paycheck
+        journalPage_Paycheck = ImageLoader.load("jpage_paycheck.png");
+        //about partying
+        journalPage_party1 = ImageLoader.load("jpage_party_1.png");
+        journalPage_party2 = ImageLoader.load("jpage_party_2.png");
+        journalPage_party3 = ImageLoader.load("jpage_party_3.png");
+        //about medullis
+        journalPage_Medullis1 = ImageLoader.load("jpage_medullis_1.png");
+        journalPage_Medullis2 = ImageLoader.load("jpage_medullis_2.png");
+        journalPage_Medullis3 = ImageLoader.load("jpage_medullis_3.png");
+        //poem
+        journalPage_Poem = ImageLoader.load("jpage_poem.png");
+        
+        
+        //add first images to list and an empty
         journalPages = new LinkedList<BufferedImage>();
         journalPages.add(journalCover);
         journalPages.add(journalPageIntro);
@@ -74,6 +98,7 @@ public class JournalUI {
 
     //update
     public void update() {
+        /* adding pages */
         //if the player has talked to mom, add that page
         if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMom")) {
             // check if the page from mom is not already added to avoid adding it multiple times
@@ -88,7 +113,6 @@ public class JournalUI {
             if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMax") && flagManager.isFlagSet("max_aboutPeter")) {
                 //check if added, if not add butcher page 
                 if(!journalPages.contains(journalPage_Peter1)){
-                    //remove blank page, add others, add blank page back
                     journalPages.removeLast();
                     journalPages.add(journalPage_Peter1);
                     journalPages.add(journalPage_Peter2);
@@ -97,34 +121,71 @@ public class JournalUI {
             }   
             //check for talking to max about ex
             if (journalIsVisible && flagManager.isFlagSet("hasTalkedToMax") && flagManager.isFlagSet("max_aboutEx")) {
-                //check if added, if not add butcher page than ex gf page
+                //check if added, if not add ex gf page
                 if(!journalPages.contains(journalPage_Exgf1)){
-                    //remove blank page, add others, add blank page back
                     journalPages.removeLast();
                     journalPages.add(journalPage_Exgf1);
                     journalPages.add(journalPage_Exgf2);
                     journalPages.add(emptyJournal);
                 }
             }  
-
-        }
-        //butcher puzzle
-        if (journalIsVisible && flagManager.isFlagSet("butcherPuzzleSolved")) {
-            if(!journalPages.contains(clueFromPeter)){
-                journalPages.removeLast();
-                journalPages.add(clueFromPeter);
-                journalPages.add(emptyJournal);
+            //check for talking to camilla
+            if (journalIsVisible && flagManager.isFlagSet("hasTalkedToGF")) {
+                //check if added, if not add boss (damien) page 
+                if(!journalPages.contains(journalPage_Boss1)){
+                    journalPages.removeLast();
+                    journalPages.add(journalPage_Boss1);
+                    journalPages.add(journalPage_Boss2);
+                    journalPages.add(journalPage_Boss3);
+                    journalPages.add(emptyJournal);
+                }
+                //check if player helped her solve her puzzle, if yes add mad hatter pages
+                if (flagManager.isFlagSet("exGfPuzzleSolved")) {
+                    if(!journalPages.contains(journalPage_MH1)){
+                        journalPages.removeLast();
+                        journalPages.add(journalPage_MH1);
+                        journalPages.add(journalPage_MH2);
+                        journalPages.add(journalPage_MH3);
+                        journalPages.add(emptyJournal);
+                    }
+                }
+            } 
+            //check for talking to the boss damien
+            if (journalIsVisible && flagManager.isFlagSet("hasTalkedToDamien")) {
+                //check if added, if not add partying page 
+                if(!journalPages.contains(journalPage_party1) && !journalPages.contains(journalPage_Paycheck)){
+                    journalPages.removeLast();
+                    journalPages.add(journalPage_party1);
+                    journalPages.add(journalPage_party2);
+                    journalPages.add(journalPage_party3);
+                    journalPages.add(journalPage_Paycheck);
+                    journalPages.add(emptyJournal);
+                }
             }
-        } 
-        //ex puzzle
-        if (journalIsVisible && flagManager.isFlagSet("exGfPuzzleSolved")) {
-            if(!journalPages.contains(clueFromEx)){
-                journalPages.removeLast();
-                journalPages.add(clueFromEx);
-                journalPages.add(emptyJournal);
+            //check for helping the mad hatters daughter
+            if (journalIsVisible && flagManager.isFlagSet("hasTalkedToDrugDealerDaughter") && !flagManager.isFlagSet("badDD")) {
+                //check if added, if not add medullis page 
+                if(!journalPages.contains(journalPage_Medullis1)){
+                    journalPages.removeLast();
+                    journalPages.add(journalPage_Medullis1);
+                    journalPages.add(journalPage_Medullis2);
+                    journalPages.add(journalPage_Medullis3);
+                    journalPages.add(emptyJournal);
+                }
             }
-        }
+            //check for helping the butcher
+            if (journalIsVisible && flagManager.isFlagSet("butcherPuzzleSolved")) {
+                //check if added, if not add poetry page 
+                if(!journalPages.contains(journalPage_Poem)){
+                    journalPages.removeLast();
+                    journalPages.add(journalPage_Poem);
+                    journalPages.add(emptyJournal);
+                }
+            }
+        }//closing talking to mom if loop, must talk to mom before accessing any page
 
+
+        /* page turning */
         //if right arrow key is clicked, increase current page count, move to next page if available in list
         if (Keyboard.isKeyUp(Key.RIGHT) && !keyLocker.isKeyLocked(Key.RIGHT)) {
             bookOpen = true;

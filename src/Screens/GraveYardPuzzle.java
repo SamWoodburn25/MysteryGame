@@ -33,6 +33,7 @@ public class GraveYardPuzzle extends Screen{
 
     public GraveYardPuzzle(FlagManager flagManager){
         this.flagManager = flagManager;
+        keyLocker.unlockKey(Key.ESC);
 
         //instructions message
         header1 = new SpriteFont("This part of the map is locked.", 140, 50, "Apple Chancery", 40, Color.black);
