@@ -17,6 +17,7 @@ import Engine.Screen;
 import Screens.CreditsScreen;
 import Screens.Death;
 import Screens.HowToPlay;
+import Screens.Join;
 import Screens.MenuScreen;
 import Screens.PlayLevelScreen;
 import Screens.CharacterSelectScreen;
@@ -107,6 +108,8 @@ public class ScreenCoordinator extends Screen {
 					case DEATH:
 						currentScreen = new Death(this);
 						break;
+					case JOIN:
+					 	currentScreen = new Join(this);
 				}
 				currentScreen.initialize();
 			}

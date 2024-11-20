@@ -132,6 +132,9 @@ public class PlayLevelScreen extends Screen {
         //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
         flagManager.addFlag("deathScreen", false);
 
+        //change to join ending screen but im skeptcial and also have an inkling that its not working
+        flagManager.addFlag("joinScreen", false);
+
         // setup background music 
         backgroundMusic= new BackgroundMusic("Resources/GameSong.wav");
 
@@ -368,7 +371,7 @@ public class PlayLevelScreen extends Screen {
         
         if (currMap.getFlagManager().isFlagSet("house1ToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(21, 15);
+            point = currMap.getPositionByTileIndex(15, 15);
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             player.setLocation(point.x, (point.y)-10);
@@ -419,7 +422,7 @@ public class PlayLevelScreen extends Screen {
         //leaving butcher shop map to enter town
         if (currMap.getFlagManager().isFlagSet("butcherToTown")) {
             currMap = townMap;
-            point = currMap.getPositionByTileIndex(69, 46); 
+            point = currMap.getPositionByTileIndex(63, 48); 
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             backgroundMusic.PlayMainMusic();
@@ -442,7 +445,7 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 graveyardDrawPuzzle = false;
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                currMap.getFlagManager().setFlag("cemeteryToTown");
+                //currMap.getFlagManager().setFlag("cemeteryToTown");
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
@@ -454,7 +457,7 @@ public class PlayLevelScreen extends Screen {
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
             } 
             currMap = cemetery;
-            point = currMap.getPositionByTileIndex(1, 23); 
+            point = currMap.getPositionByTileIndex(2, 30); 
             player.setMap(currMap);
             player.update();
             player.setLocation(point.x, point.y);
@@ -488,6 +491,11 @@ public class PlayLevelScreen extends Screen {
             //death
             if(currMap.getFlagManager().isFlagSet("deathScreen")) {
                 screenCoordinator.setGameState(GameState.DEATH);
+               
+            }
+            // join him
+            if(currMap.getFlagManager().isFlagSet("joinScreen")) {
+                screenCoordinator.setGameState(GameState.JOIN);
                
             }
         }
