@@ -440,7 +440,7 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
                 graveyardDrawPuzzle = false;
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                currMap.getFlagManager().setFlag("cemeteryToTown");
+                //currMap.getFlagManager().setFlag("cemeteryToTown");
                 keyLocker.lockKey(Key.ESC);
             }
             if(Keyboard.isKeyUp(Key.ESC)){
@@ -452,7 +452,7 @@ public class PlayLevelScreen extends Screen {
                 currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
             } 
             currMap = cemetery;
-            point = currMap.getPositionByTileIndex(1, 23); 
+            point = currMap.getPositionByTileIndex(11, 30); 
             player.setMap(currMap);
             player.update();
             player.setLocation(point.x, point.y);

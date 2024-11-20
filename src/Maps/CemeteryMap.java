@@ -44,7 +44,7 @@ public class CemeteryMap extends Map {
         Skull skull1 = new Skull(4, getMapTile(8, 18).getLocation().subtractY(0));
         npcs.add(skull1);
 
-        Crow crow1 = new Crow(2, getMapTile(7, 15).getLocation().subtractY(0));
+        Crow crow1 = new Crow(2, getMapTile(13, 28).getLocation().subtractY(0));
         npcs.add(crow1);
 
         BodyBone bodybone = new BodyBone(4, getMapTile(9, 23).getLocation().subtractY(0));
@@ -82,6 +82,8 @@ public class CemeteryMap extends Map {
         max.setInteractScript(new BrotherScript());
         npcs.add(max);
 
+
+
         return npcs;
     }
 
@@ -92,11 +94,11 @@ public class CemeteryMap extends Map {
 
     
         //temp trigger to test death cutscene
-        Point deathLoc = getMapTile(45,12).getLocation();
+        Point deathLoc = getMapTile(40,12).getLocation();
         triggers.add(new Trigger(deathLoc.x, deathLoc.y, 10, 160, new DeathScript(), "deathScript"));
         
-        Point toTown = getPositionByTileIndex(0,20);
-        triggers.add(new Trigger(toTown.x + 10, toTown.y, 10,100, new CemeteryToTownScript(), "CemeteryToTown"));
+        Point toTown = getPositionByTileIndex(11,32);
+        triggers.add(new Trigger(toTown.x , toTown.y+15,100 ,10, new CemeteryToTownScript(), "CemeteryToTown"));
     
         return triggers;
     }

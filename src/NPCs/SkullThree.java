@@ -4,6 +4,7 @@ import Builders.FrameBuilder;
 import Engine.GraphicsHandler;
 import Engine.ImageLoader;
 import GameObject.Frame;
+import GameObject.ImageEffect;
 import GameObject.SpriteSheet;
 import Level.NPC;
 import Utils.Point;
@@ -22,6 +23,7 @@ public class SkullThree extends NPC {
             put("STAND_RIGHT", new Frame[] {
                     new FrameBuilder(spriteSheet.getSprite(0, 0))
                             .withScale(1)
+                            .withImageEffect(ImageEffect.FLIP_HORIZONTAL)
                             .withBounds(4, 72, 30, 10)
                             .build()
             });
