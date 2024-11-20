@@ -1,13 +1,26 @@
 
 package Scripts.House1Map;
+/*
+ * SER225- Mystery Game
+ * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
+ * Fall 2024
+ * 
+ * package- Scripts
+ * class- ButcherScript: script with peter
+ */
 
 import java.util.ArrayList;
 
+import Game.GameState;
+import Game.ScreenCoordinator;
 import Level.Script;
 import ScriptActions.*;
 import Utils.Visibility;
+import Engine.ScreenManager;
 
 public class ButcherScript extends Script {
+    private int push = 1;
+    protected ScreenCoordinator screenCoordinator;
 
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
@@ -164,8 +177,13 @@ public class ButcherScript extends Script {
                     addText("Your brother thought it was funny to trap me here \nin this freezer... it was so cold");
                     addText("Don't you see how I could never want to think of him again?!", new String[] { "\"Push him\"" });
                     addText("***AAAAAA***");
+                    //addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
+
+                    // screenCoordinator.setGameState(GameState.PETERDEATH);
                 }});
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
+                addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
+                
             }});
         }});
                 

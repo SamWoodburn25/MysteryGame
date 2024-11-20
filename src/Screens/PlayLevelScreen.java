@@ -49,6 +49,8 @@ public class PlayLevelScreen extends Screen {
     protected AFrameHPScreen aFrameHPScreen;
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected ScaryGraveyardScreen scaryGraveyardScreen;
+    protected ButcherDeathScreen butcherDeathScreen;
+    protected FBIFileScreen fileScreen;
     protected FridgeScreen fridgeScreen;
     protected boolean popUpVisible = false;
     protected boolean drawPopUP = false;
@@ -56,6 +58,8 @@ public class PlayLevelScreen extends Screen {
     protected boolean drawGravePopUP = false;
     protected boolean drawFridgePopUP = false;
     protected boolean drawCharSelect = false;
+    protected boolean drawFilePopUp = false;
+    protected boolean drawButcherDeathPopUp = false;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
@@ -120,6 +124,8 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("graveyardImage", false);
         flagManager.addFlag("popUpFridgeImage", false);
         flagManager.addFlag("charSelect", false);
+        flagManager.addFlag("fileImage", false);
+        flagManager.addFlag("butcherDeathPopUp", false);
 
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
@@ -131,6 +137,8 @@ public class PlayLevelScreen extends Screen {
 
         //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
         flagManager.addFlag("deathScreen", false);
+        flagManager.addFlag("butcherDeath", false);
+
 
         //change to join ending screen but im skeptcial and also have an inkling that its not working
         flagManager.addFlag("joinScreen", false);
@@ -161,6 +169,8 @@ public class PlayLevelScreen extends Screen {
         goreyButcherScreen = new GoreyButcherShopScreen(flagManager);
         scaryGraveyardScreen = new ScaryGraveyardScreen(flagManager);
         fridgeScreen = new FridgeScreen(flagManager);
+        fileScreen = new FBIFileScreen(flagManager);
+        butcherDeathScreen = new ButcherDeathScreen(flagManager);
 
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
@@ -293,6 +303,19 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
+        }
+        //file image pop up
+        if(currMap.getFlagManager().isFlagSet("fileImage")){
+            drawFilePopUp = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawFilePopUp = false;
+                currMap.getFlagManager().unsetFlag("fileImage");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
         }  
         if(currMap.getFlagManager().isFlagSet("popUpFridgeImage")){
             drawFridgePopUP = true;
@@ -305,7 +328,8 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-        }      
+        }    
+        
         //butcher puzzle
         if(currMap.getFlagManager().isFlagSet("openButcherPuzzle")){
             drawPuzzle = true;
@@ -342,7 +366,21 @@ public class PlayLevelScreen extends Screen {
             exDrawPuzzle = false;
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }  
-                                                                                                          
+
+        //peter death image pop up
+        if(currMap.getFlagManager().isFlagSet("butcherDeath")){
+            drawButcherDeathPopUp = true;
+            System.out.println("peter death triggered");
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawButcherDeathPopUp = false;
+                currMap.getFlagManager().unsetFlag("butcherDeath");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        }                                                                                      
             
         //character selection
         if(!currMap.getFlagManager().isFlagSet("charSelectScreen")){
@@ -356,9 +394,8 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.SPACE)){
                 keyLocker.unlockKey(Key.SPACE);
             } 
-
-        
-
+            
+            
         }  
 
 
@@ -412,7 +449,7 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             backgroundMusic.playLocationMusic("butcher");
-            player.setFacingDirection(Direction.DOWN);
+            player.setFacingDirection(Direction.RIGHT);
             currMap.setPlayer(player);
             currMap.preloadScripts();
             currMap.setPlayer(player);
@@ -428,7 +465,7 @@ public class PlayLevelScreen extends Screen {
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
             backgroundMusic.PlayMainMusic();
-            player.setFacingDirection(Direction.DOWN);
+            player.setFacingDirection(Direction.RIGHT);
             currMap.setPlayer(player);
             currMap.preloadScripts();
             player.setFacingDirection(Direction.UP);
@@ -496,6 +533,9 @@ public class PlayLevelScreen extends Screen {
                 playLevelScreenState = PlayLevelScreenState.LEVEL_NOT_COMPLETED;
                
             }
+            if(currMap.getFlagManager().isFlagSet("butcherDeathScreen")) {
+                screenCoordinator.setGameState(GameState.PETERDEATH);
+            }
             // join him
             if(currMap.getFlagManager().isFlagSet("joinScreen")) {
                 screenCoordinator.setGameState(GameState.JOIN);
@@ -526,6 +566,9 @@ public class PlayLevelScreen extends Screen {
                     else if(drawFridgePopUP){
                         fridgeScreen.draw(graphicsHandler);
                     }
+                    else if (drawFilePopUp){
+                        fileScreen.draw(graphicsHandler);
+                    }
                     else if(drawPuzzle){
                         butcherPuzzle.draw(graphicsHandler);
                     }
@@ -537,6 +580,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(graveyardDrawPuzzle && !currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")){
                         graveyardPuzzle.draw(graphicsHandler);
+                    }
+                    else if(drawButcherDeathPopUp) {
+                        butcherDeathScreen.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{

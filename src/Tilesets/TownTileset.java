@@ -2276,71 +2276,17 @@ MapTileBuilder clue4_2Tile = new MapTileBuilder(barWallFrame)
 mapTiles.add(clue4_2Tile);
 
 
+//FBI frame
+Frame fbiFrame = new FrameBuilder(getSubImage(6, 17))
+.withScale(tileScale)
 
+.build();
 
+MapTileBuilder fbiTile = new MapTileBuilder(fbiFrame)
 
+.withTileType(TileType.PASSABLE);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
+mapTiles.add(fbiTile);
 
         return mapTiles;
 

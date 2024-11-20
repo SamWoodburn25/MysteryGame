@@ -41,7 +41,7 @@ import java.awt.image.BufferedImage;
      public void draw(GraphicsHandler graphicsHandler) {
          //draw while the image is visible
         graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
-        graphicsHandler.drawImage(AFrameHP, 0, 0, 800, 550);
+        graphicsHandler.drawImage(AFrameHP, 100, 0, 600, 550);
      }
  
  } 
