@@ -413,7 +413,7 @@ public class PlayLevelScreen extends Screen {
             point = currMap.getPositionByTileIndex(15, 15);
             player.setMap(currMap);
             player.setLocation(point.x, point.y);
-            player.setLocation(point.x, (point.y)-10);
+            player.setLocation(point.x, point.y);
             backgroundMusic.playLocationMusic("town");
             System.out.println("Switching to Town Map. Player Position: " + point.x + ", " + point.y);
             System.out.println("Before Setting Facing Direction: " + player.getFacingDirection());
@@ -531,15 +531,15 @@ public class PlayLevelScreen extends Screen {
             if(currMap.getFlagManager().isFlagSet("deathScreen")) {
                 screenCoordinator.setGameState(GameState.DEATH);
                 playLevelScreenState = PlayLevelScreenState.LEVEL_NOT_COMPLETED;
+                currMap.getFlagManager().unsetFlag("deathScreen");
                
             }
-            if(currMap.getFlagManager().isFlagSet("butcherDeathScreen")) {
-                screenCoordinator.setGameState(GameState.PETERDEATH);
-            }
+            
             // join him
             if(currMap.getFlagManager().isFlagSet("joinScreen")) {
                 screenCoordinator.setGameState(GameState.JOIN);
                 playLevelScreenState = PlayLevelScreenState.LEVEL_COMPLETED;
+                currMap.getFlagManager().unsetFlag("joinScreen");
                
             }
         }
