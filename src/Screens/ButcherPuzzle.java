@@ -54,7 +54,7 @@ public class ButcherPuzzle extends Screen{
         );
         goalWeight = (int)((Math.random()*100)+1);
         currWeight = 0;
-        goalWeighString = "Goal Wieght = " + goalWeight;
+        goalWeighString = "Goal Weight = " + goalWeight;
         currWeightString = "Current Weight = " + currWeight;
     }
 
