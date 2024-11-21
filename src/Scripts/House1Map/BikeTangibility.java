@@ -5,8 +5,8 @@ package Scripts.House1Map;
  * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
  * Fall 2024
  * 
- * package- Scripts- ButcherShopMap
- * class- butcherToTownScript: script action to enter the town from the butcher shop
+ * package- Scripts- House1Map
+ * class- bike tangibility - makes noncharacter npcs interactable
  */
 
 

@@ -35,6 +35,7 @@ public class ButcherScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
+                addRequirement(new FlagRequirement("hasHelpedButcher", false));
                 addRequirement(new FlagRequirement("butcherPuzzleSolved", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Hmm... how can I package this... ugh I hate math...\nWelcome to the Butcher’s Shoppe, what can I help you with?");
@@ -58,6 +59,7 @@ public class ButcherScript extends Script {
                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
                 addScriptAction(new TextboxScriptAction("Hmm? You want to help me? Well alright, we just need to \nweigh some meats..."));
                 addScriptAction(new TextboxScriptAction() {{
+                    addScriptAction(new ChangeFlagScriptAction("hasHelpedButcher", true));
                     addScriptAction(new ChangeFlagScriptAction("openButcherPuzzle", true));
                 }});
             }});
@@ -70,6 +72,7 @@ public class ButcherScript extends Script {
                         return answer == 1;
                     }
                 });
+                addRequirement(new FlagRequirement("hasHelpedButcher", false));
                 addRequirement(new FlagRequirement("butcherPuzzleSolved", false));
                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
                 addScriptAction(new TextboxScriptAction("..."));
@@ -80,6 +83,7 @@ public class ButcherScript extends Script {
          scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("butcherPuzzleSolved", true));
+                addRequirement(new FlagRequirement("hasHelpedButcher", true));
                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Alright fine, since you helped me out... Your brother, Alex...\n he.. He wasn’t a good person.");
@@ -103,9 +107,9 @@ public class ButcherScript extends Script {
                 });
                 addRequirement(new FlagRequirement("hasTalkedToButcher", true));
                 addScriptAction(new TextboxScriptAction() {{
-                    addText(" Yeah... anyways here’s a letter that had his name on it.");
-                    addText("I didn’t want to open it in case it was from him,\n I’ve had enough of his bullshit.");
-                    addText("Or you can try the car garage, remembered seeing\n him working there a few times.");
+                    // addText(" Yeah... anyways here’s a letter that had his name on it.");
+                    // addText("I didn’t want to open it in case it was from him,\n I’ve had enough of his bullshit.");
+                    // addText("Or you can try the car garage, remembered seeing\n him working there a few times.");
                 }});
             }});
 
@@ -146,6 +150,7 @@ public class ButcherScript extends Script {
                 addScriptAction(new TextboxScriptAction() {{
                     addText(" Yeah... anyways here’s a letter that had his name on it.");
                     addText("I didn’t want to open it in case it was from him,\n I’ve had enough of his bullshit.");
+                    addText("Or you can try the car garage, remembered seeing\n him working there a few times.");
                 }});
 
                 
@@ -161,8 +166,8 @@ public class ButcherScript extends Script {
                     }
                 });
                 addRequirement(new FlagRequirement("hasTalkedToButcher", true));
-                addScriptAction(new TextboxScriptAction("YOU KNOW WHAT... Come with me, I can show you \nEXACTLY what he did to me."));
                 addScriptAction(new ChangeFlagScriptAction("badButcher", true));
+                addScriptAction(new TextboxScriptAction("YOU KNOW WHAT... Come with me, I can show you \nEXACTLY what he did to me."));
             }});
 
         }});
@@ -180,7 +185,6 @@ public class ButcherScript extends Script {
                 }});
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
                 addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
-                
             }});
         }});
                 

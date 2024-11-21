@@ -12,15 +12,7 @@
  import Level.*;
 import Scripts.LockedAreaScript;
 import Scripts.SimpleTextScript;
-import Scripts.House1Map.BrotherExGFScript;
-import Scripts.House1Map.InvestigatorScript0;
-import Scripts.House1Map.InvestigatorScript1;
-import Scripts.House1Map.InvestigatorScript2;
-import Scripts.House1Map.TreeScript;
-import Scripts.TownMap.PopUpFileImageScript;
-import Scripts.House1Map.DamienScript;
-import Scripts.House1Map.DrugDealerDaughterScript;
- import Scripts.TownMap.*;
+import Scripts.TownMap.*;
  import Scripts.House1Map.*;
  import Tilesets.TownTileset;
  import Utils.Point;
@@ -68,7 +60,7 @@ import Scripts.House1Map.DrugDealerDaughterScript;
          npcs.add(daughter);
 
          DrugDealer drugDealer = new DrugDealer(1,getMapTile(66, 56).getLocation().subtractY(0));
-         drugDealer.setInteractScript(new DrugDealerDaughterScript());
+         drugDealer.setInteractScript(new DrugDealerScript());
          npcs.add(drugDealer);
 
          Bike bike = new Bike(1, getMapTile(87, 16).getLocation().subtractY(0));
@@ -105,6 +97,12 @@ import Scripts.House1Map.DrugDealerDaughterScript;
  
         Point fbiFile = getPositionByTileIndex(89, 75);
         triggers.add(new Trigger(fbiFile.x , fbiFile.y, 50, 50, new PopUpFileImageScript(), "fileImage"));
+ 
+
+        Point dog = getPositionByTileIndex(70,57);
+        triggers.add(new Trigger(dog.x, dog.y, 10, 50, new PopUpDogImageScript(), "scaryDogPopUp"));
+
+
         
 
          return triggers;

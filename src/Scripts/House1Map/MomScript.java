@@ -49,6 +49,7 @@ public class MomScript extends Script {
                     addText("Honey, you know it’s hopeless, the investigator on your\n brother’s case has found nothing for months ... ");
                     addText("I mean, you have your brother’s journal [j], maybe you can \nfind something in there.");
                     addText("Actually, here’s a page he left behind, maybe that could\n help you.");
+                    addText("I don't know honey, maybe you should just eat... try \n checking the fridge, we have leftovers to eat.");
                 }});
             }});
             
@@ -62,6 +63,7 @@ public class MomScript extends Script {
                     }
                 });
                 addScriptAction(new TextboxScriptAction("Not much, huh? I see you’ve got your brother’s journal [j]\n, maybe reading it will help you feel better."));
+                addScriptAction(new TextboxScriptAction("Or eating something, try checking the fridge, we have a lot\n of leftovers in there."));
                 addScriptAction(new TextboxScriptAction("Hmm... maybe I’ll give the investigator a call to see how\n things are going... probably nothing as usual... huh? "));
                 addScriptAction(new TextboxScriptAction("Nothing honey, carry on with your day, you’ve got to relax\n after you finally come back home. "));
                 addScriptAction(new ChangeFlagScriptAction("lieMom", true));

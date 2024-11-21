@@ -30,9 +30,10 @@ package Scripts.House1Map;
              addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                  addRequirement(new FlagRequirement("hasTalkedToDrugDealerDaughter", false));
                  addScriptAction(new TextboxScriptAction() {{
-                    addText("Keep it moving, nothing to see here (it’ll be okay, dad, just breathe)");
-                    addText("Keep it moving- Oh you know the code, um sorry it’s a bad time right now... ");
-                    addText("You don’t happen to have anything like a phone or narcan, do you? ", new String[] { "\"Look in bag\"", "\"No \"" });
+                    addText("Keep it moving-");
+                    addText("Oh I know Alex, didn't he go missing? \n sorry it’s a bad time right now... ");
+                    addText("Maybe you can use this, it was his. Talked \nabout some kid named Peter.");
+                    addText("umm..You don’t happen to have anything \nlike a phone or narcan, do you? ", new String[] { "\"Look in bag\"", "\"No \"" });
                  }});
               //addScriptAction(new ChangeFlagScriptAction("hasTalkedToDrugDealerDaughter", true));
              }});
@@ -73,8 +74,6 @@ package Scripts.House1Map;
                  });
                  addScriptAction(new TextboxScriptAction(" Ugh wasting my time... it’ll be okay dad.. \nDad? DAD?? "));
                  addScriptAction(new TextboxScriptAction(" No please no!!!! "));
-
-                 
              }});
          }});
 
@@ -85,6 +84,17 @@ package Scripts.House1Map;
                 addScriptAction(new TextboxScriptAction() {{
                    addText("Try looking into that Peter, kid. \n Supposedly works at the butchers shop.");
                    addText("I have to stay here to take care of my dad, good luck!");
+                }});
+            }});
+         }});
+
+         scriptActions.add(new ConditionalScriptAction() {{
+            addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
+                addRequirement(new FlagRequirement("hasTalkedToDrugDealerDaughter", true));
+                addRequirement(new FlagRequirement("badDD", true));
+                addScriptAction(new TextboxScriptAction() {{
+                   addText("Look what you've done...");
+                   addText("Dad...");
                 }});
             }});
          }});
