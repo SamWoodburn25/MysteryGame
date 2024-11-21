@@ -187,12 +187,12 @@ public class ExgfPuzzle extends Screen{
                 q7Ans.setActive(false);
                 q8Ans.setActive(true);
                 q8Ans.update();
-                if(q8Ans.getText().equalsIgnoreCase("november")){
+                if(q8Ans.getText().equalsIgnoreCase("hargoth")){
                     q8Solved = true;
                     q8Ans.setActive(false);
                     gfPuzzleSolved = true;
                 }
-                if(q8Ans.getText().length() == 8 && !q8Solved){
+                if(q8Ans.getText().length() == 7 && !q8Solved){
                     q8Ans.clear();
                 }
             }

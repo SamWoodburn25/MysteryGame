@@ -40,7 +40,7 @@ public class PlayLevelScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
     private boolean journalVisible = false;
-    protected Point point;
+    protected Point point, newpoint;
    
     //maps
     protected Map currMap;
@@ -367,6 +367,29 @@ public class PlayLevelScreen extends Screen {
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }  
 
+        //open graveyard puzzle
+            if(currMap.getFlagManager().isFlagSet("openGraveyardPuzzle")) {
+                graveyardDrawPuzzle = true;
+                if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                    graveyardDrawPuzzle = false;
+                    System.out.println("esc clicked");
+                    currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                    currMap.getFlagManager().setFlag("cemeteryToTown");
+                    keyLocker.lockKey(Key.ESC);
+                }
+                if(Keyboard.isKeyUp(Key.ESC)){
+                    keyLocker.unlockKey(Key.ESC);
+                } 
+                //if you solve it close the puzzle and set cemetery map
+                if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
+                    graveyardDrawPuzzle = false;
+                    currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                    newpoint = currMap.getPositionByTileIndex(4, 30);
+                    player.setMap(currMap);
+                    player.setLocation(newpoint.x, newpoint.y);
+                } 
+            }
+
         //peter death image pop up
         if(currMap.getFlagManager().isFlagSet("butcherDeath")){
             drawButcherDeathPopUp = true;
@@ -476,27 +499,12 @@ public class PlayLevelScreen extends Screen {
             System.out.println("entering town");
         }
   
-        if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
-            //open graveyard puzzle
-            graveyardDrawPuzzle = true;
-            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-                graveyardDrawPuzzle = false;
-                System.out.println("esc clicked");
-                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                currMap.getFlagManager().setFlag("cemeteryToTown");
-                keyLocker.lockKey(Key.ESC);
-            }
-            if(Keyboard.isKeyUp(Key.ESC)){
-                keyLocker.unlockKey(Key.ESC);
-            } 
-            //if you solve it close the puzzle and set cemetery map
-            if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
-                graveyardDrawPuzzle = false;
-                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-            } 
+        //moving to cemetery
+        if (currMap.getFlagManager().isFlagSet("townToCemetery") && currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")) {
             currMap = cemetery;
             point = currMap.getPositionByTileIndex(2, 30); 
             player.setMap(currMap);
+            System.out.println("updating player");
             player.update();
             player.setLocation(point.x, point.y);
             backgroundMusic.playLocationMusic("cemetery");
@@ -512,7 +520,7 @@ public class PlayLevelScreen extends Screen {
             //leaving cemetery to enter town
             if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
                 currMap = townMap;
-                point = currMap.getPositionByTileIndex(88, 19); 
+                point = currMap.getPositionByTileIndex(90, 19); 
                 player.setMap(currMap);
                 player.setLocation(point.x, point.y);
                 backgroundMusic.PlayMainMusic();

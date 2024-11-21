@@ -100,16 +100,12 @@ import Scripts.House1Map.DrugDealerDaughterScript;
  
 
         Point lockedCemetery = getPositionByTileIndex(96, 18);
-        //triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 1, 2, new LockedAreaScript(), "lockedCemetery"));
+        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
  
         Point fbiFile = getPositionByTileIndex(95, 75);
         triggers.add(new Trigger(fbiFile.x , fbiFile.y, 50, 50, new PopUpFileImageScript(), "fileImage"));
- 
-
-
     
-
          return triggers;
      }
  
