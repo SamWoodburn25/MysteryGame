@@ -23,6 +23,7 @@ import NPCs.Skull;
 import NPCs.SkullOne;
 import NPCs.SkullThree;
 import NPCs.SkullTwo;
+import Scripts.LockedAreaScript;
 import Scripts.CemeteryMap.CemeteryToTownScript;
 import Scripts.CemeteryMap.DeathScript;
 import Scripts.CemeteryMap.JoinScript;
@@ -113,6 +114,9 @@ public class CemeteryMap extends Map {
     public ArrayList<Trigger> loadTriggers() {
         ArrayList<Trigger> triggers = new ArrayList<>();
 
+        // grave puzzle trigger
+        Point puzzleloc = getPositionByTileIndex(2, 28);
+        //triggers.add(new Trigger(puzzleloc.x + 25, puzzleloc.y, 10, 10, new LockedAreaScript(), "openGraveyardPuzzle"));
     
         //temp trigger to test death cutscene
         // Point deathLoc = getMapTile(40,12).getLocation();
