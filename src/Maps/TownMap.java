@@ -98,8 +98,9 @@ import Scripts.TownMap.*;
         Point fbiFile = getPositionByTileIndex(89, 75);
         triggers.add(new Trigger(fbiFile.x , fbiFile.y, 50, 50, new PopUpFileImageScript(), "fileImage"));
  
-        //Point dog = getPositionByTileIndex(70,55);
-        //triggers.add(new Trigger(dog.x, dog.y, 10, 10, new PopUpDogImageScript(), "scaryDogPopUp"));
+
+        Point dog = getPositionByTileIndex(70,57);
+        triggers.add(new Trigger(dog.x, dog.y, 10, 50, new PopUpDogImageScript(), "scaryDogPopUp"));
 
 
         
