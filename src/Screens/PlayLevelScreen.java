@@ -384,6 +384,7 @@ public class PlayLevelScreen extends Screen {
                     graveyardDrawPuzzle = false;
                     currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
                     newpoint = currMap.getPositionByTileIndex(4, 30);
+                    currMap.setPlayer(player);
                     player.setMap(currMap);
                     player.setLocation(newpoint.x, newpoint.y);
                 } 
@@ -501,19 +502,16 @@ public class PlayLevelScreen extends Screen {
         //moving to cemetery
         if (currMap.getFlagManager().isFlagSet("townToCemetery") && currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")) {
             currMap = cemetery;
-            point = currMap.getPositionByTileIndex(2, 30); 
+            point = currMap.getPositionByTileIndex(4, 29); 
             player.setMap(currMap);
             System.out.println("updating player");
-            player.update();
             player.setLocation(point.x, point.y);
             backgroundMusic.playLocationMusic("cemetery");
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
             currMap.preloadScripts();
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            currMap.loadScripts();
             flagManager.unsetFlag("townToCemetery");
+            player.unlock();
         }
             
             //leaving cemetery to enter town
