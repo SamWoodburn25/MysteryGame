@@ -135,12 +135,12 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("openGraveyardPuzzle", false);
         flagManager.addFlag("graveyardPuzzleSolved", false);
 
-        //change to death screen but its not going to work bc the world hates me and wants me to suffer lol 
+        //change to death screen which has that specific cutscene ending
         flagManager.addFlag("deathScreen", false);
         flagManager.addFlag("butcherDeath", false);
 
 
-        //change to join ending screen but im skeptcial and also have an inkling that its not working
+        //change to join ending screen which as the joining forces cutscene ending
         flagManager.addFlag("joinScreen", false);
 
         // setup background music 

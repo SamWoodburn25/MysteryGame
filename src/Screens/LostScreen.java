@@ -4,6 +4,7 @@ import Engine.*;
 import SpriteFont.SpriteFont;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 // This class is for the win level screen
 public class LostScreen extends Screen {
@@ -11,6 +12,7 @@ public class LostScreen extends Screen {
     protected SpriteFont instructions;
     protected KeyLocker keyLocker = new KeyLocker();
     protected PlayLevelScreen playLevelScreen;
+    protected BufferedImage loseScreen;
 
     public LostScreen(PlayLevelScreen playLevelScreen) {
         this.playLevelScreen = playLevelScreen;
@@ -19,8 +21,9 @@ public class LostScreen extends Screen {
 
     @Override
     public void initialize() {
-        LostMessage = new SpriteFont("You got the bad ending!", 350, 239, "Arial", 30, Color.white);
-        instructions = new SpriteFont("     Press Escape to go back to the main menu", 120, 279,"Arial", 20, Color.white);
+        loseScreen = ImageLoader.load("lose_screen.png");
+
+
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.ESC);
     }
@@ -43,8 +46,10 @@ public class LostScreen extends Screen {
     }
 
     public void draw(GraphicsHandler graphicsHandler) {
-        graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
-        LostMessage.draw(graphicsHandler);
-        instructions.draw(graphicsHandler);
+        int screenWidth = 800;
+        int screenHeight = 590;
+        graphicsHandler.drawImage(loseScreen, 0, 0, screenWidth, screenHeight);
+
+        
     }
 }
