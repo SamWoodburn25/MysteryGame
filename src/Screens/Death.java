@@ -26,19 +26,16 @@ public class Death extends Screen {
     protected boolean popUpShown = false;
     protected ScreenManager screenManager;
     protected int keyPressTimer;
-   // private int delay;
     private int fadeEffect;
     protected int currImageIndex = 0;
     protected int frameCount = 0;
-    protected int delay = 120; //framesPerImage - displays images for 2 seconds at 60 frames per second
+    protected int delay = 60; 
 
   
  
     
     public Death(ScreenCoordinator screenCoordinator) {
         this.screenCoordinator = screenCoordinator;
-        //this.screenManager = new ScreenManager();
-        // Load image 
        
     }
       
@@ -50,9 +47,6 @@ public class Death extends Screen {
 
     @Override
     public void initialize() {
-        //deathImages = ImageLoader.load("dead_ending1.png");
-        //keyPressTimer = 0; //initialize timer
-
         deathImages = new BufferedImage[] {
             ImageLoader.load("cutscene_2nd.png"),
             ImageLoader.load("cutscene2.png"),
@@ -70,20 +64,6 @@ public class Death extends Screen {
 
     @Override
     public void update() {
-        /*if (Keyboard.isKeyUp(Key.ENTER)) {
-            keyLocker.unlockKey(Key.ENTER);
-        }
-        if (!keyLocker.isKeyLocked(Key.ENTER) && Keyboard.isKeyDown(Key.ENTER)) {
-            screenCoordinator.setGameState(GameState.MENU);
-        }*/
-
-       /*   keyPressTimer++;
-        delay = 60;
-        
-        if(keyPressTimer >= delay) {
-            screenCoordinator.setGameState(GameState.MENU);
-        }*/
-
         frameCount++;
 
         if(frameCount >= delay){
@@ -99,20 +79,14 @@ public class Death extends Screen {
 
      //draw
      public void draw(GraphicsHandler graphicsHandler) {
-        //draw while the image is visible
-        //graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         int screenWidth = 800;
         int screenHeight = 590;
-        /*graphicsHandler.drawImage(deathImage, 0, 0, screenWidth, screenHeight);
-
-        fadeEffect = Math.min(255, (keyPressTimer * 255)/60);
-        graphicsHandler.drawFilledRectangle(0,0, screenWidth, screenHeight, new Color(0,0,0, fadeEffect) );*/
 
         if (currImageIndex < deathImages.length) {
             graphicsHandler.drawImage(deathImages[currImageIndex], 0, 0, screenWidth, screenHeight);
 
             fadeEffect = Math.min(255, (frameCount * 255)/delay);
-            graphicsHandler.drawFilledRectangle(0,0, screenWidth, screenHeight, new Color(0,0,0, 255 -fadeEffect) );
+            graphicsHandler.drawFilledRectangle(0,0, screenWidth, screenHeight, new Color(0,0,0, 255 - fadeEffect) );
         }
 
         

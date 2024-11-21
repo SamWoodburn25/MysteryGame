@@ -514,6 +514,7 @@ public class PlayLevelScreen extends Screen {
             currMap.preloadScripts();
             currMap.loadScripts();
             flagManager.unsetFlag("townToCemetery");
+            flagManager.unsetFlag("graveyardPuzzleSolved");
         }
             
             //leaving cemetery to enter town

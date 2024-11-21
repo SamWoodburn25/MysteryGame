@@ -19,7 +19,7 @@ public class WinScreen extends Screen {
 
     @Override
     public void initialize() {
-        winMessage = new SpriteFont("You win!", 350, 239, "Arial", 30, Color.white);
+        winMessage = new SpriteFont("You joined forces and got the good ending!", 350, 239, "Arial", 30, Color.white);
         instructions = new SpriteFont("        Press Escape to go back to the main menu", 120, 279,"Arial", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.ESC);

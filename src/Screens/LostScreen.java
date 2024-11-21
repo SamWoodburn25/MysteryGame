@@ -19,7 +19,7 @@ public class LostScreen extends Screen {
 
     @Override
     public void initialize() {
-        LostMessage = new SpriteFont("You Lost it!", 350, 239, "Arial", 30, Color.white);
+        LostMessage = new SpriteFont("You got the bad ending!", 350, 239, "Arial", 30, Color.white);
         instructions = new SpriteFont("             Press Escape to go back to the main menu", 120, 279,"Arial", 20, Color.white);
         keyLocker.lockKey(Key.SPACE);
         keyLocker.lockKey(Key.ESC);
