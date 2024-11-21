@@ -59,7 +59,8 @@ public class Join extends Screen {
             ImageLoader.load("cutscene3.png"),
             ImageLoader.load("cutscene4.png"),
             ImageLoader.load("cutscene5.png"),
-
+            ImageLoader.load("cutscene6good.png"),
+            ImageLoader.load("cutscene7good.png"),
 
         };
 

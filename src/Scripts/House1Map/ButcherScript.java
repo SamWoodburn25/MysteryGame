@@ -161,8 +161,8 @@ public class ButcherScript extends Script {
                     }
                 });
                 addRequirement(new FlagRequirement("hasTalkedToButcher", true));
-                addScriptAction(new TextboxScriptAction("YOU KNOW WHAT... Come with me, I can show you \nEXACTLY what he did to me."));
                 addScriptAction(new ChangeFlagScriptAction("badButcher", true));
+                addScriptAction(new TextboxScriptAction("YOU KNOW WHAT... Come with me, I can show you \nEXACTLY what he did to me."));
             }});
 
         }});
@@ -183,7 +183,6 @@ public class ButcherScript extends Script {
                 }});
                 addScriptAction(new NPCChangeVisibilityScriptAction(Visibility.HIDDEN));
                 addScriptAction(new ChangeFlagScriptAction("butcherDeath", true));
-                
             }});
         }});
                 

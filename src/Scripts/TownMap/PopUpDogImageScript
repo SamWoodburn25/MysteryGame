@@ -3,11 +3,11 @@
  * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
  * Fall 2024
  * 
- * package- Scripts- TestMap
- * class- pop-up butcher image butcher script action to pop-up image in butcher shop
+ * package- Scripts- TownMap
+ * class- pop-up scary dog image
 */
 
-package Scripts.House1Map;
+package Scripts.TownMap; 
 
 import java.util.ArrayList;
 
@@ -17,19 +17,17 @@ import ScriptActions.*;
 public class PopUpDogImageScript extends Script {
     // protected BufferedImage popUp;
 
+
     @Override
     public ArrayList<ScriptAction> loadScriptActions() {
 
         ArrayList<ScriptAction> scriptActions = new ArrayList<>();
-        // scriptActions.add(new LockPlayerScriptAction());
 
-        System.out.println("popUpFridgeImage triggered");
+        System.out.println("scaryDogPopUp triggered");
 
         //change the image interact flag to true
-        scriptActions.add(new ChangeFlagScriptAction("popUpFridgeImage", true));
-      
-
-        // scriptActions.add(new UnlockPlayerScriptAction());
+        scriptActions.add(new ChangeFlagScriptAction("scaryDogPopUp", true));
+        
         return scriptActions;
     }
 }

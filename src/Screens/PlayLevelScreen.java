@@ -49,6 +49,7 @@ public class PlayLevelScreen extends Screen {
     protected AFrameHPScreen aFrameHPScreen;
     protected GoreyButcherShopScreen goreyButcherScreen;
     protected ScaryGraveyardScreen scaryGraveyardScreen;
+    protected ScaryDogScreen scaryDogScreen;
     protected ButcherDeathScreen butcherDeathScreen;
     protected FBIFileScreen fileScreen;
     protected FridgeScreen fridgeScreen;
@@ -60,6 +61,7 @@ public class PlayLevelScreen extends Screen {
     protected boolean drawCharSelect = false;
     protected boolean drawFilePopUp = false;
     protected boolean drawButcherDeathPopUp = false;
+    protected boolean drawDogPopUp;
     //butcher puzzle variables
     protected ButcherPuzzle butcherPuzzle;
     protected boolean puzzleVisible = false;
@@ -126,6 +128,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("charSelect", false);
         flagManager.addFlag("fileImage", false);
         flagManager.addFlag("butcherDeathPopUp", false);
+        flagManager.addFlag("scaryDogPopUp", false);
 
         //flag to open puzzle game screens
         flagManager.addFlag("openButcherPuzzle", false);
@@ -171,6 +174,7 @@ public class PlayLevelScreen extends Screen {
         fridgeScreen = new FridgeScreen(flagManager);
         fileScreen = new FBIFileScreen(flagManager);
         butcherDeathScreen = new ButcherDeathScreen(flagManager);
+        scaryDogScreen = new ScaryDogScreen(flagManager);
 
         //puzzles
         butcherPuzzle = new ButcherPuzzle(flagManager);
@@ -328,7 +332,19 @@ public class PlayLevelScreen extends Screen {
             if(Keyboard.isKeyUp(Key.ESC)){
                 keyLocker.unlockKey(Key.ESC);
             } 
-        }    
+        }   
+        if(currMap.getFlagManager().isFlagSet("scaryDogPopUp")){
+            drawDogPopUp = true;
+            //close image on escape click
+            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                drawDogPopUp = false;
+                currMap.getFlagManager().unsetFlag("scaryDogPopUp");
+                keyLocker.lockKey(Key.ESC);
+            }
+            if(Keyboard.isKeyUp(Key.ESC)){
+                keyLocker.unlockKey(Key.ESC);
+            } 
+        } 
         
         //butcher puzzle
         if(currMap.getFlagManager().isFlagSet("openButcherPuzzle")){
@@ -583,6 +599,9 @@ public class PlayLevelScreen extends Screen {
                     }
                     else if(drawButcherDeathPopUp) {
                         butcherDeathScreen.draw(graphicsHandler);
+                    } 
+                    else if(drawDogPopUp){
+                        scaryDogScreen.draw(graphicsHandler);
                     }
                     //otherwise draw current map
                     else{
