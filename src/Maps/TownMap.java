@@ -107,8 +107,8 @@ import Scripts.House1Map.DrugDealerDaughterScript;
         //  triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
  
 
-        Point lockedCemetery = getPositionByTileIndex(96, 18);
-        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
+        Point lockedCemetery = getPositionByTileIndex(90, 19);
+        triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 10, new LockedAreaScript(), "lockedCemetery"));
         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
 
  

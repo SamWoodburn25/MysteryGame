@@ -519,7 +519,7 @@ public class PlayLevelScreen extends Screen {
             //leaving cemetery to enter town
             if (currMap.getFlagManager().isFlagSet("cemeteryToTown")) {
                 currMap = townMap;
-                point = currMap.getPositionByTileIndex(90, 19); 
+                point = currMap.getPositionByTileIndex(88, 19); 
                 player.setMap(currMap);
                 player.setLocation(point.x, point.y);
                 backgroundMusic.PlayMainMusic();
