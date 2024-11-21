@@ -19,14 +19,15 @@ public class BrotherScript extends Script {
         scriptActions.add(new ConditionalScriptAction() {{
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addScriptAction(new TextboxScriptAction() {{
-                // addRequirement(new FlagRequirement("badMax", true));
-                addRequirement(new FlagRequirement("lieMom", true));
-                addRequirement(new FlagRequirement("badButcher", true));
-                addRequirement(new FlagRequirement("badGF", true));
-                addRequirement(new FlagRequirement("badDD", true));
-                addText("... Help");
-                    //good ending (join him) cuscene
-                addRequirement(new FlagRequirement("joinScreen",true));
+                //addRequirement(new FlagRequirement("badMax", true));
+                //addRequirement(new FlagRequirement("lieMom", true));
+                //addRequirement(new FlagRequirement("badButcher", true));
+                //addRequirement(new FlagRequirement("badGF", true));
+                //addRequirement(new FlagRequirement("badDD", true));
+
+                addScriptAction(new TextboxScriptAction("..Help"));
+                    //good ending (join him) cuscene    
+                addScriptAction(new ChangeFlagScriptAction("joinScreen",true));
                 }});
             }});
 

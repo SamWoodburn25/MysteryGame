@@ -29,7 +29,7 @@ public class Death extends Screen {
     private int fadeEffect;
     protected int currImageIndex = 0;
     protected int frameCount = 0;
-    protected int delay = 60; 
+    protected int delay = 100; 
 
   
  

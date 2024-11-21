@@ -98,15 +98,6 @@ import Scripts.House1Map.DrugDealerDaughterScript;
          triggers.add(new Trigger(butcherShop.x, butcherShop.y, 50, 10, new TownToButcherScript(), "townToButcher"));
 
 
-         //trigger to enter cemetery
-        //  Point cemetery = getPositionByTileIndex(96, 18);
-        //  triggers.add(new Trigger(cemetery.x+20 , cemetery.y, 10, 100, new TownToCemeteryScript(), "townToButcher"));
- 
- 
-        //  Point lockedCemetery = getPositionByTileIndex(96, 21);
-        //  triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new LockedAreaScript(), "lockedCemetery"));
- 
-
         Point lockedCemetery = getPositionByTileIndex(90, 19);
         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 10, new LockedAreaScript(), "lockedCemetery"));
         triggers.add(new Trigger(lockedCemetery.x , lockedCemetery.y, 10, 100, new TownToCemeteryScript(), "townToCemetery"));
@@ -124,18 +115,9 @@ import Scripts.House1Map.DrugDealerDaughterScript;
         
 
 
-         getMapTile(24, 13).setInteractScript(new SimpleTextScript("Your house"));
+         getMapTile(18, 13).setInteractScript(new SimpleTextScript("Your house"));
  
-         getMapTile(73, 44).setInteractScript(new SimpleTextScript("Peter's Butcher Shop"));
- 
-         getMapTile(36, 18).setInteractScript(new SimpleTextScript("Max's house"));
- 
-         getMapTile(52, 44).setInteractScript(new SimpleTextScript("Town Hall"));
- 
-
-
-
-         getMapTile(2, 6).setInteractScript(new TreeScript());
+         getMapTile(30, 18).setInteractScript(new SimpleTextScript("Max's house"));
 
 
      }
