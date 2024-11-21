@@ -13,19 +13,19 @@ public class BackgroundMusic {
 
 
     public BackgroundMusic(String mainMusicPath) {
-        // try {
-        //     AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(mainMusicPath));
-        //     mainBackgroundClip = AudioSystem.getClip();
-        //     mainBackgroundClip.open(audioInputStream);
-        // } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-        //     e.printStackTrace();
-        // }
+        try {
+          AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(mainMusicPath));
+         mainBackgroundClip = AudioSystem.getClip();
+             mainBackgroundClip.open(audioInputStream);
+         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+             e.printStackTrace();
+         }
 
         //location music
-        //loadLocationMusic("house","Resources/HouseMusic.wav");
+        loadLocationMusic("house","Resources/HouseMusic.wav");
         loadLocationMusic("town","Resources/GameSong.wav");
-        //loadLocationMusic("butcher","Resources/ButcherMusic.wav");
-        //loadLocationMusic("cemetery", "Resources/CemeterySong.wav");
+        loadLocationMusic("butcher","Resources/ButcherMusic.wav");
+        loadLocationMusic("cemetery", "Resources/CemeterySong.wav");
 
     }
     private void loadLocationMusic(String location, String filePath){
