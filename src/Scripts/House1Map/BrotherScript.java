@@ -23,8 +23,9 @@ public class BrotherScript extends Script {
                 addRequirement(new FlagRequirement("badButcher", true));
                 addRequirement(new FlagRequirement("badGF", true));
                 addRequirement(new FlagRequirement("badDD", true));
-                addText("... Help");
-                    //good ending (join him) cuscene
+
+                addScriptAction(new TextboxScriptAction("..Help"));
+                    //good ending (join him) cuscene    
                 addScriptAction(new ChangeFlagScriptAction("joinScreen",true));
                 }});
             }});

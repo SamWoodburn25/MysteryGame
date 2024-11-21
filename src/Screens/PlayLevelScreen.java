@@ -40,7 +40,7 @@ public class PlayLevelScreen extends Screen {
     protected KeyLocker keyLocker = new KeyLocker();
     protected JournalUI journal;
     private boolean journalVisible = false;
-    protected Point point;
+    protected Point point, newpoint;
    
     //maps
     protected Map currMap;
@@ -100,6 +100,7 @@ public class PlayLevelScreen extends Screen {
         flagManager.addFlag("max_aboutPeter", false);
         flagManager.addFlag("max_aboutEx", false);
         flagManager.addFlag("hasTalkedToButcher", false);
+        flagManager.addFlag("hasHelpedButcher", false);
         flagManager.addFlag("hasTalkedToGF", false);
         flagManager.addFlag("hasTalkedToDrugDealerDaughter", false);
         flagManager.addFlag("hasTalkedToDrugDealer", false);
@@ -383,6 +384,29 @@ public class PlayLevelScreen extends Screen {
             currMap.getFlagManager().unsetFlag("openExgfPuzzle");
         }  
 
+        //open graveyard puzzle
+            if(currMap.getFlagManager().isFlagSet("openGraveyardPuzzle")) {
+                graveyardDrawPuzzle = true;
+                if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
+                    graveyardDrawPuzzle = false;
+                    currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                    currMap.getFlagManager().setFlag("cemeteryToTown");
+                    keyLocker.lockKey(Key.ESC);
+                }
+                if(Keyboard.isKeyUp(Key.ESC)){
+                    keyLocker.unlockKey(Key.ESC);
+                } 
+                //if you solve it close the puzzle and set cemetery map
+                if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
+                    graveyardDrawPuzzle = false;
+                    currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
+                    newpoint = currMap.getPositionByTileIndex(4, 30);
+                    currMap.setPlayer(player);
+                    player.setMap(currMap);
+                    player.setLocation(newpoint.x, newpoint.y);
+                } 
+            }
+
         //peter death image pop up
         if(currMap.getFlagManager().isFlagSet("butcherDeath")){
             drawButcherDeathPopUp = true;
@@ -492,38 +516,19 @@ public class PlayLevelScreen extends Screen {
             System.out.println("entering town");
         }
   
-        if (currMap.getFlagManager().isFlagSet("townToCemetery")) {
-            //open graveyard puzzle
-            graveyardDrawPuzzle = true;
-            System.out.println(Keyboard.isKeyDown(Key.ESC));
-            if(Keyboard.isKeyDown(Key.ESC) && !keyLocker.isKeyLocked(Key.ESC)){
-                graveyardDrawPuzzle = false;
-                System.out.println("esc clicked");
-                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-                currMap.getFlagManager().setFlag("cemeteryToTown");
-                keyLocker.lockKey(Key.ESC);
-            }
-            if(Keyboard.isKeyUp(Key.ESC)){
-                keyLocker.unlockKey(Key.ESC);
-            } 
-            //if you solve it close the puzzle and set cemetery map
-            if(currMap.getFlagManager().isFlagSet("graveYardPuzzleSolved")) {
-                graveyardDrawPuzzle = false;
-                currMap.getFlagManager().unsetFlag("openGraveyardPuzzle");
-            } 
+        //moving to cemetery
+        if (currMap.getFlagManager().isFlagSet("townToCemetery") && currMap.getFlagManager().isFlagSet("graveyardPuzzleSolved")) {
             currMap = cemetery;
-            point = currMap.getPositionByTileIndex(2, 30); 
+            point = currMap.getPositionByTileIndex(4, 29); 
             player.setMap(currMap);
-            player.update();
+            System.out.println("updating player");
             player.setLocation(point.x, point.y);
             backgroundMusic.playLocationMusic("cemetery");
             player.setFacingDirection(Direction.DOWN);
             currMap.setPlayer(player);
             currMap.preloadScripts();
-            currMap.setPlayer(player);
-            currMap.preloadScripts();
-            currMap.loadScripts();
             flagManager.unsetFlag("townToCemetery");
+            player.unlock();
         }
             
             //leaving cemetery to enter town

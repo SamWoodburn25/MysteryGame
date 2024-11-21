@@ -70,20 +70,6 @@ public class Join extends Screen {
 
     @Override
     public void update() {
-        /*if (Keyboard.isKeyUp(Key.ENTER)) {
-            keyLocker.unlockKey(Key.ENTER);
-        }
-        if (!keyLocker.isKeyLocked(Key.ENTER) && Keyboard.isKeyDown(Key.ENTER)) {
-            screenCoordinator.setGameState(GameState.MENU);
-        }*/
-
-       /*   keyPressTimer++;
-        delay = 60;
-        
-        if(keyPressTimer >= delay) {
-            screenCoordinator.setGameState(GameState.MENU);
-        }*/
-
         frameCount++;
 
         if(frameCount >= delay){
@@ -99,14 +85,8 @@ public class Join extends Screen {
 
      //draw
      public void draw(GraphicsHandler graphicsHandler) {
-        //draw while the image is visible
-        //graphicsHandler.drawFilledRectangle(0, 0, ScreenManager.getScreenWidth(), ScreenManager.getScreenHeight(), Color.black);
         int screenWidth = 800;
         int screenHeight = 590;
-        /*graphicsHandler.drawImage(deathImage, 0, 0, screenWidth, screenHeight);
-
-        fadeEffect = Math.min(255, (keyPressTimer * 255)/60);
-        graphicsHandler.drawFilledRectangle(0,0, screenWidth, screenHeight, new Color(0,0,0, fadeEffect) );*/
 
         if (currImageIndex < joinImages.length) {
             graphicsHandler.drawImage(joinImages[currImageIndex], 0, 0, screenWidth, screenHeight);

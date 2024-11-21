@@ -13,7 +13,6 @@
  import Engine.BackgroundMusic;
  import Engine.GameWindow;
  import Engine.ScreenManager;
- 
  public class Game {
      private static BackgroundMusic backgroundMusic;
      private static boolean musicInitialized = false;
