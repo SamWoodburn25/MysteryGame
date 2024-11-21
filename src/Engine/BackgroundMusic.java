@@ -14,12 +14,12 @@ public class BackgroundMusic {
 
     public BackgroundMusic(String mainMusicPath) {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(mainMusicPath));
-            mainBackgroundClip = AudioSystem.getClip();
-            mainBackgroundClip.open(audioInputStream);
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            e.printStackTrace();
-        }
+          AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(mainMusicPath));
+         mainBackgroundClip = AudioSystem.getClip();
+             mainBackgroundClip.open(audioInputStream);
+         } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+             e.printStackTrace();
+         }
 
         //location music
         loadLocationMusic("house","Resources/HouseMusic.wav");
