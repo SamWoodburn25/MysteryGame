@@ -3,8 +3,7 @@
  * the dawgs- Adelina Chocho, Ella Berry, Morgan Montz, Sam Woodburn, Tuana Turhan
  * Fall 2024
  * 
- * package- Scripts- ButcherShopMap
- * class- butcherToTownScript: script action to enter the town from the butcher shop
+ * package- Scripts- Mom Script
  */
 
 package Scripts.House1Map;
@@ -48,7 +47,7 @@ public class MomScript extends Script {
                 });
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Honey, you know it’s hopeless, the investigator on your\n brother’s case has found nothing for months ... ");
-                    addText("I mean, you have your brother’s journal, maybe you can \nfind something in there.");
+                    addText("I mean, you have your brother’s journal [j], maybe you can \nfind something in there.");
                     addText("Actually, here’s a page he left behind, maybe that could\n help you.");
                 }});
             }});

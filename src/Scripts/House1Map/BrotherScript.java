@@ -20,17 +20,20 @@ public class BrotherScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addScriptAction(new TextboxScriptAction() {{
                 // addRequirement(new FlagRequirement("badMax", true));
+                addRequirement(new FlagRequirement("lieMom", true));
                 addRequirement(new FlagRequirement("badButcher", true));
                 addRequirement(new FlagRequirement("badGF", true));
                 addRequirement(new FlagRequirement("badDD", true));
-                    addText("... Help");
+                addText("... Help");
                     //good ending (join him) cuscene
+                addRequirement(new FlagRequirement("joinScreen",true));
                 }});
             }});
 
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 
                 addScriptAction(new TextboxScriptAction("...Die"));
+                addScriptAction(new ChangeFlagScriptAction("deathScreen",true));
                 //bad ending (die) cutscene
             }});
         }});

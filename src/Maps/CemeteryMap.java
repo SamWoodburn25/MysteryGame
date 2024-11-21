@@ -119,11 +119,11 @@ public class CemeteryMap extends Map {
         //triggers.add(new Trigger(puzzleloc.x + 25, puzzleloc.y, 10, 10, new LockedAreaScript(), "openGraveyardPuzzle"));
     
         //temp trigger to test death cutscene
-        Point deathLoc = getMapTile(40,12).getLocation();
-        triggers.add(new Trigger(deathLoc.x, deathLoc.y, 10, 160, new DeathScript(), "deathScript"));
+        // Point deathLoc = getMapTile(40,12).getLocation();
+        // triggers.add(new Trigger(deathLoc.x, deathLoc.y, 10, 160, new DeathScript(), "deathScript"));
 
-        Point joinLoc = getMapTile(37,7).getLocation();
-        triggers.add(new Trigger(joinLoc.x, joinLoc.y, 10, 160, new JoinScript(), "joinScript"));
+        // Point joinLoc = getMapTile(37,7).getLocation();
+        // triggers.add(new Trigger(joinLoc.x, joinLoc.y, 10, 160, new JoinScript(), "joinScript"));
         
         Point toTown = getPositionByTileIndex(0,30);
         triggers.add(new Trigger(toTown.x +14, toTown.y,5 ,100, new CemeteryToTownScript(), "CemeteryToTown"));

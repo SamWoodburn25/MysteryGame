@@ -70,6 +70,7 @@ public class ButcherScript extends Script {
                         return answer == 1;
                     }
                 });
+                addRequirement(new FlagRequirement("butcherPuzzleSolved", false));
                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
                 addScriptAction(new TextboxScriptAction("..."));
             }});
@@ -80,13 +81,12 @@ public class ButcherScript extends Script {
             addConditionalScriptActionGroup(new ConditionalScriptActionGroup() {{
                 addRequirement(new FlagRequirement("butcherPuzzleSolved", true));
                 addRequirement(new FlagRequirement("hasTalkedToButcher", false));
-                addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
                 addScriptAction(new TextboxScriptAction() {{
                     addText("Alright fine, since you helped me out... Your brother, Alex...\n he.. He wasn’t a good person.");
                     addText("He was always playing his “jokes” on me, keeping me \naround for his and his friends amusement.");
                     addText("One day he took it too far, I almost died... \nwell anyways that’s why I don’t want to talk about him.... ", new String[] { "\"That’s awful\"", "\"Push for more\"" });
                 }});
-             
+                addScriptAction(new ChangeFlagScriptAction("hasTalkedToButcher", true));
             }});
         }});
 
