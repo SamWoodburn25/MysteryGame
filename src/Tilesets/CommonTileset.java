@@ -1500,6 +1500,13 @@ public class CommonTileset extends Tileset {
 
                 mapTiles.add(counter10Tile);*/
 
+                // exclamation point floor frame
+                Frame exclamationFrame = new FrameBuilder(getSubImage(20, 5))
+                                .withScale(tileScale)
+                                .build();
+
+                MapTileBuilder exclamationTile = new MapTileBuilder(exclamationFrame);
+                mapTiles.add(exclamationTile);
                 return mapTiles;
         }
 }
