@@ -31,11 +31,7 @@ public class HowToPlay extends Screen {
     protected SpriteFont Rule5label;
     protected SpriteFont Rule6label;
     protected SpriteFont Rule7label;
-    protected SpriteFont Rule8label;
-    protected SpriteFont Rule9label;
-    protected SpriteFont Rule10label;
-    protected SpriteFont Rule11label;
-    protected SpriteFont EndOflabel;
+    protected SpriteFont Returnlabel;
     
 
     //constructor with a ScreenCoordinator parameter
@@ -47,19 +43,15 @@ public class HowToPlay extends Screen {
     public void initialize() {
     //background = new TitleScreenMap();
     //background.setAdjustCamera(false);
-    HowToPlaylabel = new SpriteFont("How To Play",50, 20, "Apple Chancery", 70, new Color(184, 15, 10));
-    Rule1label = new SpriteFont("1-)Use arrow keys for moving in map to navigate.", 70, 120, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule2label = new SpriteFont("2-)Use space button for talking with NPC's(caracters).", 70, 160, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule3label = new SpriteFont("3-)If you want to know which house is locked or which house belongs to whom, ", 70, 200, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule4label = new SpriteFont("you can check by pressing the space key on the label (marker) in front of the house.", 70, 240, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule5label = new SpriteFont("4-)You can open the Journal by pressing the “j” button where it reminds you of ", 70, 280, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule6label = new SpriteFont("the rules again on the first page. ", 70, 320, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule7label = new SpriteFont("5-)The next pages of the Journal are filled with things you talk about with ", 70, 360, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule8label = new SpriteFont("6-)NPC's (characters). So you don't have to remember everything :)))) ", 70, 400, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule9label = new SpriteFont("7-)Hold down 'shift' to sprint and view the red bar in the top right corner to see how", 70, 440, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule10label = new SpriteFont("far you can run.", 70, 480, "Apple Chancery", 20, new Color(184, 15, 10));
-    Rule11label = new SpriteFont("8-)If a pop-up appears, use 'esc' to close it ", 70, 520, "Apple Chancery", 20, new Color(184, 15, 10));
-    EndOflabel = new SpriteFont("Press SPACE to return to menu...", 70, 550, "Apple Chancery", 20, new Color(255, 255, 255));
+    HowToPlaylabel = new SpriteFont("How To Play",15, 7, "Apple Chancery", 30, new Color(184, 15, 10));
+    Rule1label = new SpriteFont("1) TO MOVE: Use the arrow keys.", 75, 93, "Apple Chancery", 25, new Color(184, 15, 10));
+    Rule2label = new SpriteFont("2) TO TALK: Use the space key to talk to other characters.", 75, 150, "Apple Chancery", 25, new Color(184, 15, 10));
+    Rule3label = new SpriteFont("3) TO CHECK SIGNS: Use 'space' key when in contact with sign.", 75, 207, "Apple Chancery", 25, new Color(184, 15, 10));
+    Rule4label = new SpriteFont("4) TO OPEN JOURNAL: Use the 'j' key to open/close journal.", 75, 264, "Apple Chancery", 25, new Color(184, 15, 10));
+    Rule5label = new SpriteFont("5) TO FLIP JOURNAL PAGES: Use the arrow keys.", 75, 321, "Apple Chancery", 25, new Color(184, 15, 10));
+    Rule6label = new SpriteFont("7) TO SPRINT: Hold down 'shift' key.", 75, 378, "Apple Chancery", 25, new Color(184, 15, 10));
+    Rule7label = new SpriteFont("8) TO ESCAPE POP-UPs: Use 'esc' key.", 75, 435, "Apple Chancery", 25, new Color(184, 15, 10));
+    Returnlabel = new SpriteFont("Press SPACE to return to the menu", 20, 532, "Apple Chancery", 25, new Color(255, 255, 255));
     
     keyLocker.lockKey(Key.SPACE);
 }
@@ -88,10 +80,6 @@ public class HowToPlay extends Screen {
         Rule5label.draw(graphicsHandler);
         Rule6label.draw(graphicsHandler);
         Rule7label.draw(graphicsHandler);
-        Rule8label.draw(graphicsHandler);
-        Rule9label.draw(graphicsHandler);
-        Rule10label.draw(graphicsHandler);
-        Rule11label.draw(graphicsHandler);
-        EndOflabel.draw(graphicsHandler);
+        Returnlabel.draw(graphicsHandler);
     }
 }
